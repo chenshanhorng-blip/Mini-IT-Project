@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://bwhxq81dupo1c"]
 
-[ext_resource type="Script" uid="uid://cvdoaajxlvrxi" path="res://characterstat.gd" id="1_mlurr"]
+[ext_resource type="Script" uid="uid://bsxac8rlmnapj" path="res://character system/avoid character bug.gd" id="2_xtddm"]
 
 [node name="Princess and knight stats" type="Node2D" unique_id=1004763527]
 position = Vector2(0, 8)
-script = ExtResource("1_mlurr")
+script = ExtResource("2_xtddm")
+
+[node name="Node" type="Node" parent="." unique_id=1092866253]
+script = ExtResource("2_xtddm")
