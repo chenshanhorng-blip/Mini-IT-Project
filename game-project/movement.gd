@@ -1,10 +1,14 @@
-extends Node
+extends CharacterBody2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	print("游戏开始了！")  # 添加这行
+@export var speed = 300.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	# 添加一个简单的移动示例（如果你有角色节点的话）
-	pass
+@onready var sprite = $Sprite2D
+
+func _physics_process(delta):
+	var direction = Input.get_vector("p1_left", "p1_right", "p1_up", "p1_down")
+	velocity = direction * speed
+	
+	if direction.x !=0:
+		sprite.flip_h = direction.x<0
+	
+	move_and_slide()
