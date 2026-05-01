@@ -7,6 +7,7 @@
 size = Vector2(270, 255)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1652265376]
+position = Vector2(-22, 3)
 script = ExtResource("1_u017l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375951171]
@@ -14,5 +15,5 @@ position = Vector2(589, 312.5)
 shape = SubResource("RectangleShape2D_kmddl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=806641159]
-position = Vector2(590, 310)
+position = Vector2(595, 315)
 texture = ExtResource("2_1e58s")
