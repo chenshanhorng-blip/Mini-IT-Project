@@ -1,136 +1,155 @@
+
 extends CharacterBody2D
 
-enum State {
-	IDLE,
-	ATTACK,
-	RAGE,
-	DEAD
-}
+enum State { IDLE, RAGE, DEAD }
 
+var max_health = 1000
 var health = 1000
 var phase = 1
 var current_state = State.IDLE
 
 var attack_cooldown = 2.0
-var attack_timer = 2.0
+var attack_timer = 0.0
+
+@export var fireball_scene:PackedScene
+var player
 
 
 func _ready():
 	randomize()
+	player = get_parent().get_node("Player")
+
+	$BossHealthBar.max_value = max_health
+	$BossHealthBar.value = health
 
 
 func _process(delta):
-	if current_state != State.DEAD:
-		attack_pattern()
+
+	if current_state == State.DEAD:
+		return
+
+	attack_timer -= delta
+
+	if attack_timer <= 0:
+		await attack_pattern()
+		attack_timer = attack_cooldown
 
 
 func take_damage(amount):
 	health -= amount
-	print("Dragon HP:", health)
+	$BossHealthBar.value = health
+
+	if randi() % 3 == 0:
+		await speak("You dare hit me?!How dare you!!!!I want to kill you!")
 
 	if health <= 700 and phase == 1:
-		phase_two()
+		await phase_two()
 
 	if health <= 350 and phase == 2:
-		phase_three()
+		await phase_three()
 
 	if health <= 0:
-		die()
+		await die()
 
 
 func attack_pattern():
-	var move = randi() % 3
 
-	# -------- Phase 1 --------
+	var move = randi() % 4
+
 	if phase == 1:
-		if move == 0:
-			fireball()
-		elif move == 1:
-			claw_attack()
-		else:
-			tail_sweep()
+		match move:
+			0: await fireball()
+			1: await ground_smash()
+			2: await fireball()
+			3: await ground_smash()
 
-	# -------- Phase 2 --------
 	elif phase == 2:
-		if move == 0:
-			fire_rain()
-		elif move == 1:
-			summon_minions()
-		else:
-			charge_attack()
+		match move:
+			0: await fire_breath()
+			1: await fireball()
+			2: await charge_attack()
+			3: await ground_smash()
 
-	# -------- Phase 3 --------
 	elif phase == 3:
-		if move == 0:
-			meteor_attack()
-		elif move == 1:
-			dragon_laser()
-		else:
-			apocalypse_fire()
+		match move:
+			0: await fire_breath()
+			1: await meteor_attack()
+			2: await apocalypse_fire()
+			3: await fire_breath()
 
-
-# ===== Phase 1 Skills =====
 
 func fireball():
-	print("Dragon casts Fireball")
+	await speak("Burn!")
+	spawn_fire(0)
+
+func fire_breath():
+	await speak("BURN EVERYTHING!!!")
+
+	for i in range(8):
+		spawn_fire(-0.3)
+		spawn_fire(0)
+		spawn_fire(0.3)
+		await get_tree().create_timer(0.2).timeout
 
 
-func claw_attack():
-	print("Dragon uses Claw Slash")
+func spawn_fire(angle_offset):
+	var fb = fireball_scene.instantiate()
+	get_parent().add_child(fb)
+	fb.position = $FireballSpawn.global_position
+
+	var dir = (player.position - fb.position).normalized()
+	dir = dir.rotated(angle_offset)
+
+	fb.direction = dir
+	fb.speed = 400 + (phase * 100)
 
 
-func tail_sweep():
-	print("Dragon uses Tail Sweep")
+func ground_smash():
+	await speak("CRUSH!!!")
 
+	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3).timeout
 
-# ===== Phase 2 Skills =====
-
-func fire_rain():
-	print("Dragon summons Fire Rain")
-
-
-func summon_minions():
-	print("Dragon summons baby dragons")
-
+	if player.position.distance_to(position) < 120:
+		player.take_damage(30)
 
 func charge_attack():
-	print("Dragon charges player")
+	await speak("You cannot escape!")
 
-
-# ===== Phase 3 Ultimate Skills =====
 
 func meteor_attack():
-	print("Meteor Shower!")
-
-
-func dragon_laser():
-	print("Ancient Dragon Laser!")
+	await speak("Meteor fall!")
 
 
 func apocalypse_fire():
-	print("Apocalypse Flame unleashed!")
+	await speak("End of all!!!")
+
+func speak(text):
+	$BossDialogue.text = ""
+	$BossDialogue.visible = true
+
+	for c in text:
+		$BossDialogue.text += c
+		await get_tree().create_timer(0.03).timeout
+
+	await get_tree().create_timer(1.2).timeout
+	$BossDialogue.visible = false
 
 
-# ===== Evolution =====
-
+# ================= Evolution =================
 func phase_two():
 	phase = 2
-	print("PHASE 2: Winged Dragon Awakens!")
+	attack_cooldown = 1.5
+	await speak("You dare challenge me?")
 
 
 func phase_three():
 	phase = 3
 	current_state = State.RAGE
-	print("PHASE 3: Ancient Dragon Final Form!")
-
-
-# Weak point bonus damage
-func hit_weak_point():
-	print("Critical Hit!")
-	take_damage(50)
-
+	attack_cooldown = 0.8
+	await speak("Feel my TRUE POWER!!!")
 
 func die():
 	current_state = State.DEAD
-	print("Dragon Boss Defeated!")
+	await speak("Impossible...")
 	queue_free()
