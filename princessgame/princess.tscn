@@ -3,26 +3,45 @@
 [ext_resource type="Script" uid="uid://bsxac8rlmnapj" path="res://character system/avoid character bug.gd" id="2_xtddm"]
 [ext_resource type="Script" uid="uid://dc3olevbjxhkv" path="res://character selection.gd" id="2_y80dd"]
 
-[node name="Princess and knight stats" type="Node2D" unique_id=1004763527]
-position = Vector2(400, 192)
+[node name="Princess and knight stats" type="Control" unique_id=695659331]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_xtddm")
 
 [node name="button for player selection page" type="Control" parent="." unique_id=1536292257]
-layout_mode = 3
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_y80dd")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="button for player selection page" unique_id=1845951789]
+[node name="HBoxContainer" type="HBoxContainer" parent="button for player selection page" unique_id=1893909546]
 layout_direction = 2
-layout_mode = 0
-offset_left = -24.0
-offset_top = -48.0
-offset_right = 496.0
-offset_bottom = 152.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -200.0
+offset_right = 450.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 200
 alignment = 1
 
 [node name="Boar_Princess_Button" type="Button" parent="button for player selection page/HBoxContainer" unique_id=1517006653]
+custom_minimum_size = Vector2(350, 400)
 layout_mode = 2
 
 [node name="Knight_Button" type="Button" parent="button for player selection page/HBoxContainer" unique_id=1159223661]
+custom_minimum_size = Vector2(350, 400)
 layout_mode = 2

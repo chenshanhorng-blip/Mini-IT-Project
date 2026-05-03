@@ -11,7 +11,6 @@ signal health_changed(curent_health:int,max_health:int)
 @export var base_attack:int= 20
 @export var base_max_shield:int= 10 
 @export var base_movement:int= 30 
-
 var current_max_health:int
 var current_attack:int
 var current_max_shield:int

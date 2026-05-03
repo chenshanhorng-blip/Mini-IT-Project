@@ -14,11 +14,21 @@ config/name="princessgame"
 run/main_scene="uid://bwhxq81dupo1c"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[autoload]
+
+Global="*uid://b3a3m43ftqwji"
+
 [display]
 
 window/size/viewport_width=1965
 window/size/viewport_height=700
 window/size/mode=3
+
+[file_customization]
+
+folder_colors={
+"res://character system/": "pink"
+}
 
 [physics]
 
