@@ -17,10 +17,13 @@ func _on_level_2_pressed():
 	get_tree().change_scene_to_file("res://scene_level_map/level2.tscn")
 
 func _on_level_3_pressed():
-	get_tree().change_scene_to_file(" ")
+	print("Button clicked!")
+	get_tree().change_scene_to_file("res://scene_level_map/level3.tscn")
 
 func _on_level_4_pressed():
-	get_tree().change_scene_to_file(" ")
+	print("Button clicked!")
+	get_tree().change_scene_to_file("res://scene_level_map/level4.tscn")
 
 func _on_level_5_pressed():
-	get_tree().change_scene_to_file(" ")
+	print("Button clicked!")
+	get_tree().change_scene_to_file("res://scene_level_map/level5.tscn")
