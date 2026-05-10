@@ -12,7 +12,7 @@ func select_boarprincess():
 	Global.player1_character=selected_character
 	print("Selected princess")
 	selected_character.print_stat()
-	get_tree().change_scene_to_file("res://scene_movement/player1_movement.tscn")
+	get_tree().change_scene_to_file("res://player1_movement.tscn")
 
 func select_teaeggknight():
 	selected_character = Create_Character.Create_Character(
@@ -21,4 +21,4 @@ func select_teaeggknight():
 	Global.player1_character=selected_character
 	print("Selected knight")
 	selected_character.print_stat()
-	get_tree().change_scene_to_file("res://scene_movement/player1_movement.tscn")
+	get_tree().change_scene_to_file("res://player1_movement.tscn")

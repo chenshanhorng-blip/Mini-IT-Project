@@ -2,7 +2,7 @@ extends Resource
 class_name CharacterStat
 
 signal health_depleted
-signal health_changed(curent_health:int,max_health:int)
+signal health_changed(current_max_health:int,max_health:int)
 #for player know role name and definition
 @export var character_name:String="Character"
 @export var role:String="none"
@@ -25,6 +25,7 @@ func setup_stats() -> void:
 	current_max_shield = base_max_shield
 	shield=current_max_shield
 	health = current_max_health
+	current_movement=base_movement
 	health_changed.emit(health,current_max_health)
 	
 func take_damage_system(damage:int)->void:
@@ -45,6 +46,7 @@ func take_damage_system(damage:int)->void:
 
 	if health <= 0:
 		health_depleted.emit()
+	
 #heal system if player got pick up an item that can heal the health
 func heal(amount: int) -> void:
 	health += amount
