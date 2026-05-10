@@ -13,3 +13,37 @@ script = ExtResource("1_u017l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375951171]
 position = Vector2(589, 312.5)
 shape = SubResource("RectangleShape2D_kmddl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=527129390]
+
+[node name="skill ui" type="Control" parent="CanvasLayer" unique_id=315435401]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/skill ui" unique_id=2109838049]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -150.0
+offset_right = 370.0
+offset_bottom = -50.0
+theme_override_constants/separation = 10
+
+[node name="skill 1" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=1916033700]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+text = "skill 1"
+
+[node name="skill 2" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=904927629]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+text = "skill 2"
+
+[node name="ultimate" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=1510077179]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+text = "utlimate"

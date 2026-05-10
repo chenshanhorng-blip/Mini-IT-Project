@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="princessgame"
-run/main_scene="uid://bwhxq81dupo1c"
+run/main_scene="uid://bppqkhfcmcoi8"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]

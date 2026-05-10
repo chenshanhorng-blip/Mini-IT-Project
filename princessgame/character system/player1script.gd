@@ -3,17 +3,16 @@ extends CharacterBody2D
 @export var speed = 300.0
 @onready var sprite = $Sprite2D
 var stat: CharacterStat = null
+func receive_damage(damage:int) -> void:
+	if stat == null:
+		return
+	
+	CombatSystem.take_damage(stat, damage)
+	stat.print_stat()
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_J:
-			if stat != null:
-				stat.take_damage_system(10)
-				stat.print_stat()
-func receive_damage(damage:int) -> void:
-	if stat != null:
-		stat.take_damage_system(damage)
-		stat.print_stat()
-		
+			receive_damage(10)
 func _ready():
 	if Global.player1_character != null:
 		stat = Global.player1_character

@@ -61,4 +61,3 @@ static func use_ultimate(stat: CharacterStat) -> void:
 
 	elif stat.character_name == "Tea Egg Knight":
 		print("Forbidden Thousand-Year Master Sauce")
-		
