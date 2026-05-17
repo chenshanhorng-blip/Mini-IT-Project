@@ -24,5 +24,21 @@ static func take_damage(stat: CharacterStat, damage:int) -> void:
 	print("HP:", stat.health, "/", stat.current_max_health)
 	print("Shield:", stat.shield, "/", stat.current_max_shield)
 	
+# Passive skill for tea egg knight after receive damage
+	SkillSystem.trigger_passive_when_damaged(stat)
+
+	stat.health_changed.emit(stat.health, stat.current_max_health)
+
+	print("HP:", stat.health, "/", stat.current_max_health)
+	print("Shield:", stat.shield, "/", stat.current_max_shield)
+
 	if stat.health <= 0:
 		stat.health_depleted.emit()
+
+
+static func basic_attack_1(attacker: CharacterStat) -> void:
+	if attacker == null:
+		return
+
+	print(attacker.character_name, "uses Basic Attack")
+	print("Damage:", attacker.current_attack)

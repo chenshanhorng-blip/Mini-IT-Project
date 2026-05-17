@@ -1,8 +1,8 @@
 extends Resource
 class_name CharacterStat
 
-signal health_depleted
 signal health_changed(current_max_health:int,max_health:int)
+
 #for player know role name and definition
 @export var character_name:String="Character"
 @export var role:String="none"
@@ -17,6 +17,15 @@ var current_max_shield:int
 var current_movement:int
 var health:int =0 
 var shield:int=0
+#the passive of character and the original stat boar princess when not use the ultimate
+var passive_applied: bool = false
+var ultimate_active: bool = false
+var original_attack: int = 0
+var original_max_health: int = 0
+var original_movement: int = 0
+var tea_passive_count: int = 0
+var tea_passive_max_count: int = 5
+
 # Initialize character stats by copying base values to current values.
 # Sets the character's health to maximum and emits a signal to update UI.
 func setup_stats() -> void:
@@ -36,18 +45,20 @@ func heal(amount: int) -> void:
 #make sure the character is dead if the health is 0
 func is_dead()->bool:
 	return health<=0
-#reset the character stat and add full health to player 
+#reset the character stat and add full health to player ,and the passive skill will also reset 
 func reset_stats() -> void:
 	setup_stats()
-func print_stat() ->void:
+	passive_applied = false
+	tea_passive_count = 0
+#look the caharacter stat at system 	
+func print_stat() -> void:
 	print("—————character stat——————")
-	print("Type of hero:",character_name)
-	print("Role:",role)
-	print("HP:",health,"/",base_max_health)
-	print("Attack",base_attack)
-	print("Shield:",shield,"/",base_max_shield)
-	print("Speed:",base_movement)
-
+	print("Type of hero:", character_name)
+	print("Role:", role)
+	print("HP:", health, "/", current_max_health)
+	print("Attack:", current_attack)
+	print("Shield:", shield, "/", current_max_shield)
+	print("Speed:", current_movement)
 
 
 	

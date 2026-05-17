@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://81od2w2ablqi"
-path="res://.godot/imported/boar princess.png-cdb4b69a74614801e1fd364c2f1e3471.ctex"
+uid="uid://cet5oot4fasfy"
+path="res://.godot/imported/boar princess attack.png-c9bf62136996616d207f071f0166efd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://picture/boar princess.png"
-dest_files=["res://.godot/imported/boar princess.png-cdb4b69a74614801e1fd364c2f1e3471.ctex"]
+source_file="res://picture/boar princess attack.png"
+dest_files=["res://.godot/imported/boar princess attack.png-c9bf62136996616d207f071f0166efd1.ctex"]
 
 [params]
 
