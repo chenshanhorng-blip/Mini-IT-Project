@@ -1,15 +1,29 @@
 [gd_scene format=3 uid="uid://c3kdl3coweuaf"]
 
 [ext_resource type="Script" uid="uid://cnht4nelt4sgc" path="res://script_level_map/level_1.gd" id="1_ic2s6"]
+[ext_resource type="PackedScene" uid="uid://bppqkhfcmcoi8" path="res://scene_movement/player1_movement.tscn" id="2_rhdkx"]
+[ext_resource type="PackedScene" uid="uid://dt5tygl3kij10" path="res://red_point.tscn" id="3_4vh3s"]
 
 [node name="Node2D" type="Node2D" unique_id=700895301]
 script = ExtResource("1_ic2s6")
 
+[node name="CharacterBody2D" parent="." unique_id=1652265376 instance=ExtResource("2_rhdkx")]
+position = Vector2(-36, 82)
+
+[node name="RedPoint1" parent="." unique_id=663432786 instance=ExtResource("3_4vh3s")]
+position = Vector2(168, 504)
+
+[node name="RedPoint2" parent="." unique_id=1761105346 instance=ExtResource("3_4vh3s")]
+position = Vector2(158, 123)
+
+[node name="RedPoint3" parent="." unique_id=1294735992 instance=ExtResource("3_4vh3s")]
+position = Vector2(996, 484)
+
 [node name="Button" type="Button" parent="." unique_id=1988619362]
-offset_left = 439.0
-offset_top = 196.0
-offset_right = 562.0
-offset_bottom = 231.0
+offset_left = 495.0
+offset_top = 148.0
+offset_right = 618.0
+offset_bottom = 183.0
 text = "Back To Map"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
