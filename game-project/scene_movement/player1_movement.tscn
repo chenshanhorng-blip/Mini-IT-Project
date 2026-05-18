@@ -217,11 +217,11 @@ animations = [{
 script = ExtResource("1_u017l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375951171]
-position = Vector2(575, 335)
+position = Vector2(40, 188)
 shape = SubResource("RectangleShape2D_kmddl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=202378733]
-position = Vector2(576.00006, 335)
+position = Vector2(40.000004, 178)
 scale = Vector2(0.05069446, 0.05385417)
 sprite_frames = SubResource("SpriteFrames_3dbgi")
 animation = &"jump"
