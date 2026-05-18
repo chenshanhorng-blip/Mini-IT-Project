@@ -4,19 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://bppqkhfcmcoi8" path="res://scene_movement/player1_movement.tscn" id="2_rhdkx"]
 [ext_resource type="PackedScene" uid="uid://dt5tygl3kij10" path="res://red_point.tscn" id="3_4vh3s"]
 
+[sub_resource type="TileSet" id="TileSet_rhdkx"]
+
 [node name="Node2D" type="Node2D" unique_id=700895301]
 script = ExtResource("1_ic2s6")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1497803257]
+tile_set = SubResource("TileSet_rhdkx")
 
 [node name="CharacterBody2D" parent="." unique_id=1652265376 instance=ExtResource("2_rhdkx")]
 position = Vector2(-36, 82)
 
-[node name="RedPoint1" parent="." unique_id=663432786 instance=ExtResource("3_4vh3s")]
+[node name="GreenDiamond1" parent="." unique_id=663432786 instance=ExtResource("3_4vh3s")]
 position = Vector2(168, 504)
 
-[node name="RedPoint2" parent="." unique_id=1761105346 instance=ExtResource("3_4vh3s")]
-position = Vector2(158, 123)
+[node name="GreenDiamond2" parent="." unique_id=1761105346 instance=ExtResource("3_4vh3s")]
+position = Vector2(156, 127)
 
-[node name="RedPoint3" parent="." unique_id=1294735992 instance=ExtResource("3_4vh3s")]
+[node name="GreenDiamond3" parent="." unique_id=1294735992 instance=ExtResource("3_4vh3s")]
 position = Vector2(996, 484)
 
 [node name="Button" type="Button" parent="." unique_id=1988619362]

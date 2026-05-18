@@ -10,7 +10,7 @@ func _ready():
 	
 	exit_button.hide()
 	
-	var points = [$RedPoint1, $RedPoint2, $RedPoint3]
+	var points = [$GreenDiamond1, $GreenDiamond2, $GreenDiamond3]
 	for point in points:
 		point.collected.connect(_on_point_collected)
 

@@ -9,22 +9,21 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if direction.length() > 0:
-		# 判断方向（对角线优先）
-		if direction.y > 0:  # 向下
+		if direction.y > 0:  
 			if direction.x > 0:
 				animated_sprite.play("down_right")
 			elif direction.x < 0:
 				animated_sprite.play("down_left")
 			else:
 				animated_sprite.play("down")
-		elif direction.y < 0:  # 向上/跳跃
+		elif direction.y < 0:  
 			if direction.x > 0:
 				animated_sprite.play("jump_right")
 			elif direction.x < 0:
 				animated_sprite.play("jump_left")
 			else:
 				animated_sprite.play("jump")
-		else:  # 水平
+		else:  
 			if direction.x > 0:
 				animated_sprite.play("right_move")
 			else:
