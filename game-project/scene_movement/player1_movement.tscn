@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bcnf1tulq0erb" path="res://movement BP/BP left move image.png" id="5_w8yei"]
 [ext_resource type="Texture2D" uid="uid://bmv8giir1w602" path="res://movement BP/BP right move image.png" id="6_yaunb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmddl"]
-size = Vector2(84, 78)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0araa"]
+size = Vector2(29, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0araa"]
 atlas = ExtResource("2_0araa")
@@ -217,11 +217,11 @@ animations = [{
 script = ExtResource("1_u017l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375951171]
-position = Vector2(40, 188)
-shape = SubResource("RectangleShape2D_kmddl")
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_0araa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=202378733]
-position = Vector2(40.000004, 178)
+position = Vector2(0.9999999, -6.9999995)
 scale = Vector2(0.05069446, 0.05385417)
 sprite_frames = SubResource("SpriteFrames_3dbgi")
 animation = &"jump"

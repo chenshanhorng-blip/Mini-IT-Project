@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d2mlsdrgl3rws" path="res://kenney_pixel-platformer/Tiles/tile_0154.png" id="1_2465u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52mh4"]
-size = Vector2(148.5, 60.5)
+size = Vector2(108, 49.25)
 
 [node name="Area2D" type="Area2D" unique_id=563486693]
 script = ExtResource("1_52mh4")
@@ -15,5 +15,5 @@ scale = Vector2(5.666667, 2.777778)
 texture = ExtResource("1_2465u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1790747103]
-position = Vector2(0, 1)
+position = Vector2(0, -4.625)
 shape = SubResource("RectangleShape2D_52mh4")
