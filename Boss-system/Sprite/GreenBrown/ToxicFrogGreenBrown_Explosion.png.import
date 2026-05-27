@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb7l2hnp5tjbx"
-path="res://.godot/imported/ToxicFrogPurpleBlue_Idle.png-075c38c520b22a508fc5f3e6c05c3ac5.ctex"
+uid="uid://ya1xy1g5rs5h"
+path="res://.godot/imported/ToxicFrogGreenBrown_Explosion.png-cf6ccc0130f2c05f83c0683c4e42c3ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/PurpleBlue/ToxicFrogPurpleBlue_Idle.png"
-dest_files=["res://.godot/imported/ToxicFrogPurpleBlue_Idle.png-075c38c520b22a508fc5f3e6c05c3ac5.ctex"]
+source_file="res://Sprite/GreenBrown/ToxicFrogGreenBrown_Explosion.png"
+dest_files=["res://.godot/imported/ToxicFrogGreenBrown_Explosion.png-cf6ccc0130f2c05f83c0683c4e42c3ff.ctex"]
 
 [params]
 
