@@ -26,6 +26,15 @@ var original_movement: int = 0
 var tea_passive_count: int = 0
 var tea_passive_max_count: int = 5
 
+#the cooldown for both character
+var skill1_cooldown: float = 3.0
+var skill2_cooldown: float = 5.0
+var ultimate_cooldown: float = 10.0
+
+var skill1_ready_time: float = 0.0
+var skill2_ready_time: float = 0.0
+var ultimate_ready_time: float = 0.0
+
 # Initialize character stats by copying base values to current values.
 # Sets the character's health to maximum and emits a signal to update UI.
 func setup_stats() -> void:
