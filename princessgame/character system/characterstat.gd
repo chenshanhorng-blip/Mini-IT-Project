@@ -2,7 +2,7 @@ extends Resource
 class_name CharacterStat
 
 signal health_changed(current_max_health:int,max_health:int)
-
+signal health_depleted
 #for player know role name and definition
 @export var character_name:String="Character"
 @export var role:String="none"
