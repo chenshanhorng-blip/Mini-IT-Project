@@ -12,10 +12,12 @@ config_version=5
 
 config/name="GameProject"
 run/main_scene="uid://cqlumm0xqaufs"
-config/features=PackedStringArray("4.6")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
-Sharon-featurerun/main_scene="uid://c3kdl3coweuaf"
-mainconfig/features=PackedStringArray("4.6", "Forward Plus")
+
+[autoload]
+
+CheckpointManager="*uid://bh8rdfkqh0t5b"
 
 [input]
 
@@ -66,4 +68,5 @@ p2_down={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
