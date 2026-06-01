@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="GameProject"
- Sharon-feature
-run/main_scene="uid://c3kdl3coweuaf"
-
-run/main_scene="uid://cqlumm0xqaufs"
-main
-config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="uid://cp2bkw3mpbrwl"
+config/features=PackedStringArray("4.6")
 config/icon="res://icon.svg"
+Sharon-featurerun/main_scene="uid://c3kdl3coweuaf"
+mainconfig/features=PackedStringArray("4.6", "Forward Plus")
+
+[autoload]
+
+CheckpointManager="*uid://bh8rdfkqh0t5b"
 
 [input]
 
@@ -68,4 +70,5 @@ p2_down={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

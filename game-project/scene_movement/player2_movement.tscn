@@ -322,3 +322,11 @@ scale = Vector2(0.11805554, 0.10659724)
 sprite_frames = SubResource("SpriteFrames_lt3ii")
 animation = &"down_left"
 frame_progress = 0.17923853
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=919443598]
+zoom = Vector2(1.4, 1.4)
+limit_left = 0
+limit_top = 0
+limit_right = 100000
+limit_bottom = 10000
+position_smoothing_enabled = true

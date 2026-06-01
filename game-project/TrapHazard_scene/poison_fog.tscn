@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dx6nysqrsrag1"]
 
-[ext_resource type="Script" uid="uid://qoij4o5bp1dj" path="res://poison_fog.gd" id="1_52mh4"]
+[ext_resource type="Script" uid="uid://qoij4o5bp1dj" path="res://TrapHazard_script/poison_fog.gd" id="1_52mh4"]
 [ext_resource type="Texture2D" uid="uid://d2mlsdrgl3rws" path="res://kenney_pixel-platformer/Tiles/tile_0154.png" id="1_2465u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52mh4"]
