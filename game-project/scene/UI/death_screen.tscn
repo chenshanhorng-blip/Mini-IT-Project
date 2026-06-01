@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://00juqqmbtmos"]
+
+[ext_resource type="Script" uid="uid://beembnudjyr28" path="res://scene/UI/death_screen.gd" id="1_u8226"]
+
+[node name="DeathScreen" type="CanvasLayer" unique_id=1674102921]
+script = ExtResource("1_u8226")
+
+[node name="Background" type="ColorRect" parent="." unique_id=763698788]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7019608)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1022139632]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -318.0
+offset_right = 576.0
+offset_bottom = 327.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=329912310]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2035983496]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1709146816]
+layout_mode = 2
+text = "Continue from Checkpoint"
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1937524456]
+layout_mode = 2
+text = "Restart Level"
+
+[node name="MapButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=366803750]
+layout_mode = 2
+text = "Back to Map"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MapButton" to="." method="_on_map_button_pressed"]

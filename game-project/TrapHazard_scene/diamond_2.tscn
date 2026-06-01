@@ -1,13 +1,13 @@
-[gd_scene format=3 uid="uid://dt5tygl3kij10"]
+[gd_scene format=3 uid="uid://b7lfoud1e714v"]
 
-[ext_resource type="Script" uid="uid://cweplgnfcwmg2" path="res://red_point.gd" id="1_3l1gk"]
-[ext_resource type="Texture2D" uid="uid://cuowyf1lj4p44" path="res://diamond/green diamond.png" id="2_3l1gk"]
+[ext_resource type="Script" uid="uid://cweplgnfcwmg2" path="res://TrapHazard_script/diamond.gd" id="1_6ylmg"]
+[ext_resource type="Texture2D" uid="uid://dj765kwtgxmck" path="res://diamond/purple diamond.png" id="2_40cxs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ju4im"]
 size = Vector2(42.375, 40.125)
 
 [node name="Area2D" type="Area2D" unique_id=663432786]
-script = ExtResource("1_3l1gk")
+script = ExtResource("1_6ylmg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1851920164]
 position = Vector2(-1.1875, -2.9375)
@@ -16,4 +16,4 @@ shape = SubResource("RectangleShape2D_ju4im")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1907406019]
 position = Vector2(-1, 2)
 scale = Vector2(0.05199655, 0.044357646)
-texture = ExtResource("2_3l1gk")
+texture = ExtResource("2_40cxs")
