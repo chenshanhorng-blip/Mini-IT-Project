@@ -11,11 +11,9 @@ config_version=5
 [application]
 
 config/name="GameProject"
-run/main_scene="uid://cp2bkw3mpbrwl"
-config/features=PackedStringArray("4.6")
+run/main_scene="uid://cqlumm0xqaufs"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
-Sharon-featurerun/main_scene="uid://c3kdl3coweuaf"
-mainconfig/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
