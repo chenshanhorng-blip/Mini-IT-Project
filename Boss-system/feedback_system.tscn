@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dt7ld2wdqkxys"]
 
+[ext_resource type="Script" uid="uid://bdh7f2uiw4trf" path="res://feedback_system.gd" id="1_8igxv"]
+
 [sub_resource type="Theme" id="Theme_8igxv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvcgc"]
@@ -70,6 +72,7 @@ offset_bottom = -234.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hvcgc")
+script = ExtResource("1_8igxv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FeedbackPanel" unique_id=1006440761]
 texture_filter = 1
