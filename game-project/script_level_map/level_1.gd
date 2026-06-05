@@ -14,6 +14,7 @@ func _ready():
 	print("✅ CheckpointManager 工作正常！")
 	
 	# 连接按钮信号
+
 	exit_button.pressed.connect(_on_button_pressed)
 	
 	exit_button.hide()
@@ -21,7 +22,7 @@ func _ready():
 	var points = [$GreenDiamond1, $GreenDiamond2, $GreenDiamond3]
 	for point in points:
 		point.collected.connect(_on_point_collected)
-		
+
 func _on_point_collected():
 	collected_count += 1
 	print("Collected! ", collected_count, " / ", total_points)

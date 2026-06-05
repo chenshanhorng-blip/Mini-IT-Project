@@ -1,5 +1,4 @@
 [gd_scene format=4 uid="uid://cp2bkw3mpbrwl"]
-
 [ext_resource type="Script" uid="uid://bj5ov0pdyk4w3" path="res://script_level_map/level_2.gd" id="1_gwe5g"]
 [ext_resource type="Texture2D" uid="uid://d3s5dyeb2q6g6" path="res://diamond/Gemini_Generated_Image_uxqqzwuxqqzwuxqq.png" id="2_slq4p"]
 [ext_resource type="Texture2D" uid="uid://dl5owe1f32vox" path="res://diamond/goodly-2x.png" id="3_bebr4"]
@@ -1039,6 +1038,9 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_du5er")
+[gd_scene format=3 uid="uid://cp2bkw3mpbrwl"]
+
+[ext_resource type="Script" uid="uid://bj5ov0pdyk4w3" path="res://script_level_map/level_2.gd" id="1_gwe5g"]
 
 [node name="Node2D" type="Node2D" unique_id=312421005]
 script = ExtResource("1_gwe5g")
@@ -1082,3 +1084,13 @@ position = Vector2(164, 548)
 position = Vector2(202, 548)
 
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
+
+[node name="Button" type="Button" parent="." unique_id=17081788]
+offset_left = 529.0
+offset_top = 194.0
+offset_right = 650.0
+offset_bottom = 239.0
+text = "Back To Map"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+

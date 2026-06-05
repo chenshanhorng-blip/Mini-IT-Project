@@ -50,7 +50,10 @@ static func use_skill_1(stat: CharacterStat) -> void:
 	print(stat.character_name, "used Skill 1")
 
 	if stat.character_name == "Boar Princess":
+
 		print("Boar Princess use royal roast")
+
+		print("Boar Princess scold enemy")
 
 	elif stat.character_name == "Tea Egg Knight":
 		print("Tea Egg Knight uses shine shield")
@@ -128,6 +131,14 @@ static func use_ultimate(stat: CharacterStat) -> void:
 	if stat.character_name == "Tea Egg Knight":
 		print("Tea Egg Knight uses Forbidden Thousand-Year Master Sauce")
 		print("Effect: Causes damage to enemy")
+
 		print("Ultimate Damage:",)
 
 	stat.print_stat()
+
+		print("Ultimate Damage:", stat.current_attack + 30)
+
+	stat.print_stat()
+
+
+	

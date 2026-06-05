@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cptx3r3h56avb"]
+
+[ext_resource type="Script" uid="uid://duiyf1l24iqen" path="res://fake_ground.gd" id="1_hkksr"]
+[ext_resource type="Texture2D" uid="uid://cgu5g67jbqsio" path="res://kenney_pixel-platformer/Tiles/tile_0028.png" id="2_c4ncs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kjbn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2iij8"]
+size = Vector2(23, 22)
+
+[node name="FakeGround" type="StaticBody2D" unique_id=49263552]
+script = ExtResource("1_hkksr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=760032561]
+texture = ExtResource("2_c4ncs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971345524]
+shape = SubResource("RectangleShape2D_2kjbn")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1445750462]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1348824304]
+shape = SubResource("RectangleShape2D_2iij8")

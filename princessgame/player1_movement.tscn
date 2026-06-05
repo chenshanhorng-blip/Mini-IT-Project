@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b24ayv7wclvpp" path="res://picture/basic attack of the princes.png" id="9_yiowr"]
 [ext_resource type="Script" uid="uid://b0b2260gf66ji" path="res://skill_part system.gd" id="11_wmi8j"]
 [ext_resource type="Script" uid="uid://bvoexo0284m6c" path="res://player_hpbar.gd" id="14_rt0ft"]
+[ext_resource type="Texture2D" uid="uid://81od2w2ablqi" path="res://picture/boar princess.png" id="5_py4ac"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etwpg"]
 atlas = ExtResource("2_etwpg")
@@ -225,6 +226,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_rt0ft")
 }],
 "loop": false,
+
 "name": &"princess basic attack",
 "speed": 9.0
 }, {
@@ -247,6 +249,8 @@ animations = [{
 "loop": false,
 "name": &"princess skill 2",
 "speed": 3.3
+"name": &"princess basic attack ",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -340,11 +344,15 @@ animations = [{
 }],
 "loop": false,
 "name": &"ultimate of tea egg knight ",
+
+"name": &"princess standing ",
+
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmddl"]
 size = Vector2(270, 255)
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wmi8j"]
 
@@ -577,6 +585,7 @@ script = ExtResource("1_u017l")
 position = Vector2(200, 304)
 scale = Vector2(1.2504165, 1.3037499)
 sprite_frames = SubResource("SpriteFrames_ry24f")
+
 animation = &"skill 1 of boar princes "
 frame = 3
 frame_progress = 1.0
@@ -663,6 +672,14 @@ offset_left = 70.0
 offset_top = 3.0
 offset_right = 110.0
 offset_bottom = 26.0
+
+animation = &"princess standing "
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375951171]
+position = Vector2(589, 312.5)
+shape = SubResource("RectangleShape2D_kmddl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=527129390]
 
 [node name="skill ui" type="Control" parent="CanvasLayer" unique_id=315435401]
 layout_mode = 3

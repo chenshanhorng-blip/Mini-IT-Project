@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bq65i5g7m5oa5" path="res://movement TE/TE left move image.png" id="7_bmbfh"]
 [ext_resource type="Texture2D" uid="uid://ikalbf10a37t" path="res://movement TE/TE right move image.png" id="8_6edlp"]
 
+[ext_resource type="Texture2D" uid="uid://bfjpenbpiwplc" path="res://icon.svg" id="2_m7pod"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1viu"]
 size = Vector2(276, 208)
 
@@ -309,6 +311,7 @@ animations = [{
 "speed": 5.0
 }]
 
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=882968177]
 script = ExtResource("1_gdahf")
 
@@ -330,3 +333,7 @@ limit_top = 0
 limit_right = 100000
 limit_bottom = 10000
 position_smoothing_enabled = true
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1859608395]
+position = Vector2(520, 268)
+texture = ExtResource("2_m7pod")
+
