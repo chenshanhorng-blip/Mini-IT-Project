@@ -11,13 +11,16 @@ config_version=5
 [application]
 
 config/name="GameProject"
-run/main_scene="uid://cqlumm0xqaufs"
+run/main_scene="uid://cp2bkw3mpbrwl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+Sharon-featurerun/main_scene="uid://c3kdl3coweuaf"
+mainconfig/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
 CheckpointManager="*uid://bh8rdfkqh0t5b"
+Global="*uid://b3a3m43ftqwji"
 
 [input]
 
