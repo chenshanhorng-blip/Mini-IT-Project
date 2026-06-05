@@ -20,6 +20,7 @@ mainconfig/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 CheckpointManager="*uid://bh8rdfkqh0t5b"
+Global="*uid://b3a3m43ftqwji"
 
 [input]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdu33lmys12yr"
-path="res://.godot/imported/boar princess skill 1 effect .png-a31896582f31fd6e12d03f2998bfeb62.ctex"
+path="res://.godot/imported/boar princess skill 1 effect .png-b090bd6270cf8cc713bb1ab4fb44752d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://picture/boar princess skill 1 effect .png"
-dest_files=["res://.godot/imported/boar princess skill 1 effect .png-a31896582f31fd6e12d03f2998bfeb62.ctex"]
+source_file="res://princessgame/picture/boar princess skill 1 effect .png"
+dest_files=["res://.godot/imported/boar princess skill 1 effect .png-b090bd6270cf8cc713bb1ab4fb44752d.ctex"]
 
 [params]
 

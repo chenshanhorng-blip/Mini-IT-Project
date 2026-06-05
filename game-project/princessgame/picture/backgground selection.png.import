@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://g71no7ovgodi"
-path="res://.godot/imported/backgground selection.png-13639077facd19f839da859f63b9b4dc.ctex"
+path="res://.godot/imported/backgground selection.png-473d7482eb4736c97b7d44bd4a3feea9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://picture/backgground selection.png"
-dest_files=["res://.godot/imported/backgground selection.png-13639077facd19f839da859f63b9b4dc.ctex"]
+source_file="res://princessgame/picture/backgground selection.png"
+dest_files=["res://.godot/imported/backgground selection.png-473d7482eb4736c97b7d44bd4a3feea9.ctex"]
 
 [params]
 
