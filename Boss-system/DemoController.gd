@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var hp: int = 200
 
 ## 火球场景
-var fireball_scene: PackedScene = preload("res://Sprite/fireball.tscn")
+var fireball_scene: PackedScene = preload("res://fireball.tscn")
 
 ## ------------------------------
 ## 状态变量

@@ -2,7 +2,7 @@ extends Area2D
 
 var speed = 450.0
 # 默认让它有个方向，后面会被恶魔脚本改掉
-var direction = Vector2.RIGHT 
+var direction = Vector2.RIGHT
 
 @onready var sprite = $AnimatedSprite2D
 
