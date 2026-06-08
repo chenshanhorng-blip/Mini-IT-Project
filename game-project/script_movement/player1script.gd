@@ -179,6 +179,10 @@ func _on_player_respawn(checkpoint_position: Vector2):
 func respawn():
 	respawn_at_checkpoint(start_position)
 
+# Added teleport_to function
+func teleport_to(pos: Vector2) -> void:
+	global_position = pos
+
 # --- New Damage & Slow Interfaces Called By Trap ---
 func take_damage(amount: int) -> void:
 	health -= amount
