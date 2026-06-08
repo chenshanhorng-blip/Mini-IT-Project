@@ -1,8 +1,14 @@
 # FairyRing.gd
 extends Area2D
 
+
+# 在编辑器里拖入其他传送目的地节点
+@export var teleport_destinations: Array[Node2D] = []
+@export var cooldown_time: float = 1.5  # 防止来回传送
+
 @export var teleport_destinations: Array[Node2D] = []
 @export var cooldown_time: float = 1.5
+
 
 var can_teleport = true
 
@@ -13,6 +19,13 @@ func _on_body_entered(body):
 	if body.is_in_group("player") and can_teleport:
 		if teleport_destinations.is_empty():
 			return
+
+		
+		# 随机选一个目的地
+		var destination = teleport_destinations.pick_random()
+		
+		_teleport_player(body, destination.global_position)
+
 		var destination = teleport_destinations.pick_random()
 		_teleport_player(body, destination.global_position)
 		
@@ -20,9 +33,19 @@ func _on_body_entered(body):
 		if destination.has_method("force_cooldown"):
 			destination.force_cooldown()
 
+
 func _teleport_player(player, target_pos):
 	can_teleport = false
 	
+	# 播放特效和音效
+	$GPUParticles2D.emitting = true
+	$AudioStreamPlayer2D.play()
+	
+	# 传送玩家
+	player.global_position = target_pos
+	
+	# 冷却时间防止循环传送
+
 	# $AudioStreamPlayer2D.play()  ← 已删除
 	$GPUParticles2D.emitting = true
 	

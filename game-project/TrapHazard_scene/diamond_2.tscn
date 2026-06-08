@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ju4im"]
 size = Vector2(42.375, 40.125)
 
-[node name="Area2D" type="Area2D" unique_id=663432786]
+[node name="PurpleDiamond" type="Area2D" unique_id=663432786]
 script = ExtResource("1_6ylmg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1851920164]
