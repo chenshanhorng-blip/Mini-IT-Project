@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cnq6m47uo0i7c" path="res://TrapHazard_script/fairy_ring.gd" id="1_r38bj"]
 [ext_resource type="Texture2D" uid="uid://biitlmlj1kkm7" path="res://diamond/New Piskel (7).png" id="2_ly6qn"]
-
-[ext_resource type="Texture2D" uid="uid://c5qqhag1h1ju3" path="res://kenney_pixel-platformer/Tiles/tile_0008.png" id="3_552b5"]
-
 [ext_resource type="Texture2D" uid="uid://krkxiudff38o" path="res://kenney_pixel-platformer/Tiles/tile_0011.png" id="3_552b5"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1cg"]
 size = Vector2(53, 20)
@@ -24,14 +20,6 @@ emission_ring_height = 1.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
-
-gravity = Vector3(0, -60, 0)
-color = Color(1, 1, 1, 0.49803922)
-color_ramp = SubResource("GradientTexture1D_k7nsc")
-
-[node name="FairyRing" type="Area2D" unique_id=1960276614]
-script = ExtResource("1_r38bj")
-
 gravity = Vector3(0, -50, 0)
 color = Color(1, 1, 1, 0.49803922)
 color_ramp = SubResource("GradientTexture1D_k7nsc")
@@ -45,17 +33,12 @@ position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_ro1cg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2138278001]
-scale = Vector2(0.13146701, 0.11328125)
-
 position = Vector2(3.5762787e-07, -1.1920929e-07)
 scale = Vector2(0.099066846, 0.08650174)
 texture = ExtResource("2_ly6qn")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1764236470]
 position = Vector2(3, -3)
-amount = 12
-
 amount = 5
-
 texture = ExtResource("3_552b5")
 process_material = SubResource("ParticleProcessMaterial_wi4qi")
