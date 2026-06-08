@@ -7,8 +7,7 @@ var is_selecting: bool = false
 @onready var knight_button = $HBoxContainer/Knight_Button
 
 func _ready() -> void:
-	print("Character Selection screen loaded")
-
+	print("THIS SELECTION SCENE IS RUNNING")
 
 func _input(event) -> void:
 	if is_selecting:
@@ -18,37 +17,33 @@ func _input(event) -> void:
 		var mouse_pos = event.position
 
 		if boar_button.get_global_rect().has_point(mouse_pos):
-			print("Boar Princess selected")
+			print("Boar card clicked")
 			is_selecting = true
 			select_boarprincess()
 
 		elif knight_button.get_global_rect().has_point(mouse_pos):
-			print("Tea Egg Knight selected")
+			print("Knight card clicked")
 			is_selecting = true
 			select_teaeggknight()
 
 
 func select_boarprincess() -> void:
-	var selected_character = Create_Character.Create_Character(
+	selected_character = Create_Character.Create_Character(
 		Create_Character.CharacterType.BOAR_PRINCESS
 	)
-	Global.player1_character = selected_character
-	print("SELECTED PRINCESS")
-	print("Global character = ", Global.player1_character.character_name)
 
-	# BOTH characters use player1_movement.tscn
-	# because it has all skill nodes, HUD, and both sets of animations
-	get_tree().change_scene_to_file("res://scene_level_map/level1.tscn")
+	Global.player1_character = selected_character
+	print("Selected princess")
+	selected_character.print_stat()
+	get_tree().change_scene_to_file("res://player1_movement.tscn")
 
 
 func select_teaeggknight() -> void:
-	var selected_character = Create_Character.Create_Character(
+	selected_character = Create_Character.Create_Character(
 		Create_Character.CharacterType.TEA_EGG_KNIGHT
 	)
-	Global.player1_character = selected_character
-	print("SELECTED KNIGHT")
-	print("Global character = ", Global.player1_character.character_name)
 
-	# BOTH characters use player1_movement.tscn
-	# Tea Egg Knight uses _2 animations already inside that scene
-	get_tree().change_scene_to_file("res://scene_level_map/level1.tscn")
+	Global.player1_character = selected_character
+	print("Selected knight")
+	selected_character.print_stat()
+	get_tree().change_scene_to_file("res://player1_movement.tscn")

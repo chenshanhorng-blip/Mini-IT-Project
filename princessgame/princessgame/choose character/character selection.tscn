@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bmwx7rjoa7in2"]
 
-[ext_resource type="Texture2D" uid="uid://g71no7ovgodi" path="res://princessgame/picture/backgground selection.png" id="1_2585j"]
-[ext_resource type="Script" uid="uid://dc3olevbjxhkv" path="res://princessgame/choose character/character selection.gd" id="1_yp6jq"]
-[ext_resource type="Texture2D" uid="uid://chic84uftgd1p" path="res://princessgame/picture/tea egg knight  profile.png" id="2_yp6jq"]
-[ext_resource type="Texture2D" uid="uid://81od2w2ablqi" path="res://princessgame/picture/boar princess.png" id="3_x6qsh"]
+[ext_resource type="Texture2D" uid="uid://g71no7ovgodi" path="res://picture/backgground selection.png" id="1_2585j"]
+[ext_resource type="Script" uid="uid://dc3olevbjxhkv" path="res://choose character/character selection.gd" id="1_yp6jq"]
+[ext_resource type="Texture2D" uid="uid://chic84uftgd1p" path="res://picture/tea egg knight  profile.png" id="2_yp6jq"]
+[ext_resource type="Texture2D" uid="uid://81od2w2ablqi" path="res://picture/boar princess.png" id="3_x6qsh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2585j"]
 bg_color = Color(0.003921569, 0.003921569, 0.003921569, 0.003921569)

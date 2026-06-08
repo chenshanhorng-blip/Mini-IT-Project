@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdxdts1lu4nfo" path="res://movement TE/TE down (left) image.png" id="2_rsadc"]
 [ext_resource type="Texture2D" uid="uid://i48geainfcp" path="res://movement TE/TE down (right) image.png" id="3_uuush"]
 [ext_resource type="Texture2D" uid="uid://b51dherpkx0u2" path="res://movement TE/TE movement image.png" id="4_2l3a3"]
+[ext_resource type="Texture2D" uid="uid://chic84uftgd1p" path="res://princessgame/picture/tea egg knight  profile.png" id="4_uuush"]
 [ext_resource type="Texture2D" uid="uid://xk78hxi6hhtw" path="res://movement TE/TE jump (left) image.png" id="5_c83kt"]
 [ext_resource type="Texture2D" uid="uid://7m5sd73dwuiv" path="res://movement TE/TE jump (right）image.png" id="6_tcwkb"]
 [ext_resource type="Texture2D" uid="uid://bq65i5g7m5oa5" path="res://movement TE/TE left move image.png" id="7_bmbfh"]
@@ -11,6 +12,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1viu"]
 size = Vector2(276, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuush"]
+atlas = ExtResource("4_uuush")
+region = Rect2(0, 0, 300, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdt1a"]
 atlas = ExtResource("2_rsadc")
@@ -51,6 +56,10 @@ region = Rect2(1440, 1440, 1440, 1440)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ehlti"]
 atlas = ExtResource("3_uuush")
 region = Rect2(0, 2880, 1440, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l3a3"]
+atlas = ExtResource("4_uuush")
+region = Rect2(0, 0, 300, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vuvi"]
 atlas = ExtResource("4_2l3a3")
@@ -164,6 +173,14 @@ region = Rect2(0, 2880, 1440, 1440)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_uuush")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pdt1a")
 }, {
 "duration": 1.0,
@@ -179,7 +196,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_2syn4")
 }],
 "loop": true,
-"name": &"down_left",
+"name": &"down_left_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -199,7 +216,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_ehlti")
 }],
 "loop": true,
-"name": &"down_right",
+"name": &"down_right_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l3a3")
+}],
+"loop": true,
+"name": &"fall_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -213,7 +238,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_xehdy")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"idle_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -239,7 +264,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_oowws")
 }],
 "loop": true,
-"name": &"jump_left",
+"name": &"jump_left_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -265,7 +290,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_g181o")
 }],
 "loop": true,
-"name": &"jump_right",
+"name": &"jump_right_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -285,7 +310,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_l33pq")
 }],
 "loop": true,
-"name": &"left_move",
+"name": &"left_move_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -305,7 +330,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_st7th")
 }],
 "loop": true,
-"name": &"right_move",
+"name": &"right_move_2",
 "speed": 5.0
 }]
 
@@ -320,10 +345,10 @@ shape = SubResource("RectangleShape2D_i1viu")
 position = Vector2(520, 270.00003)
 scale = Vector2(0.11805554, 0.10659724)
 sprite_frames = SubResource("SpriteFrames_lt3ii")
-animation = &"down_left"
-frame_progress = 0.17923853
+animation = &"right_move_2"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=919443598]
+offset = Vector2(1.5, 1.5)
 zoom = Vector2(1.4, 1.4)
 limit_left = 0
 limit_top = 0
