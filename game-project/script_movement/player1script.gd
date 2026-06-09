@@ -1,12 +1,8 @@
+# res://script_movement/player1script.gd
 extends CharacterBody2D
 
 # ============================================================
 # LEVEL MOVEMENT + SKILL SYSTEM COMBINED PLAYER 1 SCRIPT
-# Put this code in: res://script_movement/player1script.gd
-#
-# IMPORTANT:
-# This script keeps your Level1 movement/checkpoint/death system,
-# and adds the princessgame skill system.
 # ============================================================
 
 @export var speed: float = 200.0
@@ -28,6 +24,7 @@ var crouch_height: float = 20.0
 var start_position: Vector2 = Vector2.ZERO
 var death_screen = null
 
+var is_teleporting = false
 # Skill / character status
 var stat: CharacterStat = null
 var facing_direction: Vector2 = Vector2.RIGHT
@@ -62,11 +59,9 @@ func _ready() -> void:
 # ============================================================
 
 func setup_character_stat() -> void:
-	# If you came from character selection, use selected character.
 	if Global.player1_character != null:
 		stat = Global.player1_character
 	else:
-		# If you run Level1 directly, use Boar Princess as default.
 		stat = Create_Character.Create_Character(Create_Character.CharacterType.BOAR_PRINCESS)
 		Global.player1_character = stat
 
@@ -89,7 +84,6 @@ func setup_character_stat() -> void:
 func setup_skill_system() -> void:
 	if skill_controller == null:
 		print("ERROR: skill_adjust node missing.")
-		print("Copy skill_adjust from princessgame/player1_movement.tscn into scene_movement/player1_movement.tscn")
 		return
 
 	if stat == null:
@@ -108,11 +102,9 @@ func setup_character_sprite() -> void:
 	if stat == null:
 		return
 
-	# Only play if the animation exists.
 	if stat.character_name == "Boar Princess":
 		play_if_exists("princess standing")
 		animated_sprite.scale = Vector2(0.04, 0.04)
-
 	elif stat.character_name == "Tea Egg Knight":
 		play_if_exists("knight standing")
 		animated_sprite.scale = Vector2(0.08, 0.08)
@@ -135,6 +127,9 @@ func setup_checkpoint_signal() -> void:
 			CheckpointManager.player_respawn.connect(_on_player_respawn)
 		print("Respawn signal connected.")
 
+	add_to_group("player")
+	print("Player added to 'player' group.")
+
 
 # ============================================================
 # INPUT / SKILL
@@ -144,17 +139,9 @@ func _process(_delta: float) -> void:
 	if is_dead:
 		return
 
-	if stat == null:
+	if stat == null or skill_controller == null:
 		return
 
-	if skill_controller == null:
-		return
-
-	# J / Q / E / R are handled inside skill_adjust.gd
-	# basic attack = J
-	# skill1       = Q
-	# skill2       = E
-	# ultimate     = R
 	skill_controller.handle_input()
 
 
@@ -176,6 +163,10 @@ func _physics_process(delta: float) -> void:
 
 		if position.y > 650:
 			die()
+		return
+
+	if is_teleporting:
+		move_and_slide()
 		return
 
 	var crouch_pressed := Input.is_action_pressed("p1_down")
@@ -213,31 +204,30 @@ func _physics_process(delta: float) -> void:
 		start_fall()
 
 
-
 func update_animations(direction: float) -> void:
-	# Don't interrupt skill/attack animation
 	if skill_controller != null and skill_controller.is_attacking:
 		return
- 
+
 	var is_knight := stat != null and stat.character_name == "Tea Egg Knight"
- 
+
 	if is_crouching:
 		play_move_animation("crouch" if not is_knight else "crouch_2")
 		return
- 
+
 	if not is_on_floor():
 		if velocity.y < 0:
 			play_move_animation("jump" if not is_knight else "jump_left_2")
 		else:
 			play_move_animation("fall" if not is_knight else "fall_2")
 		return
- 
+
 	if direction > 0:
 		play_move_animation("right_move" if not is_knight else "right_move_2")
 	elif direction < 0:
 		play_move_animation("left_move" if not is_knight else "left_move_2")
 	else:
 		play_move_animation("idle" if not is_knight else "idle_2")
+
 
 func play_move_animation(anim_name: String) -> void:
 	if animated_sprite.sprite_frames == null:
@@ -247,6 +237,7 @@ func play_move_animation(anim_name: String) -> void:
 	if animated_sprite.animation != anim_name:
 		animated_sprite.play(anim_name)
 
+
 func play_level_animation(anim_name: String) -> void:
 	if animated_sprite.sprite_frames == null:
 		return
@@ -255,7 +246,6 @@ func play_level_animation(anim_name: String) -> void:
 		if animated_sprite.animation != anim_name:
 			animated_sprite.play(anim_name)
 	else:
-		# If your movement sprite does not have this animation, use character standing.
 		if stat != null:
 			if stat.character_name == "Boar Princess":
 				play_if_exists("princess standing")
@@ -351,11 +341,8 @@ func respawn_at_checkpoint(checkpoint_position: Vector2) -> void:
 	global_position = checkpoint_position
 	velocity = Vector2.ZERO
 	speed_modifier = 1.0
-
-	# Reset level health
 	health = max_health
 
-	# Reset character stat health
 	if stat != null:
 		stat.reset_stats()
 		SkillSystem.apply_passive_on_start(stat)
@@ -391,14 +378,14 @@ func take_damage(amount: int) -> void:
 	if is_dead:
 		return
 
-	# If character stat exists, use CombatSystem so shield can work.
+	# If shield/stat exist, use Shield logic, otherwise fallback to standard health
 	if stat != null:
 		CombatSystem.take_damage(stat, amount)
 		health = stat.health
 	else:
 		health -= amount
 
-	print("Player took damage. Health remaining: ", health)
+	print("Player took damage! Health remaining: ", health)
 
 	var tween := create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color.RED, 0.1)
@@ -412,15 +399,31 @@ func take_damage(amount: int) -> void:
 			die()
 
 
-# Some enemy/skill scripts may call receive_damage(), so keep this function.
 func receive_damage(amount: int) -> void:
 	take_damage(amount)
 
 
+func teleport_to(target_pos: Vector2) -> void:
+	is_teleporting = true
+	velocity = Vector2.ZERO
+
+	var tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 0), 0.15)
+
+	await tween.finished
+	global_position = target_pos
+
+	tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.15)
+
+	await tween.finished
+	is_teleporting = false
+	print("Player teleported to: ", target_pos)
+
+
 func apply_speed_modifier(modifier: float) -> void:
 	speed_modifier = modifier
-
 	if modifier < 1.0:
-		print("Player entered the swamp: Slowed down.")
+		print("Player entered special terrain/vine trap: Slowed down to ", modifier * 100, "%")
 	else:
-		print("Player left the swamp: Speed restored.")
+		print("Player left special terrain: Speed restored.")

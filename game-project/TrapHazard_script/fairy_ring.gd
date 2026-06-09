@@ -4,6 +4,9 @@ extends Area2D
 @export var teleport_destinations: Array[Node2D] = []
 @export var cooldown_time: float = 1.5
 
+# 保持你原有的安全获取节点声明
+@onready var particles: GPUParticles2D = $GPUParticles2D
+
 var can_teleport = true
 
 func _ready():
@@ -12,26 +15,31 @@ func _ready():
 func _on_body_entered(body):
 	if body.is_in_group("player") and can_teleport:
 		if teleport_destinations.is_empty():
+			print("Warning: No teleport destinations set for ", name)
 			return
-		var destination = teleport_destinations.pick_random()
-		_teleport_player(body, destination.global_position)
-		
-		# ✅ 目的地的圈也一起冷却
-		if destination.has_method("force_cooldown"):
-			destination.force_cooldown()
 
+		var destination = teleport_destinations.pick_random()
+		
+		if is_instance_valid(destination):
+			_teleport_player(body, destination.global_position)
+
+			if destination.has_method("force_cooldown"):
+				destination.force_cooldown()
+
+# 合并了重复的函数，保留了你带 await 的最新逻辑
 func _teleport_player(player, target_pos):
 	can_teleport = false
 	
-	# $AudioStreamPlayer2D.play()  ← 已删除
-	$GPUParticles2D.emitting = true
+	# 使用顶部声明好的 particles 变量，更安全
+	if particles:
+		particles.emitting = true
 	
+	# 保持你的玩家传送和冷却逻辑
 	player.teleport_to(target_pos)
 	
 	await get_tree().create_timer(cooldown_time).timeout
 	can_teleport = true
 
-# ✅ 新增：被外部强制冷却
 func force_cooldown():
 	can_teleport = false
 	await get_tree().create_timer(cooldown_time).timeout
