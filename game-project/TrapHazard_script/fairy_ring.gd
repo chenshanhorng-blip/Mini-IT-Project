@@ -4,7 +4,7 @@ extends Area2D
 @export var teleport_destinations: Array[Node2D] = []
 @export var cooldown_time: float = 1.5
 
-# Safely gets the particles node when the scene loads
+# 保持你原有的安全获取节点声明
 @onready var particles: GPUParticles2D = $GPUParticles2D
 
 var can_teleport = true
@@ -26,17 +26,17 @@ func _on_body_entered(body):
 			if destination.has_method("force_cooldown"):
 				destination.force_cooldown()
 
+# 合并了重复的函数，保留了你带 await 的最新逻辑
 func _teleport_player(player, target_pos):
 	can_teleport = false
-
-	# Play the particle effect if the node exists
+	
+	# 使用顶部声明好的 particles 变量，更安全
 	if particles:
 		particles.emitting = true
-
-	# Teleport the player
-	player.global_position = target_pos
-
-	# Wait for cooldown
+	
+	# 保持你的玩家传送和冷却逻辑
+	player.teleport_to(target_pos)
+	
 	await get_tree().create_timer(cooldown_time).timeout
 	can_teleport = true
 

@@ -107,12 +107,6 @@ func basic_attack_animation() -> void:
 
 	await animated_sprite.animation_finished
 
-	if stat.character_name == "Boar Princess":
-		animated_sprite.play("princess standing")
-
-	elif stat.character_name == "Tea Egg Knight":
-		animated_sprite.play("knight standing")
-
 	is_attacking = false
 	
 #skill damage area 
@@ -170,7 +164,7 @@ func use_skill_1_action() -> void:
 	print("Skill 1 pressed")
 
 	if stat.character_name == "Boar Princess":
-		animated_sprite.play("skill 1 of boar princes ")
+		animated_sprite.play("skill 1 of boar princess")
 		play_flying_effect_from_marker(
 			princess_skill1_effect,
 			princess_skill1_start,
@@ -193,12 +187,6 @@ func use_skill_1_action() -> void:
 	stat.print_stat()
 
 	await animated_sprite.animation_finished
-
-	if stat.character_name == "Boar Princess":
-		animated_sprite.play("princess standing")
-
-	elif stat.character_name == "Tea Egg Knight":
-		animated_sprite.play("knight standing")
 
 	is_attacking = false
 
@@ -239,12 +227,6 @@ func use_skill_2_action() -> void:
 
 	await animated_sprite.animation_finished
 
-	if stat.character_name == "Boar Princess":
-		animated_sprite.play("princess standing")
-
-	elif stat.character_name == "Tea Egg Knight":
-		animated_sprite.play("knight standing")
-
 	is_attacking = false
 
 # the function for princess when use the ultimate the princess will enhance 6s 
@@ -263,14 +245,13 @@ func use_ultimate_action() -> void:
 		SkillSystem.start_princess_ultimate(stat)
 
 		# Make princess bigger
-		animated_sprite.scale = Vector2(0.35, 0.35)
+		animated_sprite.scale = Vector2(0.08, 0.08)
 
 		# Update movement speed
 		player.speed = stat.current_movement
 		print("Princess ultimate speed:", player.speed)
 
 		# Keep standing animation, no ultimate animation
-		animated_sprite.play("princess standing")
 
 		# Buff lasts 6 seconds
 		await get_tree().create_timer(6.0).timeout
@@ -279,7 +260,7 @@ func use_ultimate_action() -> void:
 		SkillSystem.end_princess_ultimate(stat)
 
 		# Restore normal size
-		animated_sprite.scale = Vector2(0.2, 0.2)
+		animated_sprite.scale = Vector2(0.02, 0.02)
 
 		# Restore movement speed
 		player.speed = stat.current_movement

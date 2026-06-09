@@ -7,7 +7,8 @@ var is_selecting: bool = false
 @onready var knight_button = $HBoxContainer/Knight_Button
 
 func _ready() -> void:
-	print("THIS SELECTION SCENE IS RUNNING")
+	print("Character Selection screen loaded")
+
 
 func _input(event) -> void:
 	if is_selecting:
@@ -17,33 +18,37 @@ func _input(event) -> void:
 		var mouse_pos = event.position
 
 		if boar_button.get_global_rect().has_point(mouse_pos):
-			print("Boar card clicked")
+			print("Boar Princess selected")
 			is_selecting = true
 			select_boarprincess()
 
 		elif knight_button.get_global_rect().has_point(mouse_pos):
-			print("Knight card clicked")
+			print("Tea Egg Knight selected")
 			is_selecting = true
 			select_teaeggknight()
 
 
 func select_boarprincess() -> void:
-	selected_character = Create_Character.Create_Character(
+	var selected_character = Create_Character.Create_Character(
 		Create_Character.CharacterType.BOAR_PRINCESS
 	)
 
 	Global.player1_character = selected_character
-	print("Selected princess")
-	selected_character.print_stat()
-	get_tree().change_scene_to_file("res://player1_movement.tscn")
+
+	print("SELECTED PRINCESS")
+	print("Global character = ", Global.player1_character.character_name)
+
+	get_tree().change_scene_to_file("res://scene_level_map/level1.tscn")
 
 
 func select_teaeggknight() -> void:
-	selected_character = Create_Character.Create_Character(
+	var selected_character = Create_Character.Create_Character(
 		Create_Character.CharacterType.TEA_EGG_KNIGHT
 	)
 
 	Global.player1_character = selected_character
-	print("Selected knight")
-	selected_character.print_stat()
-	get_tree().change_scene_to_file("res://player1_movement.tscn")
+
+	print("SELECTED KNIGHT")
+	print("Global character = ", Global.player1_character.character_name)
+
+	get_tree().change_scene_to_file("res://scene_level_map/level1.tscn")
