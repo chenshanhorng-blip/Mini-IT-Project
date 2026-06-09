@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cgl1bt7pce35k"]
+
+[ext_resource type="Script" uid="uid://dcg6yvm6vdyhm" path="res://script_level_map/level_4.gd" id="1_1xp6a"]
+
+[node name="Node2D" type="Node2D" unique_id=956523320]
+script = ExtResource("1_1xp6a")
+
+[node name="Button" type="Button" parent="." unique_id=1351933789]
+offset_left = 413.0
+offset_top = 174.0
+offset_right = 550.0
+offset_bottom = 221.0
+text = "Back To Map"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
