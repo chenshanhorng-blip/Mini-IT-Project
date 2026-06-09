@@ -1099,8 +1099,8 @@ script = ExtResource("1_gwe5g")
 [node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground" unique_id=1839290747]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D" unique_id=736469594]
-position = Vector2(1104, 655.49994)
-scale = Vector2(1.1019999, 0.89911383)
+position = Vector2(578, 322.00003)
+scale = Vector2(0.576, 0.44444445)
 texture = ExtResource("2_x0bbw")
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=1008978307]
