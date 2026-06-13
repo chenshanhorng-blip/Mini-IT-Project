@@ -1119,8 +1119,8 @@ position_smoothing_enabled = true
 [node name="skilleffect" type="Node2D" parent="." unique_id=664805412]
 
 [node name="knightskill2effect" type="AnimatedSprite2D" parent="skilleffect" unique_id=925713746]
-position = Vector2(-323, -123.999985)
-scale = Vector2(0.9716667, 1.1083333)
+position = Vector2(-149, 1.2187481)
+scale = Vector2(0.37458327, 0.40520832)
 sprite_frames = SubResource("SpriteFrames_o8yuv")
 animation = &"skill 2 effect of the tea egg knight"
 
@@ -1131,28 +1131,26 @@ sprite_frames = SubResource("SpriteFrames_dffgo")
 animation = &"ultimate effect"
 
 [node name="basicattackofprincess" type="AnimatedSprite2D" parent="skilleffect" unique_id=687252254]
-position = Vector2(-338.50003, -46.5)
-scale = Vector2(0.33000016, 0.28999996)
+position = Vector2(-253.25002, 91.25)
+scale = Vector2(0.21500008, 0.20166665)
 sprite_frames = SubResource("SpriteFrames_6qlp2")
 animation = &"basic attack effect"
 
 [node name="skill1effectofprincess" type="AnimatedSprite2D" parent="skilleffect" unique_id=1030168941]
-position = Vector2(-353, 6)
-scale = Vector2(0.12806821, 0.140625)
+position = Vector2(-291.00003, -82.99999)
+scale = Vector2(0.1240341, 0.11485796)
 sprite_frames = SubResource("SpriteFrames_vvjvy")
 animation = &"skill 1 effect"
 
 [node name="knightskill2effect_start" type="Marker2D" parent="skilleffect" unique_id=1125287241]
-position = Vector2(28, 10)
+position = Vector2(0, 1)
 
 [node name="knightultimateeffect_start" type="Marker2D" parent="skilleffect" unique_id=23787559]
-position = Vector2(86, -4)
+position = Vector2(85, -32)
 
 [node name="basicattackofprincess_start" type="Marker2D" parent="skilleffect" unique_id=758535944]
-position = Vector2(29, 0)
 
 [node name="skill1effectofprincess_start" type="Marker2D" parent="skilleffect" unique_id=1619141285]
-position = Vector2(27, 2)
 
 [node name="skill_adjust" type="Node" parent="." unique_id=1171195385]
 script = ExtResource("25_pn2ni")
@@ -1169,25 +1167,26 @@ disabled = true
 [node name="Player" type="Control" parent="CanvasLayer" unique_id=280670899]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 20.0
-offset_right = 40.0
-offset_bottom = 20.0
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 12.0
+offset_bottom = 11.0
 script = ExtResource("26_5okn6")
 
 [node name="HP_bar" type="ProgressBar" parent="CanvasLayer/Player" unique_id=1998868405]
 layout_mode = 0
-offset_left = -21.0
-offset_top = -63.0
-offset_right = 229.0
-offset_bottom = -36.0
+offset_left = 10.0
+offset_top = 126.0
+offset_right = 134.0
+offset_bottom = 147.0
 show_percentage = false
 
 [node name="HP_number" type="Label" parent="CanvasLayer/Player" unique_id=1832286971]
 layout_mode = 0
-offset_left = 70.0
-offset_top = 3.0
-offset_right = 110.0
-offset_bottom = 26.0
+offset_left = 33.0
+offset_top = 125.0
+offset_right = 112.0
+offset_bottom = 148.0
 
 [node name="skill ui" type="Control" parent="CanvasLayer" unique_id=2080722987]
 layout_mode = 3
@@ -1204,8 +1203,7 @@ script = ExtResource("27_j6uo5")
 layout_mode = 0
 offset_left = 50.0
 offset_top = -150.0
-offset_right = 370.0
-offset_bottom = -50.0
+offset_right = 480.0
 theme_override_constants/separation = 10
 
 [node name="skill1" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=728252671]

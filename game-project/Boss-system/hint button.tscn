@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cdjdhgxtihh1i"]
 
 [ext_resource type="Texture2D" uid="uid://dqywh4cokmpfs" path="res://Sprite/Hint Button2.png" id="1_x6sqe"]
-[ext_resource type="Script" uid="uid://bbxbjhbx5bgk4" path="res://canvas_layer.gd" id="3_xewkg"]
+[ext_resource type="Script" uid="uid://bbxbjhbx5bgk4" path="res://Boss-system/canvas_layer.gd" id="3_xewkg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x6sqe"]
 

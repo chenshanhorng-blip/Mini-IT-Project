@@ -21,6 +21,7 @@ mainconfig/features=PackedStringArray("4.6", "Forward Plus")
 
 CheckpointManager="*uid://bh8rdfkqh0t5b"
 Global="*uid://b3a3m43ftqwji"
+TutorialManager="*uid://g1qtn4b8qnfb"
 
 [display]
 

@@ -44,11 +44,11 @@ position = Vector2(189, 304)
 
 [node name="FairyRing1" parent="." unique_id=1752425581 node_paths=PackedStringArray("teleport_destinations") instance=ExtResource("8_tyri6")]
 position = Vector2(307, 126)
-teleport_destinations = [NodePath("")]
+teleport_destinations = [null]
 
 [node name="FairyRing2" parent="." unique_id=319550128 node_paths=PackedStringArray("teleport_destinations") instance=ExtResource("8_tyri6")]
 position = Vector2(1013, 332)
-teleport_destinations = [NodePath("")]
+teleport_destinations = [null]
 
 [node name="FairyRing3" parent="." unique_id=1960276614 node_paths=PackedStringArray("teleport_destinations") instance=ExtResource("8_tyri6")]
 position = Vector2(736, 431)
@@ -101,9 +101,8 @@ position = Vector2(644, 123)
 position = Vector2(358, 506)
 
 [node name="Button" type="Button" parent="." unique_id=120463940]
-offset_left = 233.0
-offset_top = 141.0
-offset_right = 914.0
-offset_bottom = 486.0
+offset_left = 590.0
+offset_top = 495.0
+offset_right = 712.0
+offset_bottom = 546.0
 text = "Back To Map"
-
