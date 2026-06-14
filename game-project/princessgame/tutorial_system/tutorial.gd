@@ -1,12 +1,5 @@
 extends Node2D
 
-# ============================================================
-# TUTORIAL SCENE — Controls only
-# No enemies. Just teaches the player the buttons.
-# Steps auto-advance when player does the action.
-# After all steps done -> loads level1
-# ============================================================
-
 const P1_SCENE = preload("res://scene_movement/player1_movement.tscn")
 
 var player_node = null
@@ -20,20 +13,25 @@ var used_skill1    := false
 var used_skill2    := false
 var used_ultimate  := false
 
-# UI nodes found safely in _ready
-var step_label = null
-var desc_label = null
-var key_label  = null
+# Skip countdown
+var is_skipping    := false
+var skip_countdown := 5.0
+
+# UI nodes
+var step_label      = null
+var desc_label      = null
+var key_label       = null
+var skip_button     = null   # Button — click to start skip
+var cancel_button   = null   # Button — click to cancel skip
+var countdown_label = null   # Label — shows "Loading in X..."
 
 
 func _ready() -> void:
-	# --- Find UI labels safely ---
-	# Try with VBoxContainer
+	# --- Find tutorial text labels ---
 	step_label = get_node_or_null("TutorialUI/Panel/VBoxContainer/StepLabel")
 	desc_label = get_node_or_null("TutorialUI/Panel/VBoxContainer/DescLabel")
 	key_label  = get_node_or_null("TutorialUI/Panel/VBoxContainer/KeyLabel")
 
-	# Fallback: directly inside Panel
 	if step_label == null:
 		step_label = get_node_or_null("TutorialUI/Panel/StepLabel")
 	if desc_label == null:
@@ -44,6 +42,26 @@ func _ready() -> void:
 	if step_label == null or desc_label == null:
 		push_error("Tutorial: Labels not found! Check node names in tutorial.tscn")
 		return
+
+	# --- Find skip UI nodes ---
+	skip_button     = get_node_or_null("TutorialUI/SkipButton")
+	cancel_button   = get_node_or_null("TutorialUI/CancelButton")
+	countdown_label = get_node_or_null("TutorialUI/CountdownLabel")
+
+	# Connect skip button
+	if skip_button != null:
+		skip_button.pressed.connect(_on_skip_pressed)
+		skip_button.visible = true
+	else:
+		push_error("Tutorial: SkipButton not found — add a Button node named SkipButton inside TutorialUI")
+
+	# Hide cancel and countdown at start
+	if cancel_button != null:
+		cancel_button.pressed.connect(_on_cancel_pressed)
+		cancel_button.visible = false
+
+	if countdown_label != null:
+		countdown_label.visible = false
 
 	# --- Spawn player ---
 	var p1 = P1_SCENE.instantiate()
@@ -60,10 +78,58 @@ func _ready() -> void:
 	TutorialManager.start_tutorial()
 	TutorialManager.step_changed.connect(_on_step_changed)
 	TutorialManager.tutorial_finished.connect(_on_tutorial_finished)
+	TutorialManager.tutorial_skipped.connect(_on_tutorial_skipped)
 	_show_step(TutorialManager.current_step)
 
+# SKIP BUTTON CLICKED
 
-func _process(_delta: float) -> void:
+
+func _on_skip_pressed() -> void:
+	if is_skipping:
+		return
+	is_skipping = true
+	
+	# Show countdown, hide skip button, show cancel button
+	if skip_button != null:
+		skip_button.visible = false
+	if cancel_button != null:
+		cancel_button.visible = true
+	if countdown_label != null:
+		countdown_label.visible = true
+		countdown_label.text = "Loading level in 5..."
+
+	print("Skip button clicked — counting down...")
+
+
+func _on_cancel_pressed() -> void:
+	is_skipping = false
+	skip_countdown = 5.0
+
+	# Show skip button again, hide cancel and countdown
+	if skip_button != null:
+		skip_button.visible = true
+	if cancel_button != null:
+		cancel_button.visible = false
+	if countdown_label != null:
+		countdown_label.visible = false
+
+	print("Skip cancelled")
+
+
+# ============================================================
+# PROCESS
+# ============================================================
+
+func _process(delta: float) -> void:
+	# --- Countdown tick ---
+	if is_skipping:
+		skip_countdown -= delta
+		if countdown_label != null:
+			countdown_label.text = "Loading level in " + str(ceil(skip_countdown)) + "..."
+		if skip_countdown <= 0:
+			TutorialManager.skip_tutorial()
+		return
+
 	if not TutorialManager.tutorial_active:
 		return
 	_check_step_completion()
@@ -96,31 +162,31 @@ func _show_step(step: int) -> void:
 		TutorialManager.Step.CROUCH:
 			_set_ui(
 				"Step 3 — Crouch",
-				"Crouch to dodge attacks\nor pass through low gaps.",
+				"Hold crouch to duck under gaps\nand dodge attacks.",
 				"S  =  Crouch  (hold it)"
 			)
 		TutorialManager.Step.BASIC_ATTACK:
 			_set_ui(
 				"Step 4 — Basic Attack",
-				"Your basic attack deals damage\nto any enemy in front of you.",
+				"Attack enemies with your basic attack.",
 				"Left Mouse Button  =  Basic Attack"
 			)
 		TutorialManager.Step.SKILL_1:
 			_set_ui(
 				"Step 5 — Skill 1",
-				"Your first skill!\nBoar Princess  :  Royal Roast\nTea Egg Knight :  Shine Shield (adds shield)",
+				"Use your first skill!\nBoar Princess  :  Royal Roast\nTea Egg Knight :  Shine Shield (adds shield)",
 				"Q  =  Skill 1"
 			)
 		TutorialManager.Step.SKILL_2:
 			_set_ui(
 				"Step 6 — Skill 2",
-				"Your second skill!\nBoar Princess  :  Area attack\nTea Egg Knight :  Ranged projectile + heals HP on hit",
+				"Use your second skill!\nA powerful ranged attack.",
 				"E  =  Skill 2"
 			)
 		TutorialManager.Step.ULTIMATE:
 			_set_ui(
 				"Step 7 — Ultimate",
-				"Your most powerful ability!\nBoar Princess  :  Giant Form for 6 seconds\nTea Egg Knight :  Massive strike",
+				"Unleash your ultimate ability!\nBoar Princess  :  Giant Form (6s)\nTea Egg Knight :  Heavy Strike",
 				"R  =  Ultimate"
 			)
 		TutorialManager.Step.COMPLETE:
@@ -141,7 +207,7 @@ func _set_ui(title: String, desc: String, keys: String) -> void:
 
 
 # ============================================================
-# STEP COMPLETION — waits for player to press the right button
+# STEP COMPLETION CHECKS
 # ============================================================
 
 func _check_step_completion() -> void:
@@ -149,7 +215,6 @@ func _check_step_completion() -> void:
 
 	match step:
 		TutorialManager.Step.WELCOME:
-			# Any movement key to begin
 			if Input.is_action_just_pressed("p1_left") \
 			or Input.is_action_just_pressed("p1_right") \
 			or Input.is_action_just_pressed("p1_up") \
@@ -207,5 +272,29 @@ func _on_step_changed(new_step: int) -> void:
 
 func _on_tutorial_finished() -> void:
 	_show_step(TutorialManager.Step.COMPLETE)
-	await get_tree().create_timer(2.5).timeout
+	# Show countdown same as skip
+	if countdown_label != null:
+		countdown_label.visible = true
+	if skip_button != null:
+		skip_button.visible = false
+	var timer := 5.0
+	while timer > 0:
+		if countdown_label != null:
+			countdown_label.text = "Loading level in " + str(ceil(timer)) + "..."
+		await get_tree().create_timer(1.0).timeout
+		timer -= 1.0
+	get_tree().change_scene_to_file("res://scene_level_map/level1.tscn")
+
+
+func _on_tutorial_skipped() -> void:
+	if step_label != null:
+		step_label.text = "Tutorial Skipped!"
+	if desc_label != null:
+		desc_label.text = "Loading level in 5 seconds...\nGood luck, warrior!"
+	if key_label != null:
+		key_label.text = ""
+	if countdown_label != null:
+		countdown_label.visible = false
+	print("Tutorial skipped — loading level in 5 seconds")
+	await get_tree().create_timer(5.0).timeout
 	get_tree().change_scene_to_file("res://scene_level_map/level1.tscn")

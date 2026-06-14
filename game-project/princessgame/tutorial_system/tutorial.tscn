@@ -396,11 +396,33 @@ layout_mode = 2
 [node name="KeyLabel" type="Label" parent="TutorialUI/Panel/VBoxContainer" unique_id=1038507437]
 layout_mode = 2
 
+[node name="CountdownLabel" type="Label" parent="TutorialUI/Panel" unique_id=549895949]
+layout_mode = 2
+
 [node name="Arrow" type="Label" parent="TutorialUI" unique_id=453057114]
 offset_left = 1.0
 offset_top = 2.0
 offset_right = 41.0
 offset_bottom = 25.0
+
+[node name="SkipButton" type="Button" parent="TutorialUI" unique_id=415045360]
+anchors_preset = -1
+anchor_right = 0.028
+anchor_bottom = 0.019000001
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 82.744
+offset_bottom = 18.688
+theme_override_font_sizes/font_size = 15
+text = "skip tutorial"
+
+[node name="CancelButton" type="Button" parent="TutorialUI" unique_id=1575665582]
+offset_left = 3.0
+offset_top = 34.0
+offset_right = 91.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 14
+text = "cancel skip"
 
 [node name="Spawnpoint" type="Marker2D" parent="." unique_id=1915445169]
 position = Vector2(44, 187)

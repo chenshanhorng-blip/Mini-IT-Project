@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b6h4btcv0bo7l"]
 
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_6i2ug"]
-[ext_resource type="Texture2D" uid="uid://bdqe82era6tkk" path="res://Sprite/BlueBlue/ToxicFrogBlueBlue_Attack.png" id="1_b4k16"]
-[ext_resource type="Texture2D" uid="uid://cidc54xs8lo1d" path="res://Sprite/BlueBlue/ToxicFrogBlueBlue_Explosion.png" id="2_21yn8"]
-[ext_resource type="Script" uid="uid://b3cg188axfwqn" path="res://toxicfrog.gd" id="2_wfexs"]
-[ext_resource type="Texture2D" uid="uid://bbaqy7tbjygbf" path="res://Sprite/BlueBlue/ToxicFrogBlueBlue_Hop.png" id="3_o0juq"]
-[ext_resource type="Texture2D" uid="uid://q2o1sc4ok6t7" path="res://Sprite/BlueBlue/ToxicFrogBlueBlue_Hurt.png" id="4_21yn8"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Boss-system/icon.svg" id="1_6i2ug"]
+[ext_resource type="Texture2D" uid="uid://bdqe82era6tkk" path="res://Boss-system/Sprite/BlueBlue/ToxicFrogBlueBlue_Attack.png" id="1_b4k16"]
+[ext_resource type="Texture2D" uid="uid://cidc54xs8lo1d" path="res://Boss-system/Sprite/BlueBlue/ToxicFrogBlueBlue_Explosion.png" id="2_21yn8"]
+[ext_resource type="Script" uid="uid://b3cg188axfwqn" path="res://Boss-system/toxicfrog.gd" id="2_wfexs"]
+[ext_resource type="Texture2D" uid="uid://bbaqy7tbjygbf" path="res://Boss-system/Sprite/BlueBlue/ToxicFrogBlueBlue_Hop.png" id="3_o0juq"]
+[ext_resource type="Texture2D" uid="uid://q2o1sc4ok6t7" path="res://Boss-system/Sprite/BlueBlue/ToxicFrogBlueBlue_Hurt.png" id="4_21yn8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hteii"]
 size = Vector2(156, 131)

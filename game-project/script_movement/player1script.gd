@@ -322,13 +322,32 @@ func die() -> void:
 func on_player_dead() -> void:
 	if is_dead:
 		return
-
+ 
+	# During tutorial — just respawn, no death screen
+	if TutorialManager.tutorial_active:
+		is_falling = false
+		is_dead = false
+		global_position = start_position
+		velocity = Vector2.ZERO
+		if stat != null:
+			stat.reset_stats()
+			SkillSystem.apply_passive_on_start(stat)
+		animated_sprite.visible = true
+		animated_sprite.modulate = Color.WHITE
+		set_physics_process(true)
+		return
+ 
 	is_dead = true
 	velocity = Vector2.ZERO
 	animated_sprite.visible = false
 	set_physics_process(false)
-
 	print("Player Dead")
+ 
+	# Always show death screen — works for traps, enemies, and falls
+	if death_screen:
+		death_screen.show_death_screen()
+	else:
+		get_tree().reload_current_scene()
 
 
 func respawn_at_checkpoint(checkpoint_position: Vector2) -> void:

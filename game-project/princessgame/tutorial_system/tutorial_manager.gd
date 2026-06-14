@@ -1,5 +1,9 @@
 extends Node
 
+# ============================================================
+# TUTORIAL MANAGER — Autoload (name: TutorialManager)
+# ============================================================
+
 var tutorial_active: bool = false
 var tutorial_complete: bool = false
 var current_step: int = 0
@@ -18,6 +22,7 @@ enum Step {
 
 signal step_changed(new_step: int)
 signal tutorial_finished
+signal tutorial_skipped
 
 
 func start_tutorial() -> void:
@@ -43,3 +48,10 @@ func finish_tutorial() -> void:
 	tutorial_complete = true
 	tutorial_finished.emit()
 	print("Tutorial complete!")
+
+
+func skip_tutorial() -> void:
+	tutorial_active   = false
+	tutorial_complete = true
+	tutorial_skipped.emit()
+	print("Tutorial skipped!")
