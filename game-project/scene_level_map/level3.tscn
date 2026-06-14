@@ -18,13 +18,13 @@ script = ExtResource("1_biuk0")
 [node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground" unique_id=533704155]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D" unique_id=1925272214]
-position = Vector2(1066.5, 604)
-scale = Vector2(1.0705, 0.8275392)
+position = Vector2(1067.5, 644.5)
+scale = Vector2(1.0715, 0.8827539)
 texture = ExtResource("2_t3l4n")
 
 [node name="ground" parent="." unique_id=1973014174 instance=ExtResource("3_tyri6")]
 
-[node name="Player2" parent="." unique_id=1157097786 instance=ExtResource("3_13b1b")]
+[node name="Player1" parent="." unique_id=1157097786 instance=ExtResource("3_13b1b")]
 position = Vector2(398, 115)
 
 [node name="BlueDiamond1" parent="." unique_id=1715039619 instance=ExtResource("4_v4ai8")]
@@ -44,11 +44,11 @@ position = Vector2(189, 304)
 
 [node name="FairyRing1" parent="." unique_id=1752425581 node_paths=PackedStringArray("teleport_destinations") instance=ExtResource("8_tyri6")]
 position = Vector2(307, 126)
-teleport_destinations = [NodePath("")]
+teleport_destinations = [null]
 
 [node name="FairyRing2" parent="." unique_id=319550128 node_paths=PackedStringArray("teleport_destinations") instance=ExtResource("8_tyri6")]
 position = Vector2(1013, 332)
-teleport_destinations = [NodePath("")]
+teleport_destinations = [null]
 
 [node name="FairyRing3" parent="." unique_id=1960276614 node_paths=PackedStringArray("teleport_destinations") instance=ExtResource("8_tyri6")]
 position = Vector2(736, 431)

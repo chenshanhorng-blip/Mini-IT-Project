@@ -11,6 +11,8 @@ func _ready():
 
 func _on_body_entered(body):
 	print("Body entered diamond: ", body.name)
-	if body is CharacterBody2D:
+	
+	# Keeps the strict check for Player1
+	if body.name == "Player1":  
 		collected.emit()
 		queue_free()

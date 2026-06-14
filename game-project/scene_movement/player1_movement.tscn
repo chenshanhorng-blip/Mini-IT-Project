@@ -29,7 +29,7 @@
 [ext_resource type="Script" uid="uid://cyrrvsr6rw4h3" path="res://princessgame/skill/skillbutton.gd" id="27_j6uo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0araa"]
-size = Vector2(29, 38)
+size = Vector2(29, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8uwmi"]
 atlas = ExtResource("3_ioris")
@@ -1094,11 +1094,11 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 corner_detail = 20
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1652265376]
+[node name="Player1" type="CharacterBody2D" unique_id=1652265376]
 script = ExtResource("1_u017l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=375951171]
-position = Vector2(0.5, 0)
+position = Vector2(0.5, -7)
 shape = SubResource("RectangleShape2D_0araa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=202378733]
