@@ -135,6 +135,12 @@ func activate_skill_damage_area(marker: Marker2D, damage: int, duration: float, 
 	print("Damage area closed")
 #the enemy touch skill and cause damage system 
 func _on_skill_damage_area_body_entered(body) -> void:
+	# Skip the player themselves — skill should never damage own character
+	if body == player:
+		return
+	if body.is_in_group("player") or body.is_in_group("Player"):
+		return
+
 	if body in damaged_enemy_list:
 		return
 
@@ -291,8 +297,6 @@ func use_ultimate_action() -> void:
 		stat.print_stat()
 	
 		await animated_sprite.animation_finished
-
-		animated_sprite.play("knight standing")
 		is_attacking = false
 
 func handle_input() -> void:

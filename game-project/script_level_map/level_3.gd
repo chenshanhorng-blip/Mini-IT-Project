@@ -1,10 +1,5 @@
 extends Node2D
 
-var collected_count = 0
-var total_points = 3
-
-@onready var exit_button = $Button
-
 func _ready():
 	# Reset checkpoint for Level 3
 	CheckpointManager.reset_checkpoint("level3", Vector2(13, 206))
@@ -29,7 +24,6 @@ func _on_point_collected():
 
 func show_exit_button():
 	exit_button.show()
-
 # Level 3 completion - Unlocks next level and returns to map
 func _on_button_pressed():
 	Global.unlock_next_level("level3")
