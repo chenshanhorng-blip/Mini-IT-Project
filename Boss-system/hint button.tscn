@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c7wg8bpklj1b3"]
+
+[ext_resource type="Texture2D" path="res://Sprite/Hint Button2.png" id="1_x6sqe"]
+[ext_resource type="Script" path="res://canvas_layer.gd" id="3_xewkg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x6sqe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0is2o"]
+atlas = ExtResource("1_x6sqe")
+region = Rect2(24, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xewkg"]
+atlas = ExtResource("1_x6sqe")
+region = Rect2(224, 48, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs42i"]
+atlas = ExtResource("1_x6sqe")
+region = Rect2(120, 24, 48, 40)
+
+[node name="Node2D" type="Node2D" unique_id=1468774410]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1157073170]
+script = ExtResource("3_xewkg")
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=306409621]
+visible = false
+offset_left = 442.0
+offset_top = 180.0
+offset_right = 541.0
+offset_bottom = 211.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x6sqe")
+text = "Hint Button"
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer" unique_id=1449231636]
+texture_filter = 1
+offset_left = 470.0
+offset_top = 136.0
+offset_right = 510.0
+offset_bottom = 176.0
+texture_normal = SubResource("AtlasTexture_0is2o")
+texture_pressed = SubResource("AtlasTexture_xewkg")
+texture_hover = SubResource("AtlasTexture_hs42i")
+
+[node name="CooldownLabel" type="Label" parent="CanvasLayer/TextureButton" unique_id=127343940]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 31.0
+offset_bottom = 29.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintLabel" type="Label" parent="CanvasLayer" unique_id=1229842941]
+offset_left = 201.0
+offset_top = 136.0
+offset_right = 377.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 22
+
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="CanvasLayer" method="_on_texture_button_pressed"]

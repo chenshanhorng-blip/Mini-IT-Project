@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bek4t2xq0l5am"]
+
+[ext_resource type="Script" uid="uid://d2jgh7jqcousa" path="res://arrow.gd" id="1_2ndhl"]
+[ext_resource type="Texture2D" uid="uid://bh1abl47sacib" path="res://Sprite/DuskBorne-Elf/SpriteSheet/ElfArrow001-Sheet-export.png" id="1_l5ahi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ndhl"]
+atlas = ExtResource("1_l5ahi")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acd0x"]
+atlas = ExtResource("1_l5ahi")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a6ax"]
+atlas = ExtResource("1_l5ahi")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4m3f"]
+atlas = ExtResource("1_l5ahi")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo0gb"]
+atlas = ExtResource("1_l5ahi")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24k4p"]
+atlas = ExtResource("1_l5ahi")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khv6i"]
+atlas = ExtResource("1_l5ahi")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbexn"]
+atlas = ExtResource("1_l5ahi")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxpbi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ndhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acd0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a6ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4m3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo0gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24k4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khv6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbexn")
+}],
+"loop": true,
+"name": &"arrow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r8xx"]
+size = Vector2(142, 75)
+
+[node name="arrow" type="Area2D" unique_id=1552476515]
+texture_filter = 1
+script = ExtResource("1_2ndhl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1851387852]
+texture_filter = 1
+position = Vector2(331, 71)
+scale = Vector2(4, 2.53125)
+sprite_frames = SubResource("SpriteFrames_lxpbi")
+animation = &"arrow"
+frame_progress = 0.65531254
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=969915138]
+position = Vector2(339, 70)
+shape = SubResource("RectangleShape2D_2r8xx")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1635343144]
