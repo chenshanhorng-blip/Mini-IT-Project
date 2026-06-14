@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bj8pwlpymteri"]
+
+[ext_resource type="Script" uid="uid://b1qnolhh2a068" path="res://princessgame/reward/reward_popup.gd" id="1_0n4qh"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=2024473870]
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=329555205]
+offset_left = 350.0
+offset_top = 80.0
+offset_right = 950.0
+offset_bottom = 580.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=26869832]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="Panel/VBoxContainer" unique_id=196330323]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "✨ Level Complete! ✨"
+horizontal_alignment = 1
+
+[node name="StarsLabel" type="Label" parent="Panel/VBoxContainer" unique_id=186308613]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "★ ★ ★"
+horizontal_alignment = 1
+
+[node name="Divider1" type="HSeparator" parent="Panel/VBoxContainer" unique_id=1147678671]
+layout_mode = 2
+
+[node name="CoinsLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1964259638]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Level Reward    +50 coins"
+
+[node name="BonusLabel" type="Label" parent="Panel/VBoxContainer" unique_id=419393564]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Diamond Bonus  +0 coins"
+
+[node name="TotalLevelLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1824539278]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "This Level Total   50 coins"
+
+[node name="Divider2" type="HSeparator" parent="Panel/VBoxContainer" unique_id=1135326690]
+layout_mode = 2
+
+[node name="MedalLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1939883595]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Medal Earned:  🥉 Bronze Medal"
+horizontal_alignment = 1
+
+[node name="NewRewardLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1208586496]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.4, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="Divider3" type="HSeparator" parent="Panel/VBoxContainer" unique_id=2035285836]
+layout_mode = 2
+script = ExtResource("1_0n4qh")
+
+[node name="GrandTotalLabel" type="Label" parent="Panel/VBoxContainer" unique_id=360255120]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "💰 Total Coins:  0"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=183181083]
+layout_mode = 2
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Panel/VBoxContainer/ButtonContainer" unique_id=1718626855]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Continue →"
+
+[node name="ReplayButton" type="Button" parent="Panel/VBoxContainer/ButtonContainer" unique_id=1700847047]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "↺ Replay"
