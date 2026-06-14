@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://tduj48qygjxe"]
+
+[ext_resource type="Script" uid="uid://do0vudp0y0br7" path="res://TrapHazard_script/lava_floor.gd" id="1_qxjml"]
+[ext_resource type="Texture2D" uid="uid://c3xdyvkyj33mv" path="res://diamond/New Piskel (9).png" id="2_jttjk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jttjk"]
+size = Vector2(73, 19)
+
+[node name="LavaFloor" type="Area2D" unique_id=2000769702]
+script = ExtResource("1_qxjml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=961133230]
+position = Vector2(-4.5, -11.5)
+shape = SubResource("RectangleShape2D_jttjk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=460861242]
+scale = Vector2(0.2469618, 0.17456597)
+texture = ExtResource("2_jttjk")
+
+[node name="Timer" type="Timer" parent="." unique_id=1408591003]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
