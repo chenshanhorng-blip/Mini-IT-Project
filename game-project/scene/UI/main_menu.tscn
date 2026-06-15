@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://vcoooy0xpno7"]
+
+[ext_resource type="Script" uid="uid://d1cdlijpc0hb6" path="res://scene/UI/main_menu.gd" id="1_8fia7"]
+[ext_resource type="Texture2D" uid="uid://2cb2sl5io38k" path="res://diamond/ChatGPT Image Jun 14, 2026, 09_48_18 PM.png" id="2_eto6y"]
+[ext_resource type="Texture2D" uid="uid://cy1l1do4eti5" path="res://diamond/ChatGPT Image Jun 16, 2026, 12_41_19 AM.png" id="3_u2xei"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u2xei"]
+font_size = 60
+outline_size = 3
+shadow_size = 30
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control" unique_id=1539005828]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8fia7")
+
+[node name="BackGround" type="TextureRect" parent="." unique_id=1375687637]
+layout_mode = 0
+offset_right = 1948.0
+offset_bottom = 1205.0
+texture = ExtResource("2_eto6y")
+
+[node name="GameTitle" type="Label" parent="." unique_id=1570715047]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 207.0
+offset_right = 1822.0
+offset_bottom = 462.0
+text = "The Boar Princess & 
+The Tea-Egg Knight
+Adventure of MMU Mountain"
+label_settings = SubResource("LabelSettings_u2xei")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Menu" type="TextureRect" parent="." unique_id=175447492]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 59.0
+offset_right = 680.0
+offset_bottom = 950.0
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_u2xei")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NewGame" type="Button" parent="Menu" unique_id=480925585]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -87.16666
+offset_right = 138.33331
+offset_bottom = -21.333374
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 25
+text = "New Game"
+
+[node name="Continue" type="Button" parent="Menu" unique_id=1364405542]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.55600005
+anchor_right = 0.5
+anchor_bottom = 0.55600005
+offset_left = -139.99998
+offset_top = -42.062714
+offset_right = 138.33331
+offset_bottom = 21.27069
+theme_override_font_sizes/font_size = 25
+text = "Continue
+"
+
+[node name="Setting" type="Button" parent="Menu" unique_id=594743777]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.67
+anchor_right = 0.5
+anchor_bottom = 0.67
+offset_left = -134.16667
+offset_top = -53.636658
+offset_right = 136.16663
+offset_bottom = 14.276672
+theme_override_font_sizes/font_size = 25
+text = "Setting
+"
+
+[node name="Quit" type="Button" parent="Menu" unique_id=704501049]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.78300005
+anchor_right = 0.5
+anchor_bottom = 0.78300005
+offset_left = -130.83334
+offset_top = -60.153076
+offset_right = 130.83328
+offset_bottom = 3.888916
+theme_override_font_sizes/font_size = 25
+text = "Quit
+"
+
+[node name="Credit" type="Button" parent="Menu" unique_id=608425771]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.89400005
+anchor_right = 0.5
+anchor_bottom = 0.89400005
+offset_left = -134.16666
+offset_top = -67.38745
+offset_right = 135.50003
+offset_bottom = -0.72076416
+theme_override_font_sizes/font_size = 25
+text = "Credit"
+
+[connection signal="pressed" from="Menu/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Menu/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Menu/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Menu/Credit" to="." method="_on_credit_pressed"]

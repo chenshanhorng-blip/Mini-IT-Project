@@ -1,5 +1,11 @@
 extends Node2D
 
+# Missing variable declarations - THIS was causing the Parse error
+var collected_count = 0
+var total_points = 3
+
+@onready var exit_button = $ExitButton  # Make sure this matches your node name
+
 func _ready():
 	# Reset checkpoint for Level 3
 	CheckpointManager.reset_checkpoint("level3", Vector2(13, 206))
@@ -24,6 +30,7 @@ func _on_point_collected():
 
 func show_exit_button():
 	exit_button.show()
+
 # Level 3 completion - Unlocks next level and returns to map
 func _on_button_pressed():
 	Global.unlock_next_level("level3")
