@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dh8s1uqvcupi6" path="res://TrapHazard_scene/spike.tscn" id="7_du5er"]
 [ext_resource type="PackedScene" uid="uid://dwm24mxv58kw3" path="res://object/Checkpoint.tscn" id="8_31kmc"]
 [ext_resource type="PackedScene" uid="uid://5sgqxyj07wn6" path="res://TrapHazard_scene/moving_platform.tscn" id="9_x0bbw"]
+[ext_resource type="PackedScene" uid="uid://bmf8qpej4fohx" path="res://scene/UI/pause_menu.tscn" id="10_gvdtg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_du5er"]
 texture = ExtResource("3_bebr4")
@@ -1167,5 +1168,8 @@ offset_top = 20.0
 offset_right = 579.0
 offset_bottom = 65.0
 text = "Back To Map"
+
+[node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("10_gvdtg")]
+visible = false
 
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]

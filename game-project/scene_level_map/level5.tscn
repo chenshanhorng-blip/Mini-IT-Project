@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfqduo8iv2u2c" path="res://diamond/ChatGPT Image Jun 14, 2026, 01_46_13 PM.png" id="2_qkpx7"]
 [ext_resource type="PackedScene" uid="uid://ch4sxhkugfaix" path="res://TrapHazard_scene/level5_ground.tscn" id="3_etgaj"]
 [ext_resource type="PackedScene" uid="uid://bppqkhfcmcoi8" path="res://scene_movement/player1_movement.tscn" id="4_se45c"]
+[ext_resource type="PackedScene" uid="uid://bmf8qpej4fohx" path="res://scene/UI/pause_menu.tscn" id="5_se45c"]
 
 [node name="Node2D" type="Node2D" unique_id=341255562]
 script = ExtResource("1_5pncu")
@@ -28,5 +29,8 @@ offset_top = 155.0
 offset_right = 829.0
 offset_bottom = 313.0
 text = "Back To Map"
+
+[node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("5_se45c")]
+visible = false
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
