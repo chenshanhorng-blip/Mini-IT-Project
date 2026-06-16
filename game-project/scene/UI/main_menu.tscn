@@ -13,8 +13,8 @@ shadow_color = Color(0, 0, 0, 1)
 [node name="MainMenu" type="Control" unique_id=1539005828]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1949.0
+offset_bottom = 1210.0
 script = ExtResource("1_8fia7")
 
 [node name="BackGround" type="TextureRect" parent="." unique_id=1375687637]
