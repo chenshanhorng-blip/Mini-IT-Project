@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vcoooy0xpno7"]
 
-[ext_resource type="Script" uid="uid://d1cdlijpc0hb6" path="res://scene/UI/main_menu.gd" id="1_8fia7"]
+[ext_resource type="Script" uid="uid://d1cdlijpc0hb6" path="res://script/system/main_menu.gd" id="1_8fia7"]
 [ext_resource type="Texture2D" uid="uid://2cb2sl5io38k" path="res://diamond/ChatGPT Image Jun 14, 2026, 09_48_18 PM.png" id="2_eto6y"]
 [ext_resource type="Texture2D" uid="uid://cy1l1do4eti5" path="res://diamond/ChatGPT Image Jun 16, 2026, 12_41_19 AM.png" id="3_u2xei"]
 
