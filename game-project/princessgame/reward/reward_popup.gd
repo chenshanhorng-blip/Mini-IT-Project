@@ -162,7 +162,7 @@ func _on_continue_pressed() -> void:
 	if on_continue_pressed.is_valid():
 		on_continue_pressed.call()
 	else:
-		get_tree().change_scene_to_file("res://scene_level_map/map.tscn")
+		Transition.fade_to_scene("res://scene_level_map/map.tscn")
 
 
 func _on_replay_pressed() -> void:

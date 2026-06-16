@@ -38,7 +38,7 @@ func select_boarprincess() -> void:
 	print("SELECTED PRINCESS")
 	print("Global character = ", Global.player1_character.character_name)
 
-	get_tree().change_scene_to_file("res://princessgame/tutorial_system/tutorial.tscn")
+	Transition.fade_to_scene("res://princessgame/tutorial_system/tutorial.tscn")
 
 
 func select_teaeggknight() -> void:
@@ -51,4 +51,4 @@ func select_teaeggknight() -> void:
 	print("SELECTED KNIGHT")
 	print("Global character = ", Global.player1_character.character_name)
 
-	get_tree().change_scene_to_file("res://princessgame/tutorial_system/tutorial.tscn")
+	Transition.fade_to_scene("res://princessgame/tutorial_system/tutorial.tscn")

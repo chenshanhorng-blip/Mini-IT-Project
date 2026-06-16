@@ -23,6 +23,7 @@ CheckpointManager="*uid://bh8rdfkqh0t5b"
 Global="*uid://b3a3m43ftqwji"
 TutorialManager="*uid://g1qtn4b8qnfb"
 RewardSystem="*uid://b1v1gobipagxa"
+Transition="*uid://c7d7hvtjkuobw"
 
 [display]
 

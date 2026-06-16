@@ -112,4 +112,4 @@ func _apply_defaults():
 	$Panel/VSyncToggle.button_pressed = true
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://scene/UI/main_menu.tscn")
+	Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

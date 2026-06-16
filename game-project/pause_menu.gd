@@ -31,8 +31,8 @@ func _on_restart():
 
 func _on_settings():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scene/UI/setting.tscn")
+	Transition.fade_to_scene("res://scene/UI/setting.tscn")
 
 func _on_main_menu():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scene/UI/main_menu.tscn")
+	Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

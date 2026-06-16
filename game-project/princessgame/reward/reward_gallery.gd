@@ -185,7 +185,7 @@ func _on_coins_changed(_new_total: int) -> void:
 # ============================================================
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://princessgame/main menu.tscn")
+	Transition.fade_to_scene("res://princessgame/main menu.tscn")
 
 
 func _on_reset_pressed() -> void:

@@ -283,7 +283,7 @@ func _on_tutorial_finished() -> void:
 			countdown_label.text = "Loading level in " + str(ceil(timer)) + "..."
 		await get_tree().create_timer(1.0).timeout
 		timer -= 1.0
-	get_tree().change_scene_to_file("res://scene_level_map/level1.tscn")
+	Transition.fade_to_scene("res://scene_level_map/level1.tscn")
 
 
 func _on_tutorial_skipped() -> void:
@@ -297,4 +297,4 @@ func _on_tutorial_skipped() -> void:
 		countdown_label.visible = false
 	print("Tutorial skipped — loading level in 5 seconds")
 	await get_tree().create_timer(5.0).timeout
-	get_tree().change_scene_to_file("res://scene_level_map/level1.tscn")
+	Transition.fade_to_scene("res://scene_level_map/level1.tscn")

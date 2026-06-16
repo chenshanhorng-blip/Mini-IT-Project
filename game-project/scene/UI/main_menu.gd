@@ -1,48 +1,48 @@
 extends Control
 
 func _ready():
-	# Global.save_game()  ← REMOVE THIS TEST LINE
-	
 	$Menu/NewGame.pressed.connect(_on_new_game)
 	$Menu/Continue.pressed.connect(_on_continue)
 	$Menu/Setting.pressed.connect(_on_settings)
 	$Menu/Quit.pressed.connect(_on_quit)
 	$Menu/Credit.pressed.connect(_on_credit_pressed)
-	
-	# Disable Continue if no save file
-	if not Global.has_save_file():
+
+	# Disable Continue if NO slots have saves
+	var any_save = Global.has_save_file(1) or Global.has_save_file(2) or Global.has_save_file(3)
+	if not any_save:
 		$Menu/Continue.disabled = true
 
 func _on_new_game():
-	Global.delete_save()
-	Global.levels_unlocked = {
-		"level1": true,
-		"level2": false,
-		"level3": false,
-		"level4": false,
-		"level5": false,
-	}
-	Global.current_level = "level1"
-	Global.player1_character = null
-	Global.player_scene = "res://scene_movement/player1_movement.tscn"
-	Global.saved_player_hp = 100
-	Global.saved_checkpoint = Vector2.ZERO
-	Global.unlocked_skills = []
-	Global.reward_progress = {}
-	get_tree().change_scene_to_file("res://princessgame/choose character/character selection.tscn")
+	Global.slot_mode = "save"
+	print("New Game — slot mode set to: ", Global.slot_mode)
+	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_continue():
-	if Global.has_save_file():
-		Global.load_game()
-		get_tree().change_scene_to_file("res://scene_level_map/map.tscn")
-	else:
-		print("No save file found!")
+	Global.slot_mode = "load"
+	print("Continue — slot mode set to: ", Global.slot_mode)
+	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_settings():
-	get_tree().change_scene_to_file("res://scene/UI/setting.tscn")
+	Transition.fade_to_scene("res://scene/UI/setting.tscn")
 
 func _on_quit():
 	get_tree().quit()
 
 func _on_credit_pressed():
-	get_tree().change_scene_to_file("res://scene/UI/credit.tscn")
+	Transition.fade_to_scene("res://scene/UI/credit.tscn")
+
+
+func _on_new_game_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_continue_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_setting_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_quit_pressed() -> void:
+	pass # Replace with function body.

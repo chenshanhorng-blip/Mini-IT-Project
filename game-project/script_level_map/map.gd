@@ -65,6 +65,6 @@ func _input(event):
 			if node.get_global_rect().has_point(event.position):
 				if Global.levels_unlocked[level_name]:
 					print("Going to: ", level_name)
-					get_tree().change_scene_to_file(level_scenes[level_name])
+					Transition.fade_to_scene(level_scenes[level_name])
 				else:
 					print(level_name, " is locked!")

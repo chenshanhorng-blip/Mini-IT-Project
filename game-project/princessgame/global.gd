@@ -1,18 +1,24 @@
 extends Node
 
 var player1_character: CharacterStat = null
-# Stores which player scene to spawn based on character selected
-# "res://scene_movement/player1_movement.tscn" = Boar Princess
-# "res://scene_movement/player2_movement.tscn" = Tea Egg Knight
 var player_scene: String = "res://scene_movement/player1_movement.tscn"
 var show_minimap: bool = true
 var show_hints: bool = true
 
 # ============================================================
+# CURRENT SLOT
+# ============================================================
+var current_slot: int = 1
+var slot_mode: String = "load"  # "load" = Continue, "save" = New Game
+
+func get_save_path(slot: int) -> String:
+	return "user://savegame_slot" + str(slot) + ".dat"
+
+# ============================================================
 # LEVEL UNLOCK SYSTEM
 # ============================================================
 var levels_unlocked = {
-	"level1": true,   # always unlocked
+	"level1": true,
 	"level2": false,
 	"level3": false,
 	"level4": false,
@@ -25,22 +31,19 @@ func unlock_next_level(current_level: String):
 		"level2": levels_unlocked["level3"] = true
 		"level3": levels_unlocked["level4"] = true
 		"level4": levels_unlocked["level5"] = true
-	save_game()  # auto save when level unlocked!
+	save_game()
 	print("Unlocked next level after: ", current_level)
 
 # ============================================================
 # SAVE / LOAD SYSTEM
 # ============================================================
-const SAVE_PATH = "user://savegame.dat"
-
-# save/load related variables
 var current_level: String = "level1"
 var unlocked_skills: Array = []
 var reward_progress: Dictionary = {}
 var saved_checkpoint: Vector2 = Vector2.ZERO
 var saved_player_hp: int = 100
 
-func save_game(player = null):
+func save_game(player = null, slot: int = current_slot):
 	var save_data = {
 		"levels_unlocked": levels_unlocked,
 		"current_level": current_level,
@@ -55,31 +58,30 @@ func save_game(player = null):
 		"save_timestamp": Time.get_datetime_string_from_system(),
 		"game_version": "1.0",
 	}
-	# get live player data if player exists
 	if player != null:
 		save_data["player_hp"] = player.health
 		save_data["player_position_x"] = player.global_position.x
 		save_data["player_position_y"] = player.global_position.y
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var file = FileAccess.open(get_save_path(slot), FileAccess.WRITE)
 	if file == null:
 		print("ERROR: Cannot open save file!")
 		return
 	file.store_string(JSON.stringify(save_data))
 	file.close()
-	print("Game saved successfully!")
+	print("Game saved to slot ", slot)
 
-func load_game() -> bool:
-	# check file exists
-	if not FileAccess.file_exists(SAVE_PATH):
-		print("No save file found!")
+func load_game(slot: int = current_slot) -> bool:
+	current_slot = slot
+	var path = get_save_path(slot)
+	if not FileAccess.file_exists(path):
+		print("No save file in slot ", slot)
 		return false
-	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var file = FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		print("ERROR: Cannot open save file!")
 		return false
 	var content = file.get_as_text()
 	file.close()
-	# error handling for corrupted file
 	if content == "" or content == null:
 		print("ERROR: Save file is empty or corrupted!")
 		return false
@@ -87,7 +89,6 @@ func load_game() -> bool:
 	if data == null:
 		print("ERROR: Save file is corrupted or incompatible!")
 		return false
-	# load all data back
 	if data.has("levels_unlocked"):
 		levels_unlocked = data["levels_unlocked"]
 	if data.has("current_level"):
@@ -105,13 +106,33 @@ func load_game() -> bool:
 			data["checkpoint_position_x"],
 			data["checkpoint_position_y"]
 		)
-	print("Game loaded successfully!")
+	print("Game loaded from slot ", slot)
 	return true
 
-func has_save_file() -> bool:
-	return FileAccess.file_exists(SAVE_PATH)
+func has_save_file(slot: int = current_slot) -> bool:
+	return FileAccess.file_exists(get_save_path(slot))
 
-func delete_save():
-	if FileAccess.file_exists(SAVE_PATH):
-		DirAccess.remove_absolute(SAVE_PATH)
-		print("Save file deleted!")
+func get_slot_info(slot: int) -> Dictionary:
+	var path = get_save_path(slot)
+	if not FileAccess.file_exists(path):
+		return {"exists": false, "slot": slot}
+	var file = FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return {"exists": false, "slot": slot}
+	var data = JSON.parse_string(file.get_as_text())
+	file.close()
+	if data == null:
+		return {"exists": false, "slot": slot}
+	return {
+		"exists": true,
+		"slot": slot,
+		"current_level": data.get("current_level", "level1"),
+		"timestamp": data.get("save_timestamp", "Unknown"),
+		"player_hp": data.get("player_hp", 100),
+	}
+
+func delete_save(slot: int = current_slot):
+	var path = get_save_path(slot)
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+		print("Slot ", slot, " deleted!")
