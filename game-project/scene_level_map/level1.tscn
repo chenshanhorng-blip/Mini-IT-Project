@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b5c7oqjxrq83a" path="res://diamond/New Piskel (1).png" id="11_8sesl"]
 [ext_resource type="Texture2D" uid="uid://48gsi5r4yrxu" path="res://diamond/New Piskel (2).png" id="12_71me7"]
 [ext_resource type="PackedScene" uid="uid://bmf8qpej4fohx" path="res://scene/UI/pause_menu.tscn" id="13_f6khu"]
+[ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="14_i3lfr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gtrhc"]
 texture = ExtResource("2_hq3ek")
@@ -518,5 +519,7 @@ texture = ExtResource("12_71me7")
 
 [node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("13_f6khu")]
 visible = false
+
+[node name="MinimapLayer" parent="." unique_id=1106204459 instance=ExtResource("14_i3lfr")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4lxc8l8hh7ss"]
 
-[ext_resource type="Script" uid="uid://cjwn58yrp3e7u" path="res://scene/UI/setting.gd" id="1_nll1y"]
+[ext_resource type="Script" uid="uid://cjwn58yrp3e7u" path="res://script/system/setting.gd" id="1_nll1y"]
 [ext_resource type="Texture2D" uid="uid://2cb2sl5io38k" path="res://diamond/ChatGPT Image Jun 14, 2026, 09_48_18 PM.png" id="2_13lxp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_psqv3"]

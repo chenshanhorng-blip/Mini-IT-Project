@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://w1bjx14lhnfa" path="res://TrapHazard_scene/FairyRing.tscn" id="8_tyri6"]
 [ext_resource type="PackedScene" uid="uid://dwm24mxv58kw3" path="res://object/Checkpoint.tscn" id="9_tyri6"]
 [ext_resource type="PackedScene" uid="uid://bmf8qpej4fohx" path="res://scene/UI/pause_menu.tscn" id="10_upuaj"]
+[ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="11_nxrnk"]
 
 [node name="Node2D" type="Node2D" unique_id=1204356231]
 script = ExtResource("1_biuk0")
@@ -110,3 +111,5 @@ text = "Back To Map"
 
 [node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("10_upuaj")]
 visible = false
+
+[node name="MinimapLayer" parent="." unique_id=1106204459 instance=ExtResource("11_nxrnk")]

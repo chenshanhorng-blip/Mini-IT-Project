@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://b0b2260gf66ji" path="res://princessgame/skill_part system.gd" id="25_pn2ni"]
 [ext_resource type="Script" uid="uid://bvoexo0284m6c" path="res://princessgame/player_hpbar.gd" id="26_5okn6"]
 [ext_resource type="Script" uid="uid://cyrrvsr6rw4h3" path="res://princessgame/skill/skillbutton.gd" id="27_j6uo5"]
+[ext_resource type="Script" uid="uid://dtrhly8udnkts" path="res://script/system/minimap_player_icon.gd" id="28_cn111"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0araa"]
 size = Vector2(29, 40)
@@ -1226,3 +1227,8 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ius7q")
 text = "utlimate"
+
+[node name="PlayerIcon" type="Node2D" parent="." unique_id=1290434677 groups=["player"]]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("28_cn111")

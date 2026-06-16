@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ch4sxhkugfaix" path="res://TrapHazard_scene/level5_ground.tscn" id="3_etgaj"]
 [ext_resource type="PackedScene" uid="uid://bppqkhfcmcoi8" path="res://scene_movement/player1_movement.tscn" id="4_se45c"]
 [ext_resource type="PackedScene" uid="uid://bmf8qpej4fohx" path="res://scene/UI/pause_menu.tscn" id="5_se45c"]
+[ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="6_ubhii"]
 
 [node name="Node2D" type="Node2D" unique_id=341255562]
 script = ExtResource("1_5pncu")
@@ -32,5 +33,7 @@ text = "Back To Map"
 
 [node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("5_se45c")]
 visible = false
+
+[node name="MinimapLayer" parent="." unique_id=1106204459 instance=ExtResource("6_ubhii")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

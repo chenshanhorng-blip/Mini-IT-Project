@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://48gsi5r4yrxu" path="res://diamond/New Piskel (2).png" id="8_gr2ge"]
 [ext_resource type="PackedScene" uid="uid://b3co1poyordnc" path="res://TrapHazard_scene/FireVine.tscn" id="9_spkkf"]
 [ext_resource type="PackedScene" uid="uid://bmf8qpej4fohx" path="res://scene/UI/pause_menu.tscn" id="10_spkkf"]
+[ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="11_slbfl"]
 
 [node name="Node2D" type="Node2D" unique_id=956523320]
 script = ExtResource("1_1xp6a")
@@ -127,5 +128,7 @@ position = Vector2(950, 505)
 
 [node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("10_spkkf")]
 visible = false
+
+[node name="MinimapLayer" parent="." unique_id=1106204459 instance=ExtResource("11_slbfl")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

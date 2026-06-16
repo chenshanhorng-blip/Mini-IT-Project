@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://7m5sd73dwuiv" path="res://movement TE/TE jump (right）image.png" id="6_tcwkb"]
 [ext_resource type="Texture2D" uid="uid://bq65i5g7m5oa5" path="res://movement TE/TE left move image.png" id="7_bmbfh"]
 [ext_resource type="Texture2D" uid="uid://ikalbf10a37t" path="res://movement TE/TE right move image.png" id="8_6edlp"]
+[ext_resource type="PackedScene" uid="uid://dj8u0ggvdmt7g" path="res://scene/UI/player.tscn" id="10_2l3a3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1viu"]
 size = Vector2(276, 208)
@@ -355,3 +356,7 @@ limit_top = 0
 limit_right = 100000
 limit_bottom = 10000
 position_smoothing_enabled = true
+
+[node name="PlayerIcon" parent="." unique_id=2118074411 groups=["player"] instance=ExtResource("10_2l3a3")]
+light_mask = 2
+visibility_layer = 2
