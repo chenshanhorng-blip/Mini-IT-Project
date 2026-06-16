@@ -34,4 +34,4 @@ func show_exit_button():
 
 func _on_button_pressed():
 	Global.unlock_next_level("level4")
-	get_tree().change_scene_to_file("res://scene_level_map/map.tscn")
+	Transition.fade_to_scene("res://scene_level_map/map.tscn")

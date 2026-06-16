@@ -20,4 +20,4 @@ func _on_boss_defeated():
 
 func _on_button_pressed():
 	Global.unlock_next_level("level5")
-	get_tree().change_scene_to_file("res://scene_level_map/map.tscn")
+	Transition.fade_to_scene("res://scene_level_map/map.tscn")
