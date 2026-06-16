@@ -7,6 +7,7 @@ var player1_character: CharacterStat = null
 var player_scene: String = "res://scene_movement/player1_movement.tscn"
 var show_minimap: bool = true
 var show_hints: bool = true
+
 # ============================================================
 # LEVEL UNLOCK SYSTEM
 # ============================================================
@@ -51,14 +52,14 @@ func save_game(player = null):
 		"player_scene": player_scene,
 		"unlocked_skills": unlocked_skills,
 		"reward_progress": reward_progress,
+		"save_timestamp": Time.get_datetime_string_from_system(),
+		"game_version": "1.0",
 	}
-
 	# get live player data if player exists
 	if player != null:
 		save_data["player_hp"] = player.health
 		save_data["player_position_x"] = player.global_position.x
 		save_data["player_position_y"] = player.global_position.y
-
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
 		print("ERROR: Cannot open save file!")
@@ -72,25 +73,20 @@ func load_game() -> bool:
 	if not FileAccess.file_exists(SAVE_PATH):
 		print("No save file found!")
 		return false
-
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if file == null:
 		print("ERROR: Cannot open save file!")
 		return false
-
 	var content = file.get_as_text()
 	file.close()
-
 	# error handling for corrupted file
 	if content == "" or content == null:
 		print("ERROR: Save file is empty or corrupted!")
 		return false
-
 	var data = JSON.parse_string(content)
 	if data == null:
 		print("ERROR: Save file is corrupted or incompatible!")
 		return false
-
 	# load all data back
 	if data.has("levels_unlocked"):
 		levels_unlocked = data["levels_unlocked"]
@@ -109,7 +105,6 @@ func load_game() -> bool:
 			data["checkpoint_position_x"],
 			data["checkpoint_position_y"]
 		)
-
 	print("Game loaded successfully!")
 	return true
 
