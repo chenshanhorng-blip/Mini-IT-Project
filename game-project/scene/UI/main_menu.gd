@@ -1,11 +1,17 @@
 extends Control
 
 func _ready():
+	# Global.save_game()  ← REMOVE THIS TEST LINE
+	
 	$Menu/NewGame.pressed.connect(_on_new_game)
 	$Menu/Continue.pressed.connect(_on_continue)
 	$Menu/Setting.pressed.connect(_on_settings)
 	$Menu/Quit.pressed.connect(_on_quit)
 	$Menu/Credit.pressed.connect(_on_credit_pressed)
+	
+	# Disable Continue if no save file
+	if not Global.has_save_file():
+		$Menu/Continue.disabled = true
 
 func _on_new_game():
 	Global.delete_save()
@@ -26,7 +32,6 @@ func _on_new_game():
 	get_tree().change_scene_to_file("res://princessgame/choose character/character selection.tscn")
 
 func _on_continue():
-	print("Save exists: ", Global.has_save_file())
 	if Global.has_save_file():
 		Global.load_game()
 		get_tree().change_scene_to_file("res://scene_level_map/map.tscn")
