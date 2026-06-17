@@ -1,20 +1,19 @@
-[gd_scene format=3 uid="uid://b4jg6ahwtxu5k"]
+[gd_scene format=3 uid="uid://dtrh2fmw0mhrj"]
 
-[ext_resource type="Script" uid="uid://bhrbta37q41ew" path="res://pit_bottom.gd" id="1_y07py"]
-[ext_resource type="Texture2D" uid="uid://dss2tn306jic" path="res://kenney_pixel-platformer/Tiles/Backgrounds/tile_0019.png" id="2_y07py"]
+[ext_resource type="Script" uid="uid://bhrbta37q41ew" path="res://TrapHazard_script/pit_bottom.gd" id="1_y07py"]
+[ext_resource type="Texture2D" uid="uid://6cked4jh64r8" path="res://kenney_pixel-platformer/Tiles/Backgrounds/tile_0018.png" id="2_y07py"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3f6i"]
-size = Vector2(1517, 45)
+size = Vector2(1148, 45)
 
 [node name="PitBottom" type="Area2D" unique_id=1011974602]
 script = ExtResource("1_y07py")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=761422564]
-position = Vector2(745.5, 5.5)
+position = Vector2(561, 5.5)
 shape = SubResource("RectangleShape2D_b3f6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1416020901]
-position = Vector2(738.5, 4.5)
-scale = Vector2(62.541668, 1.375)
+position = Vector2(560.5, 4.5)
+scale = Vector2(47.708336, 1.375)
 texture = ExtResource("2_y07py")
-

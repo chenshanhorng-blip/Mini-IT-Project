@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dt5tygl3kij10"]
+[gd_scene format=3 uid="uid://d36n2b0qinotj"]
 
 [ext_resource type="Script" uid="uid://cweplgnfcwmg2" path="res://red_point.gd" id="1_3l1gk"]
 [ext_resource type="Texture2D" uid="uid://cuowyf1lj4p44" path="res://diamond/green diamond.png" id="2_3l1gk"]
