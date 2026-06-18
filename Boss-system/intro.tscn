@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://d2n6e5ai3wb35"]
+
+[ext_resource type="Script" uid="uid://d04ov1pfw8wy0" path="res://intro.gd" id="1_y6ycx"]
+[ext_resource type="Texture2D" uid="uid://dcc32vy2llmw0" path="res://Images/start.jpeg" id="2_y6ycx"]
+[ext_resource type="Texture2D" uid="uid://d4f83hxjdesa7" path="res://Images/start2.jpeg" id="3_dpxxx"]
+[ext_resource type="Texture2D" uid="uid://ctc3sirwpw78w" path="res://Images/start3.jpeg" id="4_dk2oa"]
+[ext_resource type="Texture2D" uid="uid://duuqvjx7jq03x" path="res://Images/start4.jpeg" id="5_7ufi4"]
+[ext_resource type="Texture2D" uid="uid://cqlw8k2x286fp" path="res://Images/start5.jpeg" id="6_h0kys"]
+[ext_resource type="Texture2D" uid="uid://3jfgdpyb3m5r" path="res://Images/start6.jpeg" id="7_d0rr7"]
+
+[sub_resource type="Animation" id="Animation_y6ycx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("panel1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("panel1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_dpxxx"]
+resource_name = "intro"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("panel1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("panel1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.02, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk2oa"]
+_data = {
+&"RESET": SubResource("Animation_y6ycx"),
+&"intro": SubResource("Animation_dpxxx")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=496624412]
+scale = Vector2(0.9, 0.9)
+transform = Transform2D(0.9, 0, 0, 0.9, 0, 0)
+script = ExtResource("1_y6ycx")
+
+[node name="panel1" type="TextureRect" parent="." unique_id=1395332583]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -3.999999
+offset_right = -36.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_y6ycx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="panel2" type="TextureRect" parent="." unique_id=294754184]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -1.0
+offset_right = -43.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dpxxx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="panel3" type="TextureRect" parent="." unique_id=1742150871]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -7.0
+offset_right = 22.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dk2oa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="panel4" type="TextureRect" parent="." unique_id=349372728]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = 5.0
+offset_right = -9.0
+offset_bottom = 4.999939
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7ufi4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="panel5" type="TextureRect" parent="." unique_id=1599979054]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = -3.0
+offset_right = -29.0
+offset_bottom = -3.000122
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_h0kys")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="panel6" type="TextureRect" parent="." unique_id=1319984993]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.2222223
+offset_top = -15.555555
+offset_right = 2.222168
+offset_bottom = -15.555603
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_d0rr7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1256565309]
+libraries/ = SubResource("AnimationLibrary_dk2oa")
+
+[node name="Label" type="Label" parent="." unique_id=1999234289]
+offset_left = 470.00003
+offset_top = 321.1111
+offset_right = 683.0
+offset_bottom = 344.1111
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "PRESS ENTER TO CONTINUE"
