@@ -128,6 +128,7 @@ func _process(delta: float) -> void:
 			countdown_label.text = "Loading level in " + str(ceil(skip_countdown)) + "..."
 		if skip_countdown <= 0:
 			TutorialManager.skip_tutorial()
+			is_skipping = false  # FIX: stop this branch from firing every frame
 		return
 
 	if not TutorialManager.tutorial_active:

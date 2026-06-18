@@ -1,9 +1,7 @@
 extends Node2D
-
 # ============================================================
 # MAP SCRIPT - LEVEL SELECT WITH UNLOCK SYSTEM
 # ============================================================
-
 var level_scenes = {
 	"level1": "res://scene_level_map/level1.tscn",
 	"level2": "res://scene_level_map/level2.tscn",
@@ -11,7 +9,6 @@ var level_scenes = {
 	"level4": "res://scene_level_map/level4.tscn",
 	"level5": "res://scene_level_map/level5.tscn",
 }
-
 var level_nodes = {}
 
 func _ready():
@@ -48,6 +45,12 @@ func setup_map():
 				node.get_node("LockIcon").visible = true
 
 func _input(event):
+	# --- Pause menu toggle ---
+	if event.is_action_pressed("ui_cancel"):
+		if has_node("PauseMenu"):
+			$PauseMenu.show_pause()
+		return
+
 	# hover effect
 	if event is InputEventMouseMotion:
 		for level_name in level_nodes:
@@ -57,7 +60,6 @@ func _input(event):
 					node.scale = Vector2(1.1, 1.1)  # bigger on hover
 			else:
 				node.scale = Vector2(1.0, 1.0)  # back to normal
-
 	# click to enter level
 	if event is InputEventMouseButton and event.pressed:
 		for level_name in level_nodes:
