@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bq0750oa7rgr1"]
 
 [ext_resource type="Script" uid="uid://bv48mhfsuio4d" path="res://Sprite/fireball.gd" id="1_gntam"]
-[ext_resource type="Texture2D" uid="uid://bplufgo68smb" path="res://projectile.png" id="2_gntam"]
+[ext_resource type="Texture2D" uid="uid://bplufgo68smb" path="res://Boss-system/projectile.png" id="2_gntam"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7haxf"]
 animations = [{
@@ -21,11 +21,9 @@ radius = 38.118237
 script = ExtResource("1_gntam")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=584869044]
-position = Vector2(503, 61.000004)
-scale = Vector2(1.7499999, 1.65625)
+scale = Vector2(2, 1.893)
 sprite_frames = SubResource("SpriteFrames_7haxf")
 animation = &"Fireball"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=922546209]
-position = Vector2(508, 56)
 shape = SubResource("CircleShape2D_sqcat")
