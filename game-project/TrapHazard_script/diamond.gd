@@ -6,6 +6,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
-	if body.name == "CharacterBody2D":  
+	print("Body entered diamond: ", body.name)
+	if body.name == "Player1":
 		collected.emit()
 		queue_free()

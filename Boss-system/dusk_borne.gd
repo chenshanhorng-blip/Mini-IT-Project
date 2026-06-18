@@ -28,9 +28,9 @@ func _physics_process(_delta):
 
 		# 面向玩家
 		if target.global_position.x < global_position.x:
-			sprite.flip_h = true
-		else:
 			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
 
 		var distance = global_position.distance_to(target.global_position)
 

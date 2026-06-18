@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://cbbaeykv0f4f2"]
+[gd_scene format=3 uid="uid://hsffk4n5xcpf"]
 
-[ext_resource type="Texture2D" uid="uid://bq3mpw515ttc7" path="res://Sprite/GreenBlue/ToxicFrogGreenBlue_Attack.png" id="1_3h4cy"]
-[ext_resource type="Script" uid="uid://b3cg188axfwqn" path="res://toxicfrog.gd" id="1_fclc3"]
-[ext_resource type="Texture2D" uid="uid://cevcg66wxdogf" path="res://Sprite/GreenBlue/ToxicFrogGreenBlue_Explosion.png" id="2_fclc3"]
-[ext_resource type="Texture2D" uid="uid://5xebv0gaw0hs" path="res://Sprite/GreenBlue/ToxicFrogGreenBlue_Hop.png" id="3_8r3ps"]
-[ext_resource type="Texture2D" uid="uid://dcpmm0vk51ye1" path="res://Sprite/GreenBlue/ToxicFrogGreenBlue_Hurt.png" id="4_1dg7b"]
+[ext_resource type="Texture2D" path="res://Sprite/GreenBlue/ToxicFrogGreenBlue_Attack.png" id="1_3h4cy"]
+[ext_resource type="Script" path="res://toxicfrog.gd" id="1_fclc3"]
+[ext_resource type="Texture2D" path="res://Sprite/GreenBlue/ToxicFrogGreenBlue_Explosion.png" id="2_fclc3"]
+[ext_resource type="Texture2D" path="res://Sprite/GreenBlue/ToxicFrogGreenBlue_Hop.png" id="3_8r3ps"]
+[ext_resource type="Texture2D" path="res://Sprite/GreenBlue/ToxicFrogGreenBlue_Hurt.png" id="4_1dg7b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0nstc"]
 atlas = ExtResource("1_3h4cy")

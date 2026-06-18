@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://b4jg6ahwtxu5k"]
+[gd_scene format=3 uid="uid://cbbd3emhmhhp8"]
 
-[ext_resource type="Script" uid="uid://bhrbta37q41ew" path="res://pit_bottom.gd" id="1_y07py"]
+[ext_resource type="Script" uid="uid://bhrbta37q41ew" path="res://TrapHazard_script/pit_bottom.gd" id="1_y07py"]
 [ext_resource type="Texture2D" uid="uid://y01kh1j1k27p" path="res://kenney_pixel-platformer/Tiles/Backgrounds/tile_0010.png" id="2_cis04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3f6i"]

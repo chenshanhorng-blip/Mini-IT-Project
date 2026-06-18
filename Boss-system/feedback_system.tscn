@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dt7ld2wdqkxys"]
+[gd_scene format=3 uid="uid://b6lnp7js1btba"]
+
+[ext_resource type="Script" path="res://feedback_system.gd" id="1_8igxv"]
 
 [ext_resource type="Script" uid="uid://bdh7f2uiw4trf" path="res://feedback_system.gd" id="1_8igxv"]
 

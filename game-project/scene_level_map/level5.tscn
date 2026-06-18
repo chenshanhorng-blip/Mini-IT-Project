@@ -1,15 +1,39 @@
 [gd_scene format=3 uid="uid://syiscspqpbl6"]
 
 [ext_resource type="Script" uid="uid://cme48cpmuoid6" path="res://script_level_map/level_5.gd" id="1_5pncu"]
+[ext_resource type="Texture2D" uid="uid://dfqduo8iv2u2c" path="res://diamond/ChatGPT Image Jun 14, 2026, 01_46_13 PM.png" id="2_qkpx7"]
+[ext_resource type="PackedScene" uid="uid://ch4sxhkugfaix" path="res://TrapHazard_scene/level5_ground.tscn" id="3_etgaj"]
+[ext_resource type="PackedScene" uid="uid://bppqkhfcmcoi8" path="res://scene_movement/player1_movement.tscn" id="4_se45c"]
+[ext_resource type="PackedScene" uid="uid://bmf8qpej4fohx" path="res://scene/UI/pause_menu.tscn" id="5_se45c"]
+[ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="6_ubhii"]
 
 [node name="Node2D" type="Node2D" unique_id=341255562]
 script = ExtResource("1_5pncu")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=419782668]
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground" unique_id=426491825]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D" unique_id=2052472073]
+position = Vector2(875, 599.99994)
+scale = Vector2(1.1445313, 1.1816405)
+texture = ExtResource("2_qkpx7")
+
+[node name="ground" parent="." unique_id=1518257603 instance=ExtResource("3_etgaj")]
+
+[node name="Player1" parent="." unique_id=1652265376 instance=ExtResource("4_se45c")]
+position = Vector2(55, 532)
+
 [node name="Button" type="Button" parent="." unique_id=103895503]
-offset_left = 499.0
-offset_top = 176.0
-offset_right = 640.0
-offset_bottom = 225.0
+offset_left = 342.0
+offset_top = 155.0
+offset_right = 829.0
+offset_bottom = 313.0
 text = "Back To Map"
+
+[node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("5_se45c")]
+visible = false
+
+[node name="MinimapLayer" parent="." unique_id=1106204459 instance=ExtResource("6_ubhii")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cptx3r3h56avb"]
+[gd_scene format=3 uid="uid://ddkxx0jntpolc"]
 
 [ext_resource type="Script" uid="uid://duiyf1l24iqen" path="res://fake_ground.gd" id="1_hkksr"]
 [ext_resource type="Texture2D" uid="uid://cgu5g67jbqsio" path="res://kenney_pixel-platformer/Tiles/tile_0028.png" id="2_c4ncs"]
