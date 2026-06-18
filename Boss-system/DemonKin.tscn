@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://d0qdjdiwdgvw"]
+[gd_scene format=3 uid="uid://cq67hu56ld8gc"]
 
-[ext_resource type="Script" path="res://dusk_borne.gd" id="1_7shcs"]
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_usu5f"]
-[ext_resource type="Texture2D" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinBasicAtk001-Sheet.png" id="2_7shcs"]
-[ext_resource type="Texture2D" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinDeath001-Sheet.png" id="3_sw341"]
-[ext_resource type="Texture2D" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinHurt001-Sheet.png" id="4_vdoyj"]
-[ext_resource type="Texture2D" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinIdle001-Sheet.png" id="5_sw341"]
-[ext_resource type="Texture2D" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinWalk001-Sheet.png" id="5_tba1v"]
+[ext_resource type="Script" uid="uid://c0alqmwnrx3bg" path="res://dusk_borne.gd" id="1_7shcs"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_usu5f"]
+[ext_resource type="Texture2D" uid="uid://dey4ta65jdvst" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinBasicAtk001-Sheet.png" id="2_7shcs"]
+[ext_resource type="Texture2D" uid="uid://chva65vga6pu8" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinDeath001-Sheet.png" id="3_sw341"]
+[ext_resource type="Texture2D" uid="uid://0n6e3jrrc1g8" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinHurt001-Sheet.png" id="4_vdoyj"]
+[ext_resource type="Texture2D" uid="uid://buqwcxd0vk7ae" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinIdle001-Sheet.png" id="5_sw341"]
+[ext_resource type="Texture2D" uid="uid://bgrnmn5gcywdm" path="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinWalk001-Sheet.png" id="5_tba1v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sj4fi"]
 atlas = ExtResource("2_7shcs")
