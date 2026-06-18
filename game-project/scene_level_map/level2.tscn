@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bmf8qpej4fohx" path="res://scene/UI/pause_menu.tscn" id="10_gvdtg"]
 [ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="11_rmhq5"]
 [ext_resource type="PackedScene" uid="uid://b6h4btcv0bo7l" path="res://Boss-system/Sprite/toxicfrog.tscn" id="12_gw64w"]
+[ext_resource type="PackedScene" uid="uid://cdjdhgxtihh1i" path="res://Boss-system/hint button.tscn" id="13_11ev2"]
+[ext_resource type="PackedScene" uid="uid://b6lnp7js1btba" path="res://feedback_system.tscn" id="14_bthgh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_du5er"]
 texture = ExtResource("3_bebr4")
@@ -1176,10 +1178,15 @@ visible = false
 
 [node name="MinimapLayer" parent="." unique_id=1106204459 instance=ExtResource("11_rmhq5")]
 
-[node name="Node2D" parent="." unique_id=999334707 instance=ExtResource("12_gw64w")]
+[node name="ToxicFrog1" parent="." unique_id=999334707 instance=ExtResource("12_gw64w")]
 position = Vector2(380, 297)
 
-[node name="Node2D2" parent="." unique_id=1604510576 instance=ExtResource("12_gw64w")]
+[node name="ToxicFrog2" parent="." unique_id=1604510576 instance=ExtResource("12_gw64w")]
 position = Vector2(922, 189)
+
+[node name="Hintbutton" parent="." unique_id=1468774410 instance=ExtResource("13_11ev2")]
+
+[node name="FeedbackPanel" parent="." unique_id=61742216 instance=ExtResource("14_bthgh")]
+visible = false
 
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
