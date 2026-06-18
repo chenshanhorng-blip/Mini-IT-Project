@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://be7haj0ptmr3k"]
 
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Boss-system/icon.svg" id="1_7ybkh"]
 [ext_resource type="Script" uid="uid://cuudrlahsfmuj" path="res://Boss-system/Sprite/DemoController.gd" id="1_qxvyn"]
 [ext_resource type="Texture2D" uid="uid://pviqna8q860p" path="res://Sprite/with_outline/FLYING.png" id="1_v8dcd"]
 [ext_resource type="Texture2D" uid="uid://rncpmr36t3ct" path="res://Sprite/with_outline/ATTACK.png" id="2_jq8oq"]
 [ext_resource type="Texture2D" uid="uid://bwi2grob0cl84" path="res://Sprite/with_outline/IDLE.png" id="2_v8dcd"]
 [ext_resource type="Texture2D" uid="uid://gcxaeavmv0xe" path="res://Sprite/with_outline/DEATH.png" id="3_rvy3d"]
 [ext_resource type="Texture2D" uid="uid://dmgpw1ccku2wi" path="res://Sprite/with_outline/HURT.png" id="5_m0436"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lv07"]
+size = Vector2(148.5, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpbqt"]
 size = Vector2(47.59375, 46.101563)
