@@ -32,6 +32,16 @@ func setup(new_player, new_stat: CharacterStat) -> void:
 
 	skill_damage_area.monitoring = false
 	skill_damage_shape.disabled = true
+
+	# The CircleShape2D on skill_area has no radius set in the scene,
+	# which makes it default to Godot's tiny built-in radius (10px).
+	# Force a usable radius here so basic attack / skills can actually
+	# reach and hit enemies standing in front of the player.
+	if skill_damage_shape.shape is CircleShape2D:
+		var circle_shape: CircleShape2D = skill_damage_shape.shape
+		if circle_shape.radius < 30.0:
+			circle_shape.radius = 40.0
+			print("skill_adjust: CircleShape2D radius was too small, set to 40.0")
 	
 	var signal_callable = Callable(self, "_on_skill_damage_area_body_entered")
 	if not skill_damage_area.body_entered.is_connected(signal_callable):
@@ -95,7 +105,15 @@ func basic_attack_animation() -> void:
 	CombatSystem.basic_attack_1(stat)
 	if stat.character_name == "Tea Egg Knight":
 		animated_sprite.play("knight basic attack")
-		
+		# Knight basic attack — damage area in front of the knight
+		activate_skill_damage_area(
+			princess_basic_start,
+			stat.current_attack,
+			0.3,
+			Vector2(1.5, 1),
+			"knight_basic"
+		)
+
 	elif stat.character_name == "Boar Princess":
 		animated_sprite.play("princess basic attack")
 		play_flying_effect_from_marker(
@@ -103,6 +121,14 @@ func basic_attack_animation() -> void:
 			princess_basic_start,
 			300,
 			0.3
+		)
+		# Princess basic attack — damage area where the effect flies through
+		activate_skill_damage_area(
+			princess_basic_start,
+			stat.current_attack,
+			0.3,
+			Vector2(1.5, 1),
+			"princess_basic"
 		)
 
 	await animated_sprite.animation_finished
@@ -121,7 +147,7 @@ func activate_skill_damage_area(marker: Marker2D, damage: int, duration: float, 
 	skill_damage_shape.disabled = false
 	skill_damage_area.monitoring = true
 
-	print("Damage area active:", skill_name, " Damage:", damage)
+	print("Damage area active:", skill_name, " Damage:", damage, " | world position:", skill_damage_area.global_position, " | scale:", skill_damage_area.scale)
 
 	await get_tree().create_timer(duration).timeout
 
