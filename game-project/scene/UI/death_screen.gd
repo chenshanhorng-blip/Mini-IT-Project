@@ -30,6 +30,10 @@ func _on_restart_button_pressed():
 	print(">>> 重启按钮被点击 <<<")
 	hide_death_screen()
 	get_tree().reload_current_scene()
+	if Global.player1_character != null:
+		Global.player1_character.reset_stats()
+		print("Player stats reset before restart")
+
 
 # 返回地图
 func _on_map_button_pressed():

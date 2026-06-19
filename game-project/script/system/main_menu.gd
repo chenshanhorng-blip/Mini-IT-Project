@@ -1,11 +1,17 @@
 extends Control
 
 func _ready():
-	$Menu/NewGame.pressed.connect(_on_new_game)
-	$Menu/Continue.pressed.connect(_on_continue)
-	$Menu/Setting.pressed.connect(_on_settings)
-	$Menu/Quit.pressed.connect(_on_quit)
-	$Menu/Credit.pressed.connect(_on_credit_pressed)
+	# Use is_connected check to prevent double-connection on scene reload
+	if not $Menu/NewGame.pressed.is_connected(_on_new_game):
+		$Menu/NewGame.pressed.connect(_on_new_game)
+	if not $Menu/Continue.pressed.is_connected(_on_continue):
+		$Menu/Continue.pressed.connect(_on_continue)
+	if not $Menu/Setting.pressed.is_connected(_on_settings):
+		$Menu/Setting.pressed.connect(_on_settings)
+	if not $Menu/Quit.pressed.is_connected(_on_quit):
+		$Menu/Quit.pressed.connect(_on_quit)
+	if not $Menu/Credit.pressed.is_connected(_on_credit_pressed):
+		$Menu/Credit.pressed.connect(_on_credit_pressed)
 
 	# Disable Continue if NO slots have saves
 	var any_save = Global.has_save_file(1) or Global.has_save_file(2) or Global.has_save_file(3)

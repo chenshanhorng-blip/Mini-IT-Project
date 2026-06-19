@@ -28,6 +28,9 @@ func _on_save_exit():
 func _on_restart():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+	if Global.player1_character != null:
+		Global.player1_character.reset_stats()
+		print("Player stats reset before restart")
 
 func _on_settings():
 	get_tree().paused = false

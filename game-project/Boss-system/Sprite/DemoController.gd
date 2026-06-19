@@ -115,7 +115,7 @@ func update_hp_label() -> void:
 ## ------------------------------
 ## Damage System (Enemy takes damage)
 ## ------------------------------
-func take_damage(damage: int) -> void:
+func receive_damage(damage: int) -> void:
 	if is_dead:
 		return
 
