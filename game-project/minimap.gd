@@ -20,7 +20,7 @@ func _ready():
 	# Link the minimap to your main game world scene
 	if get_tree().current_scene:
 		minimap_viewport.world_2d = get_tree().current_scene.get_world_2d()
-	
+		
 	# Fix viewport rendering settings
 	minimap_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	minimap_viewport.transparent_bg = true
