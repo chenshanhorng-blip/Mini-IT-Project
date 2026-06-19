@@ -10,6 +10,8 @@ var total_points = 3
 # 💡 注意：如果你的 level2 场景树里拉进来的节点名字叫 FeedbackPanel，就把下面这句改成：$FeedbackPanel/CanvasLayer/FeedbackPanel
 @onready var feedback_panel = $Node2D/CanvasLayer/FeedbackPanel
 
+const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
+
 func _ready():
 	CheckpointManager.reset_checkpoint("level2", Vector2(13, 206))
 	
@@ -36,6 +38,7 @@ func _input(event):
 
 func _on_point_collected():
 	collected_count += 1
+	RewardSystem.add_coins(10, "level2")
 	if collected_count >= total_points:
 		show_exit_button()
 

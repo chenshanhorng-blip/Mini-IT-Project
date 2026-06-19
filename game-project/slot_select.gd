@@ -5,7 +5,8 @@ var mode: String = "load"
 func _ready():
 	mode = Global.slot_mode
 	print("Mode is: ", mode)
-	$Back.pressed.connect(_on_back_pressed)
+	if not $Back.pressed.is_connected(_on_back_pressed):
+		$Back.pressed.connect(_on_back_pressed)
 	_update_slots()
 
 func _update_slots():

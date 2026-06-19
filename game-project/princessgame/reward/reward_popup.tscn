@@ -2,29 +2,34 @@
 
 [ext_resource type="Script" uid="uid://b1qnolhh2a068" path="res://princessgame/reward/reward_popup.gd" id="1_0n4qh"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=2024473870]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1417445181]
+script = ExtResource("1_0n4qh")
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=329555205]
-offset_left = 350.0
-offset_top = 80.0
-offset_right = 950.0
-offset_bottom = 580.0
+anchors_preset = -1
+anchor_right = 0.989
+anchor_bottom = 0.9850001
+offset_left = -3.0
+offset_top = 4.0
+offset_right = -0.32800293
+offset_bottom = -0.2800293
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=26869832]
 layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="TitleLabel" type="Label" parent="Panel/VBoxContainer" unique_id=196330323]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0, 1)
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "✨ Level Complete! ✨"
 horizontal_alignment = 1
 
 [node name="StarsLabel" type="Label" parent="Panel/VBoxContainer" unique_id=186308613]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 text = "★ ★ ★"
 horizontal_alignment = 1
 
@@ -32,19 +37,22 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="CoinsLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1964259638]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Level Reward    +50 coins"
+text = "  Level Reward    +0 coins"
 
 [node name="BonusLabel" type="Label" parent="Panel/VBoxContainer" unique_id=419393564]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Diamond Bonus  +0 coins"
+text = " Diamond Bonus  +0 coins"
 
 [node name="TotalLevelLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1824539278]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "This Level Total   50 coins"
+text = "  This Level Total Got  50 coins"
 
 [node name="Divider2" type="HSeparator" parent="Panel/VBoxContainer" unique_id=1135326690]
 layout_mode = 2
@@ -65,9 +73,9 @@ horizontal_alignment = 1
 
 [node name="Divider3" type="HSeparator" parent="Panel/VBoxContainer" unique_id=2035285836]
 layout_mode = 2
-script = ExtResource("1_0n4qh")
 
 [node name="GrandTotalLabel" type="Label" parent="Panel/VBoxContainer" unique_id=360255120]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -79,11 +87,14 @@ layout_mode = 2
 alignment = 1
 
 [node name="ContinueButton" type="Button" parent="Panel/VBoxContainer/ButtonContainer" unique_id=1718626855]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 30
 text = "Continue →"
 
 [node name="ReplayButton" type="Button" parent="Panel/VBoxContainer/ButtonContainer" unique_id=1700847047]
+custom_minimum_size = Vector2(500, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 30
 text = "↺ Replay"

@@ -2,8 +2,11 @@ extends Node2D
 
 var collected_count = 0
 var total_points = 3
+var reward_popup = null
 @onready var exit_button = $Button
 @onready var pause_menu = $PauseMenu  # ← ADD THIS
+
+const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 
 func _ready():
 	# Reset checkpoint
@@ -30,6 +33,7 @@ func _input(event):
 
 func _on_point_collected():
 	collected_count += 1
+	RewardSystem.add_coins(10, "level1")
 	print("Collected! ", collected_count, " / ", total_points)
 	if collected_count >= total_points:
 		print("Level 1 Complete!")
@@ -40,4 +44,20 @@ func show_exit_button():
 
 func _on_button_pressed():
 	Global.unlock_next_level("level1")
-	Transition.fade_to_scene("res://scene_level_map/map.tscn")
+	_show_reward_popup()
+	
+func _show_reward_popup():
+	reward_popup = REWARD_POPUP_SCENE.instantiate()
+	add_child(reward_popup)
+ 
+	# When player clicks Continue in popup → unlock next level → go to map
+	reward_popup.on_continue_pressed = func():
+		Global.unlock_next_level("level1")
+		Transition.fade_to_scene("res://scene_level_map/map.tscn")
+ 
+	reward_popup.show_reward(
+		"level1",
+		RewardSystem.get_base_reward("level1"),
+		collected_count * 10,
+		collected_count
+	)

@@ -21,6 +21,9 @@ func _ready():
 		"level4": $TextureRect4,
 		"level5": $TextureRect5,
 	}
+	if Global.player1_character != null:
+		Global.player1_character.reset_stats()
+		print("Player 1 stats reset on map load")
 	
 	setup_map()
 

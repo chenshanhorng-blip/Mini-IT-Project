@@ -48,7 +48,7 @@ func _ready() -> void:
 	else:
 		print("ERROR: Mushroom Area2D node not found!")
 
-	sprite.play("WALK")
+	sprite.play("PATROL")
 
 func _physics_process(_delta: float) -> void:
 	if dead:
@@ -73,8 +73,8 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 	# Only show WALK when not attacking
-	if not dead and not attack_cooldown and sprite.animation != "WALK":
-		sprite.play("WALK")
+	if not dead and not attack_cooldown and sprite.animation != "PATROL":
+		sprite.play("PATROL")
 
 func _on_area_body_entered(body) -> void:
 	print("Mushroom Area2D body_entered: ", body.name, " | groups: ", body.get_groups())
@@ -92,7 +92,7 @@ func _on_area_body_exited(body) -> void:
 		player_in_range = false
 		attack_cooldown = false
 		if not dead:
-			sprite.play("WALK")
+			sprite.play("PATROL")
 
 # Continuously attacks while player stays in range
 func attack_loop() -> void:
@@ -118,7 +118,7 @@ func do_attack() -> void:
 	await get_tree().create_timer(attack_interval).timeout
 	attack_cooldown = false
 	if not dead and not player_in_range:
-		sprite.play("WALK")
+		sprite.play("PATROL")
 
 # Called by player skill area hitting this enemy
 func take_damage(damage: int) -> void:
@@ -133,7 +133,7 @@ func take_damage(damage: int) -> void:
 	sprite.play("HIT")
 	await get_tree().create_timer(0.3).timeout
 	if not dead:
-		sprite.play("WALK")
+		sprite.play("PATROL")
 
 # Alias — skill_part system calls receive_damage()
 func receive_damage(damage: int) -> void:

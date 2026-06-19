@@ -84,7 +84,7 @@ func update_hp_label() -> void:
 	if hp_label:
 		hp_label.text = "HP: " + str(hp)
 
-func take_damage(damage: int) -> void:
+func receive_damage(damage: int) -> void:
 	if is_dead:
 		return
 
@@ -139,4 +139,4 @@ func _on_detection_range_body_exited(body: Node2D) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		take_damage(20)
+		receive_damage(20)

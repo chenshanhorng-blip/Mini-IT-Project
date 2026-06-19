@@ -106,10 +106,10 @@ position = Vector2(644, 123)
 position = Vector2(370, 508)
 
 [node name="Button" type="Button" parent="." unique_id=120463940]
-offset_left = 253.0
-offset_top = 94.0
-offset_right = 980.0
-offset_bottom = 472.0
+offset_left = 298.0
+offset_top = 243.0
+offset_right = 858.0
+offset_bottom = 375.0
 theme_override_font_sizes/font_size = 90
 text = "Back To Map"
 
