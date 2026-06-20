@@ -35,4 +35,4 @@ func _on_restart_button_pressed():
 func _on_map_button_pressed():
 	print(">>> 地图按钮被点击 <<<")
 	hide_death_screen()
-	get_tree().change_scene_to_file("res://scene_level_map/map.tscn")
+	Transition.fade_to_scene("res://scene_level_map/map.tscn")
