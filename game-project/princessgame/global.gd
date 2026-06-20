@@ -1,19 +1,26 @@
-extends Node
 
+extends Node
+ 
 var player1_character: CharacterStat = null
+ 
+# --- Multiplayer ---
+var player2_character: CharacterStat = null
+var game_mode: String = "single"   # "single" or "multiplayer"
+ 
 var player_scene: String = "res://scene_movement/player1_movement.tscn"
+var player2_scene: String = "res//scene_movement/player2_movement.tscn"
 var show_minimap: bool = true
 var show_hints: bool = true
-
+ 
 # ============================================================
 # CURRENT SLOT
 # ============================================================
 var current_slot: int = 1
 var slot_mode: String = "load"  # "load" = Continue, "save" = New Game
-
+ 
 func get_save_path(slot: int) -> String:
 	return "user://savegame_slot" + str(slot) + ".dat"
-
+ 
 # ============================================================
 # LEVEL UNLOCK SYSTEM
 # ============================================================
@@ -24,7 +31,7 @@ var levels_unlocked = {
 	"level4": false,
 	"level5": false,
 }
-
+ 
 func unlock_next_level(current_level: String):
 	match current_level:
 		"level1": levels_unlocked["level2"] = true
@@ -33,7 +40,7 @@ func unlock_next_level(current_level: String):
 		"level4": levels_unlocked["level5"] = true
 	save_game()
 	print("Unlocked next level after: ", current_level)
-
+ 
 # ============================================================
 # SAVE / LOAD SYSTEM
 # ============================================================
@@ -42,7 +49,7 @@ var unlocked_skills: Array = []
 var reward_progress: Dictionary = {}
 var saved_checkpoint: Vector2 = Vector2.ZERO
 var saved_player_hp: int = 100
-
+ 
 func save_game(player = null, slot: int = current_slot):
 	var save_data = {
 		"levels_unlocked": levels_unlocked,
@@ -69,7 +76,7 @@ func save_game(player = null, slot: int = current_slot):
 	file.store_string(JSON.stringify(save_data))
 	file.close()
 	print("Game saved to slot ", slot)
-
+ 
 func load_game(slot: int = current_slot) -> bool:
 	current_slot = slot
 	var path = get_save_path(slot)
@@ -108,10 +115,10 @@ func load_game(slot: int = current_slot) -> bool:
 		)
 	print("Game loaded from slot ", slot)
 	return true
-
+ 
 func has_save_file(slot: int = current_slot) -> bool:
 	return FileAccess.file_exists(get_save_path(slot))
-
+ 
 func get_slot_info(slot: int) -> Dictionary:
 	var path = get_save_path(slot)
 	if not FileAccess.file_exists(path):
@@ -130,9 +137,10 @@ func get_slot_info(slot: int) -> Dictionary:
 		"timestamp": data.get("save_timestamp", "Unknown"),
 		"player_hp": data.get("player_hp", 100),
 	}
-
+ 
 func delete_save(slot: int = current_slot):
 	var path = get_save_path(slot)
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(path)
 		print("Slot ", slot, " deleted!")
+ 

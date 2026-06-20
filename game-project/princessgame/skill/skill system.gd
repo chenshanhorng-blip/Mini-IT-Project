@@ -90,9 +90,9 @@ static func start_princess_ultimate(stat: CharacterStat) -> void:
 	print("The Power of Love")
 
 	stat.current_attack += 20
-	stat.current_max_health += 20
-	stat.health += 20
-	stat.current_movement += 100
+	stat.current_max_health +=15
+	stat.health += 15
+	stat.current_movement += 60
 
 	stat.health = clamp(stat.health, 0, stat.current_max_health)
 	stat.health_changed.emit(stat.health, stat.current_max_health)

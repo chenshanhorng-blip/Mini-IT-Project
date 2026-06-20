@@ -450,7 +450,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8uwmi")
 }],
-"loop": true,
+"loop": false,
 "name": &"crouch",
 "speed": 5.0
 }, {
@@ -458,7 +458,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uuush")
 }],
-"loop": true,
+"loop": false,
 "name": &"crouch_2",
 "speed": 5.0
 }, {
@@ -481,7 +481,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3dbgi")
 }],
-"loop": true,
+"loop": false,
 "name": &"down",
 "speed": 5.0
 }, {
@@ -501,7 +501,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2syn4")
 }],
-"loop": true,
+"loop": false,
 "name": &"down_left_2",
 "speed": 5.0
 }, {
@@ -521,7 +521,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ehlti")
 }],
-"loop": true,
+"loop": false,
 "name": &"down_right_2",
 "speed": 5.0
 }, {
@@ -529,7 +529,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e0pe0")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -537,7 +537,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2l3a3")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall_2",
 "speed": 5.0
 }, {
@@ -551,7 +551,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_doeon")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -565,7 +565,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xehdy")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle_2",
 "speed": 5.0
 }, {
@@ -594,7 +594,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7r662")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -620,7 +620,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oowws")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump_left_2",
 "speed": 5.0
 }, {
@@ -646,7 +646,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g181o")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump_right_2",
 "speed": 5.0
 }, {
@@ -689,7 +689,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_imqmh")
 }],
-"loop": true,
+"loop": false,
 "name": &"left_move",
 "speed": 5.0
 }, {
@@ -709,7 +709,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l33pq")
 }],
-"loop": true,
+"loop": false,
 "name": &"left_move_2",
 "speed": 5.0
 }, {
@@ -766,7 +766,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xchun")
 }],
-"loop": true,
+"loop": false,
 "name": &"right_move",
 "speed": 5.0
 }, {
@@ -786,7 +786,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_st7th")
 }],
-"loop": true,
+"loop": false,
 "name": &"right_move_2",
 "speed": 5.0
 }, {
@@ -1059,7 +1059,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_17r01"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj31j"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cn111"]
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -1071,7 +1071,7 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 corner_detail = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xek1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dmyk"]
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -1083,7 +1083,7 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 corner_detail = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ius7q"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xchun"]
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -1106,7 +1106,7 @@ shape = SubResource("RectangleShape2D_0araa")
 position = Vector2(0.9999999, -6.9999995)
 scale = Vector2(0.05069446, 0.05385417)
 sprite_frames = SubResource("SpriteFrames_3dbgi")
-animation = &"skill 1 of boar princess"
+animation = &"right_move"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=989423405]
 offset = Vector2(1.5, 1.5)
@@ -1163,33 +1163,45 @@ monitoring = false
 shape = SubResource("CircleShape2D_17r01")
 disabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=676799686]
+[node name="PlayerIcon" type="Node2D" parent="." unique_id=1290434677 groups=["player"]]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("28_cn111")
 
-[node name="Player" type="Control" parent="CanvasLayer" unique_id=280670899]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1002788865]
+
+[node name="Player" type="Control" parent="CanvasLayer" unique_id=1528802819]
 layout_mode = 3
-anchors_preset = 0
-offset_left = -8.0
-offset_top = -9.0
-offset_right = 12.0
-offset_bottom = 11.0
+offset_left = 1132.0
+offset_top = 5.9999995
+offset_right = 1132.0
+offset_bottom = 20.0
+grow_horizontal = 0
 script = ExtResource("26_5okn6")
 
-[node name="HP_bar" type="ProgressBar" parent="CanvasLayer/Player" unique_id=1998868405]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 126.0
-offset_right = 134.0
-offset_bottom = 147.0
+[node name="HP_bar" type="ProgressBar" parent="CanvasLayer/Player" unique_id=1664726282]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.21400002
+anchor_bottom = -0.21400002
+offset_left = -1128.0
+offset_top = 35.996002
+offset_right = -847.0
+offset_bottom = 143.996
 show_percentage = false
 
-[node name="HP_number" type="Label" parent="CanvasLayer/Player" unique_id=1832286971]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 125.0
-offset_right = 112.0
-offset_bottom = 148.0
+[node name="HP_number" type="Label" parent="CanvasLayer/Player" unique_id=1226755637]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -6.602
+anchor_bottom = -6.602
+offset_left = -1078.0
+offset_top = 153.42801
+offset_right = -915.0
+offset_bottom = 208.42801
+theme_override_font_sizes/font_size = 40
 
-[node name="skill ui" type="Control" parent="CanvasLayer" unique_id=2080722987]
+[node name="skill ui" type="Control" parent="CanvasLayer" unique_id=1601697271]
 layout_mode = 3
 anchor_top = 0.582
 anchor_bottom = 0.582
@@ -1200,35 +1212,30 @@ offset_bottom = 270.86398
 grow_vertical = 0
 script = ExtResource("27_j6uo5")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/skill ui" unique_id=103886124]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/skill ui" unique_id=1667164911]
 layout_mode = 0
 offset_left = 50.0
 offset_top = -150.0
 offset_right = 480.0
 theme_override_constants/separation = 10
 
-[node name="skill1" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=728252671]
+[node name="skill1" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=425260298]
 custom_minimum_size = Vector2(130, 130)
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_sj31j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cn111")
 text = "skill 1"
 
-[node name="skill2" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=1429516967]
+[node name="skill2" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=58561836]
 custom_minimum_size = Vector2(130, 130)
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_1xek1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2dmyk")
 text = "skill 2"
 
-[node name="ultimate" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=1381394751]
+[node name="ultimate" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=397870541]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_ius7q")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xchun")
 text = "utlimate"
-
-[node name="PlayerIcon" type="Node2D" parent="." unique_id=1290434677 groups=["player"]]
-light_mask = 2
-visibility_layer = 2
-script = ExtResource("28_cn111")
