@@ -8,7 +8,7 @@ var total_points = 3
 
 # 🌟 核心修复：穿过队友做的 Node2D 和 CanvasLayer，精准拿到真正挂脚本的 Panel 节点！
 # 💡 注意：如果你的 level2 场景树里拉进来的节点名字叫 FeedbackPanel，就把下面这句改成：$FeedbackPanel/CanvasLayer/FeedbackPanel
-@onready var feedback_panel = $Node2D/CanvasLayer/FeedbackPanel
+@onready var feedback_panel = $FeedbackPanel/CanvasLayer/FeedbackPanel
 
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 
