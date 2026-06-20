@@ -170,7 +170,7 @@ func _show_step(step: int) -> void:
 			_set_ui(
 				"Step 4 — Basic Attack",
 				"Attack enemies with your basic attack.",
-				"Left Mouse Button  =  Basic Attack"
+				"F=  Basic Attack"
 			)
 		TutorialManager.Step.SKILL_1:
 			_set_ui(
@@ -243,7 +243,7 @@ func _check_step_completion() -> void:
 				TutorialManager.advance_step()
 
 		TutorialManager.Step.BASIC_ATTACK:
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if Input.is_action_pressed("basic attack"):
 				basic_attacked = true
 			if basic_attacked:
 				TutorialManager.advance_step()
@@ -284,6 +284,7 @@ func _on_tutorial_finished() -> void:
 			countdown_label.text = "Loading level in " + str(ceil(timer)) + "..."
 		await get_tree().create_timer(1.0).timeout
 		timer -= 1.0
+	_reset_player_before_level()
 	Transition.fade_to_scene("res://scene_level_map/level1.tscn")
 
 
@@ -299,3 +300,18 @@ func _on_tutorial_skipped() -> void:
 	print("Tutorial skipped — loading level in 5 seconds")
 	await get_tree().create_timer(5.0).timeout
 	Transition.fade_to_scene("res://scene_level_map/level1.tscn")
+	
+func _reset_player_before_level() -> void:
+	# Stop any active skill effects on the tutorial player before it's freed
+	if player_node != null and is_instance_valid(player_node):
+		var skill_controller = player_node.get_node_or_null("skill_adjust")
+		if skill_controller != null:
+			# Force-cancel ultimate / attacking state and hide any visible effects
+			if skill_controller.has_method("hide_all_effects"):
+				skill_controller.hide_all_effects()
+			skill_controller.is_attacking = false
+ 
+	# Reset the CharacterStat itself — clears cooldowns + ultimate_active
+	if Global.player1_character != null:
+		Global.player1_character.reset_stats()
+		print("Tutorial: Character stat reset before entering level1")

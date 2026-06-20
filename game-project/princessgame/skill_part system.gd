@@ -2,7 +2,7 @@ extends Node
 class_name skill_adjust
 #the player's data
 var player = null
-
+var player_id: int = 1
 var stat: CharacterStat = null
 var is_attacking: bool = false
 
@@ -25,9 +25,10 @@ var current_skill_damage: int = 0
 var current_skill_name: String = ""
 var damaged_enemy_list: Array = []
 #set up
-func setup(new_player, new_stat: CharacterStat) -> void:
+func setup(new_player, new_stat: CharacterStat,new_player_id: int = 1) -> void:
 	player = new_player
 	stat = new_stat
+	player_id = new_player_id
 	hide_all_effects()
 
 	skill_damage_area.monitoring = false
@@ -328,31 +329,37 @@ func use_ultimate_action() -> void:
 func handle_input() -> void:
 	if stat == null:
 		return
-
-	if Input.is_action_just_pressed("basic attack"):
+ 
+	# Pick the correct input action names based on which player this is
+	var action_basic_attack = "basic attack" if player_id == 1 else "p2_basic_attack"
+	var action_skill1       = "skill1"        if player_id == 1 else "p2_skill1"
+	var action_skill2       = "skill2"        if player_id == 1 else "p2_skill2"
+	var action_ultimate     = "ultimate"       if player_id == 1 else "p2_ultimate"
+ 
+	if Input.is_action_just_pressed(action_basic_attack):
 		basic_attack_animation()
-
-	if Input.is_action_just_pressed("skill1"):
+ 
+	if Input.is_action_just_pressed(action_skill1):
 		if is_attacking:
 			return
-
+ 
 		if skill_cooldown.can_use_skill(stat, "skill1"):
 			skill_cooldown.start_cooldown(stat, "skill1")
 			use_skill_1_action()
 		else:
 			print("Skill 1 cooldown:", ceil(skill_cooldown.get_remaining_time(stat, "skill1")))
-
-	if Input.is_action_just_pressed("skill2"):
+ 
+	if Input.is_action_just_pressed(action_skill2):
 		if is_attacking:
 			return
-
+ 
 		if skill_cooldown.can_use_skill(stat, "skill2"):
 			skill_cooldown.start_cooldown(stat, "skill2")
 			use_skill_2_action()
 		else:
 			print("Skill 2 cooldown:", ceil(skill_cooldown.get_remaining_time(stat, "skill2")))
-
-	if Input.is_action_just_pressed("ultimate"):
+ 
+	if Input.is_action_just_pressed(action_ultimate):
 		# Princess ultimate is buff, do not block basic attack / skill
 		if stat.character_name == "Boar Princess":
 			if skill_cooldown.can_use_skill(stat, "ultimate"):
@@ -360,12 +367,12 @@ func handle_input() -> void:
 				use_ultimate_action()
 			else:
 				print("Ultimate cooldown:", ceil(skill_cooldown.get_remaining_time(stat, "ultimate")))
-
+ 
 		# Tea Egg Knight ultimate has animation, so it can be blocked by is_attacking
 		elif stat.character_name == "Tea Egg Knight":
 			if is_attacking:
 				return
-
+ 
 			if skill_cooldown.can_use_skill(stat, "ultimate"):
 				skill_cooldown.start_cooldown(stat, "ultimate")
 				use_ultimate_action()
