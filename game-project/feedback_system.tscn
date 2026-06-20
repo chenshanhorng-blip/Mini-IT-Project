@@ -5,7 +5,7 @@
 [sub_resource type="Theme" id="Theme_8igxv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvcgc"]
-bg_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+bg_color = Color(0.24313726, 0.23529412, 0.11372549, 0.5019608)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -45,6 +45,7 @@ corner_radius_bottom_left = 15
 [node name="Node2D" type="Node2D" unique_id=61742216]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=289684586]
+layer = 30
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=994676072]
 anchors_preset = 8
@@ -66,10 +67,7 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 211.0
-offset_top = 55.0
-offset_right = -183.0
-offset_bottom = -78.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hvcgc")
@@ -96,7 +94,7 @@ alignment = 1
 [node name="TitleLabel" type="Label" parent="CanvasLayer/FeedbackPanel/VBoxContainer" unique_id=1670637745]
 texture_filter = 1
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "🌟 Enjoying the game?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -104,7 +102,7 @@ vertical_alignment = 1
 [node name="DescriptionLabel" type="Label" parent="CanvasLayer/FeedbackPanel/VBoxContainer" unique_id=1216492367]
 texture_filter = 1
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 25
 text = "We’d love your feedback 💬"
 horizontal_alignment = 1
 vertical_alignment = 1
