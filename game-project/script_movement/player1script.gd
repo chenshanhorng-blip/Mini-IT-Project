@@ -103,10 +103,10 @@ func setup_character_sprite() -> void:
 		return
 
 	if stat.character_name == "Boar Princess":
-		play_if_exists("princess standing")
-		animated_sprite.scale = Vector2(0.04, 0.04)
+		play_if_exists("idle")
+		animated_sprite.scale = Vector2(0.05069446, 0.05385417)
 	elif stat.character_name == "Tea Egg Knight":
-		play_if_exists("knight standing")
+		play_if_exists("idle_2")
 		animated_sprite.scale = Vector2(0.08, 0.08)
 
 
