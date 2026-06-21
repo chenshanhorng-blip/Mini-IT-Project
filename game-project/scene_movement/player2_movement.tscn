@@ -1059,42 +1059,6 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_17r01"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj31j"]
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0.84313726, 0, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
-corner_detail = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xek1"]
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0.84313726, 0, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
-corner_detail = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ius7q"]
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0.84313726, 0, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-corner_detail = 20
-
 [node name="Player2" type="CharacterBody2D" unique_id=1652265376]
 script = ExtResource("1_gdahf")
 
@@ -1196,52 +1160,45 @@ offset_right = -68.0
 offset_bottom = 87.0
 theme_override_font_sizes/font_size = 40
 
-[node name="skill ui" type="Control" parent="CanvasLayer" unique_id=2080722987]
+[node name="skill ui" type="Control" parent="CanvasLayer" unique_id=1727381236]
 layout_mode = 3
-anchor_left = 1.0
-anchor_top = 0.597
-anchor_right = 1.0
-anchor_bottom = 0.597
-offset_left = -1137.0
-offset_top = 218.14401
-offset_right = -1099.0
-offset_bottom = 261.144
+anchor_top = 0.582
+anchor_bottom = 0.582
+offset_left = 15.0
+offset_top = 230.86398
+offset_right = 40.0
+offset_bottom = 270.86398
 grow_vertical = 0
 script = ExtResource("27_0jatd")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/skill ui" unique_id=103886124]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/skill ui" unique_id=865518597]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 45.394
-anchor_top = -4.4570003
-anchor_right = 45.394
-anchor_bottom = -4.4570003
-offset_left = -1084.85
-offset_top = 28.280014
-offset_right = -654.85
-offset_bottom = 178.28001
-theme_override_constants/separation = 10
+anchor_left = 49.440002
+anchor_top = -4.5
+anchor_right = 73.72
+anchor_bottom = 1.0
+offset_bottom = -9.0
 
-[node name="skill1" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=728252671]
-custom_minimum_size = Vector2(130, 130)
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/skill ui/PanelContainer" unique_id=214233356]
+layout_direction = 2
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_sj31j")
-text = "skill 1"
+theme_override_constants/separation = 36
 
-[node name="skill2" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=1429516967]
-custom_minimum_size = Vector2(130, 130)
+[node name="Skill1Label" type="Label" parent="CanvasLayer/skill ui/PanelContainer/HBoxContainer" unique_id=1721348291]
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_1xek1")
-text = "skill 2"
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 30
 
-[node name="ultimate" type="Button" parent="CanvasLayer/skill ui/HBoxContainer" unique_id=1381394751]
-custom_minimum_size = Vector2(150, 150)
+[node name="Skill2Label" type="Label" parent="CanvasLayer/skill ui/PanelContainer/HBoxContainer" unique_id=347913565]
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_ius7q")
-text = "utlimate"
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 30
+
+[node name="UltimateLabel" type="Label" parent="CanvasLayer/skill ui/PanelContainer/HBoxContainer" unique_id=258633242]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 30
 
 [node name="PlayerIcon" type="Node2D" parent="." unique_id=1290434677 groups=["player"]]
 light_mask = 2
