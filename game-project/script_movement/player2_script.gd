@@ -38,6 +38,7 @@ const PRINCESS_SCALE = Vector2(0.05069446, 0.05385417)
 @onready var camera: Camera2D = $Camera2D
 @onready var skill_controller = get_node_or_null("skill_adjust")
 @onready var player_hud = get_node_or_null("CanvasLayer/Player")
+@onready var skill_ui = get_node_or_null("CanvasLayer/skill ui")
 
 
 func _ready() -> void:
@@ -111,6 +112,12 @@ func setup_skill_system() -> void:
 		player_hud.setup(stat)
 	else:
 		print("WARNING: Player 2 HUD node missing")
+
+	# Tell the skill UI buttons (cooldown display) to read Player 2's stat
+	if skill_ui != null:
+		skill_ui.set_player_id(2)
+	else:
+		print("WARNING: Player 2 skill UI node missing")
 
 
 func setup_death_screen() -> void:
