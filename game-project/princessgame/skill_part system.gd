@@ -293,7 +293,7 @@ func use_ultimate_action() -> void:
 		SkillSystem.end_princess_ultimate(stat)
 
 		# Restore normal size
-		animated_sprite.scale = Vector2(0.02, 0.02)
+		animated_sprite.scale = Vector2(0.05069446, 0.05385417)
 
 		# Restore movement speed
 		player.speed = stat.current_movement

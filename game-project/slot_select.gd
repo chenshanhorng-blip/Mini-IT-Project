@@ -58,7 +58,7 @@ func _on_slot_pressed(slot: int):
 		Global.saved_checkpoint = Vector2.ZERO
 		Global.unlocked_skills = []
 		Global.reward_progress = {}
-		Transition.fade_to_scene("res://princessgame/choose character/character selection.tscn")
+		Transition.fade_to_scene("res://princessgame/multiplayer system/mode_selection.tscn")
 
 func _on_delete_pressed(slot: int):
 	Global.delete_save(slot)

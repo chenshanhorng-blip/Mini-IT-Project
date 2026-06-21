@@ -7,22 +7,38 @@ func _ready():
 	load_settings()
 	
 	# Connect Back
-	$Panel/Back.pressed.connect(_on_back_pressed)
+	if not $Panel/Back.pressed.is_connected(_on_back_pressed):
+		$Panel/Back.pressed.connect(_on_back_pressed)
 	
 	# Connect Sliders
-	$Panel/MasterSlider.value_changed.connect(_on_master_changed)
-	$Panel/MusicSlider.value_changed.connect(_on_music_changed)
-	$Panel/SFXSlider.value_changed.connect(_on_sfx_changed)
+	if not $Panel/MasterSlider.value_changed.is_connected(_on_master_changed):
+		$Panel/MasterSlider.value_changed.connect(_on_master_changed)
+	if not $Panel/MusicSlider.value_changed.is_connected(_on_music_changed):
+		$Panel/MusicSlider.value_changed.connect(_on_music_changed)
+	if not $Panel/SFXSlider.value_changed.is_connected(_on_sfx_changed):
+		$Panel/SFXSlider.value_changed.connect(_on_sfx_changed)
 	
 	# Connect Toggles
-	$Panel/MinimapToggle.toggled.connect(_on_minimap_toggled)
-	$Panel/HintToggle.toggled.connect(_on_hint_toggled)
-	$Panel/VSyncToggle.toggled.connect(_on_vsync_toggled)
-	
+	if not $Panel/MinimapToggle.toggled.is_connected(_on_minimap_toggled):
+		$Panel/MinimapToggle.toggled.connect(_on_minimap_toggled)
+	if not $Panel/HintToggle.toggled.is_connected(_on_hint_toggled):
+		$Panel/HintToggle.toggled.connect(_on_hint_toggled)
+	if not $Panel/VSyncToggle.toggled.is_connected(_on_vsync_toggled):
+		$Panel/VSyncToggle.toggled.connect(_on_vsync_toggled)
 	# Show starting percentages
 	_update_percent($Panel/MasterSlider.value, $Panel/MasterPercent)
 	_update_percent($Panel/MusicSlider.value, $Panel/MusicPercent)
 	_update_percent($Panel/SFXSlider.value, $Panel/SFXPercent)
+
+# Safely set an audio bus volume — does nothing if the bus
+# doesn't exist in the project's Audio Bus Layout, instead of
+# crashing with "Index p_bus = -1 is out of bounds"
+func _set_bus_volume_safe(bus_name: String, value: float) -> void:
+	var bus_index = AudioServer.get_bus_index(bus_name)
+	if bus_index == -1:
+		print("Audio bus '", bus_name, "' does not exist — skipping volume set")
+		return
+	AudioServer.set_bus_volume_db(bus_index, value)
 
 # ============================================================
 # VOLUME
