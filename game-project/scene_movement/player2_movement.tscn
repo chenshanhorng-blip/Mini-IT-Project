@@ -1091,7 +1091,9 @@ shape = SubResource("RectangleShape2D_0araa")
 position = Vector2(0.9999999, -6.9999995)
 scale = Vector2(0.05069446, 0.05385417)
 sprite_frames = SubResource("SpriteFrames_3dbgi")
-animation = &"knight basic attack"
+animation = &"ultimate of tea egg knight "
+frame = 2
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=989423405]
 offset = Vector2(1.5, 1.5)

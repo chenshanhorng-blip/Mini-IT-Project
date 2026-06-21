@@ -7,8 +7,10 @@ var bodies_in_lava = []
 var timer: Timer
 
 func _ready():
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
+	if not body_entered.connect(_on_body_entered):
+		body_entered.connect(_on_body_entered)
+	if not body_exited.connect(_on_body_exited):
+		body_exited.connect(_on_body_exited)
 	
 	timer = Timer.new()
 	add_child(timer)
