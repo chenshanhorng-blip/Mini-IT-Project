@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cdr6afjirxyb5" path="res://script_movement/player1script.gd" id="1_u017l"]
 [ext_resource type="Texture2D" uid="uid://cms1nukrif47y" path="res://movement BP/BP down image.png" id="2_0araa"]
 [ext_resource type="Texture2D" uid="uid://detbof0lc778j" path="res://movement BP/BP movement image.png" id="3_3yxp7"]
-[ext_resource type="Texture2D" uid="uid://chic84uftgd1p" path="res://princessgame/picture/tea egg knight  profile.png" id="3_328te"]
 [ext_resource type="Texture2D" uid="uid://81od2w2ablqi" path="res://princessgame/picture/boar princess.png" id="3_ioris"]
 [ext_resource type="Texture2D" uid="uid://fxv0sa8q2vru" path="res://movement BP/BP Jump image.png" id="4_ioris"]
 [ext_resource type="Texture2D" uid="uid://cdxdts1lu4nfo" path="res://movement TE/TE down (left) image.png" id="5_jhhbt"]
@@ -36,9 +35,9 @@ size = Vector2(25, 39)
 atlas = ExtResource("3_ioris")
 region = Rect2(0, 0, 1100, 1100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uuush"]
-atlas = ExtResource("3_328te")
-region = Rect2(0, 0, 300, 300)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf6k8"]
+atlas = ExtResource("12_cn111")
+region = Rect2(0, 0, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0araa"]
 atlas = ExtResource("2_0araa")
@@ -59,10 +58,6 @@ region = Rect2(1440, 1440, 1440, 1440)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yaunb"]
 atlas = ExtResource("2_0araa")
 region = Rect2(0, 2880, 1440, 1440)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3dbgi"]
-atlas = ExtResource("2_0araa")
-region = Rect2(1440, 2880, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdt1a"]
 atlas = ExtResource("5_jhhbt")
@@ -108,9 +103,9 @@ region = Rect2(0, 2880, 1440, 1440)
 atlas = ExtResource("3_ioris")
 region = Rect2(0, 0, 1100, 1100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2l3a3"]
-atlas = ExtResource("3_328te")
-region = Rect2(0, 0, 300, 300)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vph3p"]
+atlas = ExtResource("12_cn111")
+region = Rect2(0, 0, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tp35"]
 atlas = ExtResource("3_3yxp7")
@@ -480,7 +475,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uuush")
+"texture": SubResource("AtlasTexture_jf6k8")
 }],
 "loop": false,
 "name": &"crouch_2",
@@ -501,13 +496,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yaunb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3dbgi")
 }],
 "loop": false,
 "name": &"down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -559,7 +551,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2l3a3")
+"texture": SubResource("AtlasTexture_vph3p")
 }],
 "loop": false,
 "name": &"fall_2",
@@ -652,7 +644,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_left_2",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1112,7 +1104,7 @@ shape = SubResource("RectangleShape2D_0araa")
 position = Vector2(-0.99999994, -3.0000002)
 scale = Vector2(0.05069446, 0.05385417)
 sprite_frames = SubResource("SpriteFrames_3dbgi")
-animation = &"skill 1 of boar princess"
+animation = &"down"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=989423405]
 offset = Vector2(1.5, 1.5)
@@ -1194,9 +1186,9 @@ anchors_preset = -1
 anchor_top = -0.21400002
 anchor_bottom = -0.21400002
 offset_left = -1128.0
-offset_top = 35.996002
+offset_top = 78.996
 offset_right = -847.0
-offset_bottom = 143.996
+offset_bottom = 186.996
 show_percentage = false
 
 [node name="HP_number" type="Label" parent="CanvasLayer/Player" unique_id=1226755637]
@@ -1204,10 +1196,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = -6.602
 anchor_bottom = -6.602
-offset_left = -1078.0
-offset_top = 153.42801
-offset_right = -915.0
-offset_bottom = 208.42801
+offset_left = -1077.0
+offset_top = 192.42801
+offset_right = -914.0
+offset_bottom = 247.42801
 theme_override_font_sizes/font_size = 40
 
 [node name="skill ui" type="Control" parent="CanvasLayer" unique_id=1601697271]

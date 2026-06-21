@@ -22,6 +22,7 @@ var is_dead: bool = false
 var original_height: float = 38.0
 var crouch_height: float = 20.0
 var start_position: Vector2 = Vector2.ZERO
+var crouch_sprite_offset: float = 0.0
 var death_screen = null
 
 var is_teleporting = false
@@ -211,7 +212,9 @@ func update_animations(direction: float) -> void:
 	var is_knight := stat != null and stat.character_name == "Tea Egg Knight"
 
 	if is_crouching:
-		play_move_animation("crouch" if not is_knight else "crouch_2")
+		play_move_animation("down_2" )
+		if not is_knight :
+			play_move_animation("down")
 		return
 
 	if not is_on_floor():
@@ -278,7 +281,9 @@ func start_crouch() -> void:
 		var new_shape := RectangleShape2D.new()
 		new_shape.set_size(Vector2(original_height, crouch_height))
 		collision_shape.shape = new_shape
-		position.y += (original_height - crouch_height) / 2
+		crouch_sprite_offset = (original_height - crouch_height) / 2
+		position.y += crouch_sprite_offset
+		animated_sprite.position.y -= crouch_sprite_offset
 
 
 func stop_crouch() -> void:
@@ -291,7 +296,9 @@ func stop_crouch() -> void:
 		var new_shape := RectangleShape2D.new()
 		new_shape.set_size(Vector2(original_height, original_height))
 		collision_shape.shape = new_shape
-		position.y -= (original_height - crouch_height) / 2
+		position.y -= crouch_sprite_offset
+		animated_sprite.position.y += crouch_sprite_offset   # ← new line, restores sprite position
+		crouch_sprite_offset = 0.0
 
 
 # ============================================================
