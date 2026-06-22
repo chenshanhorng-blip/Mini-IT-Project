@@ -117,24 +117,69 @@ func basic_attack_animation() -> void:
 
 	elif stat.character_name == "Boar Princess":
 		animated_sprite.play("princess basic attack")
-		play_flying_effect_from_marker(
+		_fire_travelling_projectile(
 			princess_basic_attack_effect,
 			princess_basic_start,
-			300,
-			0.3
-		)
-		# Princess basic attack — damage area where the effect flies through
-		activate_skill_damage_area(
-			princess_basic_start,
+			600.0,
+			0.5,
 			stat.current_attack,
-			0.3,
-			Vector2(1.5, 1),
 			"princess_basic"
 		)
-
+ 
 	await animated_sprite.animation_finished
-
 	is_attacking = false
+		# Princess basic attack — damage area where the effect flies through
+
+func _fire_travelling_projectile(
+		effect: AnimatedSprite2D,
+		start_marker: Marker2D,
+		distance: float,
+		duration: float,
+		damage: int,
+		skill_name: String
+	) -> void:
+ 
+	var dir_sign = -1 if animated_sprite.flip_h else 1
+	var start_pos = start_marker.global_position
+	var end_pos = start_pos + Vector2(distance * dir_sign, 0)
+ 
+	# Show and move the visual effect
+	effect.global_position = start_pos
+	effect.visible = true
+	effect.flip_h = animated_sprite.flip_h
+	effect.frame = 0
+	effect.play()
+ 
+	# Track who was already hit (so we don't hit the same enemy twice)
+	var already_hit: Array = []
+ 
+	var tween = create_tween()
+	tween.tween_property(effect, "global_position", end_pos, duration)
+ 
+	# Check for hits every frame while the projectile travels
+	var elapsed = 0.0
+	var step = 0.05  # check every 50ms
+	while elapsed < duration:
+		await get_tree().create_timer(step).timeout
+		elapsed += step
+ 
+		# Get all enemies in the scene and check if the projectile is close enough
+		for enemy in get_tree().get_nodes_in_group("enemy"):
+			if enemy in already_hit:
+				continue
+			if not is_instance_valid(enemy):
+				continue
+ 
+			var dist = effect.global_position.distance_to(enemy.global_position)
+			if dist < 60:  # hit radius
+				already_hit.append(enemy)
+				if enemy.has_method("receive_damage"):
+					enemy.receive_damage(damage)
+				elif enemy.has_method("take_damage"):
+					enemy.take_damage(damage)
+				print("Princess projectile hit:", enemy.name, " damage:", damage)
+ 
+	effect.visible = false
 	
 #skill damage area 
 func activate_skill_damage_area(marker: Marker2D, damage: int, duration: float, area_scale: Vector2 = Vector2(1, 1), skill_name: String = "") -> void:
