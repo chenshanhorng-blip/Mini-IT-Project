@@ -18,9 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://cet5oot4fasfy" path="res://princessgame/picture/boar princess attack.png" id="17_cn111"]
 [ext_resource type="Texture2D" uid="uid://2l0pqaen042x" path="res://princessgame/picture/boar princess skill 2 animation.png" id="18_2dmyk"]
 [ext_resource type="Texture2D" uid="uid://cdu33lmys12yr" path="res://princessgame/picture/boar princess skill 1 effect .png" id="19_xchun"]
+[ext_resource type="Texture2D" uid="uid://famyb5w18mcf" path="res://princessgame/picture/TE Skilll 2.png" id="20_2dmyk"]
 [ext_resource type="Texture2D" uid="uid://c10rwx6or20xf" path="res://princessgame/picture/TE skill 1.png" id="20_cn111"]
 [ext_resource type="Texture2D" uid="uid://b282vcjvryks6" path="res://princessgame/picture/skill 1 knight.png" id="21_8uwmi"]
-[ext_resource type="Texture2D" uid="uid://b5s5v5r2dhy05" path="res://princessgame/picture/ultimate knight .png" id="22_cn111"]
+[ext_resource type="Texture2D" uid="uid://dl0emfgmy1cms" path="res://princessgame/picture/TE ultimate .png" id="21_xchun"]
 [ext_resource type="Texture2D" uid="uid://burg284fxux51" path="res://princessgame/picture/ultimate effect of knight.png" id="23_gsc5v"]
 [ext_resource type="Texture2D" uid="uid://b24ayv7wclvpp" path="res://princessgame/picture/basic attack of the princes.png" id="24_gmqje"]
 [ext_resource type="Script" uid="uid://b0b2260gf66ji" path="res://princessgame/skill_part system.gd" id="25_pn2ni"]
@@ -432,36 +433,48 @@ atlas = ExtResource("20_cn111")
 region = Rect2(0, 0, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f6owe"]
-atlas = ExtResource("21_8uwmi")
-region = Rect2(0, 0, 300, 300)
+atlas = ExtResource("20_2dmyk")
+region = Rect2(0, 0, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_falf4"]
-atlas = ExtResource("21_8uwmi")
-region = Rect2(300, 0, 300, 300)
+atlas = ExtResource("20_2dmyk")
+region = Rect2(1440, 0, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gugu5"]
-atlas = ExtResource("21_8uwmi")
-region = Rect2(600, 0, 300, 300)
+atlas = ExtResource("20_2dmyk")
+region = Rect2(2880, 0, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wly2e"]
-atlas = ExtResource("21_8uwmi")
-region = Rect2(900, 0, 300, 300)
+atlas = ExtResource("20_2dmyk")
+region = Rect2(0, 1440, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8j30l"]
-atlas = ExtResource("21_8uwmi")
-region = Rect2(1200, 0, 300, 300)
+atlas = ExtResource("20_2dmyk")
+region = Rect2(1440, 1440, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rhufr"]
-atlas = ExtResource("22_cn111")
-region = Rect2(0, 0, 500, 1000)
+atlas = ExtResource("20_2dmyk")
+region = Rect2(2880, 1440, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nm5x2"]
-atlas = ExtResource("22_cn111")
-region = Rect2(500, 0, 500, 1000)
+atlas = ExtResource("20_2dmyk")
+region = Rect2(0, 2880, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3tgup"]
-atlas = ExtResource("22_cn111")
-region = Rect2(1000, 0, 500, 1000)
+atlas = ExtResource("21_xchun")
+region = Rect2(0, 0, 1440, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8ipj"]
+atlas = ExtResource("21_xchun")
+region = Rect2(1440, 0, 1440, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxgq2"]
+atlas = ExtResource("21_xchun")
+region = Rect2(0, 1440, 1440, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wive"]
+atlas = ExtResource("21_xchun")
+region = Rect2(1440, 1440, 1440, 1440)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3dbgi"]
 animations = [{
@@ -885,24 +898,33 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8j30l")
-}],
-"loop": false,
-"name": &"skill 2 tea egg knight",
-"speed": 7.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rhufr")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nm5x2")
+}],
+"loop": false,
+"name": &"skill 2 tea egg knight",
+"speed": 9.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3tgup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8ipj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxgq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wive")
 }],
 "loop": false,
 "name": &"ultimate of tea egg knight ",
-"speed": 4.0
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cikow"]
@@ -1104,7 +1126,7 @@ shape = SubResource("RectangleShape2D_0araa")
 position = Vector2(-0.99999994, -3.0000002)
 scale = Vector2(0.05069446, 0.05385417)
 sprite_frames = SubResource("SpriteFrames_3dbgi")
-animation = &"down"
+animation = &"skill 2 tea egg knight"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=989423405]
 offset = Vector2(1.5, 1.5)
