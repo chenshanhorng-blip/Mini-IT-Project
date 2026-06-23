@@ -12,293 +12,313 @@ var health := 1000
 var phase := 1
 var current_state = State.IDLE
 
-var player = null
-var player_in_range = false
-var is_attacking := false
-
-@export var attack_cooldown := 2.0
-var attack_timer := 0.0
-
-var fireball_scene = preload("res://fireball.tscn")
+var fireball_scene = preload("res://dragon_fireball.tscn")
+var breath_scene = preload("res://projectile.tscn")
+var tail_scene = preload("res://projectile.tscn")
 
 @onready var sprite = $AnimatedSprite2D
+@onready var mouth = $MouthMarker
+@onready var tail_marker = $TailMarker
+@onready var camera = get_viewport().get_camera_2d()
+@onready var hp_label = $HPLabel
 
 
 func _ready():
-	randomize()
-	health = max_health
 
-	if get_parent().has_node("Player"):
-		player = get_parent().get_node("Player")
+	hp_label.text = "BOSS HP"
+
+	update_hp()
 
 	sprite.play("IDLE")
 
+	call_deferred("start_battle")
 
-func _process(delta):
-	if current_state == State.DEAD:
-		return
 
-	if player == null:
-		return
+func update_hp():
 
-	if !player_in_range:
-		if sprite.animation != "IDLE":
-			sprite.play("IDLE")
-		is_attacking = false
-		attack_timer = 0.0
-		return
+	print("UPDATE HP")
 
-	attack_timer -= delta
+	hp_label.text = "HP: " + str(health)
 
-	if attack_timer <= 0 and !is_attacking:
-		attack_timer = attack_cooldown
-		is_attacking = true
+
+func start_battle():
+
+	while current_state != State.DEAD:
+
 		await attack_pattern()
-		is_attacking = false
 
+		await get_tree().create_timer(1.0).timeout
 
-# ==========================
-# DETECTION RANGE
-# ==========================
-
-func _on_detection_range_body_entered(body):
-	if body == player:
-		player_in_range = true
-
-
-func _on_detection_range_body_exited(body):
-	if body == player:
-		player_in_range = false
-		is_attacking = false
-		attack_timer = 0.0
-		sprite.play("IDLE")
-
-
-# ==========================
-# DAMAGE
-# ==========================
 
 func take_damage(amount):
+
 	if current_state == State.DEAD:
 		return
 
 	health -= amount
-	sprite.play("HURT")
-	await sprite.animation_finished
+
+	update_hp()
+
+	print("HP:", health)
+
+	modulate = Color.RED
+
+	await get_tree().create_timer(0.1).timeout
+
+	modulate = Color.WHITE
 
 	if health <= 0:
 		await die()
 		return
 
+	sprite.play("HURT")
+
+	await sprite.animation_finished
+
 	if health <= 700 and phase == 1:
 		await phase_two()
-	elif health <= 350 and phase == 2:
+
+	elif health <= 300 and phase == 2:
 		await phase_three()
 
-	sprite.play("IDLE")
-
-
-# ==========================
-# PHASE 2
-# ==========================
 
 func phase_two():
+
 	phase = 2
-	attack_cooldown = 1.5
+
+	print("PHASE 2")
+
 	sprite.play("FLYING")
+
 	await sprite.animation_finished
-	sprite.play("IDLE")
 
-
-# ==========================
-# PHASE 3
-# ==========================
 
 func phase_three():
+
 	phase = 3
+
 	current_state = State.RAGE
-	attack_cooldown = 0.8
+
+	print("PHASE 3")
+
 	sprite.play("FLYING")
+
 	await sprite.animation_finished
-	sprite.play("IDLE")
 
-
-# ==========================
-# ATTACK SELECTOR
-# ==========================
 
 func attack_pattern():
-	if current_state == State.DEAD:
-		return
 
 	match phase:
+
 		1:
-			if randi() % 2 == 0:
-				await fireball_attack()
-			else:
-				await tail_attack()
+
+			match randi() % 3:
+
+				0:
+					await fireball_attack()
+
+				1:
+					await tail_attack()
+
+				2:
+					await tail_projectile()
 
 		2:
-			match randi() % 3:
+
+			match randi() % 4:
+
 				0:
-					await triple_fireball()
+					await fireball_attack()
+
 				1:
 					await fire_breath()
+
 				2:
 					await tail_attack()
 
+				3:
+					await tail_projectile()
+
 		3:
-			match randi() % 3:
+
+			match randi() % 5:
+
 				0:
 					await apocalypse_breath()
+
 				1:
-					await charge_attack()
+					await fireball_attack()
+
 				2:
 					await triple_fireball()
 
+				3:
+					await tail_attack()
 
-# ==========================
+				4:
+					await tail_projectile()
+
+
+# =====================
 # FIREBALL
-# ==========================
+# =====================
 
 func fireball_attack():
-	if !player_in_range or current_state == State.DEAD:
-		return
 
-	sprite.play("ATTACK")
-	await get_tree().create_timer(0.4).timeout
-	spawn_fireball(0, 20)
+	sprite.play("FIREBALL ATTACK")
+
+	await get_tree().create_timer(0.45).timeout
+
+	spawn_fireball(0)
+
 	await get_tree().create_timer(0.3).timeout
-	sprite.play("IDLE")
 
 
 func triple_fireball():
-	if !player_in_range or current_state == State.DEAD:
-		return
 
-	sprite.play("ATTACK")
-	await get_tree().create_timer(0.4).timeout
-	spawn_fireball(-0.25, 25)
-	spawn_fireball(0, 25)
-	spawn_fireball(0.25, 25)
+	sprite.play("FIREBALL ATTACK")
+
+	await get_tree().create_timer(0.45).timeout
+
+	spawn_fireball(-0.2)
+	spawn_fireball(0)
+	spawn_fireball(0.2)
+
 	await get_tree().create_timer(0.3).timeout
-	sprite.play("IDLE")
 
 
-# ==========================
+func spawn_fireball(angle_offset):
+
+	var fireball = fireball_scene.instantiate()
+
+	get_tree().current_scene.add_child(fireball)
+
+	fireball.global_position = mouth.global_position
+
+	var dir = Vector2(-1, 0.5).normalized()
+
+	dir = dir.rotated(angle_offset)
+
+	if fireball.has_method("set_fireball_direction"):
+		fireball.set_fireball_direction(dir)
+
+	fireball.speed = 700
+
+
+# =====================
 # FIRE BREATH
-# ==========================
+# =====================
 
 func fire_breath():
-	if !player_in_range or current_state == State.DEAD:
-		return
 
 	sprite.play("FIRE BREATH")
-	for i in range(5):
-		if !player_in_range or current_state == State.DEAD:
-			break
-		spawn_fireball(-0.15, 15)
-		spawn_fireball(0, 15)
-		spawn_fireball(0.15, 15)
-		await get_tree().create_timer(0.15).timeout
 
-	sprite.play("IDLE")
+	await get_tree().create_timer(0.4).timeout
+
+	for i in range(5):
+
+		spawn_breath()
+
+		await get_tree().create_timer(0.15).timeout
 
 
 func apocalypse_breath():
-	if !player_in_range or current_state == State.DEAD:
-		return
 
 	sprite.play("FIRE BREATH")
+
+	await get_tree().create_timer(0.3).timeout
+
 	for i in range(10):
-		if !player_in_range or current_state == State.DEAD:
-			break
-		spawn_fireball(-0.4, 30)
-		spawn_fireball(-0.2, 30)
-		spawn_fireball(0, 30)
-		spawn_fireball(0.2, 30)
-		spawn_fireball(0.4, 30)
+
+		spawn_breath()
+
 		await get_tree().create_timer(0.08).timeout
 
-	sprite.play("IDLE")
+
+func spawn_breath():
+
+	var breath = breath_scene.instantiate()
+
+	get_tree().current_scene.add_child(breath)
+
+	breath.global_position = mouth.global_position
+
+	breath.direction = Vector2.LEFT
+
+	breath.speed = 350
 
 
-# ==========================
-# TAIL ATTACK
-# ==========================
+# =====================
+# GROUND SMASH
+# =====================
 
 func tail_attack():
-	if !player_in_range or current_state == State.DEAD:
-		return
+
+	sprite.play("GROUND SMASH")
+
+	await get_tree().create_timer(0.4).timeout
+
+	await screen_shake()
+
+
+# =====================
+# TAIL PROJECTILE
+# =====================
+
+func tail_projectile():
 
 	sprite.play("TAIL ATTACK")
-	await get_tree().create_timer(0.3).timeout
 
-	if player != null and player.global_position.distance_to(global_position) < 120:
-		if player.has_method("take_damage"):
-			match phase:
-				1:
-					player.take_damage(30)
-				2:
-					player.take_damage(40)
-				3:
-					player.take_damage(50)
+	await get_tree().create_timer(0.7).timeout
 
-	await get_tree().create_timer(0.3).timeout
-	sprite.play("IDLE")
+	spawn_tail()
 
 
-# ==========================
-# CHARGE ATTACK
-# ==========================
+func spawn_tail():
 
-func charge_attack():
-	if !player_in_range or current_state == State.DEAD:
+	var tail = tail_scene.instantiate()
+
+	get_tree().current_scene.add_child(tail)
+
+	tail.global_position = tail_marker.global_position
+
+	tail.direction = Vector2.LEFT
+
+	tail.speed = 700
+
+
+# =====================
+# SCREEN SHAKE
+# =====================
+
+func screen_shake():
+
+	if camera == null:
 		return
 
-	sprite.play("FLYING")
-	var dir = (player.global_position - global_position).normalized()
+	camera.offset.y = 12
 
-	for i in range(30):
-		if current_state == State.DEAD:
-			break
-		global_position += dir * 25
-		await get_tree().process_frame
+	await get_tree().create_timer(0.08).timeout
 
-	if player != null and global_position.distance_to(player.global_position) < 100:
-		if player.has_method("take_damage"):
-			player.take_damage(60)
+	camera.offset.y = -12
 
-	sprite.play("IDLE")
+	await get_tree().create_timer(0.08).timeout
+
+	camera.offset = Vector2.ZERO
 
 
-# ==========================
-# SPAWN FIREBALL
-# ==========================
-
-func spawn_fireball(angle_offset, damage):
-	if player == null:
-		return
-
-	var fireball = fireball_scene.instantiate()
-	get_parent().add_child(fireball)
-	fireball.global_position = global_position
-
-	var dir = (player.global_position - global_position).normalized()
-	dir = dir.rotated(angle_offset)
-
-	fireball.direction = dir
-	fireball.damage = damage
-	fireball.speed = 400 + phase * 100
-
-
-# ==========================
+# =====================
 # DEATH
-# ==========================
+# =====================
 
 func die():
+
 	current_state = State.DEAD
-	is_attacking = false
+
+	hp_label.visible = false
+
 	sprite.play("DEATH")
-	await sprite.animation_finished
+
+	await get_tree().create_timer(1.5).timeout
+
 	queue_free()
