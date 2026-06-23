@@ -11,7 +11,8 @@ func _ready():
 	gravity_scale = 10
 	contact_monitor = true
 	max_contacts_reported = 4
-	body_entered.connect(_on_body_entered)
+	if not body_entered.connect(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("player") and not triggered:
