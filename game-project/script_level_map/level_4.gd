@@ -7,9 +7,9 @@ var total_points = 3
 
 func _ready():
 	CheckpointManager.reset_checkpoint("level4", Vector2(13, 180))
-	
-	exit_button.pressed.connect(_on_button_pressed)
-	exit_button.hide()
+	if not exit_button.pressed.connect(_on_button_pressed):
+		exit_button.pressed.connect(_on_button_pressed)
+		exit_button.hide()
 	
 	var points = [$RedDiamond1, $RedDiamond2, $RedDiamond3]
 	for point in points:

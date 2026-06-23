@@ -17,6 +17,7 @@ var can_attack: bool = true
 
 func _ready() -> void:
 	hp = max_hp
+	add_to_group("enemy")
 	sprite.play("IDLE")
 	update_hp_label()
 
@@ -84,6 +85,8 @@ func update_hp_label() -> void:
 	if hp_label:
 		hp_label.text = "HP: " + str(hp)
 
+
+
 func receive_damage(damage: int) -> void:
 	if is_dead:
 		return
@@ -110,6 +113,9 @@ func receive_damage(damage: int) -> void:
 	is_hurt = false
 	if not is_dead:
 		sprite.play("IDLE")
+		
+func take_damage(damage: int) -> void:
+	receive_damage(damage)
 
 func die() -> void:
 	is_dead = true

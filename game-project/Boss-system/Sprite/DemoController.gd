@@ -31,6 +31,7 @@ var is_dead: bool = false
 func _ready() -> void:
 	start_position = global_position
 	sprite.play("ATTACK")
+	add_to_group("enemy")
 	update_hp_label()
 	
 	attack_timer.wait_time = attack_cooldown

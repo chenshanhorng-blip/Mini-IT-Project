@@ -23,7 +23,7 @@ func _on_body_entered(body):
 	CheckpointManager.save_checkpoint(
 		get_tree().current_scene.name,
 		checkpoint_id,
-		body.global_position
+		global_position
 	)
 	
 	print("🏁 到达检查点 ", checkpoint_id)
