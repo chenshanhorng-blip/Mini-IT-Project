@@ -82,4 +82,4 @@ func _on_button_pressed() -> void:
 
 func _go_back_to_map() -> void:
 	print("🚪 正在离开 Level 5，返回关卡大地图...")
-	Transition.fade_to_scene("res://scene_level_map/map.tscn")
+	Transition.fade_to_scene("res://Boss-system/ending.tscn")
