@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://3nnvj78qsw3"]
+[gd_scene format=3 uid="uid://xjip3d6vm3i7"]
 
-[ext_resource type="Script" path="res://dialogue_prototype.gd" id="1_i8610"]
+[ext_resource type="Script" uid="uid://ct1dxmanq1j5u" path="res://dialogue_prototype.gd" id="1_i8610"]
 
 [node name="DialoguePrototype" type="Control" unique_id=835835435]
 layout_mode = 3

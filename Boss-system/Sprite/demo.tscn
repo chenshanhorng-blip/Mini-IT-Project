@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://dxs5r3usr04ea"]
+[gd_scene format=3 uid="uid://be7haj0ptmr3k"]
 
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_7ybkh"]
-[ext_resource type="Script" path="res://DemoController.gd" id="1_qxvyn"]
-[ext_resource type="Texture2D" path="res://Sprite/FLYING.png" id="1_v8dcd"]
-[ext_resource type="Texture2D" path="res://Sprite/ATTACK.png" id="2_jq8oq"]
-[ext_resource type="Texture2D" path="res://Sprite/IDLE.png" id="2_v8dcd"]
-[ext_resource type="Texture2D" path="res://Sprite/with_outline/DEATH.png" id="4_jq8oq"]
-[ext_resource type="Texture2D" path="res://Sprite/HURT.png" id="5_m0436"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_7ybkh"]
+[ext_resource type="Script" uid="uid://cuudrlahsfmuj" path="res://DemoController.gd" id="1_qxvyn"]
+[ext_resource type="Texture2D" uid="uid://divccu7412eow" path="res://Sprite/FLYING.png" id="1_v8dcd"]
+[ext_resource type="Texture2D" uid="uid://x2oj84xwla10" path="res://Sprite/ATTACK.png" id="2_jq8oq"]
+[ext_resource type="Texture2D" uid="uid://1lypv4ojsdsn" path="res://Sprite/IDLE.png" id="2_v8dcd"]
+[ext_resource type="Texture2D" uid="uid://c6o7hw4rqg3fk" path="res://Sprite/with_outline/DEATH.png" id="4_jq8oq"]
+[ext_resource type="Texture2D" uid="uid://yxpcj1kpr7w6" path="res://Sprite/HURT.png" id="5_m0436"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lv07"]
 size = Vector2(148.5, 137)
