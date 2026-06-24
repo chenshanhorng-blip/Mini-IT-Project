@@ -13,7 +13,7 @@ var total_points = 3
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 
 func _ready():
-	CheckpointManager.reset_checkpoint("level2", Vector2(13, 206))
+	CheckpointManager.reset_checkpoint("level2", Vector2(46, 113))
 	
 	if exit_button:
 		# 安全连接通关按钮信号

@@ -8,7 +8,7 @@ extends Node2D
 
 func _ready() -> void:
 	# 设置关卡重置点
-	CheckpointManager.reset_checkpoint("level5", Vector2(13, 206))
+	CheckpointManager.reset_checkpoint("level5", Vector2(55, 532))
 	
 	# 通关按钮安全初始化
 	if exit_button != null:

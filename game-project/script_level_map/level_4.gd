@@ -6,7 +6,7 @@ var total_points = 3
 @onready var pause_menu = $PauseMenu  # ← ADD THIS
 
 func _ready():
-	CheckpointManager.reset_checkpoint("level4", Vector2(13, 180))
+	CheckpointManager.reset_checkpoint("level4", Vector2(39, 100))
 	if not exit_button.pressed.connect(_on_button_pressed):
 		exit_button.pressed.connect(_on_button_pressed)
 		exit_button.hide()

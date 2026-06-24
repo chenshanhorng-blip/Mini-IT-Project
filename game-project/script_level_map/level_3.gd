@@ -8,7 +8,7 @@ var total_points = 3
 
 func _ready() -> void:
 	# 🛠️ 记得根据你具体关卡的名字修改这里（比如 "level3", "level4" 等）
-	CheckpointManager.reset_checkpoint("level3", Vector2(13, 206))
+	CheckpointManager.reset_checkpoint("level3", Vector2(398,115))
 	
 	# 出口按钮连接安全验证
 	if exit_button != null:
