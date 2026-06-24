@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmmrx2nksm5ri"
-path="res://.godot/imported/DEATH.png-2612e61a76625d2d568e6ce47e0a2ff2.ctex"
+uid="uid://cv353hke5gfg7"
+path="res://.godot/imported/ElfDeath001-Sheet-export.png-e7a159a26e3babb26ab79fa746dd885a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Boss-system/Sprite/DEATH.png"
-dest_files=["res://.godot/imported/DEATH.png-2612e61a76625d2d568e6ce47e0a2ff2.ctex"]
+source_file="res://Boss-system/Sprite/DuskBorne-Elf/SpriteSheet/ElfDeath001-Sheet-export.png"
+dest_files=["res://.godot/imported/ElfDeath001-Sheet-export.png-e7a159a26e3babb26ab79fa746dd885a.ctex"]
 
 [params]
 

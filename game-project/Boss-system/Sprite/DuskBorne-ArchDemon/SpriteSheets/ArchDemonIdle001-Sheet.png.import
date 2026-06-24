@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmmrx2nksm5ri"
-path="res://.godot/imported/DEATH.png-2612e61a76625d2d568e6ce47e0a2ff2.ctex"
+uid="uid://bpy5rajx7s3px"
+path="res://.godot/imported/ArchDemonIdle001-Sheet.png-7187bf377c39088206ff858697c08279.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Boss-system/Sprite/DEATH.png"
-dest_files=["res://.godot/imported/DEATH.png-2612e61a76625d2d568e6ce47e0a2ff2.ctex"]
+source_file="res://Boss-system/Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonIdle001-Sheet.png"
+dest_files=["res://.godot/imported/ArchDemonIdle001-Sheet.png-7187bf377c39088206ff858697c08279.ctex"]
 
 [params]
 

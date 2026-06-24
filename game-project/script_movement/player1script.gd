@@ -24,6 +24,8 @@ var crouch_height: float = 20.0
 var start_position: Vector2 = Vector2.ZERO
 var crouch_sprite_offset: float = 0.0
 var death_screen = null
+var original_player_ground_y: float
+
 
 var is_teleporting = false
 # Skill / character status
@@ -40,6 +42,7 @@ var facing_direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
 	start_position = global_position
+	original_player_ground_y = global_position.y
 	health = max_health
 	add_to_group("player")
 
@@ -201,8 +204,20 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animations(direction)
 
-	if position.y > 600 and not is_falling:
-		start_fall()
+	# 防止被压进地面
+	if is_on_floor() and global_position.y > original_player_ground_y:
+		global_position.y = original_player_ground_y
+
+	# 防止和敌人卡在一起
+		# 新增：检查与敌人的碰撞，防止卡在一起
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider and collider.is_in_group("enemy"):
+			# 如果敌人在玩家上方，就防止卡住
+			if collider.global_position.y < global_position.y:
+				global_position.y = original_player_ground_y
+
 
 
 func update_animations(direction: float) -> void:
