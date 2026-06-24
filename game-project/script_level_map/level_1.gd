@@ -10,8 +10,8 @@ const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn"
 
 func _ready():
 	# Reset checkpoint
-	CheckpointManager.reset_checkpoint("level1", Vector2(13, 206))
-	print("Checkpoint reset at (13, 206)")
+	CheckpointManager.reset_checkpoint("level1", Vector2(18, 217))
+	print("Checkpoint reset at (18, 217)")
 	
 	# Connect button
 	if not exit_button.pressed.is_connected(_on_button_pressed):
