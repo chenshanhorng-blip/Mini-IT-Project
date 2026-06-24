@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmmrx2nksm5ri"
-path="res://.godot/imported/DEATH.png-2612e61a76625d2d568e6ce47e0a2ff2.ctex"
+uid="uid://0n6e3jrrc1g8"
+path="res://.godot/imported/DemonKinHurt001-Sheet.png-d7e215f37748df25078a247252c3a92c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Boss-system/Sprite/DEATH.png"
-dest_files=["res://.godot/imported/DEATH.png-2612e61a76625d2d568e6ce47e0a2ff2.ctex"]
+source_file="res://Boss-system/Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinHurt001-Sheet.png"
+dest_files=["res://.godot/imported/DemonKinHurt001-Sheet.png-d7e215f37748df25078a247252c3a92c.ctex"]
 
 [params]
 
