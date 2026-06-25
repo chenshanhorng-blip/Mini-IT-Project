@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c2x5k5hykcfko"]
 
-[ext_resource type="Script" uid="uid://bb800cpkdo772" path="res://Boss-system/dragon_fireball.gd" id="1_cl2hb"]
-[ext_resource type="Texture2D" uid="uid://bplufgo68smb" path="res://Boss-system/projectile.png" id="1_eco3o"]
+[ext_resource type="Script" uid="uid://bb800cpkdo772" path="res://dragon_fireball.gd" id="1_cl2hb"]
+[ext_resource type="Texture2D" uid="uid://bplufgo68smb" path="res://projectile.png" id="1_eco3o"]
+[ext_resource type="AudioStream" uid="uid://bisxx0ftbbujx" path="res://audio/Fireball.wav" id="3_7j1af"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_meejp"]
 animations = [{

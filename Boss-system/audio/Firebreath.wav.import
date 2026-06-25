@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bofebmav3botq"
-path="res://.godot/imported/Firebreath.wav-6afb173ad999255d332cd640c958ffaf.sample"
+path="res://.godot/imported/Firebreath.wav-bb33fd3d473c9205e2f819b5eb429053.sample"
 
 [deps]
 
-source_file="res://audio/Firebreath.wav"
-dest_files=["res://.godot/imported/Firebreath.wav-6afb173ad999255d332cd640c958ffaf.sample"]
+source_file="res://Boss-system/audio/Firebreath.wav"
+dest_files=["res://.godot/imported/Firebreath.wav-bb33fd3d473c9205e2f819b5eb429053.sample"]
 
 [params]
 

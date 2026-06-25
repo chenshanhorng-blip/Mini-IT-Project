@@ -47,6 +47,6 @@ visible = false
 [node name="Dragon" parent="." unique_id=1298206806 instance=ExtResource("9_2l2id")]
 light_mask = 4
 visibility_layer = 2
-position = Vector2(809, 425)
+position = Vector2(347, 41)
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
