@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://d2n6e5ai3wb35"]
 
-[ext_resource type="Script" uid="uid://d04ov1pfw8wy0" path="res://intro.gd" id="1_y6ycx"]
-[ext_resource type="Texture2D" uid="uid://dcc32vy2llmw0" path="res://Images/start.jpeg" id="2_y6ycx"]
-[ext_resource type="Texture2D" uid="uid://d4f83hxjdesa7" path="res://Images/start2.jpeg" id="3_dpxxx"]
-[ext_resource type="Texture2D" uid="uid://ctc3sirwpw78w" path="res://Images/start3.jpeg" id="4_dk2oa"]
-[ext_resource type="Texture2D" uid="uid://duuqvjx7jq03x" path="res://Images/start4.jpeg" id="5_7ufi4"]
-[ext_resource type="Texture2D" uid="uid://cqlw8k2x286fp" path="res://Images/start5.jpeg" id="6_h0kys"]
-[ext_resource type="Texture2D" uid="uid://3jfgdpyb3m5r" path="res://Images/start6.jpeg" id="7_d0rr7"]
+[ext_resource type="Script" uid="uid://d04ov1pfw8wy0" path="res://Boss-system/intro.gd" id="1_y6ycx"]
+[ext_resource type="Texture2D" uid="uid://dcc32vy2llmw0" path="res://Boss-system/Images/start.jpeg" id="2_y6ycx"]
+[ext_resource type="Texture2D" uid="uid://d4f83hxjdesa7" path="res://Boss-system/Images/start2.jpeg" id="3_dpxxx"]
+[ext_resource type="Texture2D" uid="uid://ctc3sirwpw78w" path="res://Boss-system/Images/start3.jpeg" id="4_dk2oa"]
+[ext_resource type="Texture2D" uid="uid://duuqvjx7jq03x" path="res://Boss-system/Images/start4.jpeg" id="5_7ufi4"]
+[ext_resource type="Texture2D" uid="uid://cqlw8k2x286fp" path="res://Boss-system/Images/start5.jpeg" id="6_h0kys"]
+[ext_resource type="Texture2D" uid="uid://3jfgdpyb3m5r" path="res://Boss-system/Images/start6.jpeg" id="7_d0rr7"]
 
 [sub_resource type="Animation" id="Animation_y6ycx"]
 length = 0.001
@@ -170,11 +170,12 @@ stretch_mode = 5
 libraries/ = SubResource("AnimationLibrary_dk2oa")
 
 [node name="Label" type="Label" parent="." unique_id=1999234289]
-offset_left = 470.00003
-offset_top = 321.1111
-offset_right = 683.0
-offset_bottom = 344.1111
+offset_left = 541.11115
+offset_top = 348.8889
+offset_right = 1340.1111
+offset_bottom = 431.8889
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 60
 text = "PRESS ENTER TO CONTINUE"

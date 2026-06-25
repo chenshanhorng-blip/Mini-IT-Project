@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2l0pqaen042x"
-path="res://.godot/imported/boar princess skill 2 animation.png-943665ac868494196f3854670c2f2bd4.ctex"
+path="res://.godot/imported/boar princess skill 2 animation.png-65bdb22e9cfe4f4775dd91db4d7a4616.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://picture/boar princess skill 2 animation.png"
-dest_files=["res://.godot/imported/boar princess skill 2 animation.png-943665ac868494196f3854670c2f2bd4.ctex"]
+source_file="res://princessgame/picture/boar princess skill 2 animation.png"
+dest_files=["res://.godot/imported/boar princess skill 2 animation.png-65bdb22e9cfe4f4775dd91db4d7a4616.ctex"]
 
 [params]
 

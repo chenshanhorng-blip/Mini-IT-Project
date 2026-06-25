@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bplufgo68smb"
-path="res://.godot/imported/projectile.png-7aa1d84e08e2ecd2b2ed466c24f10f96.ctex"
+path="res://.godot/imported/projectile.png-fe3e38d8f32bb7484dd1af23b5b771cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://projectile.png"
-dest_files=["res://.godot/imported/projectile.png-7aa1d84e08e2ecd2b2ed466c24f10f96.ctex"]
+source_file="res://Boss-system/projectile.png"
+dest_files=["res://.godot/imported/projectile.png-fe3e38d8f32bb7484dd1af23b5b771cd.ctex"]
 
 [params]
 
