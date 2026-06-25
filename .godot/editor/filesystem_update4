@@ -1,0 +1,45 @@
+res://fake_ground.gd
+res://minimap.gd
+res://pause_menu.gd
+res://poison_fog.gd
+res://red_point.gd
+res://slot_select.gd
+res://transition.gd
+res://Boss-system/boss.battle.system.gd
+res://Boss-system/dragon_fireball.gd
+res://Boss-system/dragon_fireball.tscn
+res://Boss-system/ending.gd
+res://Boss-system/intro.gd
+res://princessgame/global.gd
+res://princessgame/skill_part system.gd
+res://princessgame/character system/characterstat.gd
+res://princessgame/character system/create character system.gd
+res://princessgame/combat system/combat system.gd
+res://princessgame/reward/reward_popup.gd
+res://princessgame/reward/reward_popup.tscn
+res://princessgame/reward/system_reward.gd
+res://princessgame/skill/skill system.gd
+res://princessgame/skill/skillbutton.gd
+res://princessgame/tutorial_system/tutorial.gd
+res://princessgame/tutorial_system/tutorial_manager.gd
+res://scene/UI/death_screen.gd
+res://scene_movement/player1_movement.tscn
+res://script/system/checkpoint_manager.gd
+res://script/system/main_menu.gd
+res://script/system/minimap_player_icon.gd
+res://script_level_map/level_1.gd
+res://script_level_map/level_2.gd
+res://script_level_map/level_3.gd
+res://script_level_map/level_4.gd
+res://script_level_map/level_5.gd
+res://script_level_map/map.gd
+res://script_movement/player1script.gd
+res://script_movement/player2_script.gd
+res://Sprite/canvas_layer.gd
+res://Sprite/dusk_borne.gd
+res://Sprite/feedback_system.gd
+res://Sprite/fireball.gd
+res://Sprite/fireball.tscn
+res://Sprite/hint.button.gd
+res://TrapHazard_script/diamond.gd
+res://TrapHazard_script/pit_bottom.gd
