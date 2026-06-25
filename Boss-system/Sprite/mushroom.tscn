@@ -1,24 +1,11 @@
 [gd_scene format=3 uid="uid://da3cyfworqwy2"]
 
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_ke0fy"]
-[ext_resource type="Texture2D" uid="uid://wwg0x6cejwyn" path="res://Sprite/Mushroom with VFX/Mushroom-Attack.png" id="1_vipk4"]
-[ext_resource type="Script" uid="uid://cn7yddi0ltp51" path="res://mushroom.gd" id="2_j1w7m"]
-[ext_resource type="Texture2D" uid="uid://d2i73hko8ogxb" path="res://Sprite/Mushroom with VFX/Mushroom-Hit.png" id="2_lmrqb"]
-[ext_resource type="Texture2D" uid="uid://b4sh22enyakp2" path="res://Sprite/Mushroom with VFX/Mushroom-Run.png" id="3_ke0fy"]
-[ext_resource type="Texture2D" uid="uid://b13kdxatqpu1v" path="res://Sprite/Mushroom with VFX/Mushroom-Die.png" id="4_5c7e6"]
-[ext_resource type="Texture2D" uid="uid://ejmoibdtby3i" path="res://Sprite/Mushroom with VFX/Mushroom-Stun.png" id="4_j1w7m"]
-[gd_scene format=3 uid="uid://d13srcuyvy8p6"]
-
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_ke0fy"]
-[ext_resource type="Texture2D" path="res://Sprite/Mushroom with VFX/Mushroom-Attack.png" id="1_vipk4"]
-[ext_resource type="Script" path="res://mushroom.gd" id="2_j1w7m"]
-[ext_resource type="Texture2D" path="res://Sprite/Mushroom with VFX/Mushroom-Hit.png" id="2_lmrqb"]
-[ext_resource type="Texture2D" path="res://Sprite/Mushroom with VFX/Mushroom-Run.png" id="3_ke0fy"]
-[ext_resource type="Texture2D" uid="uid://dc2c652e7pfnx" path="res://Sprite/Mushroom with VFX/Mushroom-Die.png" id="4_5c7e6"]
-[ext_resource type="Texture2D" path="res://Sprite/Mushroom with VFX/Mushroom-Stun.png" id="4_j1w7m"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1w7m"]
-size = Vector2(116, 94)
+[ext_resource type="Texture2D" uid="uid://wwg0x6cejwyn" path="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Attack.png" id="1_vipk4"]
+[ext_resource type="Script" uid="uid://cn7yddi0ltp51" path="res://Boss-system/mushroom.gd" id="2_j1w7m"]
+[ext_resource type="Texture2D" uid="uid://d2i73hko8ogxb" path="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Hit.png" id="2_lmrqb"]
+[ext_resource type="Texture2D" uid="uid://b4sh22enyakp2" path="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Run.png" id="3_ke0fy"]
+[ext_resource type="Texture2D" uid="uid://b13kdxatqpu1v" path="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Die.png" id="4_5c7e6"]
+[ext_resource type="Texture2D" uid="uid://ejmoibdtby3i" path="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Stun.png" id="4_j1w7m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5c7e6"]
 atlas = ExtResource("1_vipk4")
@@ -441,44 +428,31 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0g5g5"]
-size = Vector2(92, 73)
+size = Vector2(34, 37)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ke0fy"]
-size = Vector2(420.75, 138.5)
+size = Vector2(85, 98.25)
 
 [node name="Node2D" type="Node2D" unique_id=396002070]
-
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1735584117]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=89997336]
-position = Vector2(73, 61)
-shape = SubResource("RectangleShape2D_j1w7m")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=565235453]
-texture_filter = 1
-position = Vector2(70.000015, 63)
-scale = Vector2(0.7578125, 0.671875)
-texture = ExtResource("1_ke0fy")
 
 [node name="Mushroom" type="CharacterBody2D" parent="." unique_id=331391838]
 texture_filter = 1
 script = ExtResource("2_j1w7m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mushroom" unique_id=1998936094]
-position = Vector2(390, 58)
 sprite_frames = SubResource("SpriteFrames_5qnp6")
 animation = &"DIE"
 autoplay = "PATROL"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mushroom" unique_id=1301321940]
-position = Vector2(391, 58)
+position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_0g5g5")
 
 [node name="hplabel" type="Label" parent="Mushroom" unique_id=2006219476]
-offset_left = 373.0
-offset_top = 29.0
-offset_right = 413.0
-offset_bottom = 52.0
+offset_left = -17.0
+offset_top = -31.0
+offset_right = 20.0
+offset_bottom = -8.0
 
 [node name="RayCast2D" type="RayCast2D" parent="Mushroom" unique_id=524592392]
 position = Vector2(0, 5)
@@ -487,5 +461,5 @@ position = Vector2(0, 5)
 position = Vector2(317, 81)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mushroom/Area2D" unique_id=923108563]
-position = Vector2(-91, -9)
+position = Vector2(-317, -81)
 shape = SubResource("RectangleShape2D_ke0fy")

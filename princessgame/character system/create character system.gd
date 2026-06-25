@@ -5,7 +5,7 @@ enum CharacterType{
 	BOAR_PRINCESS,
 	TEA_EGG_KNIGHT
 }
-#if player chosen the character and the system will create the system 
+#if player chosen the character and the system will create the stat selected by player 
 static func Create_Character(type: CharacterType) -> CharacterStat:
 	var stat = CharacterStat.new()
 #match the character stat choose by player 
@@ -17,15 +17,23 @@ static func Create_Character(type: CharacterType) -> CharacterStat:
 			stat.base_max_health = 70
 			stat.base_attack = 30
 			stat.base_max_shield = 5
-			stat.base_movement = 35
+			stat.base_movement = 350
+			#princess skill and ultimate cooldown
+			stat.skill1_cooldown = 5
+			stat.skill2_cooldown = 6
+			stat.ultimate_cooldown = 25
 #the basic stat of the Tea Egg Knight	
 		CharacterType.TEA_EGG_KNIGHT:
 			stat.character_name = "Tea Egg Knight"
 			stat.role = "Tank"
-			stat.base_max_health = 85
+			stat.base_max_health = 90
 			stat.base_attack = 15
-			stat.base_max_shield = 15
-			stat.base_movement = 20
+			stat.base_max_shield = 30
+			stat.base_movement=200
+			#knight skill and ultimate cooldown 
+			stat.skill1_cooldown = 7
+			stat.skill2_cooldown = 6
+			stat.ultimate_cooldown = 20
 		
 	stat.setup_stats()
 	return stat

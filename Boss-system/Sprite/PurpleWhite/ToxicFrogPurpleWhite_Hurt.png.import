@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmxuqyhjucfmv"
-path="res://.godot/imported/ToxicFrogPurpleWhite_Hurt.png-a3904c264c8a9394ea301f1981443760.ctex"
+path="res://.godot/imported/ToxicFrogPurpleWhite_Hurt.png-bd76e8c1acfbf06ba201b54144de72cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/PurpleWhite/ToxicFrogPurpleWhite_Hurt.png"
-dest_files=["res://.godot/imported/ToxicFrogPurpleWhite_Hurt.png-a3904c264c8a9394ea301f1981443760.ctex"]
+source_file="res://Boss-system/Sprite/PurpleWhite/ToxicFrogPurpleWhite_Hurt.png"
+dest_files=["res://.godot/imported/ToxicFrogPurpleWhite_Hurt.png-bd76e8c1acfbf06ba201b54144de72cc.ctex"]
 
 [params]
 

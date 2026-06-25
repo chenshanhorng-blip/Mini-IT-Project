@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ejmoibdtby3i"
-path="res://.godot/imported/Mushroom-Stun.png-bf34c842e35ead5930f16c91079c9844.ctex"
+path="res://.godot/imported/Mushroom-Stun.png-c6192e99f832798855e87a581f6c7994.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Mushroom with VFX/Mushroom-Stun.png"
-dest_files=["res://.godot/imported/Mushroom-Stun.png-bf34c842e35ead5930f16c91079c9844.ctex"]
+source_file="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Stun.png"
+dest_files=["res://.godot/imported/Mushroom-Stun.png-c6192e99f832798855e87a581f6c7994.ctex"]
 
 [params]
 
