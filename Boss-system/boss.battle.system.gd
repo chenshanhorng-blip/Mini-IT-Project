@@ -17,9 +17,9 @@ var intro_done = false
 var phase2_dialogue = false
 var death_dialogue = false
 
-var fireball_scene = preload("res://dragon_fireball.tscn")
-var breath_scene = preload("res://projectile.tscn")
-var tail_scene = preload("res://projectile.tscn")
+var fireball_scene = preload("res://Boss-system/dragon_fireball.tscn")
+var breath_scene = preload("res://Boss-system/projectile.tscn")
+var tail_scene = preload("res://Boss-system/projectile.tscn")
 
 @onready var sprite = $AnimatedSprite2D
 @onready var mouth = $MouthMarker
@@ -48,7 +48,7 @@ func start_intro():
 
 	current_state = State.DIALOGUE
 
-	var dialogue = preload("res://dialogue_prototype.tscn").instantiate()
+	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
 
 	add_child(dialogue)
 
@@ -134,7 +134,7 @@ func phase_two():
 
 	sprite.play("FLYING")
 
-	var dialogue = preload("res://dialogue_prototype.tscn").instantiate()
+	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
 
 	add_child(dialogue)
 
@@ -160,7 +160,7 @@ func phase_three():
 
 	sprite.play("FLYING")
 
-	var dialogue = preload("res://dialogue_prototype.tscn").instantiate()
+	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
 
 	add_child(dialogue)
 
@@ -404,7 +404,7 @@ func die():
 
 	hp_label.visible = false
 
-	var dialogue = preload("res://dialogue_prototype.tscn").instantiate()
+	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
 
 	add_child(dialogue)
 

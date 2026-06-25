@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://botk1db3hfwl6"
-path="res://.godot/imported/attack_monster.wav-8b423512f696f83e1f8016497e11e77e.sample"
+path="res://.godot/imported/attack_monster.wav-50db9981c57f4ed22341eeb8283c5122.sample"
 
 [deps]
 
-source_file="res://audio/attack_monster.wav"
-dest_files=["res://.godot/imported/attack_monster.wav-8b423512f696f83e1f8016497e11e77e.sample"]
+source_file="res://Boss-system/audio/attack_monster.wav"
+dest_files=["res://.godot/imported/attack_monster.wav-50db9981c57f4ed22341eeb8283c5122.sample"]
 
 [params]
 
