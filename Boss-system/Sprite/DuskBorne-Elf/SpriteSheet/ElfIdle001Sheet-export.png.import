@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i0oxmv1f0uvn"
-path="res://.godot/imported/ElfIdle001Sheet-export.png-37f5c5061b1aa92f54808ce3b2ea8910.ctex"
+path="res://.godot/imported/ElfIdle001Sheet-export.png-574dcfe84f0294c4a1abca5230ed0ffa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/DuskBorne-Elf/SpriteSheet/ElfIdle001Sheet-export.png"
-dest_files=["res://.godot/imported/ElfIdle001Sheet-export.png-37f5c5061b1aa92f54808ce3b2ea8910.ctex"]
+source_file="res://Boss-system/Sprite/DuskBorne-Elf/SpriteSheet/ElfIdle001Sheet-export.png"
+dest_files=["res://.godot/imported/ElfIdle001Sheet-export.png-574dcfe84f0294c4a1abca5230ed0ffa.ctex"]
 
 [params]
 

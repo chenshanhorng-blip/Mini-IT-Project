@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5s5v5r2dhy05"
-path="res://.godot/imported/ultimate knight .png-0b529aed53cf5ebfcb243f95df2e94fe.ctex"
+path="res://.godot/imported/ultimate knight .png-be4ddbfad42c2c2a3363cdbac01ff241.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://picture/ultimate knight .png"
-dest_files=["res://.godot/imported/ultimate knight .png-0b529aed53cf5ebfcb243f95df2e94fe.ctex"]
+source_file="res://princessgame/picture/ultimate knight .png"
+dest_files=["res://.godot/imported/ultimate knight .png-be4ddbfad42c2c2a3363cdbac01ff241.ctex"]
 
 [params]
 

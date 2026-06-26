@@ -85,4 +85,4 @@ func _process(_delta):
 
 func _input(event):
 	if intro_finished and event.is_action_pressed("ui_accept"):
-		get_tree().change_scene_to_file("res://main.tscn")
+		Transition.fade_to_scene("res://princessgame/multiplayer system/mode_selection.tscn")

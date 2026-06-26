@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc2yddkbgf42r"
-path="res://.godot/imported/ToxicFrogBlueBrown_Idle.png-c8bd4c2a867aea10459a7ec8efd6c9c0.ctex"
+path="res://.godot/imported/ToxicFrogBlueBrown_Idle.png-b4c1d35c5c7bd9cfc86069f99c52111b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/BlueBrown/ToxicFrogBlueBrown_Idle.png"
-dest_files=["res://.godot/imported/ToxicFrogBlueBrown_Idle.png-c8bd4c2a867aea10459a7ec8efd6c9c0.ctex"]
+source_file="res://Boss-system/Sprite/BlueBrown/ToxicFrogBlueBrown_Idle.png"
+dest_files=["res://.godot/imported/ToxicFrogBlueBrown_Idle.png-b4c1d35c5c7bd9cfc86069f99c52111b.ctex"]
 
 [params]
 

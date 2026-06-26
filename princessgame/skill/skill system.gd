@@ -50,10 +50,7 @@ static func use_skill_1(stat: CharacterStat) -> void:
 	print(stat.character_name, "used Skill 1")
 
 	if stat.character_name == "Boar Princess":
-
 		print("Boar Princess use royal roast")
-
-		print("Boar Princess scold enemy")
 
 	elif stat.character_name == "Tea Egg Knight":
 		print("Tea Egg Knight uses shine shield")
@@ -93,9 +90,9 @@ static func start_princess_ultimate(stat: CharacterStat) -> void:
 	print("The Power of Love")
 
 	stat.current_attack += 20
-	stat.current_max_health += 20
-	stat.health += 20
-	stat.current_movement += 100
+	stat.current_max_health +=15
+	stat.health += 15
+	stat.current_movement += 60
 
 	stat.health = clamp(stat.health, 0, stat.current_max_health)
 	stat.health_changed.emit(stat.health, stat.current_max_health)
@@ -131,14 +128,6 @@ static func use_ultimate(stat: CharacterStat) -> void:
 	if stat.character_name == "Tea Egg Knight":
 		print("Tea Egg Knight uses Forbidden Thousand-Year Master Sauce")
 		print("Effect: Causes damage to enemy")
-
 		print("Ultimate Damage:",)
 
 	stat.print_stat()
-
-		print("Ultimate Damage:", stat.current_attack + 30)
-
-	stat.print_stat()
-
-
-	

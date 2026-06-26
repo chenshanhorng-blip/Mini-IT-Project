@@ -2,7 +2,7 @@ extends Node
 class_name skill_adjust
 #the player's data
 var player = null
-
+var player_id: int = 1
 var stat: CharacterStat = null
 var is_attacking: bool = false
 
@@ -25,13 +25,24 @@ var current_skill_damage: int = 0
 var current_skill_name: String = ""
 var damaged_enemy_list: Array = []
 #set up
-func setup(new_player, new_stat: CharacterStat) -> void:
+func setup(new_player, new_stat: CharacterStat,new_player_id: int = 1) -> void:
 	player = new_player
 	stat = new_stat
+	player_id = new_player_id
 	hide_all_effects()
 
 	skill_damage_area.monitoring = false
 	skill_damage_shape.disabled = true
+
+	# The CircleShape2D on skill_area has no radius set in the scene,
+	# which makes it default to Godot's tiny built-in radius (10px).
+	# Force a usable radius here so basic attack / skills can actually
+	# reach and hit enemies standing in front of the player.
+	if skill_damage_shape.shape is CircleShape2D:
+		var circle_shape: CircleShape2D = skill_damage_shape.shape
+		if circle_shape.radius < 30.0:
+			circle_shape.radius = 40.0
+			print("skill_adjust: CircleShape2D radius was too small, set to 40.0")
 	
 	var signal_callable = Callable(self, "_on_skill_damage_area_body_entered")
 	if not skill_damage_area.body_entered.is_connected(signal_callable):
@@ -95,25 +106,80 @@ func basic_attack_animation() -> void:
 	CombatSystem.basic_attack_1(stat)
 	if stat.character_name == "Tea Egg Knight":
 		animated_sprite.play("knight basic attack")
-		
-	elif stat.character_name == "Boar Princess":
-		animated_sprite.play("princess basic attack")
-		play_flying_effect_from_marker(
-			princess_basic_attack_effect,
+		# Knight basic attack — damage area in front of the knight
+		activate_skill_damage_area(
 			princess_basic_start,
-			300,
-			0.3
+			stat.current_attack,
+			0.3,
+			Vector2(1.5, 1),
+			"knight_basic"
 		)
 
+	elif stat.character_name == "Boar Princess":
+		animated_sprite.play("princess basic attack")
+		_fire_travelling_projectile(
+			princess_basic_attack_effect,
+			princess_basic_start,
+			600.0,
+			0.5,
+			stat.current_attack,
+			"princess_basic"
+		)
+ 
 	await animated_sprite.animation_finished
-
-	if stat.character_name == "Boar Princess":
-		animated_sprite.play("princess standing")
-
-	elif stat.character_name == "Tea Egg Knight":
-		animated_sprite.play("knight standing")
-
 	is_attacking = false
+		# Princess basic attack — damage area where the effect flies through
+
+func _fire_travelling_projectile(
+		effect: AnimatedSprite2D,
+		start_marker: Marker2D,
+		distance: float,
+		duration: float,
+		damage: int,
+		skill_name: String
+	) -> void:
+ 
+	var dir_sign = -1 if animated_sprite.flip_h else 1
+	var start_pos = start_marker.global_position
+	var end_pos = start_pos + Vector2(distance * dir_sign, 0)
+ 
+	# Show and move the visual effect
+	effect.global_position = start_pos
+	effect.visible = true
+	effect.flip_h = animated_sprite.flip_h
+	effect.frame = 0
+	effect.play()
+ 
+	# Track who was already hit (so we don't hit the same enemy twice)
+	var already_hit: Array = []
+ 
+	var tween = create_tween()
+	tween.tween_property(effect, "global_position", end_pos, duration)
+ 
+	# Check for hits every frame while the projectile travels
+	var elapsed = 0.0
+	var step = 0.05  # check every 50ms
+	while elapsed < duration:
+		await get_tree().create_timer(step).timeout
+		elapsed += step
+ 
+		# Get all enemies in the scene and check if the projectile is close enough
+		for enemy in get_tree().get_nodes_in_group("enemy"):
+			if enemy in already_hit:
+				continue
+			if not is_instance_valid(enemy):
+				continue
+ 
+			var dist = effect.global_position.distance_to(enemy.global_position)
+			if dist < 60:  # hit radius
+				already_hit.append(enemy)
+				if enemy.has_method("receive_damage"):
+					enemy.receive_damage(damage)
+				elif enemy.has_method("take_damage"):
+					enemy.take_damage(damage)
+				print("Princess projectile hit:", enemy.name, " damage:", damage)
+ 
+	effect.visible = false
 	
 #skill damage area 
 func activate_skill_damage_area(marker: Marker2D, damage: int, duration: float, area_scale: Vector2 = Vector2(1, 1), skill_name: String = "") -> void:
@@ -127,7 +193,7 @@ func activate_skill_damage_area(marker: Marker2D, damage: int, duration: float, 
 	skill_damage_shape.disabled = false
 	skill_damage_area.monitoring = true
 
-	print("Damage area active:", skill_name, " Damage:", damage)
+	print("Damage area active:", skill_name, " Damage:", damage, " | world position:", skill_damage_area.global_position, " | scale:", skill_damage_area.scale)
 
 	await get_tree().create_timer(duration).timeout
 
@@ -141,6 +207,12 @@ func activate_skill_damage_area(marker: Marker2D, damage: int, duration: float, 
 	print("Damage area closed")
 #the enemy touch skill and cause damage system 
 func _on_skill_damage_area_body_entered(body) -> void:
+	# Skip the player themselves — skill should never damage own character
+	if body == player:
+		return
+	if body.is_in_group("player") or body.is_in_group("Player"):
+		return
+
 	if body in damaged_enemy_list:
 		return
 
@@ -170,7 +242,7 @@ func use_skill_1_action() -> void:
 	print("Skill 1 pressed")
 
 	if stat.character_name == "Boar Princess":
-		animated_sprite.play("skill 1 of boar princes ")
+		animated_sprite.play("skill 1 of boar princess")
 		play_flying_effect_from_marker(
 			princess_skill1_effect,
 			princess_skill1_start,
@@ -193,12 +265,6 @@ func use_skill_1_action() -> void:
 	stat.print_stat()
 
 	await animated_sprite.animation_finished
-
-	if stat.character_name == "Boar Princess":
-		animated_sprite.play("princess standing")
-
-	elif stat.character_name == "Tea Egg Knight":
-		animated_sprite.play("knight standing")
 
 	is_attacking = false
 
@@ -239,12 +305,6 @@ func use_skill_2_action() -> void:
 
 	await animated_sprite.animation_finished
 
-	if stat.character_name == "Boar Princess":
-		animated_sprite.play("princess standing")
-
-	elif stat.character_name == "Tea Egg Knight":
-		animated_sprite.play("knight standing")
-
 	is_attacking = false
 
 # the function for princess when use the ultimate the princess will enhance 6s 
@@ -263,14 +323,13 @@ func use_ultimate_action() -> void:
 		SkillSystem.start_princess_ultimate(stat)
 
 		# Make princess bigger
-		animated_sprite.scale = Vector2(0.35, 0.35)
+		animated_sprite.scale = Vector2(0.08, 0.08)
 
 		# Update movement speed
 		player.speed = stat.current_movement
 		print("Princess ultimate speed:", player.speed)
 
 		# Keep standing animation, no ultimate animation
-		animated_sprite.play("princess standing")
 
 		# Buff lasts 6 seconds
 		await get_tree().create_timer(6.0).timeout
@@ -279,7 +338,7 @@ func use_ultimate_action() -> void:
 		SkillSystem.end_princess_ultimate(stat)
 
 		# Restore normal size
-		animated_sprite.scale = Vector2(0.2, 0.2)
+		animated_sprite.scale = Vector2(0.05069446, 0.05385417)
 
 		# Restore movement speed
 		player.speed = stat.current_movement
@@ -310,38 +369,42 @@ func use_ultimate_action() -> void:
 		stat.print_stat()
 	
 		await animated_sprite.animation_finished
-
-		animated_sprite.play("knight standing")
 		is_attacking = false
 
 func handle_input() -> void:
 	if stat == null:
 		return
-
-	if Input.is_action_just_pressed("basic attack"):
+ 
+	# Pick the correct input action names based on which player this is
+	var action_basic_attack = "basic attack" if player_id == 1 else "p2_basic_attack"
+	var action_skill1       = "skill1"        if player_id == 1 else "p2_skill1"
+	var action_skill2       = "skill2"        if player_id == 1 else "p2_skill2"
+	var action_ultimate     = "ultimate"       if player_id == 1 else "p2_ultimate"
+ 
+	if Input.is_action_just_pressed(action_basic_attack):
 		basic_attack_animation()
-
-	if Input.is_action_just_pressed("skill1"):
+ 
+	if Input.is_action_just_pressed(action_skill1):
 		if is_attacking:
 			return
-
+ 
 		if skill_cooldown.can_use_skill(stat, "skill1"):
 			skill_cooldown.start_cooldown(stat, "skill1")
 			use_skill_1_action()
 		else:
 			print("Skill 1 cooldown:", ceil(skill_cooldown.get_remaining_time(stat, "skill1")))
-
-	if Input.is_action_just_pressed("skill2"):
+ 
+	if Input.is_action_just_pressed(action_skill2):
 		if is_attacking:
 			return
-
+ 
 		if skill_cooldown.can_use_skill(stat, "skill2"):
 			skill_cooldown.start_cooldown(stat, "skill2")
 			use_skill_2_action()
 		else:
 			print("Skill 2 cooldown:", ceil(skill_cooldown.get_remaining_time(stat, "skill2")))
-
-	if Input.is_action_just_pressed("ultimate"):
+ 
+	if Input.is_action_just_pressed(action_ultimate):
 		# Princess ultimate is buff, do not block basic attack / skill
 		if stat.character_name == "Boar Princess":
 			if skill_cooldown.can_use_skill(stat, "ultimate"):
@@ -349,12 +412,12 @@ func handle_input() -> void:
 				use_ultimate_action()
 			else:
 				print("Ultimate cooldown:", ceil(skill_cooldown.get_remaining_time(stat, "ultimate")))
-
+ 
 		# Tea Egg Knight ultimate has animation, so it can be blocked by is_attacking
 		elif stat.character_name == "Tea Egg Knight":
 			if is_attacking:
 				return
-
+ 
 			if skill_cooldown.can_use_skill(stat, "ultimate"):
 				skill_cooldown.start_cooldown(stat, "ultimate")
 				use_ultimate_action()

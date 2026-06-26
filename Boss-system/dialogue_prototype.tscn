@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xjip3d6vm3i7"]
 
-[ext_resource type="Script" uid="uid://ct1dxmanq1j5u" path="res://dialogue_prototype.gd" id="1_i8610"]
+[ext_resource type="Script" uid="uid://ct1dxmanq1j5u" path="res://Boss-system/dialogue_prototype.gd" id="1_i8610"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8610"]
 bg_color = Color(0, 0, 0, 0.8627451)
