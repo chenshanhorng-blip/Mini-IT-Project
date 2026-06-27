@@ -4,6 +4,7 @@ var collected_count = 0
 var total_points = 3
 @onready var exit_button = $Button
 @onready var pause_menu = $PauseMenu  # ← ADD THIS
+@onready var bgmlevel4 = $bgmlevel4
 
 func _ready():
 	CheckpointManager.reset_checkpoint("level4", Vector2(39, 100))

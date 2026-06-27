@@ -28,6 +28,14 @@
 [ext_resource type="Script" uid="uid://bvoexo0284m6c" path="res://princessgame/player_hpbar.gd" id="26_5okn6"]
 [ext_resource type="Script" uid="uid://cyrrvsr6rw4h3" path="res://princessgame/skill/skillbutton.gd" id="27_j6uo5"]
 [ext_resource type="Script" uid="uid://dtrhly8udnkts" path="res://script/system/minimap_player_icon.gd" id="28_cn111"]
+[ext_resource type="AudioStream" uid="uid://b6l1cqu48wdk" path="res://audio/Jump2.wav" id="29_e0pe0"]
+[ext_resource type="AudioStream" uid="uid://bdr7rkp7nuet5" path="res://audio/attack_knight.wav" id="30_8uwmi"]
+[ext_resource type="AudioStream" uid="uid://b37h2pjep8arc" path="res://audio/ShieldExplosion.wav" id="32_5okn6"]
+[ext_resource type="AudioStream" uid="uid://chmxs66cuou14" path="res://audio/PrincessBasicAttack.wav" id="33_j6uo5"]
+[ext_resource type="AudioStream" uid="uid://c2ckun4pbhslk" path="res://audio/spell.wav" id="34_c0yqg"]
+[ext_resource type="AudioStream" uid="uid://bwvp42ccjrkuh" path="res://audio/PrincessSkill2.wav" id="35_54ex2"]
+[ext_resource type="AudioStream" uid="uid://ci71l8rsbyat1" path="res://audio/PrincessUltimate.wav" id="36_o8yuv"]
+[ext_resource type="AudioStream" uid="uid://ce1dtsvwg5qa5" path="res://audio/KnightUltimate.wav" id="37_dffgo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0araa"]
 size = Vector2(25, 39)
@@ -1126,7 +1134,7 @@ shape = SubResource("RectangleShape2D_0araa")
 position = Vector2(-0.99999994, -3.0000002)
 scale = Vector2(0.05069446, 0.05385417)
 sprite_frames = SubResource("SpriteFrames_3dbgi")
-animation = &"skill 2 tea egg knight"
+animation = &"princess skill 2"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=989423405]
 offset = Vector2(1.5, 1.5)
@@ -1264,3 +1272,39 @@ theme_override_font_sizes/font_size = 30
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_font_sizes/font_size = 30
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=960621119]
+stream = ExtResource("29_e0pe0")
+volume_db = 5.0
+
+[node name="attackknight" type="AudioStreamPlayer" parent="." unique_id=2132874738]
+stream = ExtResource("30_8uwmi")
+volume_db = 5.0
+
+[node name="ShieldExplosion" type="AudioStreamPlayer" parent="." unique_id=759818196]
+stream = ExtResource("32_5okn6")
+volume_db = 8.0
+
+[node name="PrincessBasicAttack" type="AudioStreamPlayer" parent="." unique_id=1830442114]
+stream = ExtResource("33_j6uo5")
+volume_db = 5.0
+
+[node name="PrincessSkill1" type="AudioStreamPlayer" parent="." unique_id=545385820]
+stream = ExtResource("34_c0yqg")
+volume_db = 5.0
+
+[node name="PrincessSkill2" type="AudioStreamPlayer" parent="." unique_id=193475148]
+stream = ExtResource("35_54ex2")
+volume_db = 5.0
+
+[node name="PrincessUltimate" type="AudioStreamPlayer" parent="." unique_id=1530715440]
+stream = ExtResource("36_o8yuv")
+volume_db = 5.0
+
+[node name="KnightSkill1" type="AudioStreamPlayer" parent="." unique_id=1138286125]
+
+[node name="KnightSkill2" type="AudioStreamPlayer" parent="." unique_id=615769208]
+
+[node name="KnightUltimate" type="AudioStreamPlayer" parent="." unique_id=1462308882]
+stream = ExtResource("37_dffgo")
+volume_db = 8.0

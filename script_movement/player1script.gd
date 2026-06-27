@@ -34,6 +34,7 @@ var facing_direction: Vector2 = Vector2.RIGHT
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var jump_sound = $JumpSound
 
 # These nodes must be copied from princessgame/player1_movement.tscn
 @onready var skill_controller = get_node_or_null("skill_adjust")
@@ -234,6 +235,7 @@ func update_animations(direction: float) -> void:
 
 	if not is_on_floor():
 		if velocity.y < 0:
+			jump_sound.play()
 			play_move_animation("jump" if not is_knight else "jump_left_2")
 		else:
 			play_move_animation("fall" if not is_knight else "fall_2")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d1wl0y6pr5qce" path="res://diamond/New Piskel.png" id="1_estgk"]
 [ext_resource type="Script" uid="uid://fbqtwv5g11g2" path="res://object/checkpoint.gd" id="1_nhbqm"]
+[ext_resource type="AudioStream" uid="uid://c11cnidmupmnb" path="res://audio/CheckpointSound.wav" id="3_sbklu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhbqm"]
 size = Vector2(23, 47)
@@ -16,3 +17,7 @@ shape = SubResource("RectangleShape2D_nhbqm")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1863752821]
 scale = Vector2(0.1310764, 0.12708335)
 texture = ExtResource("1_estgk")
+
+[node name="CheckpointSound" type="AudioStreamPlayer" parent="." unique_id=750142109]
+stream = ExtResource("3_sbklu")
+volume_db = 10.0

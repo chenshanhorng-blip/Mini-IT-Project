@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpy5rajx7s3px"
-path="res://.godot/imported/ArchDemonIdle001-Sheet.png-7187bf377c39088206ff858697c08279.ctex"
+path="res://.godot/imported/ArchDemonIdle001-Sheet.png-3f00972234ccf00966c05896adf44b0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Boss-system/Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonIdle001-Sheet.png"
-dest_files=["res://.godot/imported/ArchDemonIdle001-Sheet.png-7187bf377c39088206ff858697c08279.ctex"]
+source_file="res://Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonIdle001-Sheet.png"
+dest_files=["res://.godot/imported/ArchDemonIdle001-Sheet.png-3f00972234ccf00966c05896adf44b0e.ctex"]
 
 [params]
 

@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var checkpoint_sound = $CheckpointSound
+
 @export var checkpoint_id: int = 1
 var activated = false
 var can_activate = true  # 新增：是否可以被激活
@@ -19,7 +21,9 @@ func _on_body_entered(body):
 		return
 	
 	activated = true
-	
+
+	checkpoint_sound.play()
+
 	CheckpointManager.save_checkpoint(
 		get_tree().current_scene.name,
 		checkpoint_id,

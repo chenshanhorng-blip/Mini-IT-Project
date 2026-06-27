@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d1cdlijpc0hb6" path="res://script/system/main_menu.gd" id="1_8fia7"]
 [ext_resource type="Texture2D" uid="uid://2cb2sl5io38k" path="res://diamond/ChatGPT Image Jun 14, 2026, 09_48_18 PM.png" id="2_eto6y"]
 [ext_resource type="Texture2D" uid="uid://cy1l1do4eti5" path="res://diamond/ChatGPT Image Jun 16, 2026, 12_41_19 AM.png" id="3_u2xei"]
+[ext_resource type="AudioStream" uid="uid://b6mttwshjv7gw" path="res://audio/Button_click_ΓÇô_Clean_#2-1766767620402.mp3" id="4_ap073"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u2xei"]
 font_size = 60
@@ -122,6 +123,10 @@ offset_right = 135.50003
 offset_bottom = -0.72076416
 theme_override_font_sizes/font_size = 25
 text = "Credit"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=1556423214]
+stream = ExtResource("4_ap073")
+volume_db = 8.0
 
 [connection signal="pressed" from="Menu/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Menu/Continue" to="." method="_on_continue_pressed"]

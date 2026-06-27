@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cdjdhgxtihh1i" path="res://Boss-system/hint button.tscn" id="7_7e4dy"]
 [ext_resource type="PackedScene" uid="uid://b6lnp7js1btba" path="res://feedback_system.tscn" id="8_d1j6o"]
 [ext_resource type="PackedScene" uid="uid://bamiouxouvm5c" path="res://Boss-system/dragon.tscn" id="9_2l2id"]
+[ext_resource type="AudioStream" uid="uid://dg1seok44fxxa" path="res://audio/Hypnotic_Poison/ogg/Hypnotic_Poison_loop.ogg" id="10_7y6ca"]
 
 [node name="Node2D" type="Node2D" unique_id=341255562]
 script = ExtResource("1_5pncu")
@@ -48,5 +49,11 @@ visible = false
 light_mask = 4
 visibility_layer = 2
 position = Vector2(347, 41)
+
+[node name="bgmlevel5" type="AudioStreamPlayer" parent="." unique_id=1978178372]
+stream = ExtResource("10_7y6ca")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

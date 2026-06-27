@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0n6e3jrrc1g8"
-path="res://.godot/imported/DemonKinHurt001-Sheet.png-d7e215f37748df25078a247252c3a92c.ctex"
+path="res://.godot/imported/DemonKinHurt001-Sheet.png-0038d769ccf656980c8dbaf0e92b602b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Boss-system/Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinHurt001-Sheet.png"
-dest_files=["res://.godot/imported/DemonKinHurt001-Sheet.png-d7e215f37748df25078a247252c3a92c.ctex"]
+source_file="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinHurt001-Sheet.png"
+dest_files=["res://.godot/imported/DemonKinHurt001-Sheet.png-0038d769ccf656980c8dbaf0e92b602b.ctex"]
 
 [params]
 

@@ -2,6 +2,8 @@ extends Control
 
 var mode: String = "load"
 
+@onready var button_click_sound = $ButtonClickSound
+
 func _ready():
 	mode = Global.slot_mode
 	print("Mode is: ", mode)
@@ -37,6 +39,8 @@ func _update_slots():
 			delete_button.pressed.connect(_on_delete_pressed.bind(i))
 
 func _on_slot_pressed(slot: int):
+	button_click_sound.play()
+	
 	Global.current_slot = slot
 	if mode == "load":
 		if Global.load_game(slot):
@@ -61,8 +65,10 @@ func _on_slot_pressed(slot: int):
 		Transition.fade_to_scene("res://Boss-system/intro.tscn")
 
 func _on_delete_pressed(slot: int):
+	button_click_sound.play()
 	Global.delete_save(slot)
 	_update_slots()
 
 func _on_back_pressed():
+	button_click_sound.play()
 	Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

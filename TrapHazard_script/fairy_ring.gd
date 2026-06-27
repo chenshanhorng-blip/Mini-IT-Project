@@ -6,6 +6,7 @@ extends Area2D
 
 # 保持你原有的安全获取节点声明
 @onready var particles: GPUParticles2D = $GPUParticles2D
+@onready var fairy_ring_sound = $FairyRingSound
 
 var can_teleport = true
 
@@ -33,6 +34,8 @@ func _teleport_player(player, target_pos):
 	# 使用顶部声明好的 particles 变量，更安全
 	if particles:
 		particles.emitting = true
+	
+	fairy_ring_sound.play()
 	
 	# 保持你的玩家传送和冷却逻辑
 	player.teleport_to(target_pos)

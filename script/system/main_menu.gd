@@ -1,5 +1,7 @@
 extends Control
 
+@onready var button_click_sound = $ButtonClickSound
+
 func _ready():
 	# Use is_connected check to prevent double-connection on scene reload
 	if not $Menu/NewGame.pressed.is_connected(_on_new_game):
@@ -19,22 +21,27 @@ func _ready():
 		$Menu/Continue.disabled = true
 
 func _on_new_game():
+	button_click_sound.play()
 	Global.slot_mode = "save"
 	print("New Game — slot mode set to: ", Global.slot_mode)
 	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_continue():
+	button_click_sound.play()
 	Global.slot_mode = "load"
 	print("Continue — slot mode set to: ", Global.slot_mode)
 	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_settings():
+	button_click_sound.play()
 	Transition.fade_to_scene("res://scene/UI/setting.tscn")
 
 func _on_quit():
+	button_click_sound.play()
 	get_tree().quit()
 
 func _on_credit_pressed():
+	button_click_sound.play()
 	Transition.fade_to_scene("res://scene/UI/credit.tscn")
 
 
