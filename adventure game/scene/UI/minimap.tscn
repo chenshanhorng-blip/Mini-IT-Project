@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b2mltdu71tmlr"]
+
+[ext_resource type="Script" uid="uid://84s0rlmcc8dk" path="res://minimap.gd" id="1_paksi"]
+
+[node name="MinimapLayer" type="CanvasLayer" unique_id=1106204459]
+script = ExtResource("1_paksi")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1124125826]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer" unique_id=1814175553]
+layout_mode = 2
+stretch = true
+
+[node name="MinimapViewport" type="SubViewport" parent="PanelContainer/SubViewportContainer" unique_id=60421407]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+
+[node name="MinimapCamera" type="Camera2D" parent="PanelContainer/SubViewportContainer/MinimapViewport" unique_id=1757984548]
+light_mask = 2
+visibility_layer = 2
