@@ -12,14 +12,11 @@ var max_zoom: float = 2.0
 var zoom_step: float = 0.5
 
 func _ready():
-	player = get_tree().get_first_node_in_group("player")
-	
-	# Wait one frame to ensure the main scene world is fully initialized
-	await get_tree().process_frame
-	
-	# Link the minimap to your main game world scene
-	if get_tree().current_scene:
-		minimap_viewport.world_2d = get_tree().current_scene.get_world_2d()
+	while get_tree().current_scene == null:
+		await get_tree().process_frame
+ 
+	# Now it's safe to read current_scene
+	minimap_viewport.world_2d = get_tree().current_scene.get_world_2d()
 		
 	# Fix viewport rendering settings
 	minimap_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS

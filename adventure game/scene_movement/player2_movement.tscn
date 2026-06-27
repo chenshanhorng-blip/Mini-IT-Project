@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://81od2w2ablqi" path="res://princessgame/picture/boar princess.png" id="3_l2inr"]
 [ext_resource type="Texture2D" uid="uid://i48geainfcp" path="res://movement TE/TE down (right) image.png" id="3_uuush"]
 [ext_resource type="Texture2D" uid="uid://b51dherpkx0u2" path="res://movement TE/TE movement image.png" id="4_2l3a3"]
-[ext_resource type="Texture2D" uid="uid://chic84uftgd1p" path="res://princessgame/picture/tea egg knight  profile.png" id="4_uuush"]
 [ext_resource type="Texture2D" uid="uid://xk78hxi6hhtw" path="res://movement TE/TE jump (left) image.png" id="5_c83kt"]
 [ext_resource type="Texture2D" uid="uid://cms1nukrif47y" path="res://movement BP/BP down image.png" id="5_ehlti"]
 [ext_resource type="Texture2D" uid="uid://7m5sd73dwuiv" path="res://movement TE/TE jump (right）image.png" id="6_tcwkb"]
@@ -47,9 +46,9 @@ size = Vector2(29, 40)
 atlas = ExtResource("3_l2inr")
 region = Rect2(0, 0, 1100, 1100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uuush"]
-atlas = ExtResource("4_uuush")
-region = Rect2(0, 0, 300, 300)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcht2"]
+atlas = ExtResource("22_odg5q")
+region = Rect2(0, 0, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0araa"]
 atlas = ExtResource("5_ehlti")
@@ -119,9 +118,9 @@ region = Rect2(0, 2880, 1440, 1440)
 atlas = ExtResource("3_l2inr")
 region = Rect2(0, 0, 1100, 1100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2l3a3"]
-atlas = ExtResource("4_uuush")
-region = Rect2(0, 0, 300, 300)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhhdh"]
+atlas = ExtResource("22_odg5q")
+region = Rect2(0, 0, 1440, 1440)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tp35"]
 atlas = ExtResource("8_7vuvi")
@@ -491,7 +490,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uuush")
+"texture": SubResource("AtlasTexture_gcht2")
 }],
 "loop": false,
 "name": &"crouch_2",
@@ -570,7 +569,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2l3a3")
+"texture": SubResource("AtlasTexture_yhhdh")
 }],
 "loop": false,
 "name": &"fall_2",
@@ -1123,7 +1122,7 @@ shape = SubResource("RectangleShape2D_0araa")
 position = Vector2(0.9999999, -6.9999995)
 scale = Vector2(0.05069446, 0.05385417)
 sprite_frames = SubResource("SpriteFrames_3dbgi")
-animation = &"skill 2 tea egg knight"
+animation = &"skill 1 of boar princess"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=989423405]
 offset = Vector2(1.5, 1.5)

@@ -24,7 +24,6 @@ var crouch_height: float = 20.0
 var start_position: Vector2 = Vector2.ZERO
 var crouch_sprite_offset: float = 0.0
 var death_screen = null
-var original_player_ground_y: float
 
 
 var is_teleporting = false
@@ -43,7 +42,6 @@ var facing_direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
 	start_position = global_position
-	original_player_ground_y = global_position.y
 	health = max_health
 	add_to_group("player")
 
@@ -109,10 +107,10 @@ func setup_character_sprite() -> void:
 
 	if stat.character_name == "Boar Princess":
 		play_if_exists("idle")
-		animated_sprite.scale = Vector2(0.05069446, 0.05385417)
+		animated_sprite.scale =Vector2(0.05069446, 0.05385417)
 	elif stat.character_name == "Tea Egg Knight":
 		play_if_exists("idle_2")
-		animated_sprite.scale = Vector2(0.08, 0.08)
+		animated_sprite.scale = Vector2(0.08069446, 0.08385417)
 
 
 func setup_death_screen() -> void:
@@ -161,11 +159,10 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if is_falling:
-		if not is_on_floor() and velocity.y > 0:
-			velocity.x = 0
-			velocity.y += 80
-			move_and_slide()
-			play_level_animation("fall")
+		velocity.x = 0
+		velocity.y += 80
+		move_and_slide()
+		play_level_animation("fall")
 
 		if position.y > 650:
 			die()
@@ -206,19 +203,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animations(direction)
 
-	# 防止被压进地面
-	if is_on_floor() and global_position.y > original_player_ground_y:
-		global_position.y = original_player_ground_y
-
-	# 防止和敌人卡在一起
-		# 新增：检查与敌人的碰撞，防止卡在一起
+	# Prevent getting stuck inside enemies
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider and collider.is_in_group("enemy"):
-			# 如果敌人在玩家上方，就防止卡住
-			if collider.global_position.y < global_position.y:
-				global_position.y = original_player_ground_y
+			# Push player away horizontally from enemy instead of snapping Y
+			var push_dir = (global_position - collider.global_position).normalized()
+			global_position += push_dir * 2
 
 
 
@@ -229,7 +221,7 @@ func update_animations(direction: float) -> void:
 	var is_knight := stat != null and stat.character_name == "Tea Egg Knight"
 
 	if is_crouching:
-		play_move_animation("down_2" )
+		play_move_animation("down_left_2" )
 		if not is_knight :
 			play_move_animation("down")
 		return
@@ -269,9 +261,9 @@ func play_level_animation(anim_name: String) -> void:
 	else:
 		if stat != null:
 			if stat.character_name == "Boar Princess":
-				play_if_exists("princess standing")
+				play_if_exists("idle")
 			elif stat.character_name == "Tea Egg Knight":
-				play_if_exists("knight standing")
+				play_if_exists("idle_2")
 
 
 func play_if_exists(anim_name: String) -> void:
@@ -299,9 +291,8 @@ func start_crouch() -> void:
 		var new_shape := RectangleShape2D.new()
 		new_shape.set_size(Vector2(original_height, crouch_height))
 		collision_shape.shape = new_shape
-		crouch_sprite_offset = (original_height - crouch_height) / 2
-		position.y += crouch_sprite_offset
-		animated_sprite.position.y -= crouch_sprite_offset
+		# Move only the collision shape down — NOT the whole node or sprite
+		collision_shape.position.y += (original_height - crouch_height) / 2
 
 
 func stop_crouch() -> void:
@@ -314,9 +305,7 @@ func stop_crouch() -> void:
 		var new_shape := RectangleShape2D.new()
 		new_shape.set_size(Vector2(original_height, original_height))
 		collision_shape.shape = new_shape
-		position.y -= crouch_sprite_offset
-		animated_sprite.position.y += crouch_sprite_offset   # ← new line, restores sprite position
-		crouch_sprite_offset = 0.0
+		collision_shape.position.y -= (original_height - crouch_height) / 2
 
 
 # ============================================================
@@ -350,15 +339,23 @@ func on_player_dead() -> void:
  
 	# During tutorial — just respawn, no death screen
 	if TutorialManager.tutorial_active:
+		is_dead = true
 		is_falling = false
-		is_dead = false
-		global_position = start_position
 		velocity = Vector2.ZERO
+		set_physics_process(false)
+
+		global_position = start_position
+
 		if stat != null:
 			stat.reset_stats()
 			SkillSystem.apply_passive_on_start(stat)
 		animated_sprite.visible = true
 		animated_sprite.modulate = Color.WHITE
+
+		# Wait one physics frame before re-enabling so the player
+		# lands on the floor before fall detection can trigger again
+		await get_tree().physics_frame
+		is_dead = false
 		set_physics_process(true)
 		return
  

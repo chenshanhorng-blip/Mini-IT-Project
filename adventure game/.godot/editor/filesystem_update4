@@ -1,0 +1,16 @@
+res://TrapHazard_scene/RedDiamond.tscn
+res://princessgame/global.gd
+res://script_level_map/level_1.gd
+res://script_level_map/level_2.gd
+res://script_level_map/level_3.gd
+res://script_level_map/level_4.gd
+res://scene_level_map/level5.tscn
+res://script_level_map/level_5.gd
+res://princessgame/tutorial_system/tutorial.gd
+res://princessgame/tutorial_system/tutorial_manager.gd
+res://princessgame/tutorial_system/tutorial_multiplayer.gd
+res://script_movement/player1script.gd
+res://scene_movement/player1_movement.tscn
+res://minimap.gd
+res://script_movement/player2_script.gd
+res://scene_movement/player2_movement.tscn

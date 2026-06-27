@@ -31,8 +31,8 @@ var death_screen = null
 var stat: CharacterStat = null
 
 # Correct scales matching player2_movement.tscn
-const KNIGHT_SCALE   = Vector2(0.11805554, 0.10659724)
-const PRINCESS_SCALE = Vector2(0.05069446, 0.05385417)
+const KNIGHT_SCALE   =Vector2(0.08069446, 0.08385417)
+const PRINCESS_SCALE =  Vector2(0.05069446, 0.05385417)
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D  = $CollisionShape2D
@@ -228,7 +228,7 @@ func update_animations(direction: float) -> void:
 		play_if_exists("down")
 		animated_sprite.scale=Vector2(0.04003032,0.04003032)
 		if is_knight():
-			play_if_exists("down_2")
+			play_if_exists("down_left_2")
 		return
 
 	if not is_on_floor():

@@ -3,24 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://denlk48d1cw77"
-<<<<<<< HEAD
 path="res://.godot/imported/HURT.png-456bbebdd7796e84242060320255b826.ctex"
-=======
-path="res://.godot/imported/HURT.png-02d638c03bf686add0f0e05fbcf32f07.ctex"
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
 source_file="res://Boss-system/Sprite/with_outline/HURT.png"
 dest_files=["res://.godot/imported/HURT.png-456bbebdd7796e84242060320255b826.ctex"]
-=======
-source_file="res://Sprite/with_outline/HURT.png"
-dest_files=["res://.godot/imported/HURT.png-02d638c03bf686add0f0e05fbcf32f07.ctex"]
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 
