@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwi2grob0cl84"
+<<<<<<< HEAD
 path="res://.godot/imported/IDLE.png-7b8966ec66bacb394a8d14a160da913f.ctex"
+=======
+path="res://.godot/imported/IDLE.png-cc57f3a9b10415dbffc6e02c837295d9.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://Sprite/GreenBlue/with_outline/IDLE.png"
 dest_files=["res://.godot/imported/IDLE.png-7b8966ec66bacb394a8d14a160da913f.ctex"]
+=======
+source_file="res://Boss-system/Sprite/GreenBlue/with_outline/IDLE.png"
+dest_files=["res://.godot/imported/IDLE.png-cc57f3a9b10415dbffc6e02c837295d9.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

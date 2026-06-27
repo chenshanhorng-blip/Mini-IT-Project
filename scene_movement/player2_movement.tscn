@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://bvoexo0284m6c" path="res://princessgame/player_hpbar.gd" id="26_wb1rs"]
 [ext_resource type="Script" uid="uid://cyrrvsr6rw4h3" path="res://princessgame/skill/skillbutton.gd" id="27_0jatd"]
 [ext_resource type="Script" uid="uid://dtrhly8udnkts" path="res://script/system/minimap_player_icon.gd" id="28_oowws"]
+<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://b6l1cqu48wdk" path="res://audio/Jump2.wav" id="30_b6o71"]
 [ext_resource type="AudioStream" uid="uid://bdr7rkp7nuet5" path="res://audio/attack_knight.wav" id="31_lp807"]
 [ext_resource type="AudioStream" uid="uid://b37h2pjep8arc" path="res://audio/ShieldExplosion.wav" id="32_g181o"]
@@ -39,6 +40,8 @@
 [ext_resource type="AudioStream" uid="uid://c243q5hw35m3m" path="res://audio/KnightSkill1.wav" id="37_l33pq"]
 [ext_resource type="AudioStream" uid="uid://b6i7k5et6nsns" path="res://audio/KnightSkill2.wav" id="38_nwfin"]
 [ext_resource type="AudioStream" uid="uid://ce1dtsvwg5qa5" path="res://audio/KnightUltimate.wav" id="39_eii3c"]
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0araa"]
 size = Vector2(29, 40)
@@ -1261,6 +1264,7 @@ theme_override_font_sizes/font_size = 30
 light_mask = 2
 visibility_layer = 2
 script = ExtResource("28_oowws")
+<<<<<<< HEAD
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=287312270]
 stream = ExtResource("30_b6o71")
@@ -1301,3 +1305,5 @@ volume_db = 5.0
 [node name="KnightUltimate" type="AudioStreamPlayer" parent="." unique_id=1059563547]
 stream = ExtResource("39_eii3c")
 volume_db = 8.0
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237

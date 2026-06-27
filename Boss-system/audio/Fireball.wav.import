@@ -3,12 +3,21 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bisxx0ftbbujx"
+<<<<<<< HEAD
 path="res://.godot/imported/Fireball.wav-8807918c9db9e5b1b71ff2dbc95b5008.sample"
 
 [deps]
 
 source_file="res://audio/Fireball.wav"
 dest_files=["res://.godot/imported/Fireball.wav-8807918c9db9e5b1b71ff2dbc95b5008.sample"]
+=======
+path="res://.godot/imported/Fireball.wav-ed871916aac3756cc6063f785211f9d4.sample"
+
+[deps]
+
+source_file="res://Boss-system/audio/Fireball.wav"
+dest_files=["res://.godot/imported/Fireball.wav-ed871916aac3756cc6063f785211f9d4.sample"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

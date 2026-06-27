@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://wrs7bfdmhjol" path="res://TrapHazard_script/fire_vine.gd" id="1_arpf7"]
 [ext_resource type="Texture2D" uid="uid://c44ixctuku3v7" path="res://diamond/New Piskel (11).png" id="2_arpf7"]
+<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://2a78e7hurrmt" path="res://audio/FireVineSound.mp3" id="3_66k56"]
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2tif"]
 size = Vector2(45, 41)
@@ -64,11 +67,14 @@ sprite_frames = SubResource("SpriteFrames_tltjp")
 
 [node name="Timer" type="Timer" parent="." unique_id=445995036]
 
+<<<<<<< HEAD
 [node name="FireVineSound" type="AudioStreamPlayer" parent="." unique_id=279741526]
 stream = ExtResource("3_66k56")
 volume_db = 6.0
 autoplay = true
 parameters/looping = true
 
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

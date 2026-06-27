@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b13kdxatqpu1v" path="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Die.png" id="4_5c7e6"]
 [ext_resource type="Texture2D" uid="uid://ejmoibdtby3i" path="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Stun.png" id="4_j1w7m"]
 
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5c7e6"]
 atlas = ExtResource("1_vipk4")
 region = Rect2(0, 0, 80, 64)

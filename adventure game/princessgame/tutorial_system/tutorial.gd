@@ -70,7 +70,7 @@ func _ready() -> void:
 	if spawn != null:
 		p1.global_position = spawn.global_position
 	else:
-		p1.global_position = Vector2(200, 0)
+		p1.global_position = Vector2(150, 0)
 	player_node = p1
 	print("Tutorial: Player spawned at ", p1.global_position)
 

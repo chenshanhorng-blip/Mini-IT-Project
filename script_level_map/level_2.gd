@@ -5,7 +5,10 @@ var total_points = 3
 
 @onready var exit_button = $Button
 @onready var pause_menu = $PauseMenu
+<<<<<<< HEAD
 @onready var bgm_level_2 = $bgmlevel2
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 # 🌟 核心修复：穿过队友做的 Node2D 和 CanvasLayer，精准拿到真正挂脚本的 Panel 节点！
 # 💡 注意：如果你的 level2 场景树里拉进来的节点名字叫 FeedbackPanel，就把下面这句改成：$FeedbackPanel/CanvasLayer/FeedbackPanel

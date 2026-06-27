@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bro5q4m3qadm0"
+<<<<<<< HEAD
 path="res://.godot/imported/Dragon Breath-Fire Breath.png-ce13a5bd65455b901e62234147b96cab.ctex"
+=======
+path="res://.godot/imported/Dragon Breath-Fire Breath.png-62b7d93394f1416f98d2a16f6c4bb6d5.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://Sprite/Dragon Breath-Fire Breath.png"
 dest_files=["res://.godot/imported/Dragon Breath-Fire Breath.png-ce13a5bd65455b901e62234147b96cab.ctex"]
+=======
+source_file="res://Boss-system/Sprite/Dragon Breath-Fire Breath.png"
+dest_files=["res://.godot/imported/Dragon Breath-Fire Breath.png-62b7d93394f1416f98d2a16f6c4bb6d5.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

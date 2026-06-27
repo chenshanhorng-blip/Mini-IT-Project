@@ -3,12 +3,21 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://456e1ucy7k8w"
+<<<<<<< HEAD
 path="res://.godot/imported/coin.wav-3bfc0ad5d72f96b2beb25318893e930c.sample"
 
 [deps]
 
 source_file="res://audio/coin.wav"
 dest_files=["res://.godot/imported/coin.wav-3bfc0ad5d72f96b2beb25318893e930c.sample"]
+=======
+path="res://.godot/imported/coin.wav-215fb4e34abace6bc85d4a791195bc35.sample"
+
+[deps]
+
+source_file="res://Boss-system/audio/coin.wav"
+dest_files=["res://.godot/imported/coin.wav-215fb4e34abace6bc85d4a791195bc35.sample"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

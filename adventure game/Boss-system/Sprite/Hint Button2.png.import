@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqywh4cokmpfs"
-path="res://.godot/imported/Hint Button2.png-9f5c7ec667d420d02097fafbf7973028.ctex"
+path="res://.godot/imported/Hint Button2.png-d110e6f7d03e6414316e998ecd1a3793.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Hint Button2.png"
-dest_files=["res://.godot/imported/Hint Button2.png-9f5c7ec667d420d02097fafbf7973028.ctex"]
+source_file="res://Boss-system/Sprite/Hint Button2.png"
+dest_files=["res://.godot/imported/Hint Button2.png-d110e6f7d03e6414316e998ecd1a3793.ctex"]
 
 [params]
 

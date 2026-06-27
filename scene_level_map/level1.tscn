@@ -16,7 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="14_i3lfr"]
 [ext_resource type="PackedScene" uid="uid://da3cyfworqwy2" path="res://Boss-system/Sprite/mushroom.tscn" id="15_38ncx"]
 [ext_resource type="PackedScene" uid="uid://cdjdhgxtihh1i" path="res://Boss-system/hint button.tscn" id="16_8a38d"]
+<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://dqwp1ubjns24w" path="res://audio/bgm level 1.ogg" id="17_rnm0a"]
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gtrhc"]
 texture = ExtResource("2_hq3ek")
@@ -547,10 +550,13 @@ position = Vector2(134, 472)
 [node name="HintButton" parent="." unique_id=1468774410 instance=ExtResource("16_8a38d")]
 position = Vector2(355, 94)
 
+<<<<<<< HEAD
 [node name="bgmlevel1" type="AudioStreamPlayer" parent="." unique_id=1639111680]
 stream = ExtResource("17_rnm0a")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,7 +1,10 @@
 extends Control
 
+<<<<<<< HEAD
 @onready var button_click_sound = $ButtonClickSound
 
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 func _ready():
 	# Use is_connected check to prevent double-connection on scene reload
 	if not $Menu/NewGame.pressed.is_connected(_on_new_game):
@@ -21,18 +24,25 @@ func _ready():
 		$Menu/Continue.disabled = true
 
 func _on_new_game():
+<<<<<<< HEAD
 	button_click_sound.play()
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 	Global.slot_mode = "save"
 	print("New Game — slot mode set to: ", Global.slot_mode)
 	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_continue():
+<<<<<<< HEAD
 	button_click_sound.play()
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 	Global.slot_mode = "load"
 	print("Continue — slot mode set to: ", Global.slot_mode)
 	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_settings():
+<<<<<<< HEAD
 	button_click_sound.play()
 	Transition.fade_to_scene("res://scene/UI/setting.tscn")
 
@@ -42,6 +52,14 @@ func _on_quit():
 
 func _on_credit_pressed():
 	button_click_sound.play()
+=======
+	Transition.fade_to_scene("res://scene/UI/setting.tscn")
+
+func _on_quit():
+	get_tree().quit()
+
+func _on_credit_pressed():
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 	Transition.fade_to_scene("res://scene/UI/credit.tscn")
 
 

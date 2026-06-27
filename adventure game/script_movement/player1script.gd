@@ -161,10 +161,11 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if is_falling:
-		velocity.x = 0
-		velocity.y += 80
-		move_and_slide()
-		play_level_animation("fall")
+		if not is_on_floor() and velocity.y > 0:
+			velocity.x = 0
+			velocity.y += 80
+			move_and_slide()
+			play_level_animation("fall")
 
 		if position.y > 650:
 			die()

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bira4s6xd8jg8"
-path="res://.godot/imported/Triumphal_loop.mp3-9251a3ea9c720f4872b87b98d134f6ed.mp3str"
+path="res://.godot/imported/Triumphal_loop.mp3-67180f0324c580e40fc890a4688ab1dd.mp3str"
 
 [deps]
 
-source_file="res://audio/Triumphal/mp3/Triumphal_loop.mp3"
-dest_files=["res://.godot/imported/Triumphal_loop.mp3-9251a3ea9c720f4872b87b98d134f6ed.mp3str"]
+source_file="res://Boss-system/audio/Triumphal/mp3/Triumphal_loop.mp3"
+dest_files=["res://.godot/imported/Triumphal_loop.mp3-67180f0324c580e40fc890a4688ab1dd.mp3str"]
 
 [params]
 

@@ -1,7 +1,10 @@
 extends Area2D
  
+<<<<<<< HEAD
 @onready var gem = $gem
 
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 signal collected
  
 func _ready():
@@ -12,6 +15,9 @@ func _on_body_entered(body):
 	# Use group check instead of exact name — works for all levels,
 	# Player 1, Player 2, and even if node gets renamed
 	if body.is_in_group("player") or body.is_in_group("Player"):
+<<<<<<< HEAD
 		gem.play()
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 		collected.emit()
 		queue_free()

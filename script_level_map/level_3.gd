@@ -5,7 +5,10 @@ var total_points = 3
 
 @onready var exit_button = $Button
 @onready var pause_menu = $PauseMenu
+<<<<<<< HEAD
 @onready var bgm_level_3 = $bgmlevel3
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 func _ready() -> void:
 	# 🛠️ 记得根据你具体关卡的名字修改这里（比如 "level3", "level4" 等）

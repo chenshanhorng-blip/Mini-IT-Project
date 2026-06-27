@@ -13,7 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="11_slbfl"]
 [ext_resource type="PackedScene" uid="uid://be7haj0ptmr3k" path="res://Boss-system/Sprite/demo.tscn" id="12_i1r8n"]
 [ext_resource type="PackedScene" uid="uid://cdjdhgxtihh1i" path="res://Boss-system/hint button.tscn" id="13_bi4b3"]
+<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://dmvi64elsfmqm" path="res://audio/Gates_Of_Hell_Loop.wav" id="14_6lqgh"]
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [node name="Node2D" type="Node2D" unique_id=956523320]
 script = ExtResource("1_1xp6a")
@@ -145,9 +148,12 @@ position = Vector2(188, 351)
 
 [node name="HintButton" parent="." unique_id=1468774410 instance=ExtResource("13_bi4b3")]
 
+<<<<<<< HEAD
 [node name="bgmlevel4" type="AudioStreamPlayer" parent="." unique_id=1020499762]
 stream = ExtResource("14_6lqgh")
 volume_db = -5.0
 autoplay = true
 
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -3,12 +3,21 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c8ea2yop824qj"
+<<<<<<< HEAD
 path="res://.godot/imported/die_monster.wav-859c78e430b952654fedbc31cb5f55cc.sample"
 
 [deps]
 
 source_file="res://audio/die_monster.wav"
 dest_files=["res://.godot/imported/die_monster.wav-859c78e430b952654fedbc31cb5f55cc.sample"]
+=======
+path="res://.godot/imported/die_monster.wav-a87e2a19d489b73b4a80d2ac7d4f8a8d.sample"
+
+[deps]
+
+source_file="res://Boss-system/audio/die_monster.wav"
+dest_files=["res://.godot/imported/die_monster.wav-a87e2a19d489b73b4a80d2ac7d4f8a8d.sample"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

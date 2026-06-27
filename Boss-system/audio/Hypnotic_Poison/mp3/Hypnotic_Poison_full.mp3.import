@@ -3,12 +3,21 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://c7bq0xxkrpk76"
+<<<<<<< HEAD
 path="res://.godot/imported/Hypnotic_Poison_full.mp3-d5ccb0c0c4a73d2a6d126a5ad2afdbe6.mp3str"
 
 [deps]
 
 source_file="res://audio/Hypnotic_Poison/mp3/Hypnotic_Poison_full.mp3"
 dest_files=["res://.godot/imported/Hypnotic_Poison_full.mp3-d5ccb0c0c4a73d2a6d126a5ad2afdbe6.mp3str"]
+=======
+path="res://.godot/imported/Hypnotic_Poison_full.mp3-f40372d32e688c831ba5086f1db37fd7.mp3str"
+
+[deps]
+
+source_file="res://Boss-system/audio/Hypnotic_Poison/mp3/Hypnotic_Poison_full.mp3"
+dest_files=["res://.godot/imported/Hypnotic_Poison_full.mp3-f40372d32e688c831ba5086f1db37fd7.mp3str"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

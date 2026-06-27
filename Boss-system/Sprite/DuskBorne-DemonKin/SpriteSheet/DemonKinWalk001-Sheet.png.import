@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgrnmn5gcywdm"
+<<<<<<< HEAD
 path="res://.godot/imported/DemonKinWalk001-Sheet.png-41d5e42dc4bdc98d37653accc0b76e96.ctex"
+=======
+path="res://.godot/imported/DemonKinWalk001-Sheet.png-a08cfabd350fe796702e2277f127cd8f.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinWalk001-Sheet.png"
 dest_files=["res://.godot/imported/DemonKinWalk001-Sheet.png-41d5e42dc4bdc98d37653accc0b76e96.ctex"]
+=======
+source_file="res://Boss-system/Sprite/DuskBorne-DemonKin/SpriteSheet/DemonKinWalk001-Sheet.png"
+dest_files=["res://.godot/imported/DemonKinWalk001-Sheet.png-a08cfabd350fe796702e2277f127cd8f.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

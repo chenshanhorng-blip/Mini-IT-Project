@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dd1j81g65j3cl"
-path="res://.godot/imported/hurt_knight.wav-4c182e2105da3083b252501fbc14a793.sample"
+path="res://.godot/imported/hurt_knight.wav-82b9b2a460eedc32c9b4c50db4d0b9ae.sample"
 
 [deps]
 
-source_file="res://audio/hurt_knight.wav"
-dest_files=["res://.godot/imported/hurt_knight.wav-4c182e2105da3083b252501fbc14a793.sample"]
+source_file="res://Boss-system/audio/hurt_knight.wav"
+dest_files=["res://.godot/imported/hurt_knight.wav-82b9b2a460eedc32c9b4c50db4d0b9ae.sample"]
 
 [params]
 

@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://divccu7412eow"
+<<<<<<< HEAD
 path="res://.godot/imported/FLYING.png-09de01b2c7288bcf6e42b2961014db62.ctex"
+=======
+path="res://.godot/imported/FLYING.png-1e71f29be975fd5aebd2d23c5242efd5.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://Sprite/FLYING.png"
 dest_files=["res://.godot/imported/FLYING.png-09de01b2c7288bcf6e42b2961014db62.ctex"]
+=======
+source_file="res://Boss-system/Sprite/FLYING.png"
+dest_files=["res://.godot/imported/FLYING.png-1e71f29be975fd5aebd2d23c5242efd5.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

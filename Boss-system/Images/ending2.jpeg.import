@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://76q6787ajkvg"
+<<<<<<< HEAD
 path="res://.godot/imported/ending2.jpeg-bb2d0d7796cbebf58d165d28edc3c5d5.ctex"
+=======
+path="res://.godot/imported/ending2.jpeg-8ba2772757b6ac599d3ac47f0ca878d5.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://Images/ending2.jpeg"
 dest_files=["res://.godot/imported/ending2.jpeg-bb2d0d7796cbebf58d165d28edc3c5d5.ctex"]
+=======
+source_file="res://Boss-system/Images/ending2.jpeg"
+dest_files=["res://.godot/imported/ending2.jpeg-8ba2772757b6ac599d3ac47f0ca878d5.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

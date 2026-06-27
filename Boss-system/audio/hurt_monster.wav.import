@@ -3,12 +3,21 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dvx3d3b4r4vnr"
+<<<<<<< HEAD
 path="res://.godot/imported/hurt_monster.wav-31a17feacaa710f0834b85ccf3b3d198.sample"
 
 [deps]
 
 source_file="res://audio/hurt_monster.wav"
 dest_files=["res://.godot/imported/hurt_monster.wav-31a17feacaa710f0834b85ccf3b3d198.sample"]
+=======
+path="res://.godot/imported/hurt_monster.wav-49a0627ef5859d5648d0d5bf1ecef198.sample"
+
+[deps]
+
+source_file="res://Boss-system/audio/hurt_monster.wav"
+dest_files=["res://.godot/imported/hurt_monster.wav-49a0627ef5859d5648d0d5bf1ecef198.sample"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

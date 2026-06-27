@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://clhy42bli8pxe"
-path="res://.godot/imported/Triumphal_full.ogg-b3433e1b560af40205280a88025b415b.oggvorbisstr"
+path="res://.godot/imported/Triumphal_full.ogg-11fd6d79c535b87864fa71ef6d94b2e1.oggvorbisstr"
 
 [deps]
 
-source_file="res://audio/Triumphal/ogg/Triumphal_full.ogg"
-dest_files=["res://.godot/imported/Triumphal_full.ogg-b3433e1b560af40205280a88025b415b.oggvorbisstr"]
+source_file="res://Boss-system/audio/Triumphal/ogg/Triumphal_full.ogg"
+dest_files=["res://.godot/imported/Triumphal_full.ogg-11fd6d79c535b87864fa71ef6d94b2e1.oggvorbisstr"]
 
 [params]
 

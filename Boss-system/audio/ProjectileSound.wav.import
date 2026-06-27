@@ -3,12 +3,21 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cfgok5eb07wf1"
+<<<<<<< HEAD
 path="res://.godot/imported/ProjectileSound.wav-40a75fcc336d7df422b63ed4beb5aa8b.sample"
 
 [deps]
 
 source_file="res://audio/ProjectileSound.wav"
 dest_files=["res://.godot/imported/ProjectileSound.wav-40a75fcc336d7df422b63ed4beb5aa8b.sample"]
+=======
+path="res://.godot/imported/ProjectileSound.wav-18e500c33ff8949f29e277b5286200df.sample"
+
+[deps]
+
+source_file="res://Boss-system/audio/ProjectileSound.wav"
+dest_files=["res://.godot/imported/ProjectileSound.wav-18e500c33ff8949f29e277b5286200df.sample"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 

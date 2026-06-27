@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dng84ek41qk00"
-path="res://.godot/imported/Bubble heavy 2.wav-d94ef59124e76163e6fdc3a1de71f091.sample"
+path="res://.godot/imported/Bubble heavy 2.wav-ceb46f368e52fa9c08c35d165fa49022.sample"
 
 [deps]
 
-source_file="res://audio/Bubble heavy 2.wav"
-dest_files=["res://.godot/imported/Bubble heavy 2.wav-d94ef59124e76163e6fdc3a1de71f091.sample"]
+source_file="res://Boss-system/audio/Bubble heavy 2.wav"
+dest_files=["res://.godot/imported/Bubble heavy 2.wav-ceb46f368e52fa9c08c35d165fa49022.sample"]
 
 [params]
 

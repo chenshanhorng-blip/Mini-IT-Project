@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crel6eyx8bp4p"
+<<<<<<< HEAD
 path="res://.godot/imported/Tail Attack Projectile.png-266a884565a85c9bf355f39c2d0538a5.ctex"
+=======
+path="res://.godot/imported/Tail Attack Projectile.png-993c5ab9297f64174ac2841efc4ea68c.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://Sprite/Tail Attack Projectile.png"
 dest_files=["res://.godot/imported/Tail Attack Projectile.png-266a884565a85c9bf355f39c2d0538a5.ctex"]
+=======
+source_file="res://Boss-system/Sprite/Tail Attack Projectile.png"
+dest_files=["res://.godot/imported/Tail Attack Projectile.png-993c5ab9297f64174ac2841efc4ea68c.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [params]
 
