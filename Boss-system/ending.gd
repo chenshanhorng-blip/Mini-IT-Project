@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var panel5 = $panel5
 @onready var panel6 = $panel6
 @onready var label = $Label
+@onready var bgm_ending = $bgmending
 
 var panels = []
 var ending_finished = false
