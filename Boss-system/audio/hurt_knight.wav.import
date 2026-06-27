@@ -4,6 +4,7 @@ importer="wav"
 type="AudioStreamWAV"
 uid="uid://dd1j81g65j3cl"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/hurt_knight.wav-4c182e2105da3083b252501fbc14a793.sample"
 
 [deps]
@@ -18,6 +19,14 @@ path="res://.godot/imported/hurt_knight.wav-82b9b2a460eedc32c9b4c50db4d0b9ae.sam
 source_file="res://Boss-system/audio/hurt_knight.wav"
 dest_files=["res://.godot/imported/hurt_knight.wav-82b9b2a460eedc32c9b4c50db4d0b9ae.sample"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/hurt_knight.wav-4c182e2105da3083b252501fbc14a793.sample"
+
+[deps]
+
+source_file="res://audio/hurt_knight.wav"
+dest_files=["res://.godot/imported/hurt_knight.wav-4c182e2105da3083b252501fbc14a793.sample"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

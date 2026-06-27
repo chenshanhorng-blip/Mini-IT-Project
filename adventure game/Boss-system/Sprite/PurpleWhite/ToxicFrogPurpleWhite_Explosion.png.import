@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6fruwqxxam4p"
+<<<<<<< HEAD
 path="res://.godot/imported/ToxicFrogPurpleWhite_Explosion.png-148268603f20040724c917a4d243b3f7.ctex"
+=======
+path="res://.godot/imported/ToxicFrogPurpleWhite_Explosion.png-a5fe174b047e51bc2115fcb5618c4ecb.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://Boss-system/Sprite/PurpleWhite/ToxicFrogPurpleWhite_Explosion.png"
 dest_files=["res://.godot/imported/ToxicFrogPurpleWhite_Explosion.png-148268603f20040724c917a4d243b3f7.ctex"]
+=======
+source_file="res://Sprite/PurpleWhite/ToxicFrogPurpleWhite_Explosion.png"
+dest_files=["res://.godot/imported/ToxicFrogPurpleWhite_Explosion.png-a5fe174b047e51bc2115fcb5618c4ecb.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

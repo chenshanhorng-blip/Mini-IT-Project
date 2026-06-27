@@ -4,6 +4,7 @@ importer="wav"
 type="AudioStreamWAV"
 uid="uid://clkkahk3h4b2q"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/FireBreathSound.wav-bb69dea917d078bee61214f0a7f07411.sample"
 
 [deps]
@@ -18,6 +19,14 @@ path="res://.godot/imported/FireBreathSound.wav-f070a77cbf81057072587b8b66a8591d
 source_file="res://Boss-system/audio/FireBreathSound.wav"
 dest_files=["res://.godot/imported/FireBreathSound.wav-f070a77cbf81057072587b8b66a8591d.sample"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/FireBreathSound.wav-bb69dea917d078bee61214f0a7f07411.sample"
+
+[deps]
+
+source_file="res://audio/FireBreathSound.wav"
+dest_files=["res://.godot/imported/FireBreathSound.wav-bb69dea917d078bee61214f0a7f07411.sample"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

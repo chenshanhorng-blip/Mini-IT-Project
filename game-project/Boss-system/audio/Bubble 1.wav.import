@@ -3,12 +3,21 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c7x5mk5tthu2y"
+<<<<<<< HEAD
 path="res://.godot/imported/Bubble 1.wav-9cfaca5b46cec221c21709537b819624.sample"
 
 [deps]
 
 source_file="res://Boss-system/audio/Bubble 1.wav"
 dest_files=["res://.godot/imported/Bubble 1.wav-9cfaca5b46cec221c21709537b819624.sample"]
+=======
+path="res://.godot/imported/Bubble 1.wav-93ed90861a5a78083de8fbccb2885251.sample"
+
+[deps]
+
+source_file="res://audio/Bubble 1.wav"
+dest_files=["res://.godot/imported/Bubble 1.wav-93ed90861a5a78083de8fbccb2885251.sample"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

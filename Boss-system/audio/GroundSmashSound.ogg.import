@@ -4,6 +4,7 @@ importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://bvem4c2v1oxdw"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/GroundSmashSound.ogg-7162d9e6ed17467e3813b5494319f180.oggvorbisstr"
 
 [deps]
@@ -18,6 +19,14 @@ path="res://.godot/imported/GroundSmashSound.ogg-5d947e6c3357f515e1db894943ea9bb
 source_file="res://Boss-system/audio/GroundSmashSound.ogg"
 dest_files=["res://.godot/imported/GroundSmashSound.ogg-5d947e6c3357f515e1db894943ea9bb2.oggvorbisstr"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/GroundSmashSound.ogg-7162d9e6ed17467e3813b5494319f180.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/GroundSmashSound.ogg"
+dest_files=["res://.godot/imported/GroundSmashSound.ogg-7162d9e6ed17467e3813b5494319f180.oggvorbisstr"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

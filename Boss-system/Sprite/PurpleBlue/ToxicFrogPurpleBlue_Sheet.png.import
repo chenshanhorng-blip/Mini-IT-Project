@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckjt8hnrrp2ae"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/ToxicFrogPurpleBlue_Sheet.png-3d43a425a503e4ced0c1a0103ee5be1a.ctex"
 =======
 path="res://.godot/imported/ToxicFrogPurpleBlue_Sheet.png-7fc98358d1febad6e1f81bbb9ddcb83d.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ToxicFrogPurpleBlue_Sheet.png-3d43a425a503e4ced0c1a0103ee5be1a.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/PurpleBlue/ToxicFrogPurpleBlue_Sheet.png"
 dest_files=["res://.godot/imported/ToxicFrogPurpleBlue_Sheet.png-3d43a425a503e4ced0c1a0103ee5be1a.ctex"]
 =======
 source_file="res://Boss-system/Sprite/PurpleBlue/ToxicFrogPurpleBlue_Sheet.png"
 dest_files=["res://.godot/imported/ToxicFrogPurpleBlue_Sheet.png-7fc98358d1febad6e1f81bbb9ddcb83d.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/PurpleBlue/ToxicFrogPurpleBlue_Sheet.png"
+dest_files=["res://.godot/imported/ToxicFrogPurpleBlue_Sheet.png-3d43a425a503e4ced0c1a0103ee5be1a.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

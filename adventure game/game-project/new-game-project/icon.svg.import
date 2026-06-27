@@ -2,16 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD:Boss-system/Images/ending3.jpeg.import
+uid="uid://bx043ohe3q62m"
+path="res://.godot/imported/ending3.jpeg-6024ad0f40568b435581b7b5669eba78.ctex"
+=======
 uid="uid://4q335xxs2p"
 path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+>>>>>>> 0e025147f111ddc3731029846524c7cedaafb87c:adventure game/game-project/new-game-project/icon.svg.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD:Boss-system/Images/ending3.jpeg.import
+source_file="res://Images/ending3.jpeg"
+dest_files=["res://.godot/imported/ending3.jpeg-6024ad0f40568b435581b7b5669eba78.ctex"]
+=======
 source_file="res://icon.svg"
 dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+>>>>>>> 0e025147f111ddc3731029846524c7cedaafb87c:adventure game/game-project/new-game-project/icon.svg.import
 
 [params]
 

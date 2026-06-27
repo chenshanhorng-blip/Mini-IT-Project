@@ -4,6 +4,7 @@ importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://by0y53i7tqffl"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/Hypnotic_Poison_full.ogg-90ccfd73a533d22bae4dc6eb3b088482.oggvorbisstr"
 
 [deps]
@@ -18,6 +19,14 @@ path="res://.godot/imported/Hypnotic_Poison_full.ogg-7425c0021235e08f2b59e6ff8e8
 source_file="res://Boss-system/audio/Hypnotic_Poison/ogg/Hypnotic_Poison_full.ogg"
 dest_files=["res://.godot/imported/Hypnotic_Poison_full.ogg-7425c0021235e08f2b59e6ff8e830662.oggvorbisstr"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/Hypnotic_Poison_full.ogg-90ccfd73a533d22bae4dc6eb3b088482.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Hypnotic_Poison/ogg/Hypnotic_Poison_full.ogg"
+dest_files=["res://.godot/imported/Hypnotic_Poison_full.ogg-90ccfd73a533d22bae4dc6eb3b088482.oggvorbisstr"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

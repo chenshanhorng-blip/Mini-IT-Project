@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://6h3y5ctcq7v3"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/Mushroom-Idle.png-4babc8a10392be5615695ef1b56b711a.ctex"
 =======
 path="res://.godot/imported/Mushroom-Idle.png-c2235cda163b84599fd05cb2a7cd4090.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/Mushroom-Idle.png-4babc8a10392be5615695ef1b56b711a.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/Mushroom with VFX/Mushroom-Idle.png"
 dest_files=["res://.godot/imported/Mushroom-Idle.png-4babc8a10392be5615695ef1b56b711a.ctex"]
 =======
 source_file="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Idle.png"
 dest_files=["res://.godot/imported/Mushroom-Idle.png-c2235cda163b84599fd05cb2a7cd4090.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/Mushroom with VFX/Mushroom-Idle.png"
+dest_files=["res://.godot/imported/Mushroom-Idle.png-4babc8a10392be5615695ef1b56b711a.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

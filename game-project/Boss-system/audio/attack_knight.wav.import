@@ -3,12 +3,21 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bdr7rkp7nuet5"
+<<<<<<< HEAD
 path="res://.godot/imported/attack_knight.wav-2d021d92cccc36383bc39b8a4d3cf259.sample"
 
 [deps]
 
 source_file="res://Boss-system/audio/attack_knight.wav"
 dest_files=["res://.godot/imported/attack_knight.wav-2d021d92cccc36383bc39b8a4d3cf259.sample"]
+=======
+path="res://.godot/imported/attack_knight.wav-d6bbd78f1b52705201a88c158d73f62e.sample"
+
+[deps]
+
+source_file="res://audio/attack_knight.wav"
+dest_files=["res://.godot/imported/attack_knight.wav-d6bbd78f1b52705201a88c158d73f62e.sample"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://co7ty3su34606"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/IDLE.png-7a8b94f84a8f8a6dca8ff666db73b3e0.ctex"
 =======
 path="res://.godot/imported/IDLE.png-8a40d9383bfe46cb35325dfb597b2db5.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/IDLE.png-7a8b94f84a8f8a6dca8ff666db73b3e0.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/with_outline/IDLE.png"
 dest_files=["res://.godot/imported/IDLE.png-7a8b94f84a8f8a6dca8ff666db73b3e0.ctex"]
 =======
 source_file="res://Boss-system/Sprite/with_outline/IDLE.png"
 dest_files=["res://.godot/imported/IDLE.png-8a40d9383bfe46cb35325dfb597b2db5.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/with_outline/IDLE.png"
+dest_files=["res://.godot/imported/IDLE.png-7a8b94f84a8f8a6dca8ff666db73b3e0.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

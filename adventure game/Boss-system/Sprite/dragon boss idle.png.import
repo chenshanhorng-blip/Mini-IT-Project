@@ -3,15 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwftwr2sdycne"
+<<<<<<< HEAD
 path="res://.godot/imported/dragon boss idle.png-c42a9ca1b6a6054f57f44171c9b646d4.ctex"
+=======
+path="res://.godot/imported/dragon boss idle.png-1d401514148b8fea341735f04ebcd3e0.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://Boss-system/Sprite/dragon boss idle.png"
 dest_files=["res://.godot/imported/dragon boss idle.png-c42a9ca1b6a6054f57f44171c9b646d4.ctex"]
+=======
+source_file="res://Sprite/dragon boss idle.png"
+dest_files=["res://.godot/imported/dragon boss idle.png-1d401514148b8fea341735f04ebcd3e0.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

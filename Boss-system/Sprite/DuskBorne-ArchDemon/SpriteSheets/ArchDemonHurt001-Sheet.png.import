@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6gjcywqqe0va"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/ArchDemonHurt001-Sheet.png-7f3e8062850b3e360f039df15e30c480.ctex"
 =======
 path="res://.godot/imported/ArchDemonHurt001-Sheet.png-261895f7d4148f1ec3888a38cd475108.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ArchDemonHurt001-Sheet.png-7f3e8062850b3e360f039df15e30c480.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonHurt001-Sheet.png"
 dest_files=["res://.godot/imported/ArchDemonHurt001-Sheet.png-7f3e8062850b3e360f039df15e30c480.ctex"]
 =======
 source_file="res://Boss-system/Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonHurt001-Sheet.png"
 dest_files=["res://.godot/imported/ArchDemonHurt001-Sheet.png-261895f7d4148f1ec3888a38cd475108.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonHurt001-Sheet.png"
+dest_files=["res://.godot/imported/ArchDemonHurt001-Sheet.png-7f3e8062850b3e360f039df15e30c480.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

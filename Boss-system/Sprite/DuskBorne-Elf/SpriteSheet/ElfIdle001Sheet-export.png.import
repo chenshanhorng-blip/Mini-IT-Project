@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://i0oxmv1f0uvn"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/ElfIdle001Sheet-export.png-37f5c5061b1aa92f54808ce3b2ea8910.ctex"
 =======
 path="res://.godot/imported/ElfIdle001Sheet-export.png-574dcfe84f0294c4a1abca5230ed0ffa.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ElfIdle001Sheet-export.png-37f5c5061b1aa92f54808ce3b2ea8910.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/DuskBorne-Elf/SpriteSheet/ElfIdle001Sheet-export.png"
 dest_files=["res://.godot/imported/ElfIdle001Sheet-export.png-37f5c5061b1aa92f54808ce3b2ea8910.ctex"]
 =======
 source_file="res://Boss-system/Sprite/DuskBorne-Elf/SpriteSheet/ElfIdle001Sheet-export.png"
 dest_files=["res://.godot/imported/ElfIdle001Sheet-export.png-574dcfe84f0294c4a1abca5230ed0ffa.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/DuskBorne-Elf/SpriteSheet/ElfIdle001Sheet-export.png"
+dest_files=["res://.godot/imported/ElfIdle001Sheet-export.png-37f5c5061b1aa92f54808ce3b2ea8910.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

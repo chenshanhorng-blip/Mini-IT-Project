@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2i73hko8ogxb"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/Mushroom-Hit.png-24db3eefcd802c662fd2937ff73119c0.ctex"
 =======
 path="res://.godot/imported/Mushroom-Hit.png-b4ebcc014117b2a9bc39d2067cc4d719.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/Mushroom-Hit.png-24db3eefcd802c662fd2937ff73119c0.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/Mushroom with VFX/Mushroom-Hit.png"
 dest_files=["res://.godot/imported/Mushroom-Hit.png-24db3eefcd802c662fd2937ff73119c0.ctex"]
 =======
 source_file="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Hit.png"
 dest_files=["res://.godot/imported/Mushroom-Hit.png-b4ebcc014117b2a9bc39d2067cc4d719.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/Mushroom with VFX/Mushroom-Hit.png"
+dest_files=["res://.godot/imported/Mushroom-Hit.png-24db3eefcd802c662fd2937ff73119c0.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

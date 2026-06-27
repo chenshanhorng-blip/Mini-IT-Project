@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmgpw1ccku2wi"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/HURT.png-96ec1577693be8335f788119a40dcd47.ctex"
 =======
 path="res://.godot/imported/HURT.png-1d0fb054b604ab2944a68ad805e8a77a.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/HURT.png-96ec1577693be8335f788119a40dcd47.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/GreenBlue/with_outline/HURT.png"
 dest_files=["res://.godot/imported/HURT.png-96ec1577693be8335f788119a40dcd47.ctex"]
 =======
 source_file="res://Boss-system/Sprite/GreenBlue/with_outline/HURT.png"
 dest_files=["res://.godot/imported/HURT.png-1d0fb054b604ab2944a68ad805e8a77a.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/GreenBlue/with_outline/HURT.png"
+dest_files=["res://.godot/imported/HURT.png-96ec1577693be8335f788119a40dcd47.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

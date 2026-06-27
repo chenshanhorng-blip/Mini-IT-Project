@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c22fb1xwvq1ut"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/Dragon Boss-Hurt.png-63e372e5fbeea64eb2b5b7de88b6b2c1.ctex"
 =======
 path="res://.godot/imported/Dragon Boss-Hurt.png-584afc01005da559e68eb2556d42cca6.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/Dragon Boss-Hurt.png-63e372e5fbeea64eb2b5b7de88b6b2c1.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/Dragon Boss-Hurt.png"
 dest_files=["res://.godot/imported/Dragon Boss-Hurt.png-63e372e5fbeea64eb2b5b7de88b6b2c1.ctex"]
 =======
 source_file="res://Boss-system/Sprite/Dragon Boss-Hurt.png"
 dest_files=["res://.godot/imported/Dragon Boss-Hurt.png-584afc01005da559e68eb2556d42cca6.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/Dragon Boss-Hurt.png"
+dest_files=["res://.godot/imported/Dragon Boss-Hurt.png-63e372e5fbeea64eb2b5b7de88b6b2c1.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

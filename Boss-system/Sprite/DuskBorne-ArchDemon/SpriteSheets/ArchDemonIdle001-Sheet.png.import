@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpy5rajx7s3px"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/ArchDemonIdle001-Sheet.png-3f00972234ccf00966c05896adf44b0e.ctex"
 =======
 path="res://.godot/imported/ArchDemonIdle001-Sheet.png-7187bf377c39088206ff858697c08279.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ArchDemonIdle001-Sheet.png-3f00972234ccf00966c05896adf44b0e.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonIdle001-Sheet.png"
 dest_files=["res://.godot/imported/ArchDemonIdle001-Sheet.png-3f00972234ccf00966c05896adf44b0e.ctex"]
 =======
 source_file="res://Boss-system/Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonIdle001-Sheet.png"
 dest_files=["res://.godot/imported/ArchDemonIdle001-Sheet.png-7187bf377c39088206ff858697c08279.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonIdle001-Sheet.png"
+dest_files=["res://.godot/imported/ArchDemonIdle001-Sheet.png-3f00972234ccf00966c05896adf44b0e.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

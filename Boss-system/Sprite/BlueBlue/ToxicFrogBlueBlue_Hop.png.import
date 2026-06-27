@@ -4,10 +4,14 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbaqy7tbjygbf"
 <<<<<<< HEAD
+<<<<<<< HEAD
 path="res://.godot/imported/ToxicFrogBlueBlue_Hop.png-3402bab2f6a566b385f56f337bea5248.ctex"
 =======
 path="res://.godot/imported/ToxicFrogBlueBlue_Hop.png-be1022c8ee023484e1a97691cb2df05a.ctex"
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ToxicFrogBlueBlue_Hop.png-3402bab2f6a566b385f56f337bea5248.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
@@ -15,12 +19,17 @@ metadata={
 [deps]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source_file="res://Sprite/BlueBlue/ToxicFrogBlueBlue_Hop.png"
 dest_files=["res://.godot/imported/ToxicFrogBlueBlue_Hop.png-3402bab2f6a566b385f56f337bea5248.ctex"]
 =======
 source_file="res://Boss-system/Sprite/BlueBlue/ToxicFrogBlueBlue_Hop.png"
 dest_files=["res://.godot/imported/ToxicFrogBlueBlue_Hop.png-be1022c8ee023484e1a97691cb2df05a.ctex"]
 >>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/BlueBlue/ToxicFrogBlueBlue_Hop.png"
+dest_files=["res://.godot/imported/ToxicFrogBlueBlue_Hop.png-3402bab2f6a566b385f56f337bea5248.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 
