@@ -4,14 +4,14 @@ var speed = 500.0
 var direction = Vector2.LEFT
 
 @onready var sprite = $AnimatedSprite2D
-
+@onready var fireball = $Fireball
 
 func _ready() -> void:
-	$Fireball.play()
 	
 	body_entered.connect(_on_body_entered)
 
 	if sprite:
+		$Fireball.play()
 		sprite.play("Fireball")
 
 

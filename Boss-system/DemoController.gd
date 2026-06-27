@@ -24,6 +24,8 @@ var is_dead: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var hp_label:Label = $HPLabel
+
+
 ## ------------------------------
 ## 开始
 ## ------------------------------

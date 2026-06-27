@@ -5,12 +5,14 @@ var speed = 450.0
 var direction = Vector2.RIGHT
 
 @onready var sprite = $AnimatedSprite2D
+@onready var fireball = $Fireball
 
 func _ready() -> void:
 	# 自动连接碰撞信号
 	body_entered.connect(_on_body_entered)
 	# 确保火球一出生就播放飞行的动画
 	if sprite:
+		fireball.play()
 		sprite.play("Fireball") 
 
 func _physics_process(delta):
