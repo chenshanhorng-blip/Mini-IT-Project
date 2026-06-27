@@ -7,7 +7,8 @@ var direction = Vector2.LEFT
 
 
 func _ready() -> void:
-
+	$Fireball.play()
+	
 	body_entered.connect(_on_body_entered)
 
 	if sprite:

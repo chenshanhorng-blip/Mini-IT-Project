@@ -1,14 +1,20 @@
 [gd_scene format=3 uid="uid://bamiouxouvm5c"]
 
-[ext_resource type="Script" uid="uid://dw7neh431n4hl" path="res://boss.battle.system.gd" id="1_uoiyk"]
-[ext_resource type="Texture2D" uid="uid://ceb20toohcqaf" path="res://Sprite/Dragon Boss-Attack.png" id="1_vneyq"]
-[ext_resource type="Texture2D" uid="uid://b3l3ye4d5brx5" path="res://Sprite/DragonBossDeath.png" id="2_gkirg"]
-[ext_resource type="Texture2D" uid="uid://bro5q4m3qadm0" path="res://Sprite/Dragon Breath-Fire Breath.png" id="2_uoiyk"]
-[ext_resource type="Texture2D" uid="uid://fyta8cww85fk" path="res://Sprite/Dragon Boss-Flying.png" id="3_d8vd7"]
-[ext_resource type="Texture2D" uid="uid://chqit65je2fvo" path="res://Sprite/Dragon Boss-ground smash.png" id="4_gkirg"]
-[ext_resource type="Texture2D" uid="uid://c22fb1xwvq1ut" path="res://Sprite/Dragon Boss-Hurt.png" id="5_q51qn"]
-[ext_resource type="Texture2D" uid="uid://cwftwr2sdycne" path="res://Sprite/dragon boss idle.png" id="6_mven0"]
-[ext_resource type="Texture2D" uid="uid://c64spr0tfo6ic" path="res://Sprite/Dragon Boss-Tail Attack.png" id="7_ig3ra"]
+[ext_resource type="Script" uid="uid://dw7neh431n4hl" path="res://Boss-system/boss.battle.system.gd" id="1_uoiyk"]
+[ext_resource type="Texture2D" uid="uid://ceb20toohcqaf" path="res://Boss-system/Sprite/Dragon Boss-Attack.png" id="1_vneyq"]
+[ext_resource type="Texture2D" uid="uid://b3l3ye4d5brx5" path="res://Boss-system/Sprite/DragonBossDeath.png" id="2_gkirg"]
+[ext_resource type="Texture2D" uid="uid://bro5q4m3qadm0" path="res://Boss-system/Sprite/Dragon Breath-Fire Breath.png" id="2_uoiyk"]
+[ext_resource type="Texture2D" uid="uid://fyta8cww85fk" path="res://Boss-system/Sprite/Dragon Boss-Flying.png" id="3_d8vd7"]
+[ext_resource type="Texture2D" uid="uid://chqit65je2fvo" path="res://Boss-system/Sprite/Dragon Boss-ground smash.png" id="4_gkirg"]
+[ext_resource type="Texture2D" uid="uid://c22fb1xwvq1ut" path="res://Boss-system/Sprite/Dragon Boss-Hurt.png" id="5_q51qn"]
+[ext_resource type="Texture2D" uid="uid://cwftwr2sdycne" path="res://Boss-system/Sprite/dragon boss idle.png" id="6_mven0"]
+[ext_resource type="Texture2D" uid="uid://c64spr0tfo6ic" path="res://Boss-system/Sprite/Dragon Boss-Tail Attack.png" id="7_ig3ra"]
+[ext_resource type="AudioStream" uid="uid://clkkahk3h4b2q" path="res://Boss-system/audio/FireBreathSound.wav" id="10_mven0"]
+[ext_resource type="AudioStream" uid="uid://ddhf82vboadrq" path="res://Boss-system/audio/FireballAttackSound.wav" id="10_q51qn"]
+[ext_resource type="AudioStream" uid="uid://bm2ya1v6n0tvv" path="res://Boss-system/audio/BossDeathSound.wav" id="12_mven0"]
+[ext_resource type="AudioStream" uid="uid://bofebmav3botq" path="res://Boss-system/audio/Firebreath.wav" id="13_ig3ra"]
+[ext_resource type="AudioStream" uid="uid://cfgok5eb07wf1" path="res://Boss-system/audio/ProjectileSound.wav" id="14_la2s4"]
+[ext_resource type="AudioStream" uid="uid://bvem4c2v1oxdw" path="res://Boss-system/audio/GroundSmashSound.ogg" id="15_h2sou"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q51qn"]
 atlas = ExtResource("2_gkirg")
@@ -320,10 +326,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3snoc"]
-size = Vector2(981, 766)
+size = Vector2(448, 456)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkirg"]
-size = Vector2(2204, 902)
+size = Vector2(1362, 560)
 
 [node name="Node2D" type="Node2D" unique_id=1298206806]
 
@@ -332,27 +338,27 @@ texture_filter = 1
 script = ExtResource("1_uoiyk")
 
 [node name="TailMarker" type="Marker2D" parent="Dragon Boss" unique_id=1656686606]
-position = Vector2(450, 518)
+position = Vector2(450.00003, 518)
 
 [node name="MouthMarker" type="Marker2D" parent="Dragon Boss" unique_id=1771406202]
 position = Vector2(445, 272)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dragon Boss" unique_id=1257191238]
 texture_filter = 1
-position = Vector2(662.00024, 361)
-scale = Vector2(8.54, 8.38)
+position = Vector2(615, 330.99997)
+scale = Vector2(6.1099997, 6.3900003)
 sprite_frames = SubResource("SpriteFrames_3hpsg")
-animation = &"TAIL ATTACK"
+animation = &"FIRE BREATH"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss" unique_id=2094926873]
-position = Vector2(663, 391)
+position = Vector2(648, 366)
 shape = SubResource("RectangleShape2D_3snoc")
 
 [node name="Detection Range" type="Area2D" parent="Dragon Boss" unique_id=1887787063]
 position = Vector2(197, 253)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss/Detection Range" unique_id=803939923]
-position = Vector2(476, 191)
+position = Vector2(436, 132)
 shape = SubResource("RectangleShape2D_gkirg")
 
 [node name="HPLabel" type="Label" parent="Dragon Boss" unique_id=1429748554]
@@ -362,6 +368,34 @@ offset_top = -6.0
 offset_right = 842.0
 offset_bottom = 120.0
 theme_override_font_sizes/font_size = 50
+
+[node name="FireBreathSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=482347339]
+stream = ExtResource("10_mven0")
+volume_db = 10.0
+
+[node name="FireballAttackSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=1884169719]
+stream = ExtResource("10_q51qn")
+volume_db = 5.0
+
+[node name="BossDeathSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=11085604]
+stream = ExtResource("12_mven0")
+volume_db = 10.0
+
+[node name="Firebreathsound2" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=807627935]
+stream = ExtResource("13_ig3ra")
+volume_db = 10.0
+
+[node name="ProjectileSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=2137433063]
+stream = ExtResource("14_la2s4")
+volume_db = 10.0
+
+[node name="DialoguePoint" type="Marker2D" parent="Dragon Boss" unique_id=1583514897]
+texture_filter = 1
+position = Vector2(178, 135)
+
+[node name="GroundSmashSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=1854202673]
+stream = ExtResource("15_h2sou")
+volume_db = 10.0
 
 [connection signal="body_entered" from="Dragon Boss/Detection Range" to="Dragon Boss" method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="Dragon Boss/Detection Range" to="Dragon Boss" method="_on_detection_range_body_exited"]

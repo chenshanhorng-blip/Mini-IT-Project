@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://cj6j8v62eptjs"]
 
-[ext_resource type="Script" uid="uid://c1cebcppph5ye" path="res://ending.gd" id="1_sy8ce"]
-[ext_resource type="Texture2D" uid="uid://76q6787ajkvg" path="res://Images/ending2.jpeg" id="2_uvbhr"]
-[ext_resource type="Texture2D" uid="uid://bx043ohe3q62m" path="res://Images/ending3.jpeg" id="3_m7rhh"]
-[ext_resource type="Texture2D" uid="uid://dkwc8c0hwn72k" path="res://Images/ending4.jpeg" id="4_e2dv3"]
-[ext_resource type="Texture2D" uid="uid://b5c756icthqsu" path="res://Images/ending5.jpeg" id="5_0t84q"]
-[ext_resource type="Texture2D" uid="uid://pjktageqb5r6" path="res://Images/ending6.jpeg" id="6_a2d7o"]
+[ext_resource type="Script" uid="uid://c1cebcppph5ye" path="res://Boss-system/ending.gd" id="1_sy8ce"]
+[ext_resource type="Texture2D" uid="uid://76q6787ajkvg" path="res://Boss-system/Images/ending2.jpeg" id="2_uvbhr"]
+[ext_resource type="Texture2D" uid="uid://bx043ohe3q62m" path="res://Boss-system/Images/ending3.jpeg" id="3_m7rhh"]
+[ext_resource type="Texture2D" uid="uid://dkwc8c0hwn72k" path="res://Boss-system/Images/ending4.jpeg" id="4_e2dv3"]
+[ext_resource type="Texture2D" uid="uid://b5c756icthqsu" path="res://Boss-system/Images/ending5.jpeg" id="5_0t84q"]
+[ext_resource type="Texture2D" uid="uid://pjktageqb5r6" path="res://Boss-system/Images/ending6.jpeg" id="6_a2d7o"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ujx65"]
-load_path = "res://.godot/imported/ending1.jpeg-aa13a440d600e28f5151eb653f753a44.ctex"
 
 [sub_resource type="Animation" id="Animation_3740v"]
 length = 0.001
@@ -157,4 +156,5 @@ offset_bottom = 322.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 60
 text = "PRESS ENTER BACK TO MENU"

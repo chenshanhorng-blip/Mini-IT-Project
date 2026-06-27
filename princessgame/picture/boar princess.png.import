@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://81od2w2ablqi"
-path="res://.godot/imported/boar princess.png-cdb4b69a74614801e1fd364c2f1e3471.ctex"
+path="res://.godot/imported/boar princess.png-737867b1782c1fb378537e50d8dd696e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://picture/boar princess.png"
-dest_files=["res://.godot/imported/boar princess.png-cdb4b69a74614801e1fd364c2f1e3471.ctex"]
+source_file="res://princessgame/picture/boar princess.png"
+dest_files=["res://.godot/imported/boar princess.png-737867b1782c1fb378537e50d8dd696e.ctex"]
 
 [params]
 

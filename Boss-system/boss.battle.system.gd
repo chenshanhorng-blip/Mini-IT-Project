@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 enum State {
+	DIALOGUE,
 	IDLE,
 	RAGE,
 	DEAD
@@ -10,18 +11,28 @@ enum State {
 
 var health := 1000
 var phase := 1
-var current_state = State.IDLE
+var current_state = State.DIALOGUE
 
-var fireball_scene = preload("res://dragon_fireball.tscn")
-var breath_scene = preload("res://projectile.tscn")
-var tail_scene = preload("res://projectile.tscn")
+var intro_done = false
+var phase2_dialogue = false
+var death_dialogue = false
+
+var fireball_scene = preload("res://Boss-system/dragon_fireball.tscn")
+var breath_scene = preload("res://Boss-system/projectile.tscn")
+var tail_scene = preload("res://Boss-system/projectile.tscn")
 
 @onready var sprite = $AnimatedSprite2D
 @onready var mouth = $MouthMarker
 @onready var tail_marker = $TailMarker
 @onready var camera = get_viewport().get_camera_2d()
 @onready var hp_label = $HPLabel
-
+@onready var fireball_attack_sound = $FireballAttackSound
+@onready var fire_breath_sound = $FireBreathSound
+@onready var boss_death_sound = $BossDeathSound
+@onready var fire_breath_sound_2 = $Firebreathsound2
+@onready var projectile_sound = $ProjectileSound
+@onready var ground_smash_sound = $GroundSmashSound
+@onready var dialogue_point = $DialoguePoint
 
 func _ready():
 
@@ -31,7 +42,28 @@ func _ready():
 
 	sprite.play("IDLE")
 
-	call_deferred("start_battle")
+	start_intro()
+
+func start_intro():
+
+	current_state = State.DIALOGUE
+
+	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
+
+	add_child(dialogue)
+
+	dialogue.dialogue_array = [
+		"For hundreds of years, I have guarded this key.",
+		"Many sought it.",
+		"All of them died.",
+		"Will you be any different?"
+	]
+
+	dialogue.start()
+
+	await dialogue.tree_exited
+
+	start_battle()
 
 
 func update_hp():
@@ -40,12 +72,23 @@ func update_hp():
 
 	hp_label.text = "HP: " + str(health)
 
-
 func start_battle():
 
-	while current_state != State.DEAD:
+	current_state = State.IDLE
+
+	while is_inside_tree():
+
+		if current_state == State.DEAD:
+			return
+
+		if current_state == State.DIALOGUE:
+			await get_tree().process_frame
+			continue
 
 		await attack_pattern()
+
+		if current_state == State.DEAD:
+			return
 
 		await get_tree().create_timer(1.0).timeout
 
@@ -77,6 +120,7 @@ func take_damage(amount):
 
 	if health <= 700 and phase == 1:
 		await phase_two()
+		return
 
 	elif health <= 300 and phase == 2:
 		await phase_three()
@@ -86,27 +130,59 @@ func phase_two():
 
 	phase = 2
 
-	print("PHASE 2")
+	current_state = State.DIALOGUE
 
 	sprite.play("FLYING")
 
-	await sprite.animation_finished
+	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
 
+	add_child(dialogue)
 
+	dialogue.dialogue_array = [
+		"Impossible...",
+		"A human has wounded me?",
+		"Witness my true power!"
+	]
+
+	dialogue.start()
+
+	await dialogue.tree_exited
+
+	sprite.play("IDLE")
+
+	current_state = State.IDLE
+	
 func phase_three():
 
 	phase = 3
 
-	current_state = State.RAGE
-
-	print("PHASE 3")
+	current_state = State.DIALOGUE
 
 	sprite.play("FLYING")
 
-	await sprite.animation_finished
+	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
+
+	add_child(dialogue)
+
+	dialogue.dialogue_array = [
+		"You refuse to fall...",
+		"Then I shall burn everything!"
+	]
+
+	dialogue.start()
+
+	await dialogue.tree_exited
+
+	current_state = State.RAGE
 
 
 func attack_pattern():
+
+	if current_state == State.DIALOGUE:
+		return
+
+	if current_state == State.DEAD:
+		return
 
 	match phase:
 
@@ -165,6 +241,8 @@ func attack_pattern():
 
 func fireball_attack():
 
+	fireball_attack_sound.play()
+
 	sprite.play("FIREBALL ATTACK")
 
 	await get_tree().create_timer(0.45).timeout
@@ -210,6 +288,9 @@ func spawn_fireball(angle_offset):
 # =====================
 
 func fire_breath():
+	
+	fire_breath_sound.play()
+	fire_breath_sound_2.play()
 
 	sprite.play("FIRE BREATH")
 
@@ -223,6 +304,8 @@ func fire_breath():
 
 
 func apocalypse_breath():
+	
+	fire_breath_sound.play()
 
 	sprite.play("FIRE BREATH")
 
@@ -253,6 +336,8 @@ func spawn_breath():
 # =====================
 
 func tail_attack():
+	
+	ground_smash_sound.play()
 
 	sprite.play("GROUND SMASH")
 
@@ -266,6 +351,8 @@ func tail_attack():
 # =====================
 
 func tail_projectile():
+	
+	projectile_sound.play()
 
 	sprite.play("TAIL ATTACK")
 
@@ -313,12 +400,36 @@ func screen_shake():
 
 func die():
 
-	current_state = State.DEAD
+	current_state = State.DIALOGUE
 
 	hp_label.visible = false
 
+	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
+
+	add_child(dialogue)
+
+	dialogue.dialogue_array = [
+		"You have proven your strength.",
+		"Take the key.",
+		"Leave this forest..."
+	]
+
+	dialogue.start()
+
+	await dialogue.tree_exited
+	
+	current_state = State.DEAD
+
+	boss_death_sound.play()
+
 	sprite.play("DEATH")
 
-	await get_tree().create_timer(1.5).timeout
+	await sprite.animation_finished
 
 	queue_free()
+	
+func _input(event):
+
+	if event.is_action_pressed("ui_accept"):
+
+		take_damage(100)
