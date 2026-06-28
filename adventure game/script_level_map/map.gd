@@ -21,10 +21,23 @@ func _ready():
 		"level4": $TextureRect4,
 		"level5": $TextureRect5,
 	}
+
 	if Global.player1_character != null:
 		Global.player1_character.reset_stats()
 		print("Player 1 stats reset on map load")
-	
+
+	# Gallery button — safely connect if it exists in the scene
+	var gallery_btn = get_node_or_null("GalleryButton")
+	if gallery_btn != null:
+		if not gallery_btn.pressed.is_connected(_on_gallery_pressed):
+			gallery_btn.pressed.connect(_on_gallery_pressed)
+
+	# Back to main menu button
+	var back_btn = get_node_or_null("BackButton")
+	if back_btn != null:
+		if not back_btn.pressed.is_connected(_on_back_pressed):
+			back_btn.pressed.connect(_on_back_pressed)
+
 	setup_map()
 
 func setup_map():
@@ -73,3 +86,11 @@ func _input(event):
 					Transition.fade_to_scene(level_scenes[level_name])
 				else:
 					print(level_name, " is locked!")
+
+
+func _on_gallery_pressed() -> void:
+	Transition.fade_to_scene("res://princessgame/reward/reward_gallery.tscn")
+
+
+func _on_back_pressed() -> void:
+	Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

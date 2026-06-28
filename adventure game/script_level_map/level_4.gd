@@ -9,7 +9,7 @@ var player2_node = null
 
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
-const P2_SPAWN = Vector2(39,100)
+const P2_SPAWN = Vector2(100,100)
 
 func _ready():
 	CheckpointManager.reset_checkpoint("level4", Vector2(39, 100))

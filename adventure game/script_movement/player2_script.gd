@@ -21,6 +21,7 @@ var max_health: int     = 100
 var is_crouching: bool  = false
 var is_falling: bool    = false
 var is_dead: bool       = false
+var is_teleporting: bool = false
 
 var original_height: float = 38.0
 var crouch_height: float   = 20.0
@@ -31,8 +32,8 @@ var death_screen = null
 var stat: CharacterStat = null
 
 # Correct scales matching player2_movement.tscn
-const KNIGHT_SCALE   =Vector2(0.08069446, 0.08385417)
-const PRINCESS_SCALE =  Vector2(0.05069446, 0.05385417)
+const KNIGHT_SCALE   = Vector2(0.07469446, 0.079385417)
+const PRINCESS_SCALE = Vector2(0.068069446, 0.068385417)
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D  = $CollisionShape2D
@@ -167,6 +168,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
+	if is_teleporting:
+		move_and_slide()
+		return
+
 	if is_falling:
 		velocity.x  = 0
 		velocity.y += 80
@@ -207,8 +212,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animations(dir_x)
 
-	if position.y > 600 and not is_falling:
-		start_fall()
+	# Universal fall death — works even without a pit trigger zone
+	if position.y > 650 and not is_dead:
+		die()
+
+	# Prevent getting stuck inside enemies — push horizontally
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider and collider.is_in_group("enemy"):
+			var push_dir = (global_position - collider.global_position).normalized()
+			global_position += push_dir * 2
 
 
 # ============================================================
@@ -225,10 +239,10 @@ func update_animations(direction: float) -> void:
 		return
 
 	if is_crouching:
-		play_if_exists("down")
-		animated_sprite.scale=Vector2(0.04003032,0.04003032)
 		if is_knight():
-			play_if_exists("down_left_2")
+			play_if_exists("down_2")
+		else:
+			play_if_exists("down")
 		return
 
 	if not is_on_floor():
@@ -264,9 +278,7 @@ func start_crouch() -> void:
 		var s := RectangleShape2D.new()
 		s.set_size(Vector2(original_height, crouch_height))
 		collision_shape.shape = s
-		crouch_sprite_offset = (original_height - crouch_height) / 2
-		position.y += crouch_sprite_offset
-		animated_sprite.position.y -= crouch_sprite_offset
+		collision_shape.position.y += (original_height - crouch_height) / 2
 
 
 func stop_crouch() -> void:
@@ -277,9 +289,7 @@ func stop_crouch() -> void:
 		var s := RectangleShape2D.new()
 		s.set_size(Vector2(original_height, original_height))
 		collision_shape.shape = s
-		crouch_sprite_offset = (original_height - crouch_height) / 2
-		position.y += crouch_sprite_offset
-		animated_sprite.position.y += crouch_sprite_offset
+		collision_shape.position.y -= (original_height - crouch_height) / 2
 
 
 # ============================================================
@@ -297,21 +307,39 @@ func die() -> void:
 	if is_dead:
 		return
 	print("Player 2 died.")
+
+	if Global.game_mode == "multiplayer":
+		# Multiplayer — quiet auto-respawn after 2s, don't interrupt Player 1
+		is_dead = true
+		is_falling = false
+		velocity = Vector2.ZERO
+		animated_sprite.visible = false
+		set_physics_process(false)
+
+		await get_tree().create_timer(2.0).timeout
+
+		var respawn_pos = CheckpointManager.get_last_checkpoint_position()
+		respawn_at_checkpoint(respawn_pos if respawn_pos != Vector2.ZERO else start_position)
+		return
+
+	# Single player — on_player_dead handles everything
 	on_player_dead()
-	if death_screen:
-		death_screen.show_death_screen()
-	else:
-		get_tree().reload_current_scene()
 
 
 func on_player_dead() -> void:
 	if is_dead:
 		return
 	is_dead = true
+	is_falling = false
 	velocity = Vector2.ZERO
 	animated_sprite.visible = false
 	set_physics_process(false)
 	print("Player 2 Dead")
+
+	if death_screen:
+		death_screen.show_death_screen()
+	else:
+		get_tree().reload_current_scene()
 
 
 func respawn_at_checkpoint(checkpoint_position: Vector2) -> void:
@@ -328,6 +356,7 @@ func respawn_at_checkpoint(checkpoint_position: Vector2) -> void:
 		stat.reset_stats()
 		SkillSystem.apply_passive_on_start(stat)
 		speed = stat.current_movement
+		health = stat.health
 
 	if collision_shape and collision_shape.shape:
 		var s := RectangleShape2D.new()
@@ -337,6 +366,10 @@ func respawn_at_checkpoint(checkpoint_position: Vector2) -> void:
 	animated_sprite.visible  = true
 	animated_sprite.modulate = Color.WHITE
 	setup_character_sprite()
+
+	# Refresh HP bar so it shows full health after respawn
+	if player_hud != null:
+		player_hud.setup(stat)
 
 	# Make sure a skill/attack frozen mid-animation doesn't block input after respawn
 	if skill_controller != null:
@@ -385,3 +418,21 @@ func receive_damage(amount: int) -> void:
 
 func apply_speed_modifier(modifier: float) -> void:
 	speed_modifier = modifier
+
+
+func teleport_to(target_pos: Vector2) -> void:
+	is_teleporting = true
+	velocity = Vector2.ZERO
+
+	var tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 0), 0.15)
+
+	await tween.finished
+	global_position = target_pos
+
+	tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.15)
+
+	await tween.finished
+	is_teleporting = false
+	print("Player 2 teleported to: ", target_pos)

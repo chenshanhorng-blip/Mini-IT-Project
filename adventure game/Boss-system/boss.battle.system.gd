@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal boss_defeated
+
 enum State { TAKEOFF, ATTACK, LANDING, COOLDOWN }
 
 @export var speed: float = 150.0
@@ -15,15 +17,24 @@ var original_pos_y: float
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
-@onready var attack_area: Area2D = $AttackArea   # 保留攻击范围节点
+@onready var attack_area: Area2D = $AttackArea
+@onready var hp_label: Label = $HPLabel
 
 func _ready():
+	add_to_group("enemy")
+	add_to_group("Boss")
 	player_node = get_tree().get_first_node_in_group("player")
 	original_pos_y = global_position.y
 	print("🐉 Dragon ready")
 	attack_area.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
-	attack_area.monitoring = false   # 默认关闭
+	attack_area.monitoring = false
+	_update_hp_label()
 	attack_loop()
+
+
+func _update_hp_label() -> void:
+	if hp_label:
+		hp_label.text = "HP: " + str(max(health, 0)) + " / 1000"
 
 func _physics_process(delta):
 	if current_state == State.TAKEOFF or current_state == State.LANDING:
@@ -55,7 +66,7 @@ func takeoff_phase() -> void:
 
 func attack_phase() -> void:
 	print("🐉 Dragon attacking in the air")
-	sprite.play("STANDBY")
+	sprite.play("IDLE")
 
 	# 攻击池：Ground Smash 出现概率降低
 	var attacks = [
@@ -85,7 +96,7 @@ func landing_phase() -> void:
 
 func cooldown_phase() -> void:
 	print("🐉 Dragon cooldown on ground")
-	sprite.play("STANDBY")
+	sprite.play("IDLE")
 	await get_tree().create_timer(3.0).timeout
 	current_state = State.TAKEOFF
 
@@ -187,14 +198,24 @@ func tail_attack():
 
 func take_damage(amount: int):
 	health -= amount
+	health = max(health, 0)
 	print("🐉 Dragon took damage:", amount, "HP:", health)
+	_update_hp_label()
 	if health <= 0:
 		die()
+
+
+func receive_damage(amount: int) -> void:
+	take_damage(amount)
+
 
 func die():
 	print("🐉 Dragon Dead")
 	sprite.play("DEATH")
 	collision.disabled = true
+	boss_defeated.emit()
+	await sprite.animation_finished
+	queue_free()
 
 # ---------------- Area2D 信号 ----------------
 

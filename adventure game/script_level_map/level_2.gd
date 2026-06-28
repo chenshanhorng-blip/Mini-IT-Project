@@ -17,7 +17,7 @@ const P2_SPAWN = Vector2(46, 113)
 
 
 func _ready():
-	CheckpointManager.reset_checkpoint("level2", Vector2(46, 113))
+	CheckpointManager.reset_checkpoint("level2", Vector2(110, 113))
 	
 	if exit_button:
 		# 安全连接通关按钮信号

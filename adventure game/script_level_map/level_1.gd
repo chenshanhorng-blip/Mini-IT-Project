@@ -5,17 +5,16 @@ var total_points = 3
 var reward_popup = null
 var player2_node = null
 @onready var exit_button = $Button
-@onready var pause_menu = $PauseMenu  # ← ADD THIS
+@onready var pause_menu = $PauseMenu  
 @onready var bgm_level_1 = $bgmlevel1
-
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
 const P2_SPAWN = Vector2(18, 217)
 
 func _ready():
 	# Reset checkpoint
-	CheckpointManager.reset_checkpoint("level1", Vector2(18, 217))
-	print("Checkpoint reset at (18, 217)")
+	CheckpointManager.reset_checkpoint("level1", Vector2 (40, 217))
+	print("Checkpoint reset at (40, 217)")
 	
 	# Connect button
 	if not exit_button.pressed.is_connected(_on_button_pressed):

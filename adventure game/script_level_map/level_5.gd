@@ -53,7 +53,7 @@ func _setup_multiplayer() -> void:
 	print("Level5: Player 2 spawned at ", P2_SPAWN)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if boss_revealed or camera == null or dragon_node == null or not is_instance_valid(dragon_node):
 		return
 

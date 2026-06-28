@@ -88,4 +88,4 @@ func _process(_delta):
 
 func _input(event):
 	if ending_finished and event.is_action_pressed("ui_accept"):
-		Transition.fade_to_scene("res://scene/UI/main.tscn")
+		Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

@@ -9,7 +9,7 @@ var player2_node = null
 
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
-const P2_SPAWN = Vector2(398, 115)
+const P2_SPAWN = Vector2(460, 115)
 
 func _ready() -> void:
 	# 🛠️ 记得根据你具体关卡的名字修改这里（比如 "level3", "level4" 等）

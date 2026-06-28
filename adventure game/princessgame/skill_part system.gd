@@ -34,6 +34,9 @@ func setup(new_player, new_stat: CharacterStat,new_player_id: int = 1) -> void:
 	skill_damage_area.monitoring = false
 	skill_damage_shape.disabled = true
 
+	# Detect enemies on ALL layers — dragon is on layer 2, regular enemies on layer 1
+	skill_damage_area.collision_mask = 0b1111
+
 	# The CircleShape2D on skill_area has no radius set in the scene,
 	# which makes it default to Godot's tiny built-in radius (10px).
 	# Force a usable radius here so basic attack / skills can actually
@@ -136,7 +139,7 @@ func _fire_travelling_projectile(
 		distance: float,
 		duration: float,
 		damage: int,
-		skill_name: String
+		_skill_name: String
 	) -> void:
  
 	var dir_sign = -1 if animated_sprite.flip_h else 1
@@ -163,15 +166,21 @@ func _fire_travelling_projectile(
 		await get_tree().create_timer(step).timeout
 		elapsed += step
  
-		# Get all enemies in the scene and check if the projectile is close enough
-		for enemy in get_tree().get_nodes_in_group("enemy"):
+		# Get all enemies AND bosses, combine into one target list
+		var targets: Array = get_tree().get_nodes_in_group("enemy")
+		for boss in get_tree().get_nodes_in_group("Boss"):
+			if boss not in targets:
+				targets.append(boss)
+
+		for enemy in targets:
 			if enemy in already_hit:
 				continue
 			if not is_instance_valid(enemy):
 				continue
- 
+
 			var dist = effect.global_position.distance_to(enemy.global_position)
-			if dist < 60:  # hit radius
+			# 150px radius — large enough for big bosses like the dragon
+			if dist < 150:
 				already_hit.append(enemy)
 				if enemy.has_method("receive_damage"):
 					enemy.receive_damage(damage)
@@ -194,6 +203,13 @@ func activate_skill_damage_area(marker: Marker2D, damage: int, duration: float, 
 	skill_damage_area.monitoring = true
 
 	print("Damage area active:", skill_name, " Damage:", damage, " | world position:", skill_damage_area.global_position, " | scale:", skill_damage_area.scale)
+
+	# body_entered only fires when a body ENTERS the area.
+	# If the enemy is already overlapping (standing inside a large boss),
+	# the signal never fires — check existing overlaps immediately.
+	await get_tree().physics_frame
+	for body in skill_damage_area.get_overlapping_bodies():
+		_on_skill_damage_area_body_entered(body)
 
 	await get_tree().create_timer(duration).timeout
 

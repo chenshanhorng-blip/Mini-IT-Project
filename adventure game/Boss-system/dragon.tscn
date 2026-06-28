@@ -321,7 +321,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3snoc"]
-size = Vector2(424, 328)
+size = Vector2(433, 357)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkirg"]
 size = Vector2(711, 352)
@@ -329,9 +329,9 @@ size = Vector2(711, 352)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7crf6"]
 radius = 363.0124
 
-[node name="Node2D" type="Node2D" unique_id=1298206806]
+[node name="Node2D" type="Node2D" unique_id=1298206806 groups=["boss", "enemy"]]
 
-[node name="Dragon Boss" type="CharacterBody2D" parent="." unique_id=1849936634]
+[node name="Dragon Boss" type="CharacterBody2D" parent="." unique_id=1849936634 groups=["boss", "enemy"]]
 texture_filter = 1
 collision_layer = 2
 collision_mask = 4
@@ -343,17 +343,17 @@ position = Vector2(191, 119)
 [node name="MouthMarker" type="Marker2D" parent="Dragon Boss" unique_id=1771406202]
 position = Vector2(-166, -33)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dragon Boss" unique_id=1257191238]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dragon Boss" unique_id=1257191238 groups=["boss", "enemy"]]
 texture_filter = 1
 position = Vector2(-1.0000229, -1)
 scale = Vector2(5.2399983, 4.5250006)
 sprite_frames = SubResource("SpriteFrames_3hpsg")
-animation = &"GROUND SMASH"
+animation = &"FIRE BREATH"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss" unique_id=2094926873]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(31, 1)
+position = Vector2(25.5, -2.5)
 shape = SubResource("RectangleShape2D_3snoc")
 
 [node name="Detection Range" type="Area2D" parent="Dragon Boss" unique_id=1887787063]
@@ -370,6 +370,9 @@ offset_top = -169.0
 offset_right = 192.0
 offset_bottom = -86.0
 theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 2
 
 [node name="Area2D" parent="Dragon Boss" unique_id=1968708643 instance=ExtResource("10_7crf6")]
 position = Vector2(-312, 41)
@@ -378,7 +381,7 @@ collision_mask = 2
 
 [node name="AttackArea" type="Area2D" parent="Dragon Boss" unique_id=1340531712]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss/AttackArea" unique_id=1414612985]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss/AttackArea" unique_id=1414612985 groups=["boss", "enemy"]]
 visibility_layer = 2
 position = Vector2(5, 52)
 shape = SubResource("CircleShape2D_7crf6")

@@ -25,7 +25,6 @@ var start_position: Vector2 = Vector2.ZERO
 var crouch_sprite_offset: float = 0.0
 var death_screen = null
 
-
 var is_teleporting = false
 # Skill / character status
 var stat: CharacterStat = null
@@ -39,6 +38,8 @@ var facing_direction: Vector2 = Vector2.RIGHT
 @onready var skill_controller = get_node_or_null("skill_adjust")
 @onready var player_hud = get_node_or_null("CanvasLayer/Player")
 
+const KNIGHT_SCALE   = Vector2(0.06069446, 0.065385417)
+const PRINCESS_SCALE = Vector2(0.063069446, 0.063385417)
 
 func _ready() -> void:
 	start_position = global_position
@@ -106,12 +107,13 @@ func setup_character_sprite() -> void:
 		return
 
 	if stat.character_name == "Boar Princess":
+		animated_sprite.scale = PRINCESS_SCALE
 		play_if_exists("idle")
-		animated_sprite.scale =Vector2(0.05069446, 0.05385417)
+		
 	elif stat.character_name == "Tea Egg Knight":
+		animated_sprite.scale = KNIGHT_SCALE
 		play_if_exists("idle_2")
-		animated_sprite.scale = Vector2(0.08069446, 0.08385417)
-
+		
 
 func setup_death_screen() -> void:
 	var death_screen_path = "res://scene/UI/death_screen.tscn"
@@ -203,12 +205,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animations(direction)
 
+	# Universal fall death — catches falls off platform edges even
+	# when no pit trigger zone exists to set is_falling = true
+	if position.y > 650 and not is_dead:
+		die()
+
 	# Prevent getting stuck inside enemies
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider and collider.is_in_group("enemy"):
-			# Push player away horizontally from enemy instead of snapping Y
 			var push_dir = (global_position - collider.global_position).normalized()
 			global_position += push_dir * 2
 
@@ -221,7 +227,7 @@ func update_animations(direction: float) -> void:
 	var is_knight := stat != null and stat.character_name == "Tea Egg Knight"
 
 	if is_crouching:
-		play_move_animation("down_left_2" )
+		play_move_animation("down_2" )
 		if not is_knight :
 			play_move_animation("down")
 		return
@@ -325,12 +331,23 @@ func die() -> void:
 		return
 
 	print("Player died.")
-	on_player_dead()
 
-	if death_screen:
-		death_screen.show_death_screen()
-	else:
-		get_tree().reload_current_scene()
+	if Global.game_mode == "multiplayer":
+		# Multiplayer — quiet auto-respawn, don't interrupt other player
+		is_dead = true
+		is_falling = false
+		velocity = Vector2.ZERO
+		animated_sprite.visible = false
+		set_physics_process(false)
+
+		await get_tree().create_timer(2.0).timeout
+
+		var respawn_pos = CheckpointManager.get_last_checkpoint_position()
+		respawn_at_checkpoint(respawn_pos if respawn_pos != Vector2.ZERO else start_position)
+		return
+
+	# Single player — on_player_dead handles everything including death screen
+	on_player_dead()
 
 
 func on_player_dead() -> void:
