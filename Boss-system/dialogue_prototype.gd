@@ -1,71 +1,51 @@
-extends CanvasLayer
-
-## Node References
-@onready var label: Label = $Panel/Label
-@onready var timer: Timer = $Timer
-
-## Dialogue
-var dialogue_array = []
-
-var dialogue_index = 0
+extends Control
 
 
-func _ready():
+##Node References
+@onready var label : Label = $Label
+@onready var timer : Timer = $Timer
+@onready var button: Button = $Button
 
+##Variables
+var dialogue_array : Array = [
+	"hi one two three for",
+	"IT'S SPELLED FOURRRRRRRR,BRUHHHHH",
+	"ok,chilled bro"
+]
+var dialogue_index : int = 0:
+	set(value):
+		dialogue_index = value
+		
+		label.visible_characters = -1
+
+##Initialization
+func _ready() -> void:
 	label.text = ""
-	label.visible_characters = 0
-
-	timer.timeout.connect(_on_timer_timeout)
-
-
-func start():
-
-	dialogue_index = 0
-
-	if dialogue_array.size() == 0:
-		queue_free()
-		return
-
-	start_dialogue()
-
-
-func start_dialogue():
-
+	timer.timeout.connect(animate_label)
+	
+	
+##
+func animate_label() -> void:
 	if dialogue_index >= dialogue_array.size():
-		queue_free()
 		return
-
+	
 	label.text = dialogue_array[dialogue_index]
-	label.visible_characters = 0
-
-	timer.start()
-
-
-func _on_timer_timeout():
-
 	label.visible_characters += 1
-
-	if label.visible_characters < label.text.length():
+	
+	if label.visible_ratio == 1:
+		dialogue_index += 1
+	else:
 		timer.start()
 
 
-func _input(event):
-
-	if event.is_action_pressed("ui_accept") \
-	or (event is InputEventMouseButton and event.pressed):
-
-		# 文字还没显示完
-		if !timer.is_stopped():
-
-			label.visible_characters = label.text.length()
-			timer.stop()
-
-		# 当前句子已经显示完
-		else:
-
-			dialogue_index += 1
-
-			if dialogue_index >= dialogue_array.size():
-				queue_free()
-			else:
-				start_dialogue()
+func _on_button_pressed() -> void:
+	if dialogue_index >= dialogue_array.size():
+		dialogue_index = 0
+		label.text = ""
+		return
+	
+	if timer.is_stopped():
+		animate_label()
+	else:
+		dialogue_index += 1
+		timer.stop()

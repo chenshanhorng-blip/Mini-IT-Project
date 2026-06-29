@@ -107,11 +107,11 @@ position = Vector2(644, 123)
 position = Vector2(370, 508)
 
 [node name="Button" type="Button" parent="." unique_id=120463940]
-offset_left = 298.0
-offset_top = 243.0
-offset_right = 858.0
-offset_bottom = 375.0
-theme_override_font_sizes/font_size = 90
+offset_left = 251.0
+offset_top = 405.0
+offset_right = 460.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 30
 text = "Back To Map"
 
 [node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("10_upuaj")]

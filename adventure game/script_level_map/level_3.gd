@@ -9,11 +9,12 @@ var player2_node = null
 
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
-const P2_SPAWN = Vector2(460, 115)
+const P1_SPAWN = Vector2(398, 115)
+const P2_SPAWN  = Vector2(460, 115)
 
 func _ready() -> void:
 	# 🛠️ 记得根据你具体关卡的名字修改这里（比如 "level3", "level4" 等）
-	CheckpointManager.reset_checkpoint("level3", Vector2(398,115))
+	CheckpointManager.reset_checkpoint("level3", P1_SPAWN)
 	
 	
 	# 出口按钮连接安全验证
@@ -44,8 +45,8 @@ func _setup_multiplayer() -> void:
 		return
  
 	player2_node = P2_SCENE.instantiate()
+	player2_node.position = P2_SPAWN  # Set BEFORE add_child so _ready() saves correct start_position
 	add_child(player2_node)
-	player2_node.global_position = P2_SPAWN
 	print("Level1: Player 2 spawned at ", P2_SPAWN)
 
 func _input(event: InputEvent) -> void:

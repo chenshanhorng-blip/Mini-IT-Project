@@ -38,8 +38,9 @@ var facing_direction: Vector2 = Vector2.RIGHT
 @onready var skill_controller = get_node_or_null("skill_adjust")
 @onready var player_hud = get_node_or_null("CanvasLayer/Player")
 
-const KNIGHT_SCALE   = Vector2(0.06069446, 0.065385417)
+const KNIGHT_SCALE   = Vector2(0.07469446, 0.079385417)
 const PRINCESS_SCALE = Vector2(0.063069446, 0.063385417)
+
 
 func _ready() -> void:
 	start_position = global_position

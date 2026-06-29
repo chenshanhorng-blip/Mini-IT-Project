@@ -1,4 +1,3 @@
-
 extends Node
  
 var player1_character: CharacterStat = null
@@ -32,14 +31,15 @@ var levels_unlocked = {
 	"level5": false,
 }
  
-func unlock_next_level(current_level: String):
-	match current_level:
+func unlock_next_level(completed_level: String):
+	# Use the passed parameter, not the class variable current_level
+	match completed_level:
 		"level1": levels_unlocked["level2"] = true
 		"level2": levels_unlocked["level3"] = true
 		"level3": levels_unlocked["level4"] = true
 		"level4": levels_unlocked["level5"] = true
 	save_game()
-	print("Unlocked next level after: ", current_level)
+	print("Unlocked next level after: ", completed_level)
  
 # ============================================================
 # SAVE / LOAD SYSTEM
@@ -143,4 +143,3 @@ func delete_save(slot: int = current_slot):
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(path)
 		print("Slot ", slot, " deleted!")
- 

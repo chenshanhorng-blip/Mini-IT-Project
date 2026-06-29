@@ -3,33 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c36crw6vw8wt2"
-<<<<<<< HEAD
-<<<<<<< HEAD
-path="res://.godot/imported/ToxicFrogGreenBrown_Idle.png-d9dde253fac6e3d0fa7a247b08e37c5b.ctex"
-=======
 path="res://.godot/imported/ToxicFrogGreenBrown_Idle.png-26758fd4f3ec9ae1b2a0d6d31f97b983.ctex"
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-path="res://.godot/imported/ToxicFrogGreenBrown_Idle.png-d9dde253fac6e3d0fa7a247b08e37c5b.ctex"
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-source_file="res://Sprite/GreenBrown/ToxicFrogGreenBrown_Idle.png"
-dest_files=["res://.godot/imported/ToxicFrogGreenBrown_Idle.png-d9dde253fac6e3d0fa7a247b08e37c5b.ctex"]
-=======
 source_file="res://Boss-system/Sprite/GreenBrown/ToxicFrogGreenBrown_Idle.png"
 dest_files=["res://.godot/imported/ToxicFrogGreenBrown_Idle.png-26758fd4f3ec9ae1b2a0d6d31f97b983.ctex"]
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-source_file="res://Sprite/GreenBrown/ToxicFrogGreenBrown_Idle.png"
-dest_files=["res://.godot/imported/ToxicFrogGreenBrown_Idle.png-d9dde253fac6e3d0fa7a247b08e37c5b.ctex"]
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

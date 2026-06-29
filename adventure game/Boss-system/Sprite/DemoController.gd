@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @export var patrol_range: float = 150.0
 @export var attack_cooldown: float = 1.0
-@export var hp: int = 200
+@export var hp: int = 100
 
 ## Fireball scene preload path (Updated to correct folder structure)
 var fireball_scene: PackedScene = preload("res://Sprite/fireball.tscn")

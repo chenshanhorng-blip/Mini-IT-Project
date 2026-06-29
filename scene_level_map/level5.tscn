@@ -9,10 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cdjdhgxtihh1i" path="res://Boss-system/hint button.tscn" id="7_7e4dy"]
 [ext_resource type="PackedScene" uid="uid://b6lnp7js1btba" path="res://feedback_system.tscn" id="8_d1j6o"]
 [ext_resource type="PackedScene" uid="uid://bamiouxouvm5c" path="res://Boss-system/dragon.tscn" id="9_2l2id"]
-<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://dg1seok44fxxa" path="res://audio/Hypnotic_Poison/ogg/Hypnotic_Poison_loop.ogg" id="10_7y6ca"]
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [node name="Node2D" type="Node2D" unique_id=341255562]
 script = ExtResource("1_5pncu")
@@ -45,21 +42,19 @@ visible = false
 [node name="MinimapLayer" parent="." unique_id=1106204459 instance=ExtResource("6_ubhii")]
 
 [node name="HintButton" parent="." unique_id=1468774410 instance=ExtResource("7_7e4dy")]
+visible = false
 
 [node name="FeedbackPanel" parent="." unique_id=61742216 instance=ExtResource("8_d1j6o")]
 
 [node name="Dragon" parent="." unique_id=1298206806 instance=ExtResource("9_2l2id")]
 light_mask = 4
 visibility_layer = 2
-position = Vector2(347, 41)
+position = Vector2(690, 399)
 
-<<<<<<< HEAD
 [node name="bgmlevel5" type="AudioStreamPlayer" parent="." unique_id=1978178372]
 stream = ExtResource("10_7y6ca")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

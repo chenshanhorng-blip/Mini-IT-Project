@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjwn58yrp3e7u" path="res://script/system/setting.gd" id="1_nll1y"]
 [ext_resource type="Texture2D" uid="uid://2cb2sl5io38k" path="res://diamond/ChatGPT Image Jun 14, 2026, 09_48_18 PM.png" id="2_13lxp"]
+[ext_resource type="AudioStream" uid="uid://b6mttwshjv7gw" path="res://audio/Button_click_ΓÇô_Clean_#2-1766767620402.mp3" id="3_psqv3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_psqv3"]
 font_size = 70
@@ -220,5 +221,9 @@ offset_bottom = 1042.0
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.019607844, 1)
 theme_override_font_sizes/font_size = 50
 text = "Back"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=1774031360]
+stream = ExtResource("3_psqv3")
+volume_db = 8.0
 
 [connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
