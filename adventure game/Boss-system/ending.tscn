@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b5c756icthqsu" path="res://Boss-system/Images/ending5.jpeg" id="5_0t84q"]
 [ext_resource type="Texture2D" uid="uid://pjktageqb5r6" path="res://Boss-system/Images/ending6.jpeg" id="6_a2d7o"]
 
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ujx65"]
 
 [sub_resource type="Animation" id="Animation_3740v"]
