@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://bf3imkv6gfsv0"]
 
 [ext_resource type="Script" uid="uid://oj8hg3gioxn7" path="res://princessgame/reward/reward_gallery.gd" id="1_gx7d8"]
-[ext_resource type="Texture2D" uid="uid://g71no7ovgodi" path="res://princessgame/picture/backgground selection.png" id="2_7jnbc"]
-
+[ext_resource type="Texture2D" uid="uid://dq40ccgetv2cy" path="res://princessgame/picture/reward_gallery_background.png" id="2_7jnbc"]
 
 [node name="Control" type="Control" unique_id=1994535765]
 layout_mode = 3

@@ -22,20 +22,26 @@ func hide_death_screen():
 func _on_continue_button_pressed():
 	print(">>> 继续按钮被点击 <<<")
 	hide_death_screen()
+	# Reset stats BEFORE respawning so player has full HP
+	if Global.player1_character != null:
+		Global.player1_character.reset_stats()
+	if Global.player2_character != null:
+		Global.player2_character.reset_stats()
 	if CheckpointManager:
 		CheckpointManager.respawn_player()
 	else:
-		print("CheckpointManager 不存在，重新开始关卡")
 		get_tree().reload_current_scene()
 
 # 重新开始关卡
 func _on_restart_button_pressed():
 	print(">>> 重启按钮被点击 <<<")
 	hide_death_screen()
-	get_tree().reload_current_scene()
+	# Reset stats BEFORE reloading so new scene starts with full HP
 	if Global.player1_character != null:
 		Global.player1_character.reset_stats()
-		print("Player stats reset before restart")
+	if Global.player2_character != null:
+		Global.player2_character.reset_stats()
+	get_tree().reload_current_scene()
 
 
 # 返回地图

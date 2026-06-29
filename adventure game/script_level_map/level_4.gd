@@ -30,8 +30,8 @@ func _setup_multiplayer() -> void:
 		return
  
 	player2_node = P2_SCENE.instantiate()
+	player2_node.position = P2_SPAWN
 	add_child(player2_node)
-	player2_node.global_position = P2_SPAWN
 	print("Level3: Player 2 spawned at ", P2_SPAWN)
 
 # ← ADD THIS FUNCTION
@@ -52,4 +52,5 @@ func show_exit_button():
 
 func _on_button_pressed():
 	Global.unlock_next_level("level4")
+	Global.save_game(null, Global.current_slot)
 	Transition.fade_to_scene("res://scene_level_map/map.tscn")
