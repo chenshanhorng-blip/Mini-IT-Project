@@ -3,12 +3,30 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dbey2vrwlg25q"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/die_knight.wav-4e32db9be4116c20b2b241437983af64.sample"
+
+[deps]
+
+source_file="res://audio/die_knight.wav"
+dest_files=["res://.godot/imported/die_knight.wav-4e32db9be4116c20b2b241437983af64.sample"]
+=======
 path="res://.godot/imported/die_knight.wav-7c78557004fa938b1620be6b9ab3ee77.sample"
 
 [deps]
 
 source_file="res://Boss-system/audio/die_knight.wav"
 dest_files=["res://.godot/imported/die_knight.wav-7c78557004fa938b1620be6b9ab3ee77.sample"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/die_knight.wav-4e32db9be4116c20b2b241437983af64.sample"
+
+[deps]
+
+source_file="res://audio/die_knight.wav"
+dest_files=["res://.godot/imported/die_knight.wav-4e32db9be4116c20b2b241437983af64.sample"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

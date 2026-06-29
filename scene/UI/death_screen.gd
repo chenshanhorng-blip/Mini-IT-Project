@@ -1,11 +1,20 @@
 extends CanvasLayer
 
+<<<<<<< HEAD
+@onready var game_over = $GameOver
+
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 func _ready():
 	hide()
 	process_mode = PROCESS_MODE_ALWAYS  # ← 加上这行！让按钮在暂停时可用
 	print("死亡画面已加载，准备就绪")
 
 func show_death_screen():
+<<<<<<< HEAD
+	game_over.play()
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 	print("显示死亡画面")
 	show()
 	get_tree().paused = true

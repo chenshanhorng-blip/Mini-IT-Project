@@ -1,0 +1,33 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bofebmav3botq"
+<<<<<<< HEAD
+path="res://.godot/imported/Firebreath.wav-bb33fd3d473c9205e2f819b5eb429053.sample"
+
+[deps]
+
+source_file="res://Boss-system/audio/Firebreath.wav"
+dest_files=["res://.godot/imported/Firebreath.wav-bb33fd3d473c9205e2f819b5eb429053.sample"]
+=======
+path="res://.godot/imported/Firebreath.wav-6afb173ad999255d332cd640c958ffaf.sample"
+
+[deps]
+
+source_file="res://audio/Firebreath.wav"
+dest_files=["res://.godot/imported/Firebreath.wav-6afb173ad999255d332cd640c958ffaf.sample"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

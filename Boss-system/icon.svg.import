@@ -3,15 +3,33 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4q335xxs2p"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+=======
 path="res://.godot/imported/icon.svg-1004ca39d4775b3e452c8e5609250b5d.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+source_file="res://icon.svg"
+dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+=======
 source_file="res://Boss-system/icon.svg"
 dest_files=["res://.godot/imported/icon.svg-1004ca39d4775b3e452c8e5609250b5d.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://icon.svg"
+dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

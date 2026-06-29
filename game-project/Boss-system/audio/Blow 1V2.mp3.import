@@ -1,0 +1,28 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bwh5eu8a327v3"
+<<<<<<< HEAD
+path="res://.godot/imported/Blow 1V2.mp3-a62d0e2f5047cd84d745c6980bd9d0c2.mp3str"
+
+[deps]
+
+source_file="res://Boss-system/audio/Blow 1V2.mp3"
+dest_files=["res://.godot/imported/Blow 1V2.mp3-a62d0e2f5047cd84d745c6980bd9d0c2.mp3str"]
+=======
+path="res://.godot/imported/Blow 1V2.mp3-f89faa5675edc4118948db3f5c806f27.mp3str"
+
+[deps]
+
+source_file="res://audio/Blow 1V2.mp3"
+dest_files=["res://.godot/imported/Blow 1V2.mp3-f89faa5675edc4118948db3f5c806f27.mp3str"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

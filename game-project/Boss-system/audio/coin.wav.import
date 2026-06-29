@@ -1,0 +1,33 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://456e1ucy7k8w"
+<<<<<<< HEAD
+path="res://.godot/imported/coin.wav-215fb4e34abace6bc85d4a791195bc35.sample"
+
+[deps]
+
+source_file="res://Boss-system/audio/coin.wav"
+dest_files=["res://.godot/imported/coin.wav-215fb4e34abace6bc85d4a791195bc35.sample"]
+=======
+path="res://.godot/imported/coin.wav-3bfc0ad5d72f96b2beb25318893e930c.sample"
+
+[deps]
+
+source_file="res://audio/coin.wav"
+dest_files=["res://.godot/imported/coin.wav-3bfc0ad5d72f96b2beb25318893e930c.sample"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

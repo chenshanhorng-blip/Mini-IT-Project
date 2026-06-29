@@ -5,6 +5,10 @@ var total_points = 3
 var reward_popup = null
 @onready var exit_button = $Button
 @onready var pause_menu = $PauseMenu  # ← ADD THIS
+<<<<<<< HEAD
+@onready var bgm_level_1 = $bgmlevel1
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 

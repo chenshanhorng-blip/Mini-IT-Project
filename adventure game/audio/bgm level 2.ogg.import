@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://buw4724vvn0ft"
+path="res://.godot/imported/bgm level 2.ogg-0c367e9c7da372d8fcf473d3e5cd9521.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/bgm level 2.ogg"
+dest_files=["res://.godot/imported/bgm level 2.ogg-0c367e9c7da372d8fcf473d3e5cd9521.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -3,12 +3,30 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://dg1seok44fxxa"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/Hypnotic_Poison_loop.ogg-353c5c0059500c8a428b6d2d00eb123c.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Hypnotic_Poison/ogg/Hypnotic_Poison_loop.ogg"
+dest_files=["res://.godot/imported/Hypnotic_Poison_loop.ogg-353c5c0059500c8a428b6d2d00eb123c.oggvorbisstr"]
+=======
 path="res://.godot/imported/Hypnotic_Poison_loop.ogg-329e450fb37d397aa70f80340d34237b.oggvorbisstr"
 
 [deps]
 
 source_file="res://Boss-system/audio/Hypnotic_Poison/ogg/Hypnotic_Poison_loop.ogg"
 dest_files=["res://.godot/imported/Hypnotic_Poison_loop.ogg-329e450fb37d397aa70f80340d34237b.oggvorbisstr"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/Hypnotic_Poison_loop.ogg-353c5c0059500c8a428b6d2d00eb123c.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Hypnotic_Poison/ogg/Hypnotic_Poison_loop.ogg"
+dest_files=["res://.godot/imported/Hypnotic_Poison_loop.ogg-353c5c0059500c8a428b6d2d00eb123c.oggvorbisstr"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

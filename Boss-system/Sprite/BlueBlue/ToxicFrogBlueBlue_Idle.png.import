@@ -3,15 +3,33 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5y2kut3dlk02"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/ToxicFrogBlueBlue_Idle.png-e237a6e27bb3f780c5889e4216aa1548.ctex"
+=======
 path="res://.godot/imported/ToxicFrogBlueBlue_Idle.png-139f4c3f477ef65030b79921be24d7eb.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ToxicFrogBlueBlue_Idle.png-e237a6e27bb3f780c5889e4216aa1548.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+source_file="res://Sprite/BlueBlue/ToxicFrogBlueBlue_Idle.png"
+dest_files=["res://.godot/imported/ToxicFrogBlueBlue_Idle.png-e237a6e27bb3f780c5889e4216aa1548.ctex"]
+=======
 source_file="res://Boss-system/Sprite/BlueBlue/ToxicFrogBlueBlue_Idle.png"
 dest_files=["res://.godot/imported/ToxicFrogBlueBlue_Idle.png-139f4c3f477ef65030b79921be24d7eb.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/BlueBlue/ToxicFrogBlueBlue_Idle.png"
+dest_files=["res://.godot/imported/ToxicFrogBlueBlue_Idle.png-e237a6e27bb3f780c5889e4216aa1548.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

@@ -3,15 +3,33 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0i2bdwvln37o"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/ToxicFrogBlueBrown_Explosion.png-c1ea68bc4e8be4780cf076aded99c030.ctex"
+=======
 path="res://.godot/imported/ToxicFrogBlueBrown_Explosion.png-36212d7523e3cb03f2c123b9134efbd9.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ToxicFrogBlueBrown_Explosion.png-c1ea68bc4e8be4780cf076aded99c030.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+source_file="res://Sprite/BlueBrown/ToxicFrogBlueBrown_Explosion.png"
+dest_files=["res://.godot/imported/ToxicFrogBlueBrown_Explosion.png-c1ea68bc4e8be4780cf076aded99c030.ctex"]
+=======
 source_file="res://Boss-system/Sprite/BlueBrown/ToxicFrogBlueBrown_Explosion.png"
 dest_files=["res://.godot/imported/ToxicFrogBlueBrown_Explosion.png-36212d7523e3cb03f2c123b9134efbd9.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/BlueBrown/ToxicFrogBlueBrown_Explosion.png"
+dest_files=["res://.godot/imported/ToxicFrogBlueBrown_Explosion.png-c1ea68bc4e8be4780cf076aded99c030.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

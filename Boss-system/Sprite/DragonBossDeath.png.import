@@ -3,15 +3,33 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3l3ye4d5brx5"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/DragonBossDeath.png-4e4326f8d0cdb351b3719106319b4da6.ctex"
+=======
 path="res://.godot/imported/DragonBossDeath.png-55b546948d680c079a0a4ab75d46e870.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/DragonBossDeath.png-4e4326f8d0cdb351b3719106319b4da6.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+source_file="res://Sprite/DragonBossDeath.png"
+dest_files=["res://.godot/imported/DragonBossDeath.png-4e4326f8d0cdb351b3719106319b4da6.ctex"]
+=======
 source_file="res://Boss-system/Sprite/DragonBossDeath.png"
 dest_files=["res://.godot/imported/DragonBossDeath.png-55b546948d680c079a0a4ab75d46e870.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/DragonBossDeath.png"
+dest_files=["res://.godot/imported/DragonBossDeath.png-4e4326f8d0cdb351b3719106319b4da6.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

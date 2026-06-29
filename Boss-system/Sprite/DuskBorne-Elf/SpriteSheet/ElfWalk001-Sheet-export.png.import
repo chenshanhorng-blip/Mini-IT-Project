@@ -3,15 +3,33 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://21a02okk6ck6"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/ElfWalk001-Sheet-export.png-cd5028b0972ea621dc4a1b9a2424f453.ctex"
+=======
 path="res://.godot/imported/ElfWalk001-Sheet-export.png-9a6e281c43093eed1a17473053989e58.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ElfWalk001-Sheet-export.png-cd5028b0972ea621dc4a1b9a2424f453.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+source_file="res://Sprite/DuskBorne-Elf/SpriteSheet/ElfWalk001-Sheet-export.png"
+dest_files=["res://.godot/imported/ElfWalk001-Sheet-export.png-cd5028b0972ea621dc4a1b9a2424f453.ctex"]
+=======
 source_file="res://Boss-system/Sprite/DuskBorne-Elf/SpriteSheet/ElfWalk001-Sheet-export.png"
 dest_files=["res://.godot/imported/ElfWalk001-Sheet-export.png-9a6e281c43093eed1a17473053989e58.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/DuskBorne-Elf/SpriteSheet/ElfWalk001-Sheet-export.png"
+dest_files=["res://.godot/imported/ElfWalk001-Sheet-export.png-cd5028b0972ea621dc4a1b9a2424f453.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

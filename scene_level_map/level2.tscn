@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://b6h4btcv0bo7l" path="res://Boss-system/Sprite/toxicfrog.tscn" id="12_gw64w"]
 [ext_resource type="PackedScene" uid="uid://cdjdhgxtihh1i" path="res://Boss-system/hint button.tscn" id="13_11ev2"]
 [ext_resource type="PackedScene" uid="uid://b6lnp7js1btba" path="res://feedback_system.tscn" id="14_bthgh"]
+<<<<<<< HEAD
+[ext_resource type="AudioStream" uid="uid://buw4724vvn0ft" path="res://audio/bgm level 2.ogg" id="15_d4ali"]
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_du5er"]
 texture = ExtResource("3_bebr4")
@@ -1189,4 +1193,13 @@ position = Vector2(922, 189)
 [node name="FeedbackPanel" parent="." unique_id=61742216 instance=ExtResource("14_bthgh")]
 visible = false
 
+<<<<<<< HEAD
+[node name="bgmlevel2" type="AudioStreamPlayer" parent="." unique_id=1685132379]
+stream = ExtResource("15_d4ali")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
+
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]

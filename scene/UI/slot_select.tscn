@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ele10qnfli4n" path="res://slot_select.gd" id="1_vb54k"]
 [ext_resource type="Texture2D" uid="uid://2cb2sl5io38k" path="res://diamond/ChatGPT Image Jun 14, 2026, 09_48_18 PM.png" id="2_p04cj"]
+<<<<<<< HEAD
+[ext_resource type="AudioStream" uid="uid://b6mttwshjv7gw" path="res://audio/Button_click_ΓÇô_Clean_#2-1766767620402.mp3" id="3_p4h7d"]
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [sub_resource type="LabelSettings" id="LabelSettings_p4h7d"]
 font_size = 70
@@ -150,4 +154,11 @@ offset_bottom = 918.0
 theme_override_font_sizes/font_size = 50
 text = "⬅️ Back"
 
+<<<<<<< HEAD
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=2125995618]
+stream = ExtResource("3_p4h7d")
+volume_db = 8.0
+
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

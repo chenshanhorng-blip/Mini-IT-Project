@@ -3,15 +3,33 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpfp08txge54y"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/ElfBasicAtk001BGR-Sheet-export.png-f8b02dffc9853da7a65a58cf77f25a07.ctex"
+=======
 path="res://.godot/imported/ElfBasicAtk001BGR-Sheet-export.png-0ea417b562ce3fb37dfe3f319b1736b6.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ElfBasicAtk001BGR-Sheet-export.png-f8b02dffc9853da7a65a58cf77f25a07.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+source_file="res://Sprite/DuskBorne-Elf/SpriteSheet/ElfBasicAtk001BGR-Sheet-export.png"
+dest_files=["res://.godot/imported/ElfBasicAtk001BGR-Sheet-export.png-f8b02dffc9853da7a65a58cf77f25a07.ctex"]
+=======
 source_file="res://Boss-system/Sprite/DuskBorne-Elf/SpriteSheet/ElfBasicAtk001BGR-Sheet-export.png"
 dest_files=["res://.godot/imported/ElfBasicAtk001BGR-Sheet-export.png-0ea417b562ce3fb37dfe3f319b1736b6.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/DuskBorne-Elf/SpriteSheet/ElfBasicAtk001BGR-Sheet-export.png"
+dest_files=["res://.godot/imported/ElfBasicAtk001BGR-Sheet-export.png-f8b02dffc9853da7a65a58cf77f25a07.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

@@ -1,0 +1,28 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyfnqne820jsp"
+<<<<<<< HEAD
+path="res://.godot/imported/Hypnotic_Poison_loop.mp3-7980d94e7ad8d7344f02698ac21e2f7c.mp3str"
+
+[deps]
+
+source_file="res://Boss-system/audio/Hypnotic_Poison/mp3/Hypnotic_Poison_loop.mp3"
+dest_files=["res://.godot/imported/Hypnotic_Poison_loop.mp3-7980d94e7ad8d7344f02698ac21e2f7c.mp3str"]
+=======
+path="res://.godot/imported/Hypnotic_Poison_loop.mp3-305dfe5d59e6dd025fd6f127b6a55369.mp3str"
+
+[deps]
+
+source_file="res://audio/Hypnotic_Poison/mp3/Hypnotic_Poison_loop.mp3"
+dest_files=["res://.godot/imported/Hypnotic_Poison_loop.mp3-305dfe5d59e6dd025fd6f127b6a55369.mp3str"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

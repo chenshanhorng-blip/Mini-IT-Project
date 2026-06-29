@@ -2,6 +2,11 @@ extends Control
 
 var mode: String = "load"
 
+<<<<<<< HEAD
+@onready var button_click_sound = $ButtonClickSound
+
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 func _ready():
 	mode = Global.slot_mode
 	print("Mode is: ", mode)
@@ -37,6 +42,11 @@ func _update_slots():
 			delete_button.pressed.connect(_on_delete_pressed.bind(i))
 
 func _on_slot_pressed(slot: int):
+<<<<<<< HEAD
+	button_click_sound.play()
+	
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 	Global.current_slot = slot
 	if mode == "load":
 		if Global.load_game(slot):
@@ -61,8 +71,16 @@ func _on_slot_pressed(slot: int):
 		Transition.fade_to_scene("res://Boss-system/intro.tscn")
 
 func _on_delete_pressed(slot: int):
+<<<<<<< HEAD
+	button_click_sound.play()
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 	Global.delete_save(slot)
 	_update_slots()
 
 func _on_back_pressed():
+<<<<<<< HEAD
+	button_click_sound.play()
+=======
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 	Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

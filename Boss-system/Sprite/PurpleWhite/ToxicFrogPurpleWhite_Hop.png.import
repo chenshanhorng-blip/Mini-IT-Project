@@ -3,15 +3,33 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://biplkod6fp5np"
+<<<<<<< HEAD
+<<<<<<< HEAD
+path="res://.godot/imported/ToxicFrogPurpleWhite_Hop.png-cf60443963a89c8d5db958cf0b3e6157.ctex"
+=======
 path="res://.godot/imported/ToxicFrogPurpleWhite_Hop.png-63dcdc0221c5dfc75d7d3274dd6e65d3.ctex"
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+path="res://.godot/imported/ToxicFrogPurpleWhite_Hop.png-cf60443963a89c8d5db958cf0b3e6157.ctex"
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+source_file="res://Sprite/PurpleWhite/ToxicFrogPurpleWhite_Hop.png"
+dest_files=["res://.godot/imported/ToxicFrogPurpleWhite_Hop.png-cf60443963a89c8d5db958cf0b3e6157.ctex"]
+=======
 source_file="res://Boss-system/Sprite/PurpleWhite/ToxicFrogPurpleWhite_Hop.png"
 dest_files=["res://.godot/imported/ToxicFrogPurpleWhite_Hop.png-63dcdc0221c5dfc75d7d3274dd6e65d3.ctex"]
+>>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
+=======
+source_file="res://Sprite/PurpleWhite/ToxicFrogPurpleWhite_Hop.png"
+dest_files=["res://.godot/imported/ToxicFrogPurpleWhite_Hop.png-cf60443963a89c8d5db958cf0b3e6157.ctex"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

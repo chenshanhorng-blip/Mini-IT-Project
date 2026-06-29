@@ -1,0 +1,28 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dejgqjmmhufv8"
+<<<<<<< HEAD
+path="res://.godot/imported/Triumphal_full.mp3-f0d65c97674a852cf31edf02007eb2af.mp3str"
+
+[deps]
+
+source_file="res://Boss-system/audio/Triumphal/mp3/Triumphal_full.mp3"
+dest_files=["res://.godot/imported/Triumphal_full.mp3-f0d65c97674a852cf31edf02007eb2af.mp3str"]
+=======
+path="res://.godot/imported/Triumphal_full.mp3-8314d3af632b312eff4659bb9a1f4783.mp3str"
+
+[deps]
+
+source_file="res://audio/Triumphal/mp3/Triumphal_full.mp3"
+dest_files=["res://.godot/imported/Triumphal_full.mp3-8314d3af632b312eff4659bb9a1f4783.mp3str"]
+>>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
