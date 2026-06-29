@@ -1,14 +1,1 @@
-res://princessgame/reward/reward_gallery.tscn
-res://princessgame/player_hpbar.gd
-res://Boss-system/toxicfrog.gd
-res://Boss-system/mushroom.gd
-res://Boss-system/dragon.tscn
-res://script_movement/player2_script.gd
-res://script_movement/player1script.gd
-res://minimap.gd
-res://TrapHazard_script/fairy_ring.gd
-res://script_level_map/level_3.gd
-res://princessgame/skill_part system.gd
 res://Boss-system/boss.battle.system.gd
-res://script_level_map/level_5.gd
-res://scene_level_map/level5.tscn
