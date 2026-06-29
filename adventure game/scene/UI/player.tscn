@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dj8u0ggvdmt7g"]
-
-[ext_resource type="Script" uid="uid://dtrhly8udnkts" path="res://script/system/minimap_player_icon.gd" id="1_pnjev"]
-
-[node name="PlayerIcon" type="Node2D" unique_id=2118074411]
-script = ExtResource("1_pnjev")

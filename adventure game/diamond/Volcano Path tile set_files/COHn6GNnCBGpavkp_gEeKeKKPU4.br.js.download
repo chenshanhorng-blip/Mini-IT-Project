@@ -1,1 +1,0 @@
-_w.CarouselConfigRegistry&&CarouselConfigRegistry.setHandler(function(id,config){var initCarousel=function(){_w[id]&&_w[id].init(config)},carouselElement=_ge(config.DomId);"u">typeof SmartRendering?SmartRendering.LoadElementWhenDisplayed(this,carouselElement,initCarousel,[]):initCarousel.apply(this,[])});

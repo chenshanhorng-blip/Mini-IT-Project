@@ -3,33 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bigocg8yjct7u"
-<<<<<<< HEAD
-<<<<<<< HEAD
-path="res://.godot/imported/ArchDemonBasicAtk001-Sheet.png-b8e16c2158c83fb8edabaa4429b582c6.ctex"
-=======
 path="res://.godot/imported/ArchDemonBasicAtk001-Sheet.png-3e02540724f42eb8cbfc03d3e64cd7f7.ctex"
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-path="res://.godot/imported/ArchDemonBasicAtk001-Sheet.png-b8e16c2158c83fb8edabaa4429b582c6.ctex"
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-source_file="res://Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonBasicAtk001-Sheet.png"
-dest_files=["res://.godot/imported/ArchDemonBasicAtk001-Sheet.png-b8e16c2158c83fb8edabaa4429b582c6.ctex"]
-=======
 source_file="res://Boss-system/Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonBasicAtk001-Sheet.png"
 dest_files=["res://.godot/imported/ArchDemonBasicAtk001-Sheet.png-3e02540724f42eb8cbfc03d3e64cd7f7.ctex"]
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-source_file="res://Sprite/DuskBorne-ArchDemon/SpriteSheets/ArchDemonBasicAtk001-Sheet.png"
-dest_files=["res://.godot/imported/ArchDemonBasicAtk001-Sheet.png-b8e16c2158c83fb8edabaa4429b582c6.ctex"]
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

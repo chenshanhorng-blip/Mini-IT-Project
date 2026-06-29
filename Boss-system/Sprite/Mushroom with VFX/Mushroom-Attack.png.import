@@ -3,33 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wwg0x6cejwyn"
-<<<<<<< HEAD
-<<<<<<< HEAD
-path="res://.godot/imported/Mushroom-Attack.png-5cf855465d5506d17a8bbd77c7ee7ccf.ctex"
-=======
 path="res://.godot/imported/Mushroom-Attack.png-a0dd8ca4b6abb810f09e8fc6f4122434.ctex"
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-path="res://.godot/imported/Mushroom-Attack.png-5cf855465d5506d17a8bbd77c7ee7ccf.ctex"
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-source_file="res://Sprite/Mushroom with VFX/Mushroom-Attack.png"
-dest_files=["res://.godot/imported/Mushroom-Attack.png-5cf855465d5506d17a8bbd77c7ee7ccf.ctex"]
-=======
 source_file="res://Boss-system/Sprite/Mushroom with VFX/Mushroom-Attack.png"
 dest_files=["res://.godot/imported/Mushroom-Attack.png-a0dd8ca4b6abb810f09e8fc6f4122434.ctex"]
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-source_file="res://Sprite/Mushroom with VFX/Mushroom-Attack.png"
-dest_files=["res://.godot/imported/Mushroom-Attack.png-5cf855465d5506d17a8bbd77c7ee7ccf.ctex"]
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

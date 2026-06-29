@@ -2,49 +2,32 @@
 
 [ext_resource type="Script" uid="uid://ct1dxmanq1j5u" path="res://Boss-system/dialogue_prototype.gd" id="1_i8610"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8610"]
-bg_color = Color(0, 0, 0, 0.8627451)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.78431374, 0.19607843, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[node name="DialoguePrototype" type="CanvasLayer" unique_id=1982442076]
+[node name="DialoguePrototype" type="Control" unique_id=835835435]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_i8610")
 
-[node name="Panel" type="Panel" parent="." unique_id=277489396]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 250.0
-offset_top = 430.0
-offset_right = -252.0
-offset_bottom = -78.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_i8610")
-
-[node name="Label" type="Label" parent="Panel" unique_id=1227301330]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -30.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 28
-text = "WHATTT!!!!"
-autowrap_mode = 3
+[node name="Label" type="Label" parent="." unique_id=1227301330]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 205.0
+offset_bottom = 29.0
+text = "hi one two three for five"
 
 [node name="Timer" type="Timer" parent="." unique_id=1817173808]
-process_callback = 0
-wait_time = 0.05
+wait_time = 0.1
 one_shot = true
+
+[node name="Button" type="Button" parent="." unique_id=1960859169]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 49.0
+offset_right = 152.0
+offset_bottom = 88.0
+text = "start dialogue"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

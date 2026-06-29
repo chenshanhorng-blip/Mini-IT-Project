@@ -16,8 +16,8 @@ extends Control
 @onready var medals_container    = $VBoxContainer/MedalsContainer
 @onready var milestone_container = $VBoxContainer/MilestoneContainer
 @onready var level_coins_label   = $VBoxContainer/LevelCoinsLabel
-@onready var back_button         = $VBoxContainer/BackButton
-@onready var reset_button        = $VBoxContainer/ResetButton
+@onready var back_button         = $VBoxContainer/ButtonContainer/BackButton
+@onready var reset_button        = $VBoxContainer/ButtonContainer/ResetButton
 
 
 func _ready() -> void:
@@ -185,7 +185,7 @@ func _on_coins_changed(_new_total: int) -> void:
 # ============================================================
 
 func _on_back_pressed() -> void:
-	Transition.fade_to_scene("res://princessgame/main menu.tscn")
+	Transition.fade_to_scene("res://scene_level_map/map.tscn")
 
 
 func _on_reset_pressed() -> void:

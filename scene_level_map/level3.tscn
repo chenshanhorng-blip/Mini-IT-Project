@@ -13,10 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b2mltdu71tmlr" path="res://scene/UI/minimap.tscn" id="11_nxrnk"]
 [ext_resource type="PackedScene" uid="uid://cw7ejn3ylwygu" path="res://Sprite/dusk_borne.tscn" id="12_6nwwx"]
 [ext_resource type="PackedScene" uid="uid://cdjdhgxtihh1i" path="res://Boss-system/hint button.tscn" id="13_5vp6s"]
-<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://bn5lsdmf7s7th" path="res://audio/04 - Silent Forest.ogg" id="14_e36im"]
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [node name="Node2D" type="Node2D" unique_id=1204356231]
 script = ExtResource("1_biuk0")
@@ -132,12 +129,9 @@ position = Vector2(810, 310)
 position = Vector2(929, 414)
 
 [node name="HintButton" parent="." unique_id=1468774410 instance=ExtResource("13_5vp6s")]
-<<<<<<< HEAD
 
 [node name="bgmlevel3" type="AudioStreamPlayer" parent="." unique_id=1539963067]
 stream = ExtResource("14_e36im")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237

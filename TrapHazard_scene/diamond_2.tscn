@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b7lfoud1e714v"]
 
-[ext_resource type="Script" uid="uid://cweplgnfcwmg2" path="res://TrapHazard_script/diamond.gd" id="1_6ylmg"]
+[ext_resource type="Script" uid="uid://cweplgnfcwmg2" path="res://red_point.gd" id="1_6ylmg"]
 [ext_resource type="Texture2D" uid="uid://dj765kwtgxmck" path="res://diamond/purple diamond.png" id="2_40cxs"]
+[ext_resource type="AudioStream" uid="uid://dko7ap2abad1f" path="res://audio/gem.wav" id="3_13sld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ju4im"]
 size = Vector2(42.375, 40.125)
@@ -17,3 +18,7 @@ shape = SubResource("RectangleShape2D_ju4im")
 position = Vector2(-1, 2)
 scale = Vector2(0.05199655, 0.044357646)
 texture = ExtResource("2_40cxs")
+
+[node name="gem" type="AudioStreamPlayer" parent="." unique_id=1943170157]
+stream = ExtResource("3_13sld")
+volume_db = 8.0
