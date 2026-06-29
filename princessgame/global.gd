@@ -5,10 +5,10 @@ var player1_character: CharacterStat = null
  
 # --- Multiplayer ---
 var player2_character: CharacterStat = null
-var game_mode: String = "single"   # "single" or "multiplayer"
+var game_mode: String = "single"   
  
 var player_scene: String = "res://scene_movement/player1_movement.tscn"
-var player2_scene: String = "res//scene_movement/player2_movement.tscn"
+var player2_scene: String = "res://scene_movement/player2_movement.tscn"
 var show_minimap: bool = true
 var show_hints: bool = true
  

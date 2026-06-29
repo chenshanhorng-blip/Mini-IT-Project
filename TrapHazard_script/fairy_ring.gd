@@ -4,52 +4,64 @@ extends Area2D
 @export var teleport_destinations: Array[Node2D] = []
 @export var cooldown_time: float = 1.5
 
-# 保持你原有的安全获取节点声明
 @onready var particles: GPUParticles2D = $GPUParticles2D
-<<<<<<< HEAD
 @onready var fairy_ring_sound = $FairyRingSound
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
-var can_teleport = true
+# Track cooldown per player body so multiple players don't block each other
+# and so the destination ring doesn't immediately re-teleport the arriving player
+var players_on_cooldown: Array = []
+
 
 func _ready():
 	body_entered.connect(_on_body_entered)
 
+
 func _on_body_entered(body):
-	if body.is_in_group("player") and can_teleport:
-		if teleport_destinations.is_empty():
-			print("Warning: No teleport destinations set for ", name)
-			return
+	if not body.is_in_group("player"):
+		return
 
-		var destination = teleport_destinations.pick_random()
-		
-		if is_instance_valid(destination):
-			_teleport_player(body, destination.global_position)
+	# Skip if this specific player is still on cooldown
+	if body in players_on_cooldown:
+		return
 
-			if destination.has_method("force_cooldown"):
-				destination.force_cooldown()
+	if teleport_destinations.is_empty():
+		print("Warning: No teleport destinations set for ", name)
+		return
 
-# 合并了重复的函数，保留了你带 await 的最新逻辑
+	var destination = teleport_destinations.pick_random()
+	if is_instance_valid(destination):
+		_teleport_player(body, destination.global_position)
+
+		if destination.has_method("force_cooldown_for_player"):
+			destination.force_cooldown_for_player(body)
+
+
 func _teleport_player(player, target_pos):
-	can_teleport = false
-	
-	# 使用顶部声明好的 particles 变量，更安全
+	# Add player to cooldown list so this ring won't re-teleport them immediately
+	players_on_cooldown.append(player)
+
 	if particles:
 		particles.emitting = true
-	
-<<<<<<< HEAD
-	fairy_ring_sound.play()
-	
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-	# 保持你的玩家传送和冷却逻辑
-	player.teleport_to(target_pos)
-	
-	await get_tree().create_timer(cooldown_time).timeout
-	can_teleport = true
 
-func force_cooldown():
-	can_teleport = false
+	fairy_ring_sound.play()
+
+	player.teleport_to(target_pos)
+
 	await get_tree().create_timer(cooldown_time).timeout
-	can_teleport = true
+
+	# Remove player from cooldown so they can use rings again
+	players_on_cooldown.erase(player)
+
+
+# Called on the DESTINATION ring so the arriving player isn't
+# immediately teleported back by the destination ring
+func force_cooldown_for_player(player) -> void:
+	if player not in players_on_cooldown:
+		players_on_cooldown.append(player)
+	await get_tree().create_timer(cooldown_time).timeout
+	players_on_cooldown.erase(player)
+
+
+# Keep old force_cooldown for compatibility
+func force_cooldown():
+	await get_tree().create_timer(cooldown_time).timeout

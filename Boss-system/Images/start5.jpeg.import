@@ -3,33 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqlw8k2x286fp"
-<<<<<<< HEAD
-<<<<<<< HEAD
-path="res://.godot/imported/start5.jpeg-7800aba52ca32ace8fa0c1beac53e1c7.ctex"
-=======
 path="res://.godot/imported/start5.jpeg-e4b27d5e02037166f75641d36b0fe486.ctex"
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-path="res://.godot/imported/start5.jpeg-7800aba52ca32ace8fa0c1beac53e1c7.ctex"
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-source_file="res://Images/start5.jpeg"
-dest_files=["res://.godot/imported/start5.jpeg-7800aba52ca32ace8fa0c1beac53e1c7.ctex"]
-=======
 source_file="res://Boss-system/Images/start5.jpeg"
 dest_files=["res://.godot/imported/start5.jpeg-e4b27d5e02037166f75641d36b0fe486.ctex"]
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-source_file="res://Images/start5.jpeg"
-dest_files=["res://.godot/imported/start5.jpeg-7800aba52ca32ace8fa0c1beac53e1c7.ctex"]
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

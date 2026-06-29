@@ -3,33 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ceb20toohcqaf"
-<<<<<<< HEAD
-<<<<<<< HEAD
-path="res://.godot/imported/Dragon Boss-Attack.png-8b74d00c3c06f593210767dd80dcad37.ctex"
-=======
 path="res://.godot/imported/Dragon Boss-Attack.png-efad504441e38d56083a4a9ac87833d0.ctex"
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-path="res://.godot/imported/Dragon Boss-Attack.png-8b74d00c3c06f593210767dd80dcad37.ctex"
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-source_file="res://Sprite/Dragon Boss-Attack.png"
-dest_files=["res://.godot/imported/Dragon Boss-Attack.png-8b74d00c3c06f593210767dd80dcad37.ctex"]
-=======
 source_file="res://Boss-system/Sprite/Dragon Boss-Attack.png"
 dest_files=["res://.godot/imported/Dragon Boss-Attack.png-efad504441e38d56083a4a9ac87833d0.ctex"]
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-source_file="res://Sprite/Dragon Boss-Attack.png"
-dest_files=["res://.godot/imported/Dragon Boss-Attack.png-8b74d00c3c06f593210767dd80dcad37.ctex"]
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

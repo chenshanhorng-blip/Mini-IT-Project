@@ -42,7 +42,6 @@ func _on_settings():
 	Transition.fade_to_scene("res://scene/UI/setting.tscn")
 
 func _on_quit():
-	button_click_sound.play()
 	get_tree().quit()
 
 func _on_credit_pressed():

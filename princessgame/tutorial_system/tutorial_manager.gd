@@ -2,6 +2,8 @@ extends Node
 
 # ============================================================
 # TUTORIAL MANAGER — Autoload (name: TutorialManager)
+# DO NOT attach this to any scene node.
+# Register as Autoload in Project Settings only.
 # ============================================================
 
 var tutorial_active: bool = false

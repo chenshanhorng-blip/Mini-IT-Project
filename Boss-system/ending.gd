@@ -7,10 +7,6 @@ extends CanvasLayer
 @onready var panel5 = $panel5
 @onready var panel6 = $panel6
 @onready var label = $Label
-<<<<<<< HEAD
-@onready var bgm_ending = $bgmending
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 var panels = []
 var ending_finished = false
@@ -92,4 +88,4 @@ func _process(_delta):
 
 func _input(event):
 	if ending_finished and event.is_action_pressed("ui_accept"):
-		Transition.fade_to_scene("res://scene/UI/main.tscn")
+		Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

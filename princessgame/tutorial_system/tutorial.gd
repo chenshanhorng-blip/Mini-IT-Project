@@ -65,12 +65,16 @@ func _ready() -> void:
 
 	# --- Spawn player ---
 	var p1 = P1_SCENE.instantiate()
-	add_child(p1)
-	var spawn = get_node_or_null("SpawnPoint")
+	# Set position BEFORE add_child — when _ready() runs inside player1script.gd
+	# it saves start_position = global_position. If add_child runs first,
+	# start_position gets saved as Vector2(0,0) causing infinite fall/death loop.
+	var spawn = get_node_or_null("Spawnpoint")
 	if spawn != null:
-		p1.global_position = spawn.global_position
+		p1.position = spawn.global_position
 	else:
-		p1.global_position = Vector2(200, 0)
+		p1.position = Vector2(50, 218)
+		push_error("Tutorial: Spawnpoint node not found — using fallback Vector2(50, 218)")
+	add_child(p1)
 	player_node = p1
 	print("Tutorial: Player spawned at ", p1.global_position)
 
