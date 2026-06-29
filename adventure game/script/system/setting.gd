@@ -3,6 +3,8 @@ extends Control
 const CONFIG_PATH = "user://settings.cfg"
 var config = ConfigFile.new()
 
+@onready var button_click_sound = $ButtonClickSound
+
 func _ready():
 	load_settings()
 	
@@ -128,4 +130,5 @@ func _apply_defaults():
 	$Panel/VSyncToggle.button_pressed = true
 
 func _on_back_pressed():
+	button_click_sound.play()
 	Transition.fade_to_scene("res://scene/UI/main_menu.tscn")
