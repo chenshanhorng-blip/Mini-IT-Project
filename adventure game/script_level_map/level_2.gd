@@ -64,24 +64,34 @@ func show_exit_button():
 		exit_button.show()
 
 func _on_button_pressed():
-	# 1. 正常解锁下一关
 	Global.unlock_next_level("level2")
-	
-	# 2. 🛠️ 临时修改：去掉 dont_ask_again 的判断，只要有面板就【强行弹出】！
+	Global.save_game(null, Global.current_slot)
+ 
+	# Flow: Feedback first → Reward Popup → Map
 	if feedback_panel != null:
-		# 连接关闭信号
-		if not feedback_panel.feedback_closed.is_connected(_go_back_to_map):
-			feedback_panel.feedback_closed.connect(_go_back_to_map)
-		
-		# 强制显示
+		if not feedback_panel.feedback_closed.is_connected(_on_feedback_closed):
+			feedback_panel.feedback_closed.connect(_on_feedback_closed)
 		feedback_panel.show()
-		print("📋 [测试强弹] 成功找到反馈面板，正在强制弹出...")
 	else:
-		# 只有当路径写错了、根本找不到这个节点时，才会走到这里
-		print("❌ 警告：依然找不到反馈面板节点，请检查路径是否正确！")
+		_show_reward_popup()
+ 
+ 
+func _on_feedback_closed():
+	_show_reward_popup()
+ 
+ 
+func _show_reward_popup():
+	var reward_popup = REWARD_POPUP_SCENE.instantiate()
+	add_child(reward_popup)
+	reward_popup.on_continue_pressed = func():
 		_go_back_to_map()
-
-# 🌟 专门负责安全切回大地图的函数
+	reward_popup.show_reward(
+		"level2",
+		RewardSystem.get_base_reward("level2"),
+		collected_count * 10,
+		collected_count
+	)
+ 
+ 
 func _go_back_to_map():
-	print("🚪 正在离开 Level 2，返回关卡大地图...")
 	Transition.fade_to_scene("res://scene_level_map/map.tscn")

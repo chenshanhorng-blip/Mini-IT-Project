@@ -17,7 +17,7 @@ func _ready():
 
 
 func _on_body_entered(body):
-	if not body.is_in_group("player"):
+	if not body.is_in_group("player")or body.is_in_group("Player"):
 		return
 
 	# Skip if this specific player is still on cooldown

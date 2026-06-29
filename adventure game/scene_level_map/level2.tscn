@@ -1186,6 +1186,7 @@ position = Vector2(380, 297)
 position = Vector2(922, 189)
 
 [node name="Hintbutton" parent="." unique_id=1468774410 instance=ExtResource("13_11ev2")]
+position = Vector2(-1, -4)
 
 [node name="FeedbackPanel" parent="." unique_id=61742216 instance=ExtResource("14_bthgh")]
 visible = false
