@@ -17,22 +17,34 @@ func _update_slots():
 		var slot_button = get_node("Slot/Slot" + str(i))
 		var slot_label = get_node("Slot/Slot" + str(i) + "Label")
 		var delete_button = get_node("Slot/Delete" + str(i))
+		
 		if slot_info["exists"]:
+			var mode_text = "👤 Single"
+			var p1_max = slot_info.get("player1_max_hp", 100)
+			var hp_text = "❤️ HP: " + str(slot_info["player_hp"]) + " / " + str(p1_max)
+			
+			if slot_info.get("game_mode", "single") == "multiplayer":
+				mode_text = "👥 Multiplayer"
+				var p2_max = slot_info.get("player2_max_hp", 0)
+				hp_text = "❤️ P1 HP: " + str(slot_info["player_hp"]) + " / " + str(p1_max) + \
+						  "\n❤️ P2 HP: " + str(slot_info.get("player2_hp", 0)) + " / " + str(p2_max)
+			
 			slot_label.text = "🎮 Slot " + str(i) + "\n" + \
-				"📍 Level: " + slot_info["current_level"] + "\n" + \
-				"❤️ HP: " + str(slot_info["player_hp"]) + "\n" + \
-				"🕐 " + slot_info["timestamp"]
+							  "📍 Level: " + slot_info["current_level"] + "\n" + \
+							  hp_text + "\n" + \
+							  mode_text + "\n" + \
+							  "🕐 " + slot_info["timestamp"]
 			slot_button.disabled = false
 			delete_button.visible = true
 		else:
 			slot_label.text = "🎮 Slot " + str(i) + "\n➕ [Empty]"
-			# In save mode, empty slots are ENABLED
-			# In load mode, empty slots are DISABLED
+			# 在 save 模式下，空存档位启用；在 load 模式下，空存档位禁用
 			if mode == "save":
 				slot_button.disabled = false
 			else:
 				slot_button.disabled = true
 			delete_button.visible = false
+			
 		if not slot_button.pressed.is_connected(_on_slot_pressed.bind(i)):
 			slot_button.pressed.connect(_on_slot_pressed.bind(i))
 		if not delete_button.pressed.is_connected(_on_delete_pressed.bind(i)):
