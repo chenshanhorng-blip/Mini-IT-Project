@@ -10,17 +10,17 @@ shadow_size = 20
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_o6f0u"]
-font_size = 35
+font_size = 40
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_61ctr"]
-font_size = 35
+font_size = 40
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_q6r16"]
-font_size = 35
+font_size = 40
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 1)
 
@@ -56,19 +56,19 @@ offset_bottom = 1212.0
 [node name="Slot1" type="Button" parent="Slot" unique_id=295405314]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 0
-offset_left = 155.0
+offset_left = 209.0
 offset_top = 246.0
-offset_right = 455.0
+offset_right = 509.0
 offset_bottom = 326.0
 theme_override_font_sizes/font_size = 50
 text = "🎮 SLOT 1"
 
 [node name="Slot1Label" type="Label" parent="Slot" unique_id=1673434244]
 layout_mode = 0
-offset_left = 110.0
-offset_top = 366.0
-offset_right = 331.0
-offset_bottom = 651.0
+offset_left = 219.0
+offset_top = 372.0
+offset_right = 440.0
+offset_bottom = 657.0
 text = "🎮 Slot 1
 📍 Level:
 ❤️ HP:
@@ -77,68 +77,68 @@ label_settings = SubResource("LabelSettings_o6f0u")
 
 [node name="Delete1" type="Button" parent="Slot" unique_id=1223613740]
 layout_mode = 0
-offset_left = 242.0
-offset_top = 710.0
-offset_right = 442.0
-offset_bottom = 760.0
+offset_left = 238.0
+offset_top = 654.0
+offset_right = 438.0
+offset_bottom = 704.0
 theme_override_font_sizes/font_size = 30
 text = "🗑️ Delete "
 
 [node name="Slot2" type="Button" parent="Slot" unique_id=1041358439]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 0
-offset_left = 787.0
-offset_top = 240.0
-offset_right = 1087.0
-offset_bottom = 320.0
+offset_left = 835.0
+offset_top = 238.0
+offset_right = 1135.0
+offset_bottom = 318.0
 theme_override_font_sizes/font_size = 50
 text = "🎮 SLOT 2"
 
 [node name="Slot2Label" type="Label" parent="Slot" unique_id=513450115]
 layout_mode = 0
-offset_left = 738.0
-offset_top = 352.0
-offset_right = 1036.0
-offset_bottom = 493.0
+offset_left = 838.0
+offset_top = 359.0
+offset_right = 1136.0
+offset_bottom = 500.0
 theme_override_font_sizes/font_size = 40
 text = "➕ Empty "
 label_settings = SubResource("LabelSettings_61ctr")
 
 [node name="Delete2" type="Button" parent="Slot" unique_id=435217366]
 layout_mode = 0
-offset_left = 849.0
-offset_top = 697.0
-offset_right = 1025.0
-offset_bottom = 747.0
+offset_left = 898.0
+offset_top = 652.0
+offset_right = 1074.0
+offset_bottom = 702.0
 theme_override_font_sizes/font_size = 30
 text = "🗑️ Delete "
 
 [node name="Slot3" type="Button" parent="Slot" unique_id=587756283]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 0
-offset_left = 1437.0
-offset_top = 234.0
-offset_right = 1737.0
-offset_bottom = 314.0
+offset_left = 1489.0
+offset_top = 239.0
+offset_right = 1789.0
+offset_bottom = 319.0
 theme_override_font_sizes/font_size = 50
 text = "🎮 SLOT 3"
 
 [node name="Slot3Label" type="Label" parent="Slot" unique_id=1682580611]
 layout_mode = 0
-offset_left = 1377.0
-offset_top = 346.0
-offset_right = 1575.0
-offset_bottom = 459.0
+offset_left = 1498.0
+offset_top = 363.0
+offset_right = 1696.0
+offset_bottom = 476.0
 text = "➕ Empty 
 "
 label_settings = SubResource("LabelSettings_q6r16")
 
 [node name="Delete3" type="Button" parent="Slot" unique_id=945693168]
 layout_mode = 0
-offset_left = 1509.0
-offset_top = 690.0
-offset_right = 1668.0
-offset_bottom = 740.0
+offset_left = 1563.0
+offset_top = 656.0
+offset_right = 1722.0
+offset_bottom = 706.0
 theme_override_font_sizes/font_size = 30
 text = "🗑️ Delete "
 

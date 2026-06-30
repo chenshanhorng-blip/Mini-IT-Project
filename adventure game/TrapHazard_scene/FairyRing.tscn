@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://w1bjx14lhnfa"]
+
+[ext_resource type="Script" uid="uid://cnq6m47uo0i7c" path="res://TrapHazard_script/fairy_ring.gd" id="1_r38bj"]
+[ext_resource type="Texture2D" uid="uid://biitlmlj1kkm7" path="res://diamond/New Piskel (7).png" id="2_ly6qn"]
+[ext_resource type="Texture2D" uid="uid://krkxiudff38o" path="res://kenney_pixel-platformer/Tiles/tile_0011.png" id="3_552b5"]
+[ext_resource type="AudioStream" uid="uid://s7nsh54mw5hc" path="res://audio/FairyRingSound.ogg" id="4_7btla"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1cg"]
+size = Vector2(53, 20)
+
+[sub_resource type="Gradient" id="Gradient_7btla"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k7nsc"]
+gradient = SubResource("Gradient_7btla")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wi4qi"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, -50, 0)
+color = Color(1, 1, 1, 0.49803922)
+color_ramp = SubResource("GradientTexture1D_k7nsc")
+
+[node name="FairyRing" type="Area2D" unique_id=1960276614 node_paths=PackedStringArray("teleport_destinations")]
+script = ExtResource("1_r38bj")
+teleport_destinations = [NodePath(".")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=959178712]
+position = Vector2(4.5, 0)
+shape = SubResource("RectangleShape2D_ro1cg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2138278001]
+position = Vector2(3.5762787e-07, -1.1920929e-07)
+scale = Vector2(0.099066846, 0.08650174)
+texture = ExtResource("2_ly6qn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1764236470]
+position = Vector2(3, -3)
+amount = 5
+texture = ExtResource("3_552b5")
+process_material = SubResource("ParticleProcessMaterial_wi4qi")
+
+[node name="FairyRingSound" type="AudioStreamPlayer" parent="." unique_id=2049376885]
+stream = ExtResource("4_7btla")
+volume_db = 5.0

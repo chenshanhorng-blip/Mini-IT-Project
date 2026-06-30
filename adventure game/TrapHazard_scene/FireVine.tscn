@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b3co1poyordnc"]
+
+[ext_resource type="Script" uid="uid://wrs7bfdmhjol" path="res://TrapHazard_script/fire_vine.gd" id="1_arpf7"]
+[ext_resource type="Texture2D" uid="uid://c44ixctuku3v7" path="res://diamond/New Piskel (11).png" id="2_arpf7"]
+[ext_resource type="AudioStream" uid="uid://2a78e7hurrmt" path="res://audio/FireVineSound.mp3" id="3_66k56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2tif"]
+size = Vector2(45, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66k56"]
+atlas = ExtResource("2_arpf7")
+region = Rect2(0, 0, 1440, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm466"]
+atlas = ExtResource("2_arpf7")
+region = Rect2(1440, 0, 1440, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4orq"]
+atlas = ExtResource("2_arpf7")
+region = Rect2(0, 1440, 1440, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt4ko"]
+atlas = ExtResource("2_arpf7")
+region = Rect2(1440, 1440, 1440, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d58gw"]
+atlas = ExtResource("2_arpf7")
+region = Rect2(0, 2880, 1440, 1440)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tltjp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66k56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm466")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4orq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt4ko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d58gw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FireVine" type="Area2D" unique_id=254900357]
+script = ExtResource("1_arpf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=319150984]
+position = Vector2(0.5, -7.5)
+shape = SubResource("RectangleShape2D_e2tif")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2048039968]
+position = Vector2(-3, -6)
+scale = Vector2(0.093749955, 0.08749996)
+sprite_frames = SubResource("SpriteFrames_tltjp")
+
+[node name="Timer" type="Timer" parent="." unique_id=445995036]
+
+[node name="FireVineSound" type="AudioStreamPlayer" parent="." unique_id=279741526]
+stream = ExtResource("3_66k56")
+volume_db = 6.0
+autoplay = true
+parameters/looping = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
