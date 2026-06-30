@@ -90,6 +90,7 @@ func _pick_character(type: int, char_name: String) -> void:
 func _pick_character_single(type: int) -> void:
 	is_selecting = true
 	Global.player1_character = Create_Character.Create_Character(type)
+	Global.player1_character_type = type
 	print("SELECTED (single): ", Global.player1_character.character_name)
 	Transition.fade_to_scene("res://princessgame/tutorial_system/tutorial.tscn")
 
@@ -109,6 +110,8 @@ func _pick_character_multiplayer(type: int) -> void:
 
 	Global.player1_character = Create_Character.Create_Character(player1_pick)
 	Global.player2_character = Create_Character.Create_Character(player2_pick)
+	Global.player1_character_type = player1_pick
+	Global.player2_character_type = player2_pick
 
 	print("Confirmed Player 1: ", Global.player1_character.character_name)
 	print("Confirmed Player 2: ", Global.player2_character.character_name)

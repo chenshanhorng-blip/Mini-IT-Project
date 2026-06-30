@@ -1,18 +1,17 @@
 extends Node2D
-
 var collected_count = 0
 var total_points = 3
 var player2_node = null
 @onready var exit_button = $Button
 @onready var pause_menu = $PauseMenu
 @onready var bgm_level_3 = $bgmlevel3
-
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
 const P1_SPAWN = Vector2(398, 115)
 const P2_SPAWN  = Vector2(460, 115)
 
 func _ready() -> void:
+	Global.current_level = "level3"
 	# 🛠️ 记得根据你具体关卡的名字修改这里（比如 "level3", "level4" 等）
 	CheckpointManager.reset_checkpoint("level3", P1_SPAWN)
 	
@@ -33,21 +32,23 @@ func _ready() -> void:
 			print("💎 成功找到并连接钻石: ", point.name)
 			if not point.collected.is_connected(_on_point_collected):
 				point.collected.connect(_on_point_collected)
-			_setup_multiplayer()
 		else:
 			print("⚠️ 警告：关卡脚本中列出的某个钻石节点缺失了！请检查当前关卡树里的钻石名字是否严格叫做 BlueDiamond1, 2, 3")
+	
+	# ✅ 移到 for 循环外面，整个 _ready() 只执行一次，避免重复生成 Player 2
+	_setup_multiplayer()
 
 func _setup_multiplayer() -> void:
 	if Global.game_mode != "multiplayer":
 		return
 	if Global.player2_character == null:
-		print("Level1: no player2_character set — skipping P2 spawn")
+		print("Level3: no player2_character set — skipping P2 spawn")
 		return
  
 	player2_node = P2_SCENE.instantiate()
 	player2_node.position = P2_SPAWN  # Set BEFORE add_child so _ready() saves correct start_position
 	add_child(player2_node)
-	print("Level1: Player 2 spawned at ", P2_SPAWN)
+	print("Level3: Player 2 spawned at ", P2_SPAWN)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
