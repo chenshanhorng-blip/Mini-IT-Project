@@ -83,3 +83,7 @@ theme_override_colors/font_color = Color(0.93333334, 0.8862745, 0.07450981, 1)
 theme_override_colors/icon_normal_color = Color(0.75723636, 0.41141784, 0.28435007, 1)
 theme_override_font_sizes/font_size = 50
 text = "Back"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=706760820]
+stream = ExtResource("3_0r123")
+
