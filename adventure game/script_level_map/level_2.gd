@@ -17,7 +17,6 @@ const P2_SPAWN = Vector2(46, 113)
 
 
 func _ready():
-	Global.current_level = "level2"
 	CheckpointManager.reset_checkpoint("level2", Vector2(110, 113))
 	
 	if exit_button:
