@@ -3,33 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pjktageqb5r6"
-<<<<<<< HEAD
-<<<<<<< HEAD
-path="res://.godot/imported/ending6.jpeg-32600b3a3197c2efc241c996497d56c6.ctex"
-=======
 path="res://.godot/imported/ending6.jpeg-ff8b409d04496ebb2dc5781bc704687e.ctex"
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-path="res://.godot/imported/ending6.jpeg-32600b3a3197c2efc241c996497d56c6.ctex"
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-source_file="res://Images/ending6.jpeg"
-dest_files=["res://.godot/imported/ending6.jpeg-32600b3a3197c2efc241c996497d56c6.ctex"]
-=======
 source_file="res://Boss-system/Images/ending6.jpeg"
 dest_files=["res://.godot/imported/ending6.jpeg-ff8b409d04496ebb2dc5781bc704687e.ctex"]
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-source_file="res://Images/ending6.jpeg"
-dest_files=["res://.godot/imported/ending6.jpeg-32600b3a3197c2efc241c996497d56c6.ctex"]
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

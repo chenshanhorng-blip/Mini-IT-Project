@@ -3,33 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwi2grob0cl84"
-<<<<<<< HEAD
-<<<<<<< HEAD
-path="res://.godot/imported/IDLE.png-7b8966ec66bacb394a8d14a160da913f.ctex"
-=======
 path="res://.godot/imported/IDLE.png-cc57f3a9b10415dbffc6e02c837295d9.ctex"
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-path="res://.godot/imported/IDLE.png-7b8966ec66bacb394a8d14a160da913f.ctex"
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-source_file="res://Sprite/GreenBlue/with_outline/IDLE.png"
-dest_files=["res://.godot/imported/IDLE.png-7b8966ec66bacb394a8d14a160da913f.ctex"]
-=======
 source_file="res://Boss-system/Sprite/GreenBlue/with_outline/IDLE.png"
 dest_files=["res://.godot/imported/IDLE.png-cc57f3a9b10415dbffc6e02c837295d9.ctex"]
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
-=======
-source_file="res://Sprite/GreenBlue/with_outline/IDLE.png"
-dest_files=["res://.godot/imported/IDLE.png-7b8966ec66bacb394a8d14a160da913f.ctex"]
->>>>>>> c5805094fa8a04dd3f0f7304f872aa74fe03c9b1
 
 [params]
 

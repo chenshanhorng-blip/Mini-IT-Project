@@ -83,8 +83,6 @@ func _on_area_body_entered(body) -> void:
 	if body.is_in_group("player"):
 		player_node = body
 		player_in_range = true
-		if player_stat == null and Global.player1_character != null:
-			player_stat = Global.player1_character
 		attack_loop()
 
 func _on_area_body_exited(body) -> void:
@@ -106,12 +104,11 @@ func do_attack() -> void:
 	attack_cooldown = true
 	sprite.play("ATTACK")
 
-	if player_stat != null:
-		CombatSystem.take_damage(player_stat, attack_damage)
-		print("Mushroom attacked player via CombatSystem for ", attack_damage)
-	elif player_node != null and player_node.has_method("take_damage"):
+	# Always use player_node.take_damage() — this correctly damages
+	# whichever player body is in range (P1 or P2) using their own stat
+	if player_node != null and player_node.has_method("take_damage"):
 		player_node.take_damage(attack_damage)
-		print("Mushroom attacked player via take_damage() for ", attack_damage)
+		print("Mushroom attacked ", player_node.name, " for ", attack_damage)
 	else:
 		print("WARNING: Mushroom could not deal damage!")
 

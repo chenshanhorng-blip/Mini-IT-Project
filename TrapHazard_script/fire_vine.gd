@@ -1,10 +1,7 @@
 extends Area2D
 
-<<<<<<< HEAD
 @onready var fire_vine_sound = $FireVineSound
 
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 @export var damage_per_second: float = 15.0
 @export var tick_rate: float = 0.5
 

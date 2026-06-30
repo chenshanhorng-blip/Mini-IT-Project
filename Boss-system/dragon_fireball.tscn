@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://c2x5k5hykcfko"]
 
-[ext_resource type="Script" uid="uid://bb800cpkdo772" path="res://dragon_fireball.gd" id="1_cl2hb"]
-[ext_resource type="Texture2D" uid="uid://bplufgo68smb" path="res://projectile.png" id="1_eco3o"]
-[ext_resource type="AudioStream" uid="uid://bisxx0ftbbujx" path="res://audio/Fireball.wav" id="3_7j1af"]
+[ext_resource type="Script" uid="uid://bb800cpkdo772" path="res://Boss-system/dragon_fireball.gd" id="1_cl2hb"]
+[ext_resource type="Texture2D" uid="uid://bplufgo68smb" path="res://Boss-system/projectile.png" id="1_eco3o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_meejp"]
 animations = [{
@@ -23,16 +22,12 @@ script = ExtResource("1_cl2hb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2092833549]
 texture_filter = 1
-position = Vector2(20.999992, -37)
+position = Vector2(75.99999, -26.999998)
 rotation = -0.36369514
 scale = Vector2(4.5729165, 4.015625)
 sprite_frames = SubResource("SpriteFrames_meejp")
 animation = &"Fireball"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1157146980]
-position = Vector2(32, -53)
+position = Vector2(82, -42)
 shape = SubResource("RectangleShape2D_eco3o")
-
-[node name="Fireball" type="AudioStreamPlayer" parent="." unique_id=1365244147]
-stream = ExtResource("3_7j1af")
-volume_db = 8.0

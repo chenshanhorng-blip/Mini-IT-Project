@@ -1,435 +1,225 @@
 extends CharacterBody2D
 
-enum State {
-	DIALOGUE,
-	IDLE,
-	RAGE,
-	DEAD
-}
+signal boss_defeated
 
-@export var max_health := 1000
+enum State { TAKEOFF, ATTACK, LANDING, COOLDOWN }
 
-var health := 1000
-var phase := 1
-var current_state = State.DIALOGUE
+@export var speed: float = 150.0
+@export var fly_height: float = 80.0
+@export var health: int = 1000
+@export var damage_cooldown: float = 1.5
 
-var intro_done = false
-var phase2_dialogue = false
-var death_dialogue = false
+var current_state: State = State.TAKEOFF
+var player_node: Node2D
+var fireball_scene: PackedScene = preload("res://Boss-system/dragon_fireball.tscn")
+var can_attack: bool = true
+var original_pos_y: float
 
-var fireball_scene = preload("res://Boss-system/dragon_fireball.tscn")
-var breath_scene = preload("res://Boss-system/projectile.tscn")
-var tail_scene = preload("res://Boss-system/projectile.tscn")
-
-@onready var sprite = $AnimatedSprite2D
-@onready var mouth = $MouthMarker
-@onready var tail_marker = $TailMarker
-@onready var camera = get_viewport().get_camera_2d()
-@onready var hp_label = $HPLabel
-@onready var fireball_attack_sound = $FireballAttackSound
-@onready var fire_breath_sound = $FireBreathSound
-@onready var boss_death_sound = $BossDeathSound
-@onready var fire_breath_sound_2 = $Firebreathsound2
-@onready var projectile_sound = $ProjectileSound
-@onready var ground_smash_sound = $GroundSmashSound
-@onready var dialogue_point = $DialoguePoint
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var attack_area: Area2D = $AttackArea
+@onready var hp_label: Label = $HPLabel
 
 func _ready():
+	add_to_group("enemy")
+	add_to_group("Boss")
+	player_node = get_tree().get_first_node_in_group("player")
+	original_pos_y = global_position.y
+	print("🐉 Dragon ready")
+	attack_area.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	attack_area.monitoring = false
+	_update_hp_label()
+	attack_loop()
 
-	hp_label.text = "BOSS HP"
 
-	update_hp()
+func _update_hp_label() -> void:
+	if hp_label:
+		hp_label.text = "HP: " + str(max(health, 0)) + " / 1000"
 
+func _physics_process(delta):
+	if current_state == State.TAKEOFF or current_state == State.LANDING:
+		move_and_slide()
+
+func attack_loop() -> void:
+	while health > 0:
+		match current_state:
+			State.TAKEOFF:
+				await takeoff_phase()
+			State.ATTACK:
+				await attack_phase()
+			State.LANDING:
+				await landing_phase()
+			State.COOLDOWN:
+				await cooldown_phase()
+
+# ---------------- 飞行逻辑 ----------------
+
+func takeoff_phase() -> void:
+	print("🐉 Dragon taking off (flying upward)")
+	sprite.play("FLYING")
+	var target_pos = global_position + Vector2(0, -fly_height)
+	var duration = fly_height / speed
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", target_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await tween.finished
+	current_state = State.ATTACK
+
+func attack_phase() -> void:
+	print("🐉 Dragon attacking in the air")
 	sprite.play("IDLE")
 
-	start_intro()
-
-func start_intro():
-
-	current_state = State.DIALOGUE
-
-	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
-
-	add_child(dialogue)
-
-	dialogue.dialogue_array = [
-		"For hundreds of years, I have guarded this key.",
-		"Many sought it.",
-		"All of them died.",
-		"Will you be any different?"
+	# 攻击池：Ground Smash 出现概率降低
+	var attacks = [
+		fireball, fire_breath, tail_attack,
+		fireball, fire_breath, tail_attack,
+		ground_smash
 	]
+	var attack_func = attacks[randi() % attacks.size()]
+	attack_func.call()
 
-	dialogue.start()
+	await get_tree().create_timer(2.0).timeout
+	current_state = State.LANDING
 
-	await dialogue.tree_exited
+func landing_phase() -> void:
+	print("🐉 Dragon landing (going down)")
+	sprite.play("GROUND SMASH")
+	var target_pos = global_position + Vector2(0, fly_height)
+	var duration = fly_height / speed
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", target_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	await tween.finished
+	velocity = Vector2.ZERO
+	collision.disabled = false
+	await get_tree().create_timer(3.0).timeout
+	collision.disabled = true
+	current_state = State.COOLDOWN
 
-	start_battle()
-
-
-func update_hp():
-
-	print("UPDATE HP")
-
-	hp_label.text = "HP: " + str(health)
-
-func start_battle():
-
-	current_state = State.IDLE
-
-	while is_inside_tree():
-
-		if current_state == State.DEAD:
-			return
-
-		if current_state == State.DIALOGUE:
-			await get_tree().process_frame
-			continue
-
-		await attack_pattern()
-
-		if current_state == State.DEAD:
-			return
-
-		await get_tree().create_timer(1.0).timeout
-
-
-func take_damage(amount):
-
-	if current_state == State.DEAD:
-		return
-
-	health -= amount
-
-	update_hp()
-
-	print("HP:", health)
-
-	modulate = Color.RED
-
-	await get_tree().create_timer(0.1).timeout
-
-	modulate = Color.WHITE
-
-	if health <= 0:
-		await die()
-		return
-
-	sprite.play("HURT")
-
-	await sprite.animation_finished
-
-	if health <= 700 and phase == 1:
-		await phase_two()
-		return
-
-	elif health <= 300 and phase == 2:
-		await phase_three()
-
-
-func phase_two():
-
-	phase = 2
-
-	current_state = State.DIALOGUE
-
-	sprite.play("FLYING")
-
-	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
-
-	add_child(dialogue)
-
-	dialogue.dialogue_array = [
-		"Impossible...",
-		"A human has wounded me?",
-		"Witness my true power!"
-	]
-
-	dialogue.start()
-
-	await dialogue.tree_exited
-
+func cooldown_phase() -> void:
+	print("🐉 Dragon cooldown on ground")
 	sprite.play("IDLE")
+	await get_tree().create_timer(3.0).timeout
+	current_state = State.TAKEOFF
 
-	current_state = State.IDLE
-	
-func phase_three():
+# ---------------- 攻击技能 ----------------
 
-	phase = 3
-
-	current_state = State.DIALOGUE
-
-	sprite.play("FLYING")
-
-	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
-
-	add_child(dialogue)
-
-	dialogue.dialogue_array = [
-		"You refuse to fall...",
-		"Then I shall burn everything!"
-	]
-
-	dialogue.start()
-
-	await dialogue.tree_exited
-
-	current_state = State.RAGE
-
-
-func attack_pattern():
-
-	if current_state == State.DIALOGUE:
+func fireball():
+	if not can_attack:
 		return
-
-	if current_state == State.DEAD:
-		return
-
-	match phase:
-
-		1:
-
-			match randi() % 3:
-
-				0:
-					await fireball_attack()
-
-				1:
-					await tail_attack()
-
-				2:
-					await tail_projectile()
-
-		2:
-
-			match randi() % 4:
-
-				0:
-					await fireball_attack()
-
-				1:
-					await fire_breath()
-
-				2:
-					await tail_attack()
-
-				3:
-					await tail_projectile()
-
-		3:
-
-			match randi() % 5:
-
-				0:
-					await apocalypse_breath()
-
-				1:
-					await fireball_attack()
-
-				2:
-					await triple_fireball()
-
-				3:
-					await tail_attack()
-
-				4:
-					await tail_projectile()
-
-
-# =====================
-# FIREBALL
-# =====================
-
-func fireball_attack():
-
-	fireball_attack_sound.play()
-
-	sprite.play("FIREBALL ATTACK")
-
-	await get_tree().create_timer(0.45).timeout
-
-	spawn_fireball(0)
-
-	await get_tree().create_timer(0.3).timeout
-
-
-func triple_fireball():
-
-	sprite.play("FIREBALL ATTACK")
-
-	await get_tree().create_timer(0.45).timeout
-
-	spawn_fireball(-0.2)
-	spawn_fireball(0)
-	spawn_fireball(0.2)
-
-	await get_tree().create_timer(0.3).timeout
-
-
-func spawn_fireball(angle_offset):
-
-	var fireball = fireball_scene.instantiate()
-
-	get_tree().current_scene.add_child(fireball)
-
-	fireball.global_position = mouth.global_position
-
-	var dir = Vector2(-1, 0.5).normalized()
-
-	dir = dir.rotated(angle_offset)
-
-	if fireball.has_method("set_fireball_direction"):
-		fireball.set_fireball_direction(dir)
-
-	fireball.speed = 700
-
-
-# =====================
-# FIRE BREATH
-# =====================
+	can_attack = false
+	print("🐉 Dragon launched fireball!")
+	var fb = fireball_scene.instantiate()
+	add_child(fb)
+	if fb.has_method("launch"):
+		fb.launch(
+			(player_node.global_position - global_position).normalized(),
+			$MouthMarker.global_position
+		)
+	await get_tree().create_timer(damage_cooldown).timeout
+	can_attack = true
 
 func fire_breath():
-	
-	fire_breath_sound.play()
-	fire_breath_sound_2.play()
-
-	sprite.play("FIRE BREATH")
-
-	await get_tree().create_timer(0.4).timeout
-
-	for i in range(5):
-
-		spawn_breath()
-
-		await get_tree().create_timer(0.15).timeout
-
-
-func apocalypse_breath():
-	
-	fire_breath_sound.play()
-
-	sprite.play("FIRE BREATH")
-
-	await get_tree().create_timer(0.3).timeout
-
-	for i in range(10):
-
-		spawn_breath()
-
-		await get_tree().create_timer(0.08).timeout
-
-
-func spawn_breath():
-
-	var breath = breath_scene.instantiate()
-
-	get_tree().current_scene.add_child(breath)
-
-	breath.global_position = mouth.global_position
-
-	breath.direction = Vector2.LEFT
-
-	breath.speed = 350
-
-
-# =====================
-# GROUND SMASH
-# =====================
-
-func tail_attack():
-	
-	ground_smash_sound.play()
-
-	sprite.play("GROUND SMASH")
-
-	await get_tree().create_timer(0.4).timeout
-
-	await screen_shake()
-
-
-# =====================
-# TAIL PROJECTILE
-# =====================
-
-func tail_projectile():
-	
-	projectile_sound.play()
-
-	sprite.play("TAIL ATTACK")
-
-	await get_tree().create_timer(0.7).timeout
-
-	spawn_tail()
-
-
-func spawn_tail():
-
-	var tail = tail_scene.instantiate()
-
-	get_tree().current_scene.add_child(tail)
-
-	tail.global_position = tail_marker.global_position
-
-	tail.direction = Vector2.LEFT
-
-	tail.speed = 700
-
-
-# =====================
-# SCREEN SHAKE
-# =====================
-
-func screen_shake():
-
-	if camera == null:
+	if not can_attack:
 		return
+	can_attack = false
+	print("🔥 Dragon uses Fire Breath!")
+	sprite.play("FIRE BREATH")
+	attack_area.monitoring = true
+	await sprite.animation_finished
+	attack_area.monitoring = false
+	await get_tree().create_timer(damage_cooldown).timeout
+	can_attack = true
 
-	camera.offset.y = 12
+func ground_smash():
+	if not can_attack:
+		return
+	can_attack = false
+	print("💥 Dragon uses Ground Smash!")
 
-	await get_tree().create_timer(0.08).timeout
+	var target_pos = Vector2(player_node.global_position.x, player_node.global_position.y - 100)
+	var timeout = 0
+	while global_position.distance_to(target_pos) > 10 and timeout < 120:
+		var dir = (target_pos - global_position).normalized()
+		velocity = dir * speed
+		move_and_slide()
+		await get_tree().process_frame
+		timeout += 1
 
-	camera.offset.y = -12
+	var smash_pos = Vector2(target_pos.x, original_pos_y)
+	timeout = 0
+	while global_position.distance_to(smash_pos) > 10 and timeout < 120:
+		var dir_down = (smash_pos - global_position).normalized()
+		velocity = dir_down * speed
+		move_and_slide()
+		await get_tree().process_frame
+		timeout += 1
 
-	await get_tree().create_timer(0.08).timeout
+	velocity = Vector2.ZERO
+	sprite.play("GROUND SMASH")
+	collision.disabled = false
 
-	camera.offset = Vector2.ZERO
+	if player_node and player_node.has_method("take_damage"):
+		player_node.take_damage(20)
 
-
-# =====================
-# DEATH
-# =====================
-
-func die():
-
-	current_state = State.DIALOGUE
-
-	hp_label.visible = false
-
-	var dialogue = preload("res://Boss-system/dialogue_prototype.tscn").instantiate()
-
-	add_child(dialogue)
-
-	dialogue.dialogue_array = [
-		"You have proven your strength.",
-		"Take the key.",
-		"Leave this forest..."
-	]
-
-	dialogue.start()
-
-	await dialogue.tree_exited
-	
-	current_state = State.DEAD
-
-	boss_death_sound.play()
-
-	sprite.play("DEATH")
-
+	await get_tree().create_timer(3.0).timeout
+	collision.disabled = true
 	await sprite.animation_finished
 
+	# ✅ 攻击后退后一大步，根据朝向决定方向
+	var retreat_distance = 450
+	var retreat_dir = Vector2.ZERO
+	if sprite.flip_h:   # 如果朝右
+		retreat_dir = Vector2(-retreat_distance, 0)   # 往左退
+	else:               # 如果朝左
+		retreat_dir = Vector2(retreat_distance, 0)    # 往右退
+
+	var retreat_pos = global_position + retreat_dir
+	var retreat_tween = create_tween()
+	retreat_tween.tween_property(self, "global_position", retreat_pos, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await retreat_tween.finished
+
+	await get_tree().create_timer(damage_cooldown).timeout
+	can_attack = true
+
+	current_state = State.LANDING
+
+func tail_attack():
+	if not can_attack:
+		return
+	can_attack = false
+	print("🌀 Dragon uses Tail Attack!")
+	sprite.play("TAIL ATTACK")
+	attack_area.monitoring = true
+	await sprite.animation_finished
+	attack_area.monitoring = false
+	await get_tree().create_timer(damage_cooldown).timeout
+	can_attack = true
+
+# ---------------- 受伤与死亡 ----------------
+
+func take_damage(amount: int):
+	health -= amount
+	health = max(health, 0)
+	print("🐉 Dragon took damage:", amount, "HP:", health)
+	_update_hp_label()
+	if health <= 0:
+		die()
+
+
+func receive_damage(amount: int) -> void:
+	take_damage(amount)
+
+
+func die():
+	print("🐉 Dragon Dead")
+	sprite.play("DEATH")
+	collision.disabled = true
+	boss_defeated.emit()
+	await sprite.animation_finished
 	queue_free()
-	
-func _input(event):
 
-	if event.is_action_pressed("ui_accept"):
+# ---------------- Area2D 信号 ----------------
 
-		take_damage(100)
+func _on_attack_area_body_entered(body):
+	if body.is_in_group("player"):
+		if body.has_method("take_damage"):
+			body.take_damage(15)
