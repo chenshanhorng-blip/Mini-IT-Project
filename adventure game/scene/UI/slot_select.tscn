@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://csastgw7phcdp"]
+
+[ext_resource type="Script" uid="uid://ele10qnfli4n" path="res://slot_select.gd" id="1_vb54k"]
+[ext_resource type="Texture2D" uid="uid://2cb2sl5io38k" path="res://diamond/ChatGPT Image Jun 14, 2026, 09_48_18 PM.png" id="2_p04cj"]
+[ext_resource type="AudioStream" uid="uid://b6mttwshjv7gw" path="res://audio/Button_click_ΓÇô_Clean_#2-1766767620402.mp3" id="3_p4h7d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p4h7d"]
+font_size = 70
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o6f0u"]
+font_size = 35
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_61ctr"]
+font_size = 35
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6r16"]
+font_size = 35
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="SlotSelect" type="Control" unique_id=78515439]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vb54k")
+
+[node name="BackGround" type="TextureRect" parent="." unique_id=1340837736]
+layout_mode = 0
+offset_right = 2014.0
+offset_bottom = 1202.0
+texture = ExtResource("2_p04cj")
+
+[node name="Select" type="Label" parent="." unique_id=1872430644]
+layout_mode = 0
+offset_left = 585.0
+offset_top = 37.0
+offset_right = 1313.0
+offset_bottom = 133.0
+text = "💾 SELECT SAVE SLOT"
+label_settings = SubResource("LabelSettings_p4h7d")
+
+[node name="Slot" type="Panel" parent="." unique_id=1979551041]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -1.0
+offset_right = 2014.0
+offset_bottom = 1212.0
+
+[node name="Slot1" type="Button" parent="Slot" unique_id=295405314]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 0
+offset_left = 155.0
+offset_top = 246.0
+offset_right = 455.0
+offset_bottom = 326.0
+theme_override_font_sizes/font_size = 50
+text = "🎮 SLOT 1"
+
+[node name="Slot1Label" type="Label" parent="Slot" unique_id=1673434244]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 366.0
+offset_right = 331.0
+offset_bottom = 651.0
+text = "🎮 Slot 1
+📍 Level:
+❤️ HP:
+🕐"
+label_settings = SubResource("LabelSettings_o6f0u")
+
+[node name="Delete1" type="Button" parent="Slot" unique_id=1223613740]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 710.0
+offset_right = 442.0
+offset_bottom = 760.0
+theme_override_font_sizes/font_size = 30
+text = "🗑️ Delete "
+
+[node name="Slot2" type="Button" parent="Slot" unique_id=1041358439]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 0
+offset_left = 787.0
+offset_top = 240.0
+offset_right = 1087.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 50
+text = "🎮 SLOT 2"
+
+[node name="Slot2Label" type="Label" parent="Slot" unique_id=513450115]
+layout_mode = 0
+offset_left = 738.0
+offset_top = 352.0
+offset_right = 1036.0
+offset_bottom = 493.0
+theme_override_font_sizes/font_size = 40
+text = "➕ Empty "
+label_settings = SubResource("LabelSettings_61ctr")
+
+[node name="Delete2" type="Button" parent="Slot" unique_id=435217366]
+layout_mode = 0
+offset_left = 849.0
+offset_top = 697.0
+offset_right = 1025.0
+offset_bottom = 747.0
+theme_override_font_sizes/font_size = 30
+text = "🗑️ Delete "
+
+[node name="Slot3" type="Button" parent="Slot" unique_id=587756283]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 0
+offset_left = 1437.0
+offset_top = 234.0
+offset_right = 1737.0
+offset_bottom = 314.0
+theme_override_font_sizes/font_size = 50
+text = "🎮 SLOT 3"
+
+[node name="Slot3Label" type="Label" parent="Slot" unique_id=1682580611]
+layout_mode = 0
+offset_left = 1377.0
+offset_top = 346.0
+offset_right = 1575.0
+offset_bottom = 459.0
+text = "➕ Empty 
+"
+label_settings = SubResource("LabelSettings_q6r16")
+
+[node name="Delete3" type="Button" parent="Slot" unique_id=945693168]
+layout_mode = 0
+offset_left = 1509.0
+offset_top = 690.0
+offset_right = 1668.0
+offset_bottom = 740.0
+theme_override_font_sizes/font_size = 30
+text = "🗑️ Delete "
+
+[node name="Back" type="Button" parent="." unique_id=220515]
+layout_mode = 0
+offset_left = 1477.0
+offset_top = 841.0
+offset_right = 1682.0
+offset_bottom = 918.0
+theme_override_font_sizes/font_size = 50
+text = "⬅️ Back"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=2125995618]
+stream = ExtResource("3_p4h7d")
+volume_db = 8.0
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

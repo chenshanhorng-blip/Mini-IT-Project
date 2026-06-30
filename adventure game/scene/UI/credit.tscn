@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://b2fb8iag5ohtr"]
+
+[ext_resource type="Script" uid="uid://bp4xovg47yi7n" path="res://credit.gd" id="1_om1n1"]
+[ext_resource type="Texture2D" uid="uid://2cb2sl5io38k" path="res://diamond/ChatGPT Image Jun 14, 2026, 09_48_18 PM.png" id="2_om1n1"]
+[ext_resource type="AudioStream" uid="uid://b6mttwshjv7gw" path="res://audio/Button_click_ΓÇô_Clean_#2-1766767620402.mp3" id="3_0r123"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0r123"]
+font_size = 70
+outline_size = 2
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.99215686)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yb1sj"]
+font_size = 30
+outline_size = 3
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Credit" type="Control" unique_id=368089250]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_om1n1")
+
+[node name="BackGround" type="TextureRect" parent="." unique_id=1386993737]
+layout_mode = 0
+offset_right = 1986.0
+offset_bottom = 1247.0
+texture = ExtResource("2_om1n1")
+
+[node name="Panel" type="Panel" parent="." unique_id=1243768587]
+layout_mode = 0
+offset_right = 1984.0
+offset_bottom = 1244.0
+
+[node name="Title" type="Label" parent="Panel" unique_id=104526314]
+layout_mode = 0
+offset_left = 646.0
+offset_top = 55.0
+offset_right = 1153.0
+offset_bottom = 151.0
+theme_override_font_sizes/font_size = 32
+text = "✨ CREDITS ✨"
+label_settings = SubResource("LabelSettings_0r123")
+
+[node name="Details" type="Label" parent="Panel" unique_id=1485654272]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 180.0
+offset_right = 1145.0
+offset_bottom = 1122.0
+theme_override_font_sizes/font_size = 20
+text = "Member
+Responsibility
+Features
+
+Chen Shan Horng
+Character & Combat
+Character Selection, Princess Skills, Knight Skills, HP System
+
+Sharon Teng Jia Yi
+Level Design
+Stage System, Movement System, Trap System, Checkpoints
+
+Lim Xin Yi
+Enemy & Story
+Enemy AI, Boss Fight, Dialogue System, Ending
+
+Special Thanks
+CCT1114 All Lecturers 
+And Our Supervisors
+Mr.Khairi Shazwan bin Dollmat
+MMU Cyberjaya"
+label_settings = SubResource("LabelSettings_yb1sj")
+
+[node name="Back" type="Button" parent="Panel" unique_id=75171281]
+layout_mode = 0
+offset_left = 1271.0
+offset_top = 1008.0
+offset_right = 1486.0
+offset_bottom = 1085.0
+theme_override_colors/font_color = Color(0.93333334, 0.8862745, 0.07450981, 1)
+theme_override_colors/icon_normal_color = Color(0.75723636, 0.41141784, 0.28435007, 1)
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=987743377]
+stream = ExtResource("3_0r123")

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://bmf8qpej4fohx"]
+
+[ext_resource type="Script" uid="uid://d2blaytahtpho" path="res://pause_menu.gd" id="1_da68n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_da68n"]
+font_size = 80
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1819302621]
+process_mode = 3
+script = ExtResource("1_da68n")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=1234340384]
+offset_right = 1940.0
+offset_bottom = 1228.0
+color = Color(1, 1, 1, 0.5058824)
+
+[node name="Panel" type="Panel" parent="." unique_id=1461846423]
+offset_right = 1945.0
+offset_bottom = 1234.0
+
+[node name="Title" type="Label" parent="Panel" unique_id=170132672]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 77.0
+offset_right = 1208.0
+offset_bottom = 187.0
+text = "⏸ PAUSED"
+label_settings = SubResource("LabelSettings_da68n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1806599155]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -308.0
+offset_right = 400.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="Panel/VBoxContainer" unique_id=1198043996]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.46340352, 0.73451567, 0.25628418, 1)
+theme_override_font_sizes/font_size = 60
+text = "Resume"
+
+[node name="SaveExit" type="Button" parent="Panel/VBoxContainer" unique_id=2138604358]
+custom_minimum_size = Vector2(450, 120)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7941666, 0.32373703, 0.44530547, 1)
+theme_override_font_sizes/font_size = 60
+text = "Save and Exit"
+
+[node name="Restart" type="Button" parent="Panel/VBoxContainer" unique_id=872534827]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5864338, 0.23947638, 0.52927774, 1)
+theme_override_font_sizes/font_size = 60
+text = "Restart"
+
+[node name="Setting" type="Button" parent="Panel/VBoxContainer" unique_id=1114062681]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82582515, 0.6399883, 1.540184e-06, 1)
+theme_override_font_sizes/font_size = 60
+text = "Setting"
+
+[node name="Menu" type="Button" parent="Panel/VBoxContainer" unique_id=1141964763]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.13404307, 0.43323034, 0.6398009, 1)
+theme_override_font_sizes/font_size = 60
+text = "Menu"
