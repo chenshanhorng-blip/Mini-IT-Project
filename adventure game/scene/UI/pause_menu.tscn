@@ -12,13 +12,13 @@ process_mode = 3
 script = ExtResource("1_da68n")
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=1234340384]
-offset_right = 2010.0
-offset_bottom = 1217.0
+offset_right = 1940.0
+offset_bottom = 1228.0
 color = Color(1, 1, 1, 0.5058824)
 
 [node name="Panel" type="Panel" parent="." unique_id=1461846423]
-offset_right = 2011.0
-offset_bottom = 1217.0
+offset_right = 1945.0
+offset_bottom = 1234.0
 
 [node name="Title" type="Label" parent="Panel" unique_id=170132672]
 layout_mode = 0

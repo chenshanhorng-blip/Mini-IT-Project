@@ -12,6 +12,7 @@ const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
 const P2_SPAWN = Vector2(18, 217)
 
 func _ready():
+	Global.current_level = "level1"
 	# Reset checkpoint
 	CheckpointManager.reset_checkpoint("level1", Vector2 (40, 217))
 	print("Checkpoint reset at (40, 217)")

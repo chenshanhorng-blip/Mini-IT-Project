@@ -12,8 +12,8 @@ anchor_right = 0.9990001
 anchor_bottom = 0.99700004
 offset_left = -0.30400014
 offset_top = -1.0
-offset_right = 0.15185547
-offset_bottom = -0.056030273
+offset_right = 17.151855
+offset_bottom = 16.94397
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=26869832]
 layout_mode = 2
