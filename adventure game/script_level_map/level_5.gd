@@ -86,6 +86,7 @@ func _on_boss_defeated() -> void:
 		print("🚪 龙被击败了！通关按钮已显现，可以点击它前往下一关了。")
 
 func _on_button_pressed() -> void:
+	RewardSystem.give_level_reward("level5")
 	Global.unlock_next_level("level5")
 	if feedback_panel != null:
 		if not feedback_panel.feedback_closed.is_connected(_go_back_to_map):

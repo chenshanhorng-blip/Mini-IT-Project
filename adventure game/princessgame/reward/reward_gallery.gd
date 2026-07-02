@@ -185,6 +185,7 @@ func _on_coins_changed(_new_total: int) -> void:
 # ============================================================
 
 func _on_back_pressed() -> void:
+	# Go to main menu — gallery can be opened from both main menu and map
 	Transition.fade_to_scene("res://scene_level_map/map.tscn")
 
 

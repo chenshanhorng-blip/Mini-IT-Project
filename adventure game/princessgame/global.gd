@@ -124,26 +124,45 @@ func load_game(slot: int = current_slot) -> bool:
 	if data.has("game_mode"):
 		game_mode = data["game_mode"]
 
+		print("Loaded game_mode: ", game_mode)
+	else:
+		# Old save file without game_mode field — default to single
+		game_mode = "single"
+		print("No game_mode in save — defaulting to single")
+
+
 	if data.has("checkpoint_position_x") and data.has("checkpoint_position_y"):
 		saved_checkpoint = Vector2(
 			data["checkpoint_position_x"],
 			data["checkpoint_position_y"]
 		)
 
+
 	if data.has("game_mode"):
 		game_mode = data["game_mode"]
+
 	if data.has("player1_character_type"):
 		player1_character_type = data["player1_character_type"]
 		if player1_character_type >= 0:
 			player1_character = Create_Character.Create_Character(player1_character_type)
-			print("Restored Player 1 character from save")
-	if data.has("player2_character_type") and game_mode == "multiplayer":
+			print("Restored Player 1: ", player1_character.character_name)
+
+	# Restore Player 2 regardless — check game_mode from the LOADED value
+	if data.has("player2_character_type"):
 		player2_character_type = data["player2_character_type"]
-		if player2_character_type >= 0:
+		if player2_character_type >= 0 and game_mode == "multiplayer":
 			player2_character = Create_Character.Create_Character(player2_character_type)
+
 			print("Restored Player 2 character from save")
 
 	print("Game loaded from slot ", slot)
+
+			print("Restored Player 2: ", player2_character.character_name)
+		else:
+			player2_character = null
+
+	print("Game loaded from slot ", slot, " | game_mode:", game_mode, " | P2:", player2_character != null)
+
 	return true
  
 func has_save_file(slot: int = current_slot) -> bool:

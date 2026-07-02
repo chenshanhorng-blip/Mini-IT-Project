@@ -59,6 +59,7 @@ func show_exit_button():
 	exit_button.show()
 
 func _on_button_pressed():
+	RewardSystem.give_level_reward("level1")
 	Global.unlock_next_level("level1")
 	_show_reward_popup()
 	

@@ -178,3 +178,10 @@ text = "Boar Princess"
 [node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=1135385782]
 stream = ExtResource("5_pnebq")
 volume_db = 5.0
+
+[node name="Label" type="Label" parent="." unique_id=166961401]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 899.0
+offset_right = 1580.0
+offset_bottom = 1083.0

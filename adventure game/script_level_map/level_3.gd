@@ -76,6 +76,19 @@ func show_exit_button() -> void:
 		print("🚪 达成目标，通关按钮已显现！")
 
 func _on_button_pressed() -> void:
-	# 🛠️ 记得把这里的 "level3" 改成你当前新关卡的名字，以便解开下一关
+	RewardSystem.give_level_reward("level3")
 	Global.unlock_next_level("level3")
-	Transition.fade_to_scene("res://scene_level_map/map.tscn")
+	Global.save_game(null, Global.current_slot)
+	_show_reward_popup()
+
+func _show_reward_popup() -> void:
+	var reward_popup = REWARD_POPUP_SCENE.instantiate()
+	add_child(reward_popup)
+	reward_popup.on_continue_pressed = func():
+		Transition.fade_to_scene("res://scene_level_map/map.tscn")
+	reward_popup.show_reward(
+		"level3",
+		RewardSystem.get_base_reward("level3"),
+		collected_count * 10,
+		collected_count
+	)
