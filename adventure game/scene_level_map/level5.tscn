@@ -10,9 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://b6lnp7js1btba" path="res://feedback_system.tscn" id="8_d1j6o"]
 [ext_resource type="PackedScene" uid="uid://bamiouxouvm5c" path="res://Boss-system/dragon.tscn" id="9_2l2id"]
 
+
 [ext_resource type="AudioStream" uid="uid://dg1seok44fxxa" path="res://audio/Hypnotic_Poison/ogg/Hypnotic_Poison_loop.ogg" id="10_7y6ca"]
 
 [ext_resource type="AudioStream" uid="uid://dg1seok44fxxa" path="res://audio/audio/Hypnotic_Poison/ogg/Hypnotic_Poison_loop.ogg" id="10_7y6ca"]
+
+[ext_resource type="AudioStream" uid="uid://dg1seok44fxxa" path="res://audio/Hypnotic_Poison/ogg/Hypnotic_Poison_loop.ogg" id="10_7y6ca"]
+
 
 
 [node name="Node2D" type="Node2D" unique_id=341255562]
@@ -53,7 +57,9 @@ visible = false
 [node name="Dragon" parent="." unique_id=1298206806 instance=ExtResource("9_2l2id")]
 light_mask = 4
 visibility_layer = 2
-position = Vector2(690, 399)
+position = Vector2(1168, 410)
+
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=210513080]
 
 [node name="bgmlevel5" type="AudioStreamPlayer" parent="." unique_id=1978178372]
 stream = ExtResource("10_7y6ca")
