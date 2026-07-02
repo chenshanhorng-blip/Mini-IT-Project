@@ -28,6 +28,7 @@ Transition="*uid://c7d7hvtjkuobw"
 [display]
 
 window/size/mode=3
+window/stretch/mode="canvas_items"
 
 [input]
 

@@ -21,7 +21,7 @@ var player2_pick: int = -1
 @onready var boar_button   = $HBoxContainer/Boar_Princess_Button
 @onready var knight_button = $HBoxContainer/Knight_Button
 @onready var title_label   = get_node_or_null("TitleLabel")
-
+@onready var button_click_sound = $ButtonClickSound
 
 func _ready() -> void:
 	selecting_player = 1
@@ -79,6 +79,7 @@ func _input(event) -> void:
 
 
 func _pick_character(type: int, char_name: String) -> void:
+	button_click_sound.play()
 	print("Player", selecting_player, "selected:", char_name)
 
 	if Global.game_mode == "multiplayer":
@@ -92,6 +93,7 @@ func _pick_character_single(type: int) -> void:
 	Global.player1_character = Create_Character.Create_Character(type)
 	Global.player1_character_type = type
 	print("SELECTED (single): ", Global.player1_character.character_name)
+	button_click_sound.play()
 	Transition.fade_to_scene("res://princessgame/tutorial_system/tutorial.tscn")
 
 
@@ -116,4 +118,5 @@ func _pick_character_multiplayer(type: int) -> void:
 	print("Confirmed Player 1: ", Global.player1_character.character_name)
 	print("Confirmed Player 2: ", Global.player2_character.character_name)
 
-	Transition.fade_to_scene("res://princessgame/tutorial_system/tutorial_multiplayer.tscn")
+	button_click_sound.play()
+	Transition.fade_to_scene("res://princessgame/tutorial_system/tutorial.tscn")

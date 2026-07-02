@@ -1,51 +1,88 @@
 extends Control
 
+## Node References
+@onready var label: Label = get_node("Panel/Label")
+@onready var timer: Timer = get_node("Timer")
 
-##Node References
-@onready var label : Label = $Label
-@onready var timer : Timer = $Timer
-@onready var button: Button = $Button
+## Dialogue
+var dialogue_array = []
 
-##Variables
-var dialogue_array : Array = [
-	"hi one two three for",
-	"IT'S SPELLED FOURRRRRRRR,BRUHHHHH",
-	"ok,chilled bro"
-]
-var dialogue_index : int = 0:
-	set(value):
-		dialogue_index = value
-		
-		label.visible_characters = -1
+var dialogue_index = 0
 
-##Initialization
-func _ready() -> void:
-	label.text = ""
-	timer.timeout.connect(animate_label)
-	
-	
-##
-func animate_label() -> void:
-	if dialogue_index >= dialogue_array.size():
+
+func _ready():
+
+	print("Self:", self)
+	print("Path:", get_path())
+	print("Children:", get_children())
+
+	print("Panel:", get_node_or_null("Panel"))
+	print("Label:", get_node_or_null("Panel/Label"))
+	print("Timer:", get_node_or_null("Timer"))
+
+	label = get_node_or_null("Panel/Label")
+	timer = get_node_or_null("Timer")
+
+	print(label)
+	print(timer)
+
+	if label == null:
 		return
-	
+
+	label.text = ""
+	label.visible_characters = 0
+
+	if timer:
+		timer.timeout.connect(_on_timer_timeout)
+
+func start():
+
+	dialogue_index = 0
+
+	if dialogue_array.size() == 0:
+		queue_free()
+		return
+
+	start_dialogue()
+
+
+func start_dialogue():
+
+	if dialogue_index >= dialogue_array.size():
+		queue_free()
+		return
+
 	label.text = dialogue_array[dialogue_index]
+	label.visible_characters = 0
+
+	timer.start()
+
+
+func _on_timer_timeout():
+
 	label.visible_characters += 1
-	
-	if label.visible_ratio == 1:
-		dialogue_index += 1
-	else:
+
+	if label.visible_characters < label.text.length():
 		timer.start()
 
 
-func _on_button_pressed() -> void:
-	if dialogue_index >= dialogue_array.size():
-		dialogue_index = 0
-		label.text = ""
-		return
-	
-	if timer.is_stopped():
-		animate_label()
-	else:
-		dialogue_index += 1
-		timer.stop()
+func _input(event):
+
+	if event.is_action_pressed("ui_accept") \
+	or (event is InputEventMouseButton and event.pressed):
+
+		# 文字还没显示完
+		if !timer.is_stopped():
+
+			label.visible_characters = label.text.length()
+			timer.stop()
+
+		# 当前句子已经显示完
+		else:
+
+			dialogue_index += 1
+
+			if dialogue_index >= dialogue_array.size():
+				queue_free()
+			else:
+				start_dialogue()

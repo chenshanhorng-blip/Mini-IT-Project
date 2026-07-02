@@ -21,6 +21,16 @@ var is_attacking: bool = false
 @onready var skill_damage_area = $skill_area
 @onready var skill_damage_shape = $skill_area/CollisionShape2D
 
+@onready var princess_basic_sound = $"../PrincessBasicAttack"
+@onready var princess_skill1_sound = $"../PrincessSkill1"
+@onready var princess_skill2_sound = $"../PrincessSkill2"
+@onready var princess_ultimate_sound = $"../PrincessUltimate"
+
+@onready var knight_basic_sound = $"../attackknight"
+@onready var knight_skill1_sound = $"../KnightSkill1"
+@onready var knight_skill2_sound = $"../KnightSkill2"
+@onready var knight_ultimate_sound = $"../KnightUltimate"
+
 var current_skill_damage: int = 0
 var current_skill_name: String = ""
 var damaged_enemy_list: Array = []
@@ -50,6 +60,10 @@ func setup(new_player, new_stat: CharacterStat,new_player_id: int = 1) -> void:
 	var signal_callable = Callable(self, "_on_skill_damage_area_body_entered")
 	if not skill_damage_area.body_entered.is_connected(signal_callable):
 		skill_damage_area.body_entered.connect(signal_callable)
+	#新加的
+	var area_callable = Callable(self, "_on_skill_area_entered")
+	if not skill_damage_area.area_entered.is_connected(area_callable):
+		skill_damage_area.area_entered.connect(area_callable)
 	
 # Hide Effects
 func hide_all_effects() -> void:
@@ -108,6 +122,7 @@ func basic_attack_animation() -> void:
 	print("Basic Attack pressed")
 	CombatSystem.basic_attack_1(stat)
 	if stat.character_name == "Tea Egg Knight":
+		knight_basic_sound.play()
 		animated_sprite.play("knight basic attack")
 		# Knight basic attack — damage area in front of the knight
 		activate_skill_damage_area(
@@ -119,6 +134,7 @@ func basic_attack_animation() -> void:
 		)
 
 	elif stat.character_name == "Boar Princess":
+		princess_basic_sound.play()
 		animated_sprite.play("princess basic attack")
 		_fire_travelling_projectile(
 			princess_basic_attack_effect,
@@ -245,6 +261,16 @@ func _on_skill_damage_area_body_entered(body) -> void:
 			stat.print_stat()
 	else:
 		print("Enemy touched area but has no receive_damage()")
+		
+		#新加的
+func _on_skill_area_entered(area) -> void:
+
+	if !area.is_in_group("boss_projectile"):
+		return
+
+	if current_skill_name == "boar_skill2" or current_skill_name == "tea_skill1":
+		print("Projectile Destroyed!")
+		area.queue_free()
 
 func use_skill_1_action() -> void:
 	if stat == null:
@@ -258,6 +284,7 @@ func use_skill_1_action() -> void:
 	print("Skill 1 pressed")
 
 	if stat.character_name == "Boar Princess":
+		princess_skill1_sound.play()
 		animated_sprite.play("skill 1 of boar princess")
 		play_flying_effect_from_marker(
 			princess_skill1_effect,
@@ -274,7 +301,18 @@ func use_skill_1_action() -> void:
 		"boar_skill1"
 		)
 	elif stat.character_name == "Tea Egg Knight":
+
+		knight_skill1_sound.play()
+
 		animated_sprite.play("skill 1 tea egg knight")
+		#新加的
+		activate_skill_damage_area(
+			knight_skill2_start,   # 或者改成你 Skill1 对应的 Marker
+			0,
+			1.0,
+			Vector2(2, 2),
+			"tea_skill1"
+		)
 
 	SkillSystem.use_skill_1(stat)
 	player.speed = stat.current_movement
@@ -297,9 +335,19 @@ func use_skill_2_action() -> void:
 	print("Skill 2 pressed")
 
 	if stat.character_name == "Boar Princess":
+		princess_skill2_sound.play()
 		animated_sprite.play("princess skill 2")
+		#新加的
+		activate_skill_damage_area(
+		princess_skill1_start,
+		0,
+		1.0,
+		Vector2(2,2),
+		"boar_skill2"
+	)
 
 	elif stat.character_name == "Tea Egg Knight":
+		knight_skill2_sound.play()
 		animated_sprite.play("skill 2 tea egg knight")
 		play_flying_effect_from_marker(
 			knight_skill2_effect,
@@ -339,6 +387,7 @@ func use_ultimate_action() -> void:
 		SkillSystem.start_princess_ultimate(stat)
 
 		# Make princess bigger
+		princess_ultimate_sound.play()
 		animated_sprite.scale = Vector2(0.08, 0.08)
 
 		# Update movement speed
@@ -366,6 +415,7 @@ func use_ultimate_action() -> void:
 			
 		is_attacking = true
 		print("Ultimate pressed")
+		knight_ultimate_sound.play()
 		animated_sprite.play("ultimate of tea egg knight ")
 		play_effect_at_marker(
 			knight_ultimate_effect,
