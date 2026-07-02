@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bx38eej1c7vpa"
+path="res://.godot/imported/15 - Peaceful Night.mp3-1c009f045eeeca89ca59fd2404f50bd7.mp3str"
+
+[deps]
+
+source_file="res://audio/15 - Peaceful Night.mp3"
+dest_files=["res://.godot/imported/15 - Peaceful Night.mp3-1c009f045eeeca89ca59fd2404f50bd7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
