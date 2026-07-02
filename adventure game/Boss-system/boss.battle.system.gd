@@ -183,9 +183,6 @@ func takeoff_phase() -> void:
 
 	sprite.play("FLYING")
 
-	if collision:
-		collision.disabled = true
-
 	var target_pos = Vector2(global_position.x, original_pos_y - fly_height)
 	var duration = fly_height / flight_speed
 
@@ -218,10 +215,6 @@ func landing_phase() -> void:
 	await tween.finished
 
 	velocity = Vector2.ZERO
-
-	if collision:
-		collision.disabled = false
-		print("Collision enabled:", collision.disabled)
 
 
 func cooldown_phase() -> void:
