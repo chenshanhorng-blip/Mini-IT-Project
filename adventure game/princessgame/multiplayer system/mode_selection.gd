@@ -7,7 +7,7 @@ extends Control
 
 @onready var single_button = $HBoxContainer/SinglePlayerButton
 @onready var multi_button  = $HBoxContainer/MultiplayerButton
-
+@onready var button_click_sound = $ButtonClickSound
 
 func _ready() -> void:
 	if not single_button.pressed.is_connected(_on_single_pressed):
@@ -18,6 +18,7 @@ func _ready() -> void:
 
 
 func _on_single_pressed() -> void:
+	button_click_sound.play()
 	Global.game_mode = "single"
 	Global.player1_character = null
 	Global.player2_character = null
@@ -26,6 +27,7 @@ func _on_single_pressed() -> void:
 
 
 func _on_multi_pressed() -> void:
+	button_click_sound.play()
 	Global.game_mode = "multiplayer"
 	Global.player1_character = null
 	Global.player2_character = null

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dc3olevbjxhkv" path="res://princessgame/choose character/character selection.gd" id="1_yp6jq"]
 [ext_resource type="Texture2D" uid="uid://chic84uftgd1p" path="res://princessgame/picture/tea egg knight  profile.png" id="2_yp6jq"]
 [ext_resource type="Texture2D" uid="uid://81od2w2ablqi" path="res://princessgame/picture/boar princess.png" id="3_x6qsh"]
+[ext_resource type="AudioStream" uid="uid://b6mttwshjv7gw" path="res://audio/Button_click_ΓÇô_Clean_#2-1766767620402.mp3" id="5_pnebq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2585j"]
 bg_color = Color(0.003921569, 0.003921569, 0.003921569, 0.003921569)
@@ -173,3 +174,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Boar Princess"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=1135385782]
+stream = ExtResource("5_pnebq")
+volume_db = 5.0
