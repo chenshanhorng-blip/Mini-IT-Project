@@ -6,7 +6,7 @@ var mode: String = "load"
 
 func _ready():
 	mode = Global.slot_mode
-	print("Mode is: ", mode)
+	print("SlotSelect mode: ", mode)
 	if not $Back.pressed.is_connected(_on_back_pressed):
 		$Back.pressed.connect(_on_back_pressed)
 	_update_slots()
@@ -17,13 +17,8 @@ func _update_slots():
 		var slot_button = get_node("Slot/Slot" + str(i))
 		var slot_label = get_node("Slot/Slot" + str(i) + "Label")
 		var delete_button = get_node("Slot/Delete" + str(i))
+		
 		if slot_info["exists"]:
-
-			slot_label.text = "🎮 Slot " + str(i) + "\n" + \
-				"📍 Level: " + slot_info["current_level"] + "\n" + \
-				"❤️ HP: " + str(slot_info["player_hp"]) + "\n" + \
-				"🕐 " + slot_info["timestamp"]
-
 			var mode_text = "👤 Single"
 			var p1_max = slot_info.get("player1_max_hp", 100)
 			var hp_text = "❤️ HP: " + str(slot_info["player_hp"]) + " / " + str(p1_max)
@@ -39,17 +34,10 @@ func _update_slots():
 							  hp_text + "\n" + \
 							  mode_text + "\n" + \
 							  "🕐 " + slot_info["timestamp"]
-
 			slot_button.disabled = false
 			delete_button.visible = true
 		else:
 			slot_label.text = "🎮 Slot " + str(i) + "\n➕ [Empty]"
-
-			# In save mode, empty slots are ENABLED
-			# In load mode, empty slots are DISABLED
-
-			# 在 save 模式下，空存档位启用；在 load 模式下，空存档位禁用
-
 			if mode == "save":
 				slot_button.disabled = false
 			else:
@@ -65,19 +53,26 @@ func _on_slot_pressed(slot: int):
 	button_click_sound.play()
 	
 	Global.current_slot = slot
+
 	if mode == "load":
 		if Global.load_game(slot):
-			Global.game_mode = "single"
-			Global.player2_character = null
 			# Load this slot's reward data
 			RewardSystem.switch_slot(slot)
+			# Do NOT reset game_mode here — load_game() already restored it
+			print("Continuing slot ", slot, " | game_mode=", Global.game_mode,
+				" | P2=", Global.player2_character != null)
 			Transition.fade_to_scene("res://scene_level_map/map.tscn")
 	else:
-		Global.current_slot = slot
+		# New game — reset everything for this slot
 		Global.delete_save(slot)
-		# Reset reward data for this slot (new game = fresh rewards)
 		RewardSystem.delete_slot_data(slot)
 		RewardSystem.switch_slot(slot)
+
+		Global.game_mode = "single"
+		Global.player2_character = null
+		Global.player2_character_type = -1
+		Global.player1_character = null
+		Global.player1_character_type = -1
 		Global.levels_unlocked = {
 			"level1": true,
 			"level2": false,
@@ -86,7 +81,6 @@ func _on_slot_pressed(slot: int):
 			"level5": false,
 		}
 		Global.current_level = "level1"
-		Global.player1_character = null
 		Global.player_scene = "res://scene_movement/player1_movement.tscn"
 		Global.saved_player_hp = 100
 		Global.saved_checkpoint = Vector2.ZERO
@@ -97,7 +91,6 @@ func _on_slot_pressed(slot: int):
 func _on_delete_pressed(slot: int):
 	button_click_sound.play()
 	Global.delete_save(slot)
-	# Also delete this slot's reward data so it doesn't bleed into other slots
 	RewardSystem.delete_slot_data(slot)
 	_update_slots()
 

@@ -181,7 +181,11 @@ volume_db = 5.0
 
 [node name="Label" type="Label" parent="." unique_id=166961401]
 layout_mode = 0
-offset_left = 490.0
-offset_top = 899.0
-offset_right = 1580.0
-offset_bottom = 1083.0
+offset_left = 8.0
+offset_top = 750.0
+offset_right = 1971.0
+offset_bottom = 1094.0
+theme_override_font_sizes/font_size = 57
+text = "MENTION！！：For the player select the multiplayer mode ,player2 
+need to follow the player 1 and the player 1 need to wait for player 2 
+because you bothhave be lock with the Mandarin Duck Lock .  "
