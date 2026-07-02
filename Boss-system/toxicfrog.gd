@@ -137,12 +137,11 @@ func attack():
 	sprite.stop()
 	sprite.play("ATTACK")
 
-	if player_stat != null:
-		CombatSystem.take_damage(player_stat, attack_damage)
-		print("Frog attacked player via CombatSystem for ", attack_damage)
-	elif player != null and player.has_method("take_damage"):
+	# Always use player.take_damage() — correctly damages
+	# whichever player body is in range (P1 or P2) using their own stat
+	if player != null and player.has_method("take_damage"):
 		player.take_damage(attack_damage)
-		print("Frog attacked player via take_damage() for ", attack_damage)
+		print("Frog attacked ", player.name, " for ", attack_damage)
 
 	await get_tree().create_timer(1.0).timeout
 	if attacking:

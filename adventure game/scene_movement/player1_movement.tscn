@@ -1277,7 +1277,7 @@ theme_override_font_sizes/font_size = 30
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=960621119]
 stream = ExtResource("29_e0pe0")
-volume_db = -20.0
+volume_db = 5.0
 
 [node name="attackknight" type="AudioStreamPlayer" parent="." unique_id=2132874738]
 stream = ExtResource("30_8uwmi")

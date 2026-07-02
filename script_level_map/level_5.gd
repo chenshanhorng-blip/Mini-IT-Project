@@ -3,7 +3,7 @@ extends Node2D
 @onready var pause_menu = $PauseMenu
 @onready var feedback_panel = $FeedbackPanel/CanvasLayer/FeedbackPanel
 @onready var player = $Player1
-
+var player2_node = null
 var camera: Camera2D = null
 var dragon_node = null
 var boss_revealed = false
@@ -12,6 +12,8 @@ const REVEAL_DISTANCE = 700.0
 const CLOSE_UP_ZOOM = Vector2(1.5, 1.5)   # 开场聚焦玩家
 const REVEALED_ZOOM = Vector2(1.8, 1.8)   # 拉远看到龙
 
+const P2_SCENE = preload("res://scene_movement/player2_movement.tscn")
+const P2_SPAWN = Vector2(120, 532)
 func _ready() -> void:
 	CheckpointManager.reset_checkpoint("level5", Vector2(55, 532))
 
@@ -34,10 +36,24 @@ func _ready() -> void:
 		if not exit_button.pressed.is_connected(_on_button_pressed):
 			exit_button.pressed.connect(_on_button_pressed)
 		exit_button.hide()
+		_setup_multiplayer()
+ 
 	else:
 		print("❌ 错误：找不到名为 $Button 的通关按钮！")
+		
+func _setup_multiplayer() -> void:
+	if Global.game_mode != "multiplayer":
+		return
+	if Global.player2_character == null:
+		return
+ 
+	player2_node = P2_SCENE.instantiate()
+	add_child(player2_node)
+	player2_node.global_position = P2_SPAWN
+	print("Level5: Player 2 spawned at ", P2_SPAWN)
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	if boss_revealed or camera == null or dragon_node == null or not is_instance_valid(dragon_node):
 		return
 

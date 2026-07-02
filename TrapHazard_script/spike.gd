@@ -10,10 +10,7 @@ extends Area2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var state_timer: Timer = $Timer
-<<<<<<< HEAD
 @onready var spike_sound = $SpikeSound
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 var is_active: bool = false
 

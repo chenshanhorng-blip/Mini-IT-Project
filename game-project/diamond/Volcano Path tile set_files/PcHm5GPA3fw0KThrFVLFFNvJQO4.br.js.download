@@ -1,1 +1,0 @@
-var GlobalActionMenuV2Wrapper;!function(GlobalActionMenuV2Wrapper){var eventFired;GlobalActionMenuV2Wrapper.Trigger||(GlobalActionMenuV2Wrapper.Trigger={}),eventFired=!1,sj_evt.bind("GlobalActionMenuV2Wrapper.Trigger",function(){eventFired=!0},!0),eventFired||sj_evt.fire("GlobalActionMenuV2Wrapper.Trigger")}(GlobalActionMenuV2Wrapper||(GlobalActionMenuV2Wrapper={}));

@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://00juqqmbtmos"]
 
-<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://cf8uxjfkui71a" path="res://scene/UI/death_screen.gd" id="1_u8226"]
 [ext_resource type="AudioStream" uid="uid://xoevk8a31gxp" path="res://audio/Game Over.wav" id="2_8flbd"]
-=======
-[ext_resource type="Script" uid="uid://beembnudjyr28" path="res://scene/UI/death_screen.gd" id="1_u8226"]
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 
 [sub_resource type="LabelSettings" id="LabelSettings_u8226"]
 font_size = 150
@@ -67,13 +63,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Back to Map"
 
-<<<<<<< HEAD
 [node name="GameOver" type="AudioStreamPlayer" parent="." unique_id=571925050]
 stream = ExtResource("2_8flbd")
 volume_db = -5.0
 
-=======
->>>>>>> bfa5809f37f3978beea1e15c6cfe180f2c411237
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/MapButton" to="." method="_on_map_button_pressed"]
