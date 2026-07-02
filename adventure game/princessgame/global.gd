@@ -34,7 +34,6 @@ var levels_unlocked = {
 }
  
 func unlock_next_level(completed_level: String):
-	# Use the passed parameter, not the class variable current_level
 	match completed_level:
 		"level1": levels_unlocked["level2"] = true
 		"level2": levels_unlocked["level3"] = true
@@ -53,6 +52,7 @@ var saved_checkpoint: Vector2 = Vector2.ZERO
 var saved_player_hp: int = 100
  
 func save_game(player = null, slot: int = current_slot):
+	# Always write the current in-memory game_mode and character types
 	var save_data = {
 		"levels_unlocked": levels_unlocked,
 		"current_level": current_level,
@@ -86,7 +86,9 @@ func save_game(player = null, slot: int = current_slot):
 		return
 	file.store_string(JSON.stringify(save_data))
 	file.close()
-	print("Game saved to slot ", slot)
+	print("=== SAVED slot ", slot, " | game_mode=", game_mode,
+		" | p1_type=", player1_character_type,
+		" | p2_type=", player2_character_type, " ===")
  
 func load_game(slot: int = current_slot) -> bool:
 	current_slot = slot
@@ -105,8 +107,9 @@ func load_game(slot: int = current_slot) -> bool:
 		return false
 	var data = JSON.parse_string(content)
 	if data == null:
-		print("ERROR: Save file is corrupted or incompatible!")
+		print("ERROR: Save file is corrupted!")
 		return false
+
 	if data.has("levels_unlocked"):
 		levels_unlocked = data["levels_unlocked"]
 	if data.has("current_level"):
@@ -119,36 +122,37 @@ func load_game(slot: int = current_slot) -> bool:
 		reward_progress = data["reward_progress"]
 	if data.has("player_hp"):
 		saved_player_hp = data["player_hp"]
-	if data.has("game_mode"):
-		game_mode = data["game_mode"]
-		print("Loaded game_mode: ", game_mode)
-	else:
-		# Old save file without game_mode field — default to single
-		game_mode = "single"
-		print("No game_mode in save — defaulting to single")
-
 	if data.has("checkpoint_position_x") and data.has("checkpoint_position_y"):
 		saved_checkpoint = Vector2(
 			data["checkpoint_position_x"],
 			data["checkpoint_position_y"]
 		)
 
-	if data.has("player1_character_type"):
-		player1_character_type = data["player1_character_type"]
-		if player1_character_type >= 0:
-			player1_character = Create_Character.Create_Character(player1_character_type)
-			print("Restored Player 1: ", player1_character.character_name)
+	# Restore game_mode FIRST before anything else
+	game_mode = data.get("game_mode", "single")
+	print("=== LOADING slot ", slot, " | game_mode=", game_mode, " ===")
 
-	# Restore Player 2 regardless — check game_mode from the LOADED value
-	if data.has("player2_character_type"):
-		player2_character_type = data["player2_character_type"]
-		if player2_character_type >= 0 and game_mode == "multiplayer":
-			player2_character = Create_Character.Create_Character(player2_character_type)
-			print("Restored Player 2: ", player2_character.character_name)
-		else:
-			player2_character = null
+	# Restore Player 1
+	player1_character_type = int(data.get("player1_character_type", -1))
+	if player1_character_type >= 0:
+		player1_character = Create_Character.Create_Character(player1_character_type)
+		print("Restored P1: ", player1_character.character_name)
+	else:
+		player1_character = null
 
-	print("Game loaded from slot ", slot, " | game_mode:", game_mode, " | P2:", player2_character != null)
+	# Restore Player 2 — only if multiplayer save
+	player2_character_type = int(data.get("player2_character_type", -1))
+	if game_mode == "multiplayer" and player2_character_type >= 0:
+		player2_character = Create_Character.Create_Character(player2_character_type)
+		print("Restored P2: ", player2_character.character_name)
+	else:
+		player2_character = null
+		if game_mode == "multiplayer":
+			print("WARNING: multiplayer save but player2_character_type=", player2_character_type)
+
+	print("=== LOAD COMPLETE | game_mode=", game_mode,
+		" | p1=", player1_character.character_name if player1_character else "null",
+		" | p2=", player2_character.character_name if player2_character else "null", " ===")
 	return true
  
 func has_save_file(slot: int = current_slot) -> bool:
