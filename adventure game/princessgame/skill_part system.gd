@@ -195,8 +195,16 @@ func _fire_travelling_projectile(
 				continue
 
 			var dist = effect.global_position.distance_to(enemy.global_position)
-			# 150px radius — large enough for big bosses like the dragon
-			if dist < 150:
+
+			# 调试用：把每次算出来的距离打出来，方便确认判定范围够不够
+			print("Checking hit vs ", enemy.name, " dist=", dist)
+
+			# 判定半径：boss体型大，给更大的范围；普通敌人保持150
+			var hit_radius = 150.0
+			if enemy.is_in_group("Boss"):
+				hit_radius = 250.0
+
+			if dist < hit_radius:
 				already_hit.append(enemy)
 				if enemy.has_method("receive_damage"):
 					enemy.receive_damage(damage)

@@ -335,10 +335,11 @@ size = Vector2(711, 352)
 radius = 363.0124
 
 [node name="Node2D" type="Node2D" unique_id=1298206806 groups=["boss", "enemy"]]
+position = Vector2(256, -9)
 
 [node name="Dragon Boss" type="CharacterBody2D" parent="." unique_id=1849936634 groups=["boss", "enemy"]]
 texture_filter = 1
-position = Vector2(-79, -26)
+position = Vector2(-252, -60)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_uoiyk")
@@ -363,7 +364,7 @@ position = Vector2(27, 71)
 shape = SubResource("RectangleShape2D_3snoc")
 
 [node name="Detection Range" type="Area2D" parent="Dragon Boss" unique_id=1887787063]
-position = Vector2(237, 850)
+position = Vector2(221, 852)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss/Detection Range" unique_id=803939923]
 position = Vector2(-246, -782)
@@ -381,10 +382,11 @@ clip_text = true
 text_overrun_behavior = 2
 
 [node name="AttackArea" type="Area2D" parent="Dragon Boss" unique_id=1340531712]
+position = Vector2(-178, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss/AttackArea" unique_id=1414612985 groups=["boss", "enemy"]]
 visibility_layer = 2
-position = Vector2(5, 52)
+position = Vector2(147, 62)
 shape = SubResource("CircleShape2D_7crf6")
 
 [node name="FireBreathSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=807724546]
