@@ -204,6 +204,8 @@ func attack_phase() -> void:
 
 
 func landing_phase() -> void:
+	
+	print("LANDING")
 
 	flight_state = FlightState.LANDING
 
@@ -219,6 +221,7 @@ func landing_phase() -> void:
 
 	if collision:
 		collision.disabled = false
+		print("Collision enabled:", collision.disabled)
 
 
 func cooldown_phase() -> void:

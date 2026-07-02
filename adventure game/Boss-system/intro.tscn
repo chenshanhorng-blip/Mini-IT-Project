@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://duuqvjx7jq03x" path="res://Boss-system/Images/start4.jpeg" id="5_7ufi4"]
 [ext_resource type="Texture2D" uid="uid://cqlw8k2x286fp" path="res://Boss-system/Images/start5.jpeg" id="6_h0kys"]
 [ext_resource type="Texture2D" uid="uid://3jfgdpyb3m5r" path="res://Boss-system/Images/start6.jpeg" id="7_d0rr7"]
+[ext_resource type="AudioStream" uid="uid://rympulc80k11" path="res://audio/16 - The Calm Before The Storm.wav" id="8_ptwgs"]
 
 [sub_resource type="Animation" id="Animation_y6ycx"]
 length = 0.001
@@ -180,4 +181,7 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 60
 text = "PRESS ENTER TO CONTINUE"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1680372509]
+[node name="bgmintro" type="AudioStreamPlayer" parent="." unique_id=1680372509]
+stream = ExtResource("8_ptwgs")
+volume_db = -5.0
+autoplay = true

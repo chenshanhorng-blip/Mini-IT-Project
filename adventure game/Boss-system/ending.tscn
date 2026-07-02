@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cj6j8v62eptjs"]
 
 [ext_resource type="Script" uid="uid://c1cebcppph5ye" path="res://Boss-system/ending.gd" id="1_sy8ce"]
+[ext_resource type="Texture2D" uid="uid://butx3ny6vdgpr" path="res://Boss-system/Images/ending1.jpeg" id="2_3fofy"]
 [ext_resource type="Texture2D" uid="uid://76q6787ajkvg" path="res://Boss-system/Images/ending2.jpeg" id="2_uvbhr"]
 [ext_resource type="Texture2D" uid="uid://bx043ohe3q62m" path="res://Boss-system/Images/ending3.jpeg" id="3_m7rhh"]
 [ext_resource type="Texture2D" uid="uid://dkwc8c0hwn72k" path="res://Boss-system/Images/ending4.jpeg" id="4_e2dv3"]
 [ext_resource type="Texture2D" uid="uid://b5c756icthqsu" path="res://Boss-system/Images/ending5.jpeg" id="5_0t84q"]
 [ext_resource type="Texture2D" uid="uid://pjktageqb5r6" path="res://Boss-system/Images/ending6.jpeg" id="6_a2d7o"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ujx65"]
+[ext_resource type="AudioStream" uid="uid://dejgqjmmhufv8" path="res://audio/Triumphal/mp3/Triumphal_full.mp3" id="7_lufrk"]
 
 [sub_resource type="Animation" id="Animation_3740v"]
 length = 0.001
@@ -79,12 +79,12 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -54.000008
-offset_bottom = -54.0
+offset_left = 5.0000005
+offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-texture = SubResource("CompressedTexture2D_ujx65")
+texture = ExtResource("2_3fofy")
 expand_mode = 1
 stretch_mode = 5
 
@@ -158,3 +158,9 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 60
 text = "PRESS ENTER BACK TO MENU"
+
+[node name="bgmending" type="AudioStreamPlayer" parent="." unique_id=1599450433]
+stream = ExtResource("7_lufrk")
+volume_db = 1.0
+autoplay = true
+parameters/looping = true
