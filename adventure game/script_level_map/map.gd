@@ -12,6 +12,11 @@ var level_scenes = {
 var level_nodes = {}
 
 func _ready():
+	print("===== MAP =====")
+	print("slot_mode =", Global.slot_mode)
+	print("game_mode =", Global.game_mode)
+	print("player2 =", Global.player2_character)
+	print("player2_type =", Global.player2_character_type)
 	print("Map script loaded")
 	
 	level_nodes = {
@@ -25,13 +30,6 @@ func _ready():
 	if Global.player1_character != null:
 		Global.player1_character.reset_stats()
 		print("Player 1 stats reset on map load")
-
-	# Only reset to single player mode when starting a NEW game
-	# When LOADING a saved multiplayer game, keep game_mode as restored by load_game()
-	if Global.slot_mode == "save":
-		Global.game_mode = "single"
-		Global.player2_character = null
-		print("New game — game mode reset to single")
 
 	# Gallery button — safely connect if it exists in the scene
 	var gallery_btn = get_node_or_null("GalleryButton")

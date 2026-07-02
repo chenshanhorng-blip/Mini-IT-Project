@@ -22,6 +22,7 @@ var is_crouching: bool  = false
 var is_falling: bool    = false
 var is_dead: bool       = false
 var is_teleporting: bool = false
+var facing_left: bool = false
 
 var original_height: float = 38.0
 var crouch_height: float   = 20.0
@@ -198,9 +199,6 @@ func _physics_process(delta: float) -> void:
 	current_speed *= speed_modifier
 	velocity.x = dir_x * current_speed
 
-	if dir_x != 0:
-		animated_sprite.flip_h = dir_x < 0
-
 	# Jump
 	if Input.is_action_just_pressed("p2_up") and is_on_floor() and not is_crouching:
 		velocity.y = jump_velocity
@@ -234,29 +232,49 @@ func is_knight() -> bool:
 
 
 func update_animations(direction: float) -> void:
-	# Don't interrupt basic attack / skill / ultimate animation
+	# Don't interrupt attack / skills
 	if skill_controller != null and skill_controller.is_attacking:
 		return
 
+	# Record last facing direction
+	if direction > 0:
+		facing_left = false
+	elif direction < 0:
+		facing_left = true
+
+	# Crouch
 	if is_crouching:
+		animated_sprite.flip_h = facing_left
 		if is_knight():
 			play_if_exists("down_2")
 		else:
 			play_if_exists("down")
 		return
 
+	# Jump / Fall
 	if not is_on_floor():
-		play_if_exists(("jump_left_2" if is_knight() else "jump") if velocity.y < 0 else ("fall_2" if is_knight() else "fall"))
+		animated_sprite.flip_h = facing_left
+
+		if velocity.y < 0:
+			play_if_exists("jump_left_2" if is_knight() else "jump")
+		else:
+			play_if_exists("fall_2" if is_knight() else "fall")
 		return
 
+	# Walk
 	if direction > 0:
+		animated_sprite.flip_h = false
 		play_if_exists("right_move_2" if is_knight() else "right_move")
+
 	elif direction < 0:
+		animated_sprite.flip_h = false
 		play_if_exists("left_move_2" if is_knight() else "left_move")
+
+	# Idle
 	else:
+		animated_sprite.flip_h = facing_left
 		play_if_exists("idle_2" if is_knight() else "idle")
-
-
+		
 func play_if_exists(anim_name: String) -> void:
 	if animated_sprite.sprite_frames == null:
 		return

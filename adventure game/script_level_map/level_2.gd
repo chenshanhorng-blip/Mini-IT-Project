@@ -17,6 +17,10 @@ const P2_SPAWN = Vector2(46, 113)
 
 
 func _ready():
+	print("===== LEVEL2 =====")
+	print("game_mode =", Global.game_mode)
+	print("player2 =", Global.player2_character)
+	print("player2_type =", Global.player2_character_type)
 	Global.current_level = "level2"
 	CheckpointManager.reset_checkpoint("level2", Vector2(110, 113))
 	
@@ -35,16 +39,24 @@ func _ready():
 	_setup_multiplayer()
 
 func _setup_multiplayer() -> void:
+	print("===== MULTIPLAYER CHECK =====")
+	print("Mode =", Global.game_mode)
+	print("Player2 =", Global.player2_character)
+	print("Player2 Type =", Global.player2_character_type)
+
 	if Global.game_mode != "multiplayer":
+		print("Not multiplayer")
 		return
+
 	if Global.player2_character == null:
-		print("Level1: no player2_character set — skipping P2 spawn")
+		print("Player2 is NULL")
 		return
- 
+
 	player2_node = P2_SCENE.instantiate()
 	add_child(player2_node)
 	player2_node.global_position = P2_SPAWN
-	print("Level1: Player 2 spawned at ", P2_SPAWN)
+
+	print("Player2 Spawned")
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
