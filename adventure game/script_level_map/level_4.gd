@@ -52,6 +52,19 @@ func show_exit_button():
 	exit_button.show()
 
 func _on_button_pressed():
+	RewardSystem.give_level_reward("level4")
 	Global.unlock_next_level("level4")
 	Global.save_game(null, Global.current_slot)
-	Transition.fade_to_scene("res://scene_level_map/map.tscn")
+	_show_reward_popup()
+
+func _show_reward_popup():
+	var reward_popup = REWARD_POPUP_SCENE.instantiate()
+	add_child(reward_popup)
+	reward_popup.on_continue_pressed = func():
+		Transition.fade_to_scene("res://scene_level_map/map.tscn")
+	reward_popup.show_reward(
+		"level4",
+		RewardSystem.get_base_reward("level4"),
+		collected_count * 10,
+		collected_count
+	)

@@ -26,6 +26,13 @@ func _ready():
 		Global.player1_character.reset_stats()
 		print("Player 1 stats reset on map load")
 
+	# Only reset to single player mode when starting a NEW game
+	# When LOADING a saved multiplayer game, keep game_mode as restored by load_game()
+	if Global.slot_mode == "save":
+		Global.game_mode = "single"
+		Global.player2_character = null
+		print("New game — game mode reset to single")
+
 	# Gallery button — safely connect if it exists in the scene
 	var gallery_btn = get_node_or_null("GalleryButton")
 	if gallery_btn != null:

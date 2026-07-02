@@ -65,6 +65,7 @@ func show_exit_button():
 		exit_button.show()
 
 func _on_button_pressed():
+	RewardSystem.give_level_reward("level2")
 	Global.unlock_next_level("level2")
 	Global.save_game(null, Global.current_slot)
  

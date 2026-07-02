@@ -56,10 +56,17 @@ func _on_slot_pressed(slot: int):
 	Global.current_slot = slot
 	if mode == "load":
 		if Global.load_game(slot):
+			Global.game_mode = "single"
+			Global.player2_character = null
+			# Load this slot's reward data
+			RewardSystem.switch_slot(slot)
 			Transition.fade_to_scene("res://scene_level_map/map.tscn")
 	else:
 		Global.current_slot = slot
 		Global.delete_save(slot)
+		# Reset reward data for this slot (new game = fresh rewards)
+		RewardSystem.delete_slot_data(slot)
+		RewardSystem.switch_slot(slot)
 		Global.levels_unlocked = {
 			"level1": true,
 			"level2": false,
@@ -79,6 +86,8 @@ func _on_slot_pressed(slot: int):
 func _on_delete_pressed(slot: int):
 	button_click_sound.play()
 	Global.delete_save(slot)
+	# Also delete this slot's reward data so it doesn't bleed into other slots
+	RewardSystem.delete_slot_data(slot)
 	_update_slots()
 
 func _on_back_pressed():
