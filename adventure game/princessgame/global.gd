@@ -7,7 +7,6 @@ var player2_character: CharacterStat = null
 
 var game_mode: String = "single"   
 
-var game_mode: String = "single" 
 var player1_character_type: int = -1   
 var player2_character_type: int = -1    
 
@@ -77,7 +76,7 @@ func save_game(player = null, slot: int = current_slot):
 		"player2_hp": player2_character.health if player2_character != null else 100,
 		"player1_max_hp": player1_character.current_max_health if player1_character != null else 100,
 		"player2_max_hp": player2_character.current_max_health if player2_character != null else 0,
-
+	}
 	if player != null:
 		save_data["player_hp"] = player.health
 		save_data["player_position_x"] = player.global_position.x

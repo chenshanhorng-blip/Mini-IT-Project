@@ -33,9 +33,12 @@ func _ready() -> void:
 			print("💎 成功找到并连接钻石: ", point.name)
 			if not point.collected.is_connected(_on_point_collected):
 				point.collected.connect(_on_point_collected)
-			_setup_multiplayer()
 		else:
 			print("⚠️ 警告：关卡脚本中列出的某个钻石节点缺失了！请检查当前关卡树里的钻石名字是否严格叫做 BlueDiamond1, 2, 3")
+
+	# Call ONCE after the loop — not inside it
+	# Calling inside the loop spawns P2 once per diamond (3 times = 3 characters)
+	_setup_multiplayer()
 
 func _setup_multiplayer() -> void:
 	if Global.game_mode != "multiplayer":
