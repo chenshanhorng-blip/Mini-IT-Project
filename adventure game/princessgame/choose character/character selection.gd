@@ -119,4 +119,4 @@ func _pick_character_multiplayer(type: int) -> void:
 	print("Confirmed Player 2: ", Global.player2_character.character_name)
 
 	button_click_sound.play()
-	Transition.fade_to_scene("res://princessgame/tutorial_system/tutorial.tscn")
+	Transition.fade_to_scene("res://princessgame/tutorial_system/tutorial_multiplayer.tscn")
