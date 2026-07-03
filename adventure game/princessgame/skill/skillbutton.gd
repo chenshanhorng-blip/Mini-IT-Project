@@ -1,18 +1,6 @@
 extends Control
 
-# ============================================================
 # SKILL UI — MOBA-style radial cooldown
-#
-# Idle: label shows the skill name, no overlay
-# On use: a dark radial wipe sweeps clockwise over the icon
-#         (like League/Mobile Legends ability cooldowns),
-#         with a bold countdown number centered on top
-# Ready again: wipe disappears, label shows the skill name
-#
-# Works with either Button or Label/Control as the base node —
-# the radial overlay is drawn as a custom-drawn Control layered
-# on top using _draw(), so it works regardless of base node type.
-# ============================================================
 
 var skill1_base   = null
 var skill2_base   = null
@@ -20,7 +8,7 @@ var ultimate_base = null
 
 var stat: CharacterStat = null
 var player_id: int = 1
-
+# the text of the button of the skill button name 
 const SKILL1_TEXT   = "skill 1"
 const SKILL2_TEXT   = "skill 2"
 const ULTIMATE_TEXT = "ultimate"
@@ -32,7 +20,7 @@ var overlays: Dictionary = {}
 func _ready() -> void:
 	print("Skill UI ready")
 
-	# Try with the PanelContainer wrapper first (current scene layout)
+	# print a line to confirm this ran
 	skill1_base   = get_node_or_null("PanelContainer/HBoxContainer/Skill1Label")
 	skill2_base   = get_node_or_null("PanelContainer/HBoxContainer/Skill2Label")
 	ultimate_base = get_node_or_null("PanelContainer/HBoxContainer/UltimateLabel")
@@ -44,7 +32,7 @@ func _ready() -> void:
 		skill2_base = get_node_or_null("HBoxContainer/Skill2Label")
 	if ultimate_base == null:
 		ultimate_base = get_node_or_null("HBoxContainer/UltimateLabel")
-
+# #f still not found after both attempts, something's wrong with the scene setup
 	if skill1_base == null or skill2_base == null or ultimate_base == null:
 		push_error("Skill UI: one or more skill nodes not found under HBoxContainer.")
 		print("skill1_base:", skill1_base, " skill2_base:", skill2_base, " ultimate_base:", ultimate_base)
@@ -54,15 +42,15 @@ func _ready() -> void:
 	_build_overlay(skill2_base, "skill2")
 	_build_overlay(ultimate_base, "ultimate")
 
-	_refresh_stat()
-	_reset_labels()
+	_refresh_stat()#go fetch this character's current stats
+	_reset_labels()#reset all three button texts to their defaults
 
-
+#called from outside to set which player this UI belongs to
 func set_player_id(new_player_id: int) -> void:
-	player_id = new_player_id
-	_refresh_stat()
+	player_id = new_player_id#remember the new player number
+	_refresh_stat()# player changed and refetch the character stats
 
-
+#fetch the matching character data based on the player number
 func _refresh_stat() -> void:
 	stat = Global.player1_character if player_id == 1 else Global.player2_character
 	if stat == null:
@@ -70,7 +58,7 @@ func _refresh_stat() -> void:
 	else:
 		print("Skill UI using:", stat.character_name)
 
-
+#reset all three skill buttons back to their default text
 func _reset_labels() -> void:
 	if skill1_base and skill1_base is Label:
 		skill1_base.text = SKILL1_TEXT
@@ -80,18 +68,22 @@ func _reset_labels() -> void:
 		ultimate_base.text = ULTIMATE_TEXT
 
 
-# ============================================================
-# BUILD RADIAL OVERLAY
-# ============================================================
+# creates the circular cooldown overlay for one skill button
 
 func _build_overlay(base_node: Control, skill_name: String) -> void:
+
 	var overlay = RadialCooldownOverlay.new()
+	# create a new circular overlay object (the custom class defined below)
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# make this overlay ignore mouse clicks so they pass through
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	# make the overlay stretch to fill the entire button
 	base_node.add_child(overlay)
+	# attach the overlay onto the button (as its child node)
 	overlays[skill_name] = overlay
+	# store this overlay in the dictionary so it can be found later by skill name
 
-
+# runs automatically every frame
 func _process(_delta: float) -> void:
 	if stat == null:
 		return
@@ -99,7 +91,7 @@ func _process(_delta: float) -> void:
 	_update_skill("skill2", skill2_base, SKILL2_TEXT, stat.skill2_cooldown)
 	_update_skill("ultimate", ultimate_base, ULTIMATE_TEXT, stat.ultimate_cooldown)
 
-
+# updates one skill's display
 func _update_skill(skill_name: String, base_node: Control, normal_text: String, max_cd: float) -> void:
 	var remaining = skill_cooldown.get_remaining_time(stat, skill_name)
 	var overlay: RadialCooldownOverlay = overlays.get(skill_name)
@@ -108,19 +100,18 @@ func _update_skill(skill_name: String, base_node: Control, normal_text: String, 
 
 	if remaining > 0.0:
 		var progress = remaining / max(max_cd, 0.001)  # 1.0 = just used, 0.0 = ready
-		overlay.set_progress(progress, str(ceil(remaining)))
+		overlay.set_progress(progress, str(ceil(remaining)))# check how much cooldown time is left for this skill
 		if base_node is Label:
 			base_node.text = ""
 	else:
-		overlay.set_progress(0.0, "")
+		overlay.set_progress(0.0, "")#if the skill cooldown is o,will display the skill text
 		if base_node is Label:
 			base_node.text = normal_text
 
 
-# ============================================================
 # RADIAL COOLDOWN OVERLAY — custom drawn Control
 # Draws a clockwise pie-shaped dark wipe + centered number
-# ============================================================
+
 
 class RadialCooldownOverlay extends Control:
 	var progress: float = 0.0   # 1.0 = full cooldown just started, 0.0 = ready

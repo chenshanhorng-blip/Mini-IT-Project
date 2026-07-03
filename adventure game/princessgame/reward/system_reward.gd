@@ -1,16 +1,7 @@
 extends Node
 
-# ============================================================
 # REWARD SYSTEM — per-slot
-# Each save slot has its own reward file:
-#   user://reward_data_slot1.cfg
-#   user://reward_data_slot2.cfg
-#   user://reward_data_slot3.cfg
-# Switching slots or deleting a slot resets in-memory data
-# and loads (or clears) the correct slot's reward file.
-# ============================================================
 
-# Current slot reward data belongs to — synced with Global.current_slot
 var current_slot: int = -1  # -1 = not loaded yet
 
 # Total coins collected across all levels
@@ -47,15 +38,12 @@ func _ready() -> void:
 	# Don't auto-load on startup — wait until a slot is selected
 	print("RewardSystem ready — waiting for slot selection")
 
-
-# ============================================================
 # SLOT MANAGEMENT
 # Call this whenever a slot is selected (load or new game)
-# ============================================================
+
 
 func get_save_path(slot: int) -> String:
 	return "user://reward_data_slot" + str(slot) + ".cfg"
-
 
 # Switch to a different slot — loads that slot's reward data into memory
 func switch_slot(slot: int) -> void:

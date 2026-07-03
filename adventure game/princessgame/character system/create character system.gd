@@ -1,7 +1,7 @@
 extends Node
 class_name Create_Character
 #the selection of the character type (princess or knight)
-enum CharacterType{
+enum CharacterType{#enum is to makr sure what the player can select
 	BOAR_PRINCESS,
 	TEA_EGG_KNIGHT
 }
@@ -27,7 +27,7 @@ static func Create_Character(type: CharacterType) -> CharacterStat:
 			stat.character_name = "Tea Egg Knight"
 			stat.role = "Tank"
 			stat.base_max_health = 90
-			stat.base_attack = 15
+			stat.base_attack = 20
 			stat.base_max_shield = 30
 			stat.base_movement=200
 			#knight skill and ultimate cooldown 

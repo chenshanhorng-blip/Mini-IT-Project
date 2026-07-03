@@ -120,9 +120,8 @@ func _on_cancel_pressed() -> void:
 	print("Skip cancelled")
 
 
-# ============================================================
 # PROCESS
-# ============================================================
+
 
 func _process(delta: float) -> void:
 	# --- Countdown tick ---
@@ -140,9 +139,8 @@ func _process(delta: float) -> void:
 	_check_step_completion()
 
 
-# ============================================================
 # SHOW STEP UI
-# ============================================================
+
 
 func _show_step(step: int) -> void:
 	match step:
