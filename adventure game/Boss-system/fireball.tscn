@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ch3ff8m10qjlx"]
+
+[ext_resource type="Script" uid="uid://r23o7i0qkclc" path="res://fireball.gd" id="1_gntam"]
+[ext_resource type="Texture2D" uid="uid://bplufgo68smb" path="res://projectile.png" id="1_ifxll"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gntam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ifxll")
+}],
+"loop": true,
+"name": &"Fireball",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7haxf"]
+radius = 42.953465
+
+[node name="Area2D" type="Area2D" unique_id=1757496905]
+script = ExtResource("1_gntam")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=866331147]
+texture_filter = 1
+position = Vector2(658, 166.00002)
+scale = Vector2(1.8125, 1.90625)
+sprite_frames = SubResource("SpriteFrames_gntam")
+animation = &"Fireball"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=526105957]
+position = Vector2(660, 165)
+shape = SubResource("CircleShape2D_7haxf")
