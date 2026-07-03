@@ -6,40 +6,42 @@ var player2_node = null
 @onready var exit_button = $Button
 @onready var pause_menu = $PauseMenu
 @onready var bgm_level_3 = $bgmlevel3
-
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
 const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
 const P1_SPAWN = Vector2(398, 115)
 const P2_SPAWN  = Vector2(460, 115)
 
 func _ready() -> void:
-	# 🛠️ 记得根据你具体关卡的名字修改这里（比如 "level3", "level4" 等）
+	Global.current_level = "level3"
+	# Remember to update the level name here for each level (e.g. "level3", "level4", etc.)
 	CheckpointManager.reset_checkpoint("level3", P1_SPAWN)
 	
 	
-	# 出口按钮连接安全验证
+	# Safely connect the exit button signal
 	if exit_button != null:
 		if not exit_button.pressed.is_connected(_on_button_pressed):
 			exit_button.pressed.connect(_on_button_pressed)
 		exit_button.hide()
 	else:
-		print("❌ 错误：在当前关卡场景中找不到名为 $Button 的节点！")
+		print("❌ Error: could not find a node named $Button in this level scene!")
 	
-	# 🛠️ 核心调整：遍历和连接钻石信号（带防空检查与模糊查找提示）
+	# Loop through and connect diamond signals (with null checks and debug hints)
 	var points = [$BlueDiamond1, $BlueDiamond2, $BlueDiamond3]
 	
 	for point in points:
 		if point != null:
-			print("💎 成功找到并连接钻石: ", point.name)
+			print("💎 Diamond found and connected: ", point.name)
 			if not point.collected.is_connected(_on_point_collected):
 				point.collected.connect(_on_point_collected)
 		else:
-			print("⚠️ 警告：关卡脚本中列出的某个钻石节点缺失了！请检查当前关卡树里的钻石名字是否严格叫做 BlueDiamond1, 2, 3")
-
+			print("⚠️ Warning: one of the diamond nodes listed in the script is missing! Check that the diamonds in the scene tree are named exactly BlueDiamond1, 2, 3")
 	# Call ONCE after the loop — not inside it
 	# Calling inside the loop spawns P2 once per diamond (3 times = 3 characters)
 	_setup_multiplayer()
 
+# Spawns Player 2 in multiplayer mode only. Called once from _ready(),
+# outside the diamond-connection loop above — this fixes the earlier bug
+# where Player 2 was being instantiated multiple times (once per diamond)
 func _setup_multiplayer() -> void:
 	if Global.game_mode != "multiplayer":
 		return
@@ -61,19 +63,19 @@ func _input(event: InputEvent) -> void:
 				else:
 					pause_menu.show_pause()
 			else:
-				# 备用原生显隐控制（万一暂停菜单脚本没挂载成功）
+				# Fallback: toggle visibility directly (in case the pause menu script isn't attached)
 				pause_menu.visible = !pause_menu.visible
 
 func _on_point_collected() -> void:
 	collected_count += 1
-	print("🎯 捡到钻石！当前进度: ", collected_count, " / ", total_points)
+	print("🎯 Diamond collected! Progress: ", collected_count, " / ", total_points)
 	if collected_count >= total_points:
 		show_exit_button()
 
 func show_exit_button() -> void:
 	if exit_button:
 		exit_button.show()
-		print("🚪 达成目标，通关按钮已显现！")
+		print("🚪 Goal reached, exit button is now visible!")
 
 func _on_button_pressed() -> void:
 	RewardSystem.give_level_reward("level3")
