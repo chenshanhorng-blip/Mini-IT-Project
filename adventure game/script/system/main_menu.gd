@@ -38,6 +38,7 @@ func _on_continue():
 	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_settings():
+	Global.settings_return_scene = "main_menu"
 	button_click_sound.play()
 	Transition.fade_to_scene("res://scene/UI/setting.tscn")
 

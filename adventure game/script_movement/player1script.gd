@@ -337,57 +337,18 @@ func die() -> void:
 
 	print("Player died.")
 
-	if Global.game_mode == "multiplayer":
-		# Multiplayer — quiet auto-respawn, don't interrupt other player
-		is_dead = true
-		is_falling = false
-		velocity = Vector2.ZERO
-		animated_sprite.visible = false
-		set_physics_process(false)
-
-		await get_tree().create_timer(2.0).timeout
-
-		var respawn_pos = CheckpointManager.get_last_checkpoint_position()
-		respawn_at_checkpoint(respawn_pos if respawn_pos != Vector2.ZERO else start_position)
-		return
-
-	# Single player — on_player_dead handles everything including death screen
 	on_player_dead()
-
 
 func on_player_dead() -> void:
 	if is_dead:
 		return
- 
-	# During tutorial — just respawn, no death screen
-	if TutorialManager.tutorial_active:
-		is_dead = true
-		is_falling = false
-		velocity = Vector2.ZERO
-		set_physics_process(false)
 
-		global_position = start_position
-
-		if stat != null:
-			stat.reset_stats()
-			SkillSystem.apply_passive_on_start(stat)
-		animated_sprite.visible = true
-		animated_sprite.modulate = Color.WHITE
-
-		# Wait one physics frame before re-enabling so the player
-		# lands on the floor before fall detection can trigger again
-		await get_tree().physics_frame
-		is_dead = false
-		set_physics_process(true)
-		return
- 
 	is_dead = true
+	is_falling = false
 	velocity = Vector2.ZERO
 	animated_sprite.visible = false
 	set_physics_process(false)
-	print("Player Dead")
- 
-	# Always show death screen — works for traps, enemies, and falls
+
 	if death_screen:
 		death_screen.show_death_screen()
 	else:

@@ -12,6 +12,17 @@ var player_scene: String = "res://scene_movement/player1_movement.tscn"
 var player2_scene: String = "res://scene_movement/player2_movement.tscn"
 var show_minimap: bool = true
 var show_hints: bool = true
+
+# Record where Settings was opened from
+var settings_return_scene: String = ""
+
+# Audio Settings
+var master_volume: float = 0.0
+var music_volume: float = 0.0
+var sfx_volume: float = 0.0
+
+# Display
+var vsync: bool = true
  
 # ============================================================
 # CURRENT SLOT

@@ -4,9 +4,15 @@ extends CanvasLayer
 @onready var cooldown_label = $TextureButton/CooldownLabel
 
 var hints = [
-	"Find the hidden key.",
-	"Open the red door.",
-	"Avoid the poison trap."
+	"Collect all 3 diamond to pass the level.",
+	"Avoid the poison trap!.",
+	"Can't find the road? Look down...",
+	"Can't go through? Try crouch.",
+	"Click button --back to map-- go to next level.",
+	"Minimap can zoom in out use key -- +/- --",
+	"Pressed key --esc-- get into pause menu!",
+	"Level 4 are no checkpoint setting >_<",
+	"Defeat the final boss! To get the key back to map!",
 ]
 
 var hint_index = 0
@@ -16,7 +22,13 @@ func _ready():
 	hint_label.visible = false
 	cooldown_label.text = "Hint"
 
+	# 根据 Setting 显示/隐藏 Hint 按钮
+	visible = Global.show_hints
+
 func _on_texture_button_pressed() -> void:
+	
+	if !Global.show_hints:
+		return
 
 	# 冷却中不能按
 	if !can_show_hint:
@@ -57,3 +69,6 @@ func _on_texture_button_pressed() -> void:
 		# 超过最后一个hint后回到第一个
 		if hint_index >= hints.size():
 			hint_index = 0
+			
+func _process(_delta):
+	visible = Global.show_hints

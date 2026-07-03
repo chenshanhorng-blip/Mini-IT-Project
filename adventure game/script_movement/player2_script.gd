@@ -124,12 +124,11 @@ func setup_skill_system() -> void:
 
 
 func setup_death_screen() -> void:
-	var path = "res://scene/UI/death_screen.tscn"
-	if ResourceLoader.exists(path):
-		death_screen = load(path).instantiate()
-		add_child(death_screen)
-	else:
-		print("P2 death screen not found:", path)
+	if Global.game_mode == "single":
+		var path = "res://scene/UI/death_screen.tscn"
+		if ResourceLoader.exists(path):
+			death_screen = load(path).instantiate()
+			add_child(death_screen)
 
 
 func setup_checkpoint_signal() -> void:
@@ -324,25 +323,10 @@ func start_fall() -> void:
 func die() -> void:
 	if is_dead:
 		return
+
 	print("Player 2 died.")
 
-	if Global.game_mode == "multiplayer":
-		# Multiplayer — quiet auto-respawn after 2s, don't interrupt Player 1
-		is_dead = true
-		is_falling = false
-		velocity = Vector2.ZERO
-		animated_sprite.visible = false
-		set_physics_process(false)
-
-		await get_tree().create_timer(2.0).timeout
-
-		var respawn_pos = CheckpointManager.get_last_checkpoint_position()
-		respawn_at_checkpoint(respawn_pos if respawn_pos != Vector2.ZERO else start_position)
-		return
-
-	# Single player — on_player_dead handles everything
 	on_player_dead()
-
 
 func on_player_dead() -> void:
 	if is_dead:
@@ -354,6 +338,16 @@ func on_player_dead() -> void:
 	set_physics_process(false)
 	print("Player 2 Dead")
 
+	# Multiplayer：通知 Player1 显示 Death Screen
+	if Global.game_mode == "multiplayer":
+		var p1 = get_tree().current_scene.get_node("Player1")
+
+		if p1 != null and p1.death_screen:
+			p1.death_screen.show_death_screen()
+
+		return
+
+	# Single
 	if death_screen:
 		death_screen.show_death_screen()
 	else:
