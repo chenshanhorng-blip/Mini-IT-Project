@@ -66,9 +66,15 @@ func _ready():
 	if CheckpointManager:
 		if not CheckpointManager.player_respawn.is_connected(_on_player_respawn):
 			CheckpointManager.player_respawn.connect(_on_player_respawn)
+			
+	# Apply saved setting
+	container.visible = Global.show_minimap
 
 
 func _process(_delta):
+	# Follow Setting toggle
+	container.visible = Global.show_minimap
+	
 	# Retry finding player every frame until found
 	if player == null or not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player")
@@ -82,7 +88,8 @@ func _process(_delta):
 func handle_minimap_inputs(delta_time):
 	if Input.is_key_pressed(KEY_M):
 		await get_tree().create_timer(0.2).timeout
-		container.visible = !container.visible
+		Global.show_minimap = !Global.show_minimap
+		container.visible = Global.show_minimap
 
 	if not container.visible:
 		return

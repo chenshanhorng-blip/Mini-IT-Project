@@ -37,6 +37,7 @@ var p2_used_ultimate := false
 # Skip countdown
 var is_skipping    := false
 var skip_countdown := 5.0
+var changing_scene := false
 
 # UI nodes
 var step_label      = null
@@ -137,6 +138,7 @@ func _process(delta: float) -> void:
 		if countdown_label != null:
 			countdown_label.text = "Loading level in " + str(ceil(skip_countdown)) + "..."
 		if skip_countdown <= 0:
+			is_skipping = false
 			TutorialManager.skip_tutorial()
 		return
 
@@ -269,6 +271,11 @@ func _on_step_changed(new_step: int) -> void:
 
 
 func _on_tutorial_finished() -> void:
+	if changing_scene:
+		return
+
+	changing_scene = true
+	
 	_show_step(TutorialManager.Step.COMPLETE)
 	if countdown_label != null:
 		countdown_label.visible = true
@@ -285,6 +292,12 @@ func _on_tutorial_finished() -> void:
 
 
 func _on_tutorial_skipped() -> void:
+
+	if changing_scene:
+		return
+
+	changing_scene = true
+	
 	if step_label != null:
 		step_label.text = "Tutorial Skipped!"
 	if desc_label != null:
