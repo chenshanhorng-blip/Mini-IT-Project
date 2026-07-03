@@ -1122,7 +1122,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_17r01"]
-radius = 21.023796
+radius = 11.045361
 
 [node name="Player1" type="CharacterBody2D" unique_id=1652265376]
 script = ExtResource("1_u017l")
@@ -1191,7 +1191,7 @@ script = ExtResource("25_pn2ni")
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skill_adjust/skill_area" unique_id=1643158983]
-position = Vector2(-1, -6)
+position = Vector2(-2, -5)
 shape = SubResource("CircleShape2D_17r01")
 disabled = true
 

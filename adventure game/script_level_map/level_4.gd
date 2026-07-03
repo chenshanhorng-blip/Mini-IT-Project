@@ -12,7 +12,6 @@ const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
 const P2_SPAWN = Vector2(100,100)
 
 func _ready():
-	Global.current_level = "level4"
 	CheckpointManager.reset_checkpoint("level4", Vector2(39, 100))
 	if not exit_button.pressed.connect(_on_button_pressed):
 		exit_button.pressed.connect(_on_button_pressed)

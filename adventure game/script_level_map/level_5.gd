@@ -15,7 +15,6 @@ const REVEALED_ZOOM = Vector2(1.8, 1.8)   # 拉远看到龙
 const P2_SCENE = preload("res://scene_movement/player2_movement.tscn")
 const P2_SPAWN = Vector2(120, 532)
 func _ready() -> void:
-	Global.current_level = "level5"
 	CheckpointManager.reset_checkpoint("level5", Vector2(55, 532))
 
 	camera = $Player1/Camera2D
