@@ -7,8 +7,7 @@ extends Area2D
 @onready var particles: GPUParticles2D = $GPUParticles2D
 @onready var fairy_ring_sound = $FairyRingSound
 
-# Track cooldown per player body so multiple players don't block each other
-# and so the destination ring doesn't immediately re-teleport the arriving player
+# Stores players currently on teleport cooldown
 var players_on_cooldown: Array = []
 
 
@@ -17,10 +16,11 @@ func _ready():
 
 
 func _on_body_entered(body):
+	# Only players can activate the fairy ring
 	if not body.is_in_group("player")or body.is_in_group("Player"):
 		return
 
-	# Skip if this specific player is still on cooldown
+	# Prevent repeated teleportation during cooldown
 	if body in players_on_cooldown:
 		return
 
@@ -32,12 +32,13 @@ func _on_body_entered(body):
 	if is_instance_valid(destination):
 		_teleport_player(body, destination.global_position)
 
+		# Apply cooldown to the destination ring as well
 		if destination.has_method("force_cooldown_for_player"):
 			destination.force_cooldown_for_player(body)
 
 
 func _teleport_player(player, target_pos):
-	# Add player to cooldown list so this ring won't re-teleport them immediately
+	# Start teleport cooldown for this player
 	players_on_cooldown.append(player)
 
 	if particles:
@@ -49,12 +50,10 @@ func _teleport_player(player, target_pos):
 
 	await get_tree().create_timer(cooldown_time).timeout
 
-	# Remove player from cooldown so they can use rings again
 	players_on_cooldown.erase(player)
 
 
-# Called on the DESTINATION ring so the arriving player isn't
-# immediately teleported back by the destination ring
+# Prevent the destination ring from teleporting the player back instantly
 func force_cooldown_for_player(player) -> void:
 	if player not in players_on_cooldown:
 		players_on_cooldown.append(player)
@@ -62,6 +61,6 @@ func force_cooldown_for_player(player) -> void:
 	players_on_cooldown.erase(player)
 
 
-# Keep old force_cooldown for compatibility
+# Compatibility function for older scripts
 func force_cooldown():
 	await get_tree().create_timer(cooldown_time).timeout

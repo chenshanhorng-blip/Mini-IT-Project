@@ -9,6 +9,8 @@ func _ready():
 	print("SlotSelect mode: ", mode)
 	if not $Back.pressed.is_connected(_on_back_pressed):
 		$Back.pressed.connect(_on_back_pressed)
+
+	# Load and display all save slots
 	_update_slots()
 
 func _update_slots():
@@ -23,6 +25,7 @@ func _update_slots():
 			var p1_max = slot_info.get("player1_max_hp", 100)
 			var hp_text = "❤️ HP: " + str(slot_info["player_hp"]) + " / " + str(p1_max)
 			
+			# Display different information for multiplayer saves
 			if slot_info.get("game_mode", "single") == "multiplayer":
 				mode_text = "👥 Multiplayer"
 				var p2_max = slot_info.get("player2_max_hp", 0)
@@ -55,15 +58,16 @@ func _on_slot_pressed(slot: int):
 	Global.current_slot = slot
 
 	if mode == "load":
+		# Load the selected save slot and continue the game
 		if Global.load_game(slot):
-			# Load this slot's reward data
 			RewardSystem.switch_slot(slot)
-			# Do NOT reset game_mode here — load_game() already restored it
+
 			print("Continuing slot ", slot, " | game_mode=", Global.game_mode,
 				" | P2=", Global.player2_character != null)
+
 			Transition.fade_to_scene("res://scene_level_map/map.tscn")
 	else:
-		# New game — reset everything for this slot
+		# Start a new game by resetting the selected slot
 		Global.delete_save(slot)
 		RewardSystem.delete_slot_data(slot)
 		RewardSystem.switch_slot(slot)
@@ -86,10 +90,13 @@ func _on_slot_pressed(slot: int):
 		Global.saved_checkpoint = Vector2.ZERO
 		Global.unlocked_skills = []
 		Global.reward_progress = {}
+
 		Transition.fade_to_scene("res://Boss-system/intro.tscn")
 
 func _on_delete_pressed(slot: int):
 	button_click_sound.play()
+
+	# Delete the selected save slot
 	Global.delete_save(slot)
 	RewardSystem.delete_slot_data(slot)
 	_update_slots()

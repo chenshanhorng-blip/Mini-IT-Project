@@ -63,6 +63,7 @@ func _on_sfx_changed(value: float):
 	_update_percent(value, $Panel/SFXPercent)
 	save_settings()
 
+# Converts the slider's dB range (-40 to 0) into a 0–100% display value
 func _update_percent(value: float, label: Label):
 	var percent = int((value + 40) / 40.0 * 100)
 	label.text = str(percent) + "%"
@@ -91,6 +92,7 @@ func _on_vsync_toggled(enabled: bool):
 # ============================================================
 # SAVE / LOAD SETTINGS
 # ============================================================
+# Writes all current slider/toggle values into settings.cfg so they persist between sessions
 func save_settings():
 	config.set_value("audio", "master", $Panel/MasterSlider.value)
 	config.set_value("audio", "music", $Panel/MusicSlider.value)
@@ -101,6 +103,8 @@ func save_settings():
 	config.save(CONFIG_PATH)
 	print("Settings saved!")
 
+# Reads settings.cfg on startup and applies saved values to the UI and Global state
+# If no config file exists yet, falls back to default values instead
 func load_settings():
 	if config.load(CONFIG_PATH) != OK:
 		print("No settings file, using defaults!")
@@ -147,6 +151,8 @@ func _on_back_pressed():
 	
 	button_click.play()
 
+	# If settings was opened from the pause menu, return to whichever level was paused
+	# Otherwise (opened from main menu), just go back to the main menu
 	if Global.settings_return_scene == "pause":
 
 		match Global.current_level:
