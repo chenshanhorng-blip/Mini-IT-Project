@@ -195,7 +195,11 @@ func _physics_process(delta: float) -> void:
 
 	if direction != 0:
 		facing_direction = Vector2(direction, 0)
-		animated_sprite.flip_h = direction < 0
+
+		print("Direction:", direction)
+		print("FlipH:", animated_sprite.flip_h)
+		print("Current Animation:", animated_sprite.animation)
+		
 
 	if Input.is_action_just_pressed("p1_up") and is_on_floor() and not is_crouching:
 		velocity.y = jump_velocity

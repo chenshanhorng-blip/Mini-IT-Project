@@ -12,6 +12,11 @@ var level_scenes = {
 var level_nodes = {}
 
 func _ready():
+	print("===== MAP =====")
+	print("slot_mode =", Global.slot_mode)
+	print("game_mode =", Global.game_mode)
+	print("player2 =", Global.player2_character)
+	print("player2_type =", Global.player2_character_type)
 	print("Map script loaded")
 	
 	level_nodes = {

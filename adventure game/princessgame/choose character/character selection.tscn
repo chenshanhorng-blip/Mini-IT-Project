@@ -38,6 +38,11 @@ shadow_color = Color(0.5647059, 0.5647059, 0.5647059, 0.6)
 shadow_size = 12
 shadow_offset = Vector2(1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_pnebq"]
+font_size = 40
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="princess and knight" type="Control" unique_id=1667773628]
 layout_mode = 3
 anchors_preset = 0
@@ -179,8 +184,9 @@ text = "Boar Princess"
 stream = ExtResource("5_pnebq")
 volume_db = 5.0
 
-[node name="Label" type="Label" parent="." unique_id=166961401]
+[node name="TitleLabel" type="Label" parent="." unique_id=166961401]
 layout_mode = 0
+
 offset_left = 8.0
 offset_top = 750.0
 offset_right = 1971.0
@@ -189,3 +195,8 @@ theme_override_font_sizes/font_size = 57
 text = "MENTION！！：For the player select the multiplayer mode ,player2 
 need to follow the player 1 and the player 1 need to wait for player 2 
 because you bothhave be lock with the Mandarin Duck Lock .  "
+offset_left = 490.0
+offset_top = 899.0
+offset_right = 1580.0
+offset_bottom = 1083.0
+label_settings = SubResource("LabelSettings_pnebq")

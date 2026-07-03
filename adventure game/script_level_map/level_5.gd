@@ -98,5 +98,12 @@ func _on_button_pressed() -> void:
 		_go_back_to_map()
 
 func _go_back_to_map() -> void:
-	print("🚪 正在离开 Level 5，返回关卡大地图...")
+	print("Game Completed!")
+
+	# 删除这个Slot的存档
+	Global.delete_save(Global.current_slot)
+
+	# 删除Reward存档
+	RewardSystem.delete_slot_data(Global.current_slot)
+
 	Transition.fade_to_scene("res://Boss-system/ending.tscn")

@@ -35,12 +35,22 @@ func _ready() -> void:
 
 func update_title() -> void:
 	if title_label == null:
+		print("TitleLabel not found!")
 		return
-	if Global.game_mode == "multiplayer":
-		title_label.text = "Player " + str(selecting_player) + " — Choose Your Character"
-	else:
-		title_label.text = "Choose Your Character"
 
+	print("update_title called")
+	print("Mode =", Global.game_mode)
+	print("Selecting Player =", selecting_player)
+
+	if Global.game_mode == "multiplayer":
+		title_label.visible = true
+
+		if selecting_player == 1:
+			title_label.text = "PLAYER 1 CHOOSE"
+		else:
+			title_label.text = "PLAYER 2 CHOOSE"
+	else:
+		title_label.visible = false
 
 # Disable / grey out whichever character Player 1 already picked
 # so Player 2 cannot pick the same one

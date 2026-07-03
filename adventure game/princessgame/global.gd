@@ -52,6 +52,10 @@ var saved_checkpoint: Vector2 = Vector2.ZERO
 var saved_player_hp: int = 100
  
 func save_game(player = null, slot: int = current_slot):
+	print("========== SAVE ==========")
+	print("Level:", current_level)
+	print("game_mode:", game_mode)
+	print("player2_type:", player2_character_type)
 	# Always write the current in-memory game_mode and character types
 	var save_data = {
 		"levels_unlocked": levels_unlocked,
@@ -91,6 +95,8 @@ func save_game(player = null, slot: int = current_slot):
 		" | p2_type=", player2_character_type, " ===")
  
 func load_game(slot: int = current_slot) -> bool:
+	print("========== LOAD ==========")
+	print("Loading slot:", slot)
 	current_slot = slot
 	var path = get_save_path(slot)
 	if not FileAccess.file_exists(path):
