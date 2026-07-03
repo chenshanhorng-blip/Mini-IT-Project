@@ -7,11 +7,13 @@ var bodies_in_lava = []
 var timer: Timer
 
 func _ready():
+	# Detect when the player enters or leaves the lava
 	if not body_entered.connect(_on_body_entered):
 		body_entered.connect(_on_body_entered)
 	if not body_exited.connect(_on_body_exited):
 		body_exited.connect(_on_body_exited)
 	
+	# Apply continuous damage at a fixed interval
 	timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = tick_rate
@@ -26,6 +28,7 @@ func _on_body_exited(body):
 	bodies_in_lava.erase(body)
 
 func _deal_damage():
+	# Deal damage over time while the player remains in the lava
 	for body in bodies_in_lava:
 		if is_instance_valid(body):
 			body.take_damage(int(damage_per_second * tick_rate))
