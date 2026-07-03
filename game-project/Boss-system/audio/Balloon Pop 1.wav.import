@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cb1m3bu0wnoaf"
-path="res://.godot/imported/Balloon Pop 1.wav-c3791f10df7baf5c65342fd71dcea736.sample"
+path="res://.godot/imported/Balloon Pop 1.wav-9876c9ea3fcdfbe93005dac1bf80155f.sample"
 
 [deps]
 
-source_file="res://audio/Balloon Pop 1.wav"
-dest_files=["res://.godot/imported/Balloon Pop 1.wav-c3791f10df7baf5c65342fd71dcea736.sample"]
+source_file="res://Boss-system/audio/Balloon Pop 1.wav"
+dest_files=["res://.godot/imported/Balloon Pop 1.wav-9876c9ea3fcdfbe93005dac1bf80155f.sample"]
 
 [params]
 
