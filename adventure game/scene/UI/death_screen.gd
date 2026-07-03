@@ -10,6 +10,15 @@ func _ready():
 func show_death_screen():
 	game_over.play()
 	print("显示死亡画面")
+
+	# Force-close any active dragon dialogue so it doesn't block the buttons
+	# The dialogue sits on DialogueLayer and intercepts mouse clicks
+	var dialogue_layer = get_tree().root.find_child("DialogueLayer", true, false)
+	if dialogue_layer != null:
+		for child in dialogue_layer.get_children():
+			child.queue_free()
+		print("Cleared dialogue before showing death screen")
+
 	show()
 	get_tree().paused = true
 

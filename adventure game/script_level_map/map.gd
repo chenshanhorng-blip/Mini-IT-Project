@@ -32,10 +32,14 @@ func _ready():
 		print("Player 1 stats reset on map load")
 
 	# Only reset to single player mode when starting a NEW game
-	# When LOADING a saved multiplayer game, keep game_mode as restored by load_game()
-	if Global.slot_mode == "save":
+	# Only reset game_mode when starting a brand NEW game (not when returning from a level)
+	# slot_mode stays "save" for the whole new-game session, so we need another flag
+	# We use player1_character being null as the signal that this is truly a fresh start
+	# (after character selection, player1_character is always set)
+	if Global.slot_mode == "save" and Global.player1_character == null:
 		Global.game_mode = "single"
 		Global.player2_character = null
+		print("Fresh new game — reset game_mode to single")
 		print("New game — game mode reset to single")
 
 	# Gallery button — safely connect if it exists in the scene

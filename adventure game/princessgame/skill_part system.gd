@@ -86,15 +86,16 @@ func play_effect_at_marker(effect: AnimatedSprite2D, marker: Marker2D, duration:
 # play effect from marker position and fly forward
 func play_flying_effect_from_marker(effect: AnimatedSprite2D, marker: Marker2D, fly_distance: float, duration: float = 0.4) -> void:
 	var start_position = marker.global_position
+	# Use player.facing_direction instead of flip_h (flip_h is never set in this game)
 	var direction_sign = 1
-
-	if animated_sprite.flip_h:
-		direction_sign = -1
+	if player != null and player.get("facing_direction") != null:
+		if player.facing_direction.x < 0:
+			direction_sign = -1
 
 	effect.global_position = start_position
 	effect.visible = true
 	effect.frame = 0
-	effect.flip_h = animated_sprite.flip_h
+	effect.flip_h = direction_sign < 0
 	effect.play()
 
 	var tween = create_tween()
@@ -158,14 +159,18 @@ func _fire_travelling_projectile(
 		_skill_name: String
 	) -> void:
  
-	var dir_sign = -1 if animated_sprite.flip_h else 1
+	# Use player.facing_direction to determine projectile direction
+	# because this game uses separate left/right animations, not flip_h
+	var dir_sign = 1  # default right
+	if player != null and player.get("facing_direction") != null:
+		dir_sign = int(sign(player.facing_direction.x)) if player.facing_direction.x != 0 else 1
 	var start_pos = start_marker.global_position
 	var end_pos = start_pos + Vector2(distance * dir_sign, 0)
  
 	# Show and move the visual effect
 	effect.global_position = start_pos
 	effect.visible = true
-	effect.flip_h = animated_sprite.flip_h
+	effect.flip_h = dir_sign < 0  # flip effect sprite when going left
 	effect.frame = 0
 	effect.play()
  
@@ -199,10 +204,10 @@ func _fire_travelling_projectile(
 			# 调试用：把每次算出来的距离打出来，方便确认判定范围够不够
 			print("Checking hit vs ", enemy.name, " dist=", dist)
 
-			# 判定半径：boss体型大，给更大的范围；普通敌人保持150
-			var hit_radius = 150.0
+			# Hit radius: small for normal enemies (precise), large for big bosses
+			var hit_radius = 60.0
 			if enemy.is_in_group("Boss"):
-				hit_radius = 250.0
+				hit_radius = 200.0
 
 			if dist < hit_radius:
 				already_hit.append(enemy)
