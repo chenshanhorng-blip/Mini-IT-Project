@@ -60,7 +60,7 @@ func save_game(player = null, slot: int = current_slot):
 	var save_data = {
 		"levels_unlocked": levels_unlocked,
 		"current_level": current_level,
-		"player_hp": saved_player_hp,
+		"player_hp": clampi(saved_player_hp, 0, player1_character.current_max_health if player1_character != null else 100),
 		"player_position_x": 0.0,
 		"player_position_y": 0.0,
 		"checkpoint_position_x": saved_checkpoint.x,
@@ -78,10 +78,15 @@ func save_game(player = null, slot: int = current_slot):
 		"player2_max_hp": player2_character.current_max_health if player2_character != null else 0,
 	}
 	if player != null:
+		var max_hp = 100
 		if player.stat != null:
-			save_data["player_hp"] = player.stat.health
+			max_hp = player.stat.current_max_health
+			# Clamp HP so saved value never exceeds max health
+			save_data["player_hp"] = clampi(player.stat.health, 0, max_hp)
 		else:
-			save_data["player_hp"] = player.health
+			save_data["player_hp"] = clampi(player.health, 0, player.max_health if "max_health" in player else max_hp)
+		# Also update player1_max_hp with the REAL max (not buffed/inflated value)
+		save_data["player1_max_hp"] = max_hp
 		save_data["player_position_x"] = player.global_position.x
 		save_data["player_position_y"] = player.global_position.y
 	var file = FileAccess.open(get_save_path(slot), FileAccess.WRITE)

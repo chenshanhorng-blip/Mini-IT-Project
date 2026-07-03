@@ -6,25 +6,16 @@ extends Control
 
 ## Dialogue
 var dialogue_array = []
-
 var dialogue_index = 0
 
 
 func _ready():
-
-	print("Self:", self)
-	print("Path:", get_path())
-	print("Children:", get_children())
-
-	print("Panel:", get_node_or_null("Panel"))
-	print("Label:", get_node_or_null("Panel/Label"))
-	print("Timer:", get_node_or_null("Timer"))
+	# Must process even when game is paused (e.g. player died mid-dialogue)
+	# so the dialogue can be dismissed and doesn't block death screen buttons
+	process_mode = PROCESS_MODE_ALWAYS
 
 	label = get_node_or_null("Panel/Label")
 	timer = get_node_or_null("Timer")
-
-	print(label)
-	print(timer)
 
 	if label == null:
 		return
