@@ -17,11 +17,13 @@ const P2_SPAWN = Vector2(46, 113)
 
 
 func _ready():
+
 	print("===== LEVEL2 =====")
 	print("game_mode =", Global.game_mode)
 	print("player2 =", Global.player2_character)
 	print("player2_type =", Global.player2_character_type)
 	Global.current_level = "level2"
+
 	CheckpointManager.reset_checkpoint("level2", Vector2(110, 113))
 	
 	if exit_button:
