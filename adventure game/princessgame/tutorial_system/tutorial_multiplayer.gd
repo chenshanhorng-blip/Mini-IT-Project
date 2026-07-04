@@ -1,10 +1,7 @@
 extends Node2D
 
 # ============================================================
-# MULTIPLAYER TUTORIAL
-# Spawns both Player 1 and Player 2.
-# Each step only advances once BOTH players have done the action.
-# Controls shown for both: P1 = WASD/QER/LMB, P2 = Arrows/p2_ keys
+#tutorial manager
 # ============================================================
 
 const P1_SCENE = preload("res://scene_movement/player1_movement.tscn")
@@ -40,6 +37,7 @@ var p2_used_ultimate := false
 # Skip countdown
 var is_skipping    := false
 var skip_countdown := 5.0
+var changing_scene := false
 
 # UI nodes
 var step_label      = null
@@ -81,17 +79,20 @@ func _ready() -> void:
 
 	# --- Spawn Player 1 ---
 	var p1 = P1_SCENE.instantiate()
+	# Set position BEFORE add_child so _ready() saves the correct start_position
+	var spawn1 = get_node_or_null("Spawnpoint")
+	p1.position = spawn1.global_position if spawn1 else Vector2(50, 208)
 	add_child(p1)
-	var spawn1 = get_node_or_null("SpawnPoint1")
-	p1.global_position = spawn1.global_position if spawn1 else Vector2(150, 0)
 	player1_node = p1
 	print("Tutorial(MP): Player 1 spawned at ", p1.global_position)
 
 	# --- Spawn Player 2 ---
 	var p2 = P2_SCENE.instantiate()
+	# P2 spawns 80px right of P1 — add a Spawnpoint2 node to override this
+	var spawn2 = get_node_or_null("Spawnpoint2")
+	var base_pos = spawn1.global_position if spawn1 else Vector2(50, 208)
+	p2.position = spawn2.global_position if spawn2 else base_pos + Vector2(80, 0)
 	add_child(p2)
-	var spawn2 = get_node_or_null("SpawnPoint2")
-	p2.global_position = spawn2.global_position if spawn2 else Vector2(250, 0)
 	player2_node = p2
 	print("Tutorial(MP): Player 2 spawned at ", p2.global_position)
 
@@ -137,6 +138,7 @@ func _process(delta: float) -> void:
 		if countdown_label != null:
 			countdown_label.text = "Loading level in " + str(ceil(skip_countdown)) + "..."
 		if skip_countdown <= 0:
+			is_skipping = false
 			TutorialManager.skip_tutorial()
 		return
 
@@ -269,6 +271,11 @@ func _on_step_changed(new_step: int) -> void:
 
 
 func _on_tutorial_finished() -> void:
+	if changing_scene:
+		return
+
+	changing_scene = true
+	
 	_show_step(TutorialManager.Step.COMPLETE)
 	if countdown_label != null:
 		countdown_label.visible = true
@@ -285,6 +292,12 @@ func _on_tutorial_finished() -> void:
 
 
 func _on_tutorial_skipped() -> void:
+
+	if changing_scene:
+		return
+
+	changing_scene = true
+	
 	if step_label != null:
 		step_label.text = "Tutorial Skipped!"
 	if desc_label != null:

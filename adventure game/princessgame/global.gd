@@ -1,16 +1,28 @@
-
 extends Node
  
 var player1_character: CharacterStat = null
  
 # --- Multiplayer ---
 var player2_character: CharacterStat = null
-var game_mode: String = "single"   # "single" or "multiplayer"
+var game_mode: String = "single" 
+var player1_character_type: int = -1   
+var player2_character_type: int = -1    
  
 var player_scene: String = "res://scene_movement/player1_movement.tscn"
-var player2_scene: String = "res//scene_movement/player2_movement.tscn"
+var player2_scene: String = "res://scene_movement/player2_movement.tscn"
 var show_minimap: bool = true
 var show_hints: bool = true
+
+# Record where Settings was opened from
+var settings_return_scene: String = ""
+
+# Audio Settings
+var master_volume: float = 0.0
+var music_volume: float = 0.0
+var sfx_volume: float = 0.0
+
+# Display
+var vsync: bool = true
  
 # ============================================================
 # CURRENT SLOT
@@ -32,14 +44,14 @@ var levels_unlocked = {
 	"level5": false,
 }
  
-func unlock_next_level(current_level: String):
-	match current_level:
+func unlock_next_level(completed_level: String):
+	match completed_level:
 		"level1": levels_unlocked["level2"] = true
 		"level2": levels_unlocked["level3"] = true
 		"level3": levels_unlocked["level4"] = true
 		"level4": levels_unlocked["level5"] = true
 	save_game()
-	print("Unlocked next level after: ", current_level)
+	print("Unlocked next level after: ", completed_level)
  
 # ============================================================
 # SAVE / LOAD SYSTEM
@@ -51,10 +63,15 @@ var saved_checkpoint: Vector2 = Vector2.ZERO
 var saved_player_hp: int = 100
  
 func save_game(player = null, slot: int = current_slot):
+	print("========== SAVE ==========")
+	print("Level:", current_level)
+	print("game_mode:", game_mode)
+	print("player2_type:", player2_character_type)
+	# Always write the current in-memory game_mode and character types
 	var save_data = {
 		"levels_unlocked": levels_unlocked,
 		"current_level": current_level,
-		"player_hp": saved_player_hp,
+		"player_hp": clampi(saved_player_hp, 0, player1_character.current_max_health if player1_character != null else 100),
 		"player_position_x": 0.0,
 		"player_position_y": 0.0,
 		"checkpoint_position_x": saved_checkpoint.x,
@@ -64,9 +81,23 @@ func save_game(player = null, slot: int = current_slot):
 		"reward_progress": reward_progress,
 		"save_timestamp": Time.get_datetime_string_from_system(),
 		"game_version": "1.0",
+		"game_mode": game_mode,
+		"player1_character_type": player1_character_type,
+		"player2_character_type": player2_character_type,
+		"player2_hp": player2_character.health if player2_character != null else 100,
+		"player1_max_hp": player1_character.current_max_health if player1_character != null else 100,
+		"player2_max_hp": player2_character.current_max_health if player2_character != null else 0,
 	}
 	if player != null:
-		save_data["player_hp"] = player.health
+		var max_hp = 100
+		if player.stat != null:
+			max_hp = player.stat.current_max_health
+			# Clamp HP so saved value never exceeds max health
+			save_data["player_hp"] = clampi(player.stat.health, 0, max_hp)
+		else:
+			save_data["player_hp"] = clampi(player.health, 0, player.max_health if "max_health" in player else max_hp)
+		# Also update player1_max_hp with the REAL max (not buffed/inflated value)
+		save_data["player1_max_hp"] = max_hp
 		save_data["player_position_x"] = player.global_position.x
 		save_data["player_position_y"] = player.global_position.y
 	var file = FileAccess.open(get_save_path(slot), FileAccess.WRITE)
@@ -75,9 +106,13 @@ func save_game(player = null, slot: int = current_slot):
 		return
 	file.store_string(JSON.stringify(save_data))
 	file.close()
-	print("Game saved to slot ", slot)
+	print("=== SAVED slot ", slot, " | game_mode=", game_mode,
+		" | p1_type=", player1_character_type,
+		" | p2_type=", player2_character_type, " ===")
  
 func load_game(slot: int = current_slot) -> bool:
+	print("========== LOAD ==========")
+	print("Loading slot:", slot)
 	current_slot = slot
 	var path = get_save_path(slot)
 	if not FileAccess.file_exists(path):
@@ -94,8 +129,9 @@ func load_game(slot: int = current_slot) -> bool:
 		return false
 	var data = JSON.parse_string(content)
 	if data == null:
-		print("ERROR: Save file is corrupted or incompatible!")
+		print("ERROR: Save file is corrupted!")
 		return false
+
 	if data.has("levels_unlocked"):
 		levels_unlocked = data["levels_unlocked"]
 	if data.has("current_level"):
@@ -113,7 +149,32 @@ func load_game(slot: int = current_slot) -> bool:
 			data["checkpoint_position_x"],
 			data["checkpoint_position_y"]
 		)
-	print("Game loaded from slot ", slot)
+
+	# Restore game_mode FIRST before anything else
+	game_mode = data.get("game_mode", "single")
+	print("=== LOADING slot ", slot, " | game_mode=", game_mode, " ===")
+
+	# Restore Player 1
+	player1_character_type = int(data.get("player1_character_type", -1))
+	if player1_character_type >= 0:
+		player1_character = Create_Character.Create_Character(player1_character_type)
+		print("Restored P1: ", player1_character.character_name)
+	else:
+		player1_character = null
+
+	# Restore Player 2 — only if multiplayer save
+	player2_character_type = int(data.get("player2_character_type", -1))
+	if game_mode == "multiplayer" and player2_character_type >= 0:
+		player2_character = Create_Character.Create_Character(player2_character_type)
+		print("Restored P2: ", player2_character.character_name)
+	else:
+		player2_character = null
+		if game_mode == "multiplayer":
+			print("WARNING: multiplayer save but player2_character_type=", player2_character_type)
+
+	print("=== LOAD COMPLETE | game_mode=", game_mode,
+		" | p1=", player1_character.character_name if player1_character else "null",
+		" | p2=", player2_character.character_name if player2_character else "null", " ===")
 	return true
  
 func has_save_file(slot: int = current_slot) -> bool:
@@ -136,6 +197,10 @@ func get_slot_info(slot: int) -> Dictionary:
 		"current_level": data.get("current_level", "level1"),
 		"timestamp": data.get("save_timestamp", "Unknown"),
 		"player_hp": data.get("player_hp", 100),
+		"player1_max_hp": data.get("player1_max_hp", 100),
+		"player2_hp": data.get("player2_hp", 100),
+		"player2_max_hp": data.get("player2_max_hp", 0),
+		"game_mode": data.get("game_mode", "single"),
 	}
  
 func delete_save(slot: int = current_slot):
@@ -143,4 +208,3 @@ func delete_save(slot: int = current_slot):
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(path)
 		print("Slot ", slot, " deleted!")
- 

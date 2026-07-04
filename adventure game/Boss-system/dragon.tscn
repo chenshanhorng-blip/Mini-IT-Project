@@ -9,7 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://c22fb1xwvq1ut" path="res://Boss-system/Sprite/Dragon Boss-Hurt.png" id="5_q51qn"]
 [ext_resource type="Texture2D" uid="uid://cwftwr2sdycne" path="res://Boss-system/Sprite/dragon boss idle.png" id="6_mven0"]
 [ext_resource type="Texture2D" uid="uid://c64spr0tfo6ic" path="res://Boss-system/Sprite/Dragon Boss-Tail Attack.png" id="7_ig3ra"]
-[ext_resource type="PackedScene" uid="uid://c2x5k5hykcfko" path="res://Boss-system/dragon_fireball.tscn" id="10_7crf6"]
+[ext_resource type="AudioStream" uid="uid://clkkahk3h4b2q" path="res://audio/FireBreathSound.wav" id="11_m8uif"]
+[ext_resource type="AudioStream" uid="uid://ddhf82vboadrq" path="res://audio/FireballAttackSound.wav" id="12_k26ub"]
+[ext_resource type="AudioStream" uid="uid://bm2ya1v6n0tvv" path="res://audio/BossDeathSound.wav" id="13_euoyu"]
+[ext_resource type="AudioStream" uid="uid://bofebmav3botq" path="res://audio/Firebreath.wav" id="14_vvh74"]
+[ext_resource type="AudioStream" uid="uid://cfgok5eb07wf1" path="res://audio/ProjectileSound.wav" id="15_bmdc3"]
+[ext_resource type="AudioStream" uid="uid://bvem4c2v1oxdw" path="res://audio/GroundSmashSound.ogg" id="16_dce0e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q51qn"]
 atlas = ExtResource("2_gkirg")
@@ -321,7 +326,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3snoc"]
-size = Vector2(424, 328)
+size = Vector2(433, 357)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkirg"]
 size = Vector2(711, 352)
@@ -329,10 +334,12 @@ size = Vector2(711, 352)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7crf6"]
 radius = 363.0124
 
-[node name="Node2D" type="Node2D" unique_id=1298206806]
+[node name="Node2D" type="Node2D" unique_id=1298206806 groups=["boss", "enemy"]]
+position = Vector2(256, -9)
 
-[node name="Dragon Boss" type="CharacterBody2D" parent="." unique_id=1849936634]
+[node name="Dragon Boss" type="CharacterBody2D" parent="." unique_id=1849936634 groups=["boss", "enemy"]]
 texture_filter = 1
+position = Vector2(-252, -60)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_uoiyk")
@@ -343,21 +350,21 @@ position = Vector2(191, 119)
 [node name="MouthMarker" type="Marker2D" parent="Dragon Boss" unique_id=1771406202]
 position = Vector2(-166, -33)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dragon Boss" unique_id=1257191238]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dragon Boss" unique_id=1257191238 groups=["boss", "enemy"]]
 texture_filter = 1
-position = Vector2(-1.0000229, -1)
+position = Vector2(-22.000002, 72)
 scale = Vector2(5.2399983, 4.5250006)
 sprite_frames = SubResource("SpriteFrames_3hpsg")
-animation = &"GROUND SMASH"
+animation = &"FIRE BREATH"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss" unique_id=2094926873]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(31, 1)
+position = Vector2(27, 71)
 shape = SubResource("RectangleShape2D_3snoc")
 
 [node name="Detection Range" type="Area2D" parent="Dragon Boss" unique_id=1887787063]
-position = Vector2(246, 781)
+position = Vector2(221, 852)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss/Detection Range" unique_id=803939923]
 position = Vector2(-246, -782)
@@ -365,20 +372,46 @@ shape = SubResource("RectangleShape2D_gkirg")
 
 [node name="HPLabel" type="Label" parent="Dragon Boss" unique_id=1429748554]
 texture_filter = 1
-offset_left = -209.0
-offset_top = -169.0
-offset_right = 192.0
-offset_bottom = -86.0
+offset_left = -322.0
+offset_top = 217.0
+offset_right = 79.0
+offset_bottom = 300.0
 theme_override_font_sizes/font_size = 50
-
-[node name="Area2D" parent="Dragon Boss" unique_id=1968708643 instance=ExtResource("10_7crf6")]
-position = Vector2(-312, 41)
-collision_layer = 2
-collision_mask = 2
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 2
 
 [node name="AttackArea" type="Area2D" parent="Dragon Boss" unique_id=1340531712]
+position = Vector2(-178, 5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss/AttackArea" unique_id=1414612985]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dragon Boss/AttackArea" unique_id=1414612985 groups=["boss", "enemy"]]
 visibility_layer = 2
-position = Vector2(5, 52)
+position = Vector2(147, 62)
 shape = SubResource("CircleShape2D_7crf6")
+
+[node name="FireBreathSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=807724546]
+stream = ExtResource("11_m8uif")
+volume_db = 5.0
+
+[node name="FireballAttackSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=1753521145]
+stream = ExtResource("12_k26ub")
+volume_db = 8.0
+
+[node name="BossDeathSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=1862394692]
+stream = ExtResource("13_euoyu")
+volume_db = 5.0
+
+[node name="FireBreathSound2" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=318010007]
+stream = ExtResource("14_vvh74")
+volume_db = 5.0
+
+[node name="ProjectileSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=90152873]
+stream = ExtResource("15_bmdc3")
+volume_db = 5.0
+
+[node name="GroundSmashSound" type="AudioStreamPlayer" parent="Dragon Boss" unique_id=1234522717]
+stream = ExtResource("16_dce0e")
+volume_db = 5.0
+
+[node name="DialoguePoint" type="Marker2D" parent="Dragon Boss" unique_id=1052776254]
+position = Vector2(-140, -42)

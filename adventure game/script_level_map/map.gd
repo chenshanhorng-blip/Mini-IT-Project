@@ -12,6 +12,11 @@ var level_scenes = {
 var level_nodes = {}
 
 func _ready():
+	print("===== MAP =====")
+	print("slot_mode =", Global.slot_mode)
+	print("game_mode =", Global.game_mode)
+	print("player2 =", Global.player2_character)
+	print("player2_type =", Global.player2_character_type)
 	print("Map script loaded")
 	
 	level_nodes = {
@@ -21,10 +26,34 @@ func _ready():
 		"level4": $TextureRect4,
 		"level5": $TextureRect5,
 	}
+
 	if Global.player1_character != null:
 		Global.player1_character.reset_stats()
 		print("Player 1 stats reset on map load")
-	
+
+	# Only reset to single player mode when starting a NEW game
+	# Only reset game_mode when starting a brand NEW game (not when returning from a level)
+	# slot_mode stays "save" for the whole new-game session, so we need another flag
+	# We use player1_character being null as the signal that this is truly a fresh start
+	# (after character selection, player1_character is always set)
+	if Global.slot_mode == "save" and Global.player1_character == null:
+		Global.game_mode = "single"
+		Global.player2_character = null
+		print("Fresh new game — reset game_mode to single")
+		print("New game — game mode reset to single")
+
+	# Gallery button — safely connect if it exists in the scene
+	var gallery_btn = get_node_or_null("GalleryButton")
+	if gallery_btn != null:
+		if not gallery_btn.pressed.is_connected(_on_gallery_pressed):
+			gallery_btn.pressed.connect(_on_gallery_pressed)
+
+	# Back to main menu button
+	var back_btn = get_node_or_null("BackButton")
+	if back_btn != null:
+		if not back_btn.pressed.is_connected(_on_back_pressed):
+			back_btn.pressed.connect(_on_back_pressed)
+
 	setup_map()
 
 func setup_map():
@@ -73,3 +102,11 @@ func _input(event):
 					Transition.fade_to_scene(level_scenes[level_name])
 				else:
 					print(level_name, " is locked!")
+
+
+func _on_gallery_pressed() -> void:
+	Transition.fade_to_scene("res://princessgame/reward/reward_gallery.tscn")
+
+
+func _on_back_pressed() -> void:
+	Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

@@ -34,6 +34,7 @@ offset_left = 342.0
 offset_top = 155.0
 offset_right = 829.0
 offset_bottom = 313.0
+theme_override_font_sizes/font_size = 60
 text = "Back To Map"
 
 [node name="PauseMenu" parent="." unique_id=1819302621 instance=ExtResource("5_se45c")]
@@ -42,13 +43,16 @@ visible = false
 [node name="MinimapLayer" parent="." unique_id=1106204459 instance=ExtResource("6_ubhii")]
 
 [node name="HintButton" parent="." unique_id=1468774410 instance=ExtResource("7_7e4dy")]
+visible = false
 
 [node name="FeedbackPanel" parent="." unique_id=61742216 instance=ExtResource("8_d1j6o")]
 
 [node name="Dragon" parent="." unique_id=1298206806 instance=ExtResource("9_2l2id")]
 light_mask = 4
 visibility_layer = 2
-position = Vector2(347, 41)
+position = Vector2(1168, 410)
+
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=210513080]
 
 [node name="bgmlevel5" type="AudioStreamPlayer" parent="." unique_id=1978178372]
 stream = ExtResource("10_7y6ca")

@@ -1,5 +1,9 @@
 extends Control
 
+
+@onready var button_click_sound = $ButtonClickSound
+
+
 func _ready():
 	$Panel/Back.pressed.connect(_on_back)
 

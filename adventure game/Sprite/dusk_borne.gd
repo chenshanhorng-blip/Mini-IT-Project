@@ -143,6 +143,4 @@ func _on_detection_range_body_exited(body: Node2D) -> void:
 		target = null
 		print("Target lost.")
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		receive_damage(20)
+# _input debug function removed

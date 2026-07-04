@@ -3,16 +3,19 @@ extends Node2D
 var collected_count = 0
 var total_points = 3
 var reward_popup = null
+var player2_node = null
 @onready var exit_button = $Button
-@onready var pause_menu = $PauseMenu  # ← ADD THIS
+@onready var pause_menu = $PauseMenu  
 @onready var bgm_level_1 = $bgmlevel1
-
 const REWARD_POPUP_SCENE = preload("res://princessgame/reward/reward_popup.tscn")
+const P2_SCENE           = preload("res://scene_movement/player2_movement.tscn")
+const P2_SPAWN = Vector2(18, 217)
 
 func _ready():
-	# Reset checkpoint
-	CheckpointManager.reset_checkpoint("level1", Vector2(18, 217))
-	print("Checkpoint reset at (18, 217)")
+	Global.current_level = "level1"
+	# Reset checkpoint so the level always starts fresh from the beginning position
+	CheckpointManager.reset_checkpoint("level1", Vector2 (40, 217))
+	print("Checkpoint reset at (40, 217)")
 	
 	# Connect button
 	if not exit_button.pressed.is_connected(_on_button_pressed):
@@ -23,8 +26,23 @@ func _ready():
 	for point in points:
 		if not point.collected.is_connected(_on_point_collected):
 			point.collected.connect(_on_point_collected)
+	_setup_multiplayer()
 
-# ← ADD THIS FUNCTION
+# Spawns Player 2 only if the game is in multiplayer mode and a character was selected
+# Called once from _ready() — NOT inside any loop, to avoid spawning multiple copies of Player 2
+func _setup_multiplayer() -> void:
+	if Global.game_mode != "multiplayer":
+		return
+	if Global.player2_character == null:
+		print("Level1: no player2_character set — skipping P2 spawn")
+		return
+ 
+	player2_node = P2_SCENE.instantiate()
+	add_child(player2_node)
+	player2_node.global_position = P2_SPAWN
+	print("Level1: Player 2 spawned at ", P2_SPAWN)
+
+# Toggle the pause menu when the player presses the cancel/escape action
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if pause_menu.visible:
@@ -44,9 +62,12 @@ func show_exit_button():
 	exit_button.show()
 
 func _on_button_pressed():
+	RewardSystem.give_level_reward("level1")
 	Global.unlock_next_level("level1")
 	_show_reward_popup()
 	
+# Shows the end-of-level reward popup with coins earned, 
+# and sets up what happens when the player presses Continue
 func _show_reward_popup():
 	reward_popup = REWARD_POPUP_SCENE.instantiate()
 	add_child(reward_popup)

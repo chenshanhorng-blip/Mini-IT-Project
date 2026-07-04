@@ -1,12 +1,17 @@
 extends Resource
+#set the code name as the CharacterStat
 class_name CharacterStat
 
+# signal is the function to call the ui system to call the function 
+#health change
 signal health_changed(current_max_health:int,max_health:int)
-signal health_depleted
+signal health_depleted  #call the function when the player's hp is 0
+
 #for player know role name and definition
+#export is the for the editable properties (suitable for the stat of the character )
 @export var character_name:String="Character"
 @export var role:String="none"
-#the begin of the character stats
+#the begin of the character stats that i set before create the character 
 @export var base_max_health:int= 60
 @export var base_attack:int= 20
 @export var base_max_shield:int= 10 
@@ -60,7 +65,7 @@ func setup_stats() -> void:
 #heal system if player got pick up an item that can heal the health
 func heal(amount: int) -> void:
 	health += amount
-	health = clamp(health, 0, current_max_health)
+	health = clamp(health, 0, current_max_health)#the clamp is avoid the character heath is more than the health we set
 	health_changed.emit(health, current_max_health)
 #make sure the character is dead if the health is 0
 func is_dead()->bool:
@@ -68,8 +73,7 @@ func is_dead()->bool:
 #reset the character stat and add full health to player ,and the passive skill will also reset 
 func reset_stats() -> void:
 	# Restore base_attack/health/shield/movement to their TRUE original
-	# values first — undoes any permanent passive buffs (e.g. Tea Egg
-	# Knight's base_attack += 5) before recalculating current_* stats
+	# values first — undoes any permanent passive buffs 
 	if _true_base_max_health != -1:
 		base_max_health = _true_base_max_health
 		base_attack     = _true_base_attack

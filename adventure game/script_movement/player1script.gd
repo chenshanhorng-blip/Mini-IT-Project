@@ -24,8 +24,6 @@ var crouch_height: float = 20.0
 var start_position: Vector2 = Vector2.ZERO
 var crouch_sprite_offset: float = 0.0
 var death_screen = null
-var original_player_ground_y: float
-
 
 var is_teleporting = false
 # Skill / character status
@@ -40,10 +38,12 @@ var facing_direction: Vector2 = Vector2.RIGHT
 @onready var skill_controller = get_node_or_null("skill_adjust")
 @onready var player_hud = get_node_or_null("CanvasLayer/Player")
 
+const KNIGHT_SCALE   = Vector2(0.07469446, 0.079385417)
+const PRINCESS_SCALE = Vector2(0.063069446, 0.063385417)
+
 
 func _ready() -> void:
 	start_position = global_position
-	original_player_ground_y = global_position.y
 	health = max_health
 	add_to_group("player")
 
@@ -108,12 +108,13 @@ func setup_character_sprite() -> void:
 		return
 
 	if stat.character_name == "Boar Princess":
+		animated_sprite.scale = PRINCESS_SCALE
 		play_if_exists("idle")
-		animated_sprite.scale = Vector2(0.05069446, 0.05385417)
+		
 	elif stat.character_name == "Tea Egg Knight":
+		animated_sprite.scale = KNIGHT_SCALE
 		play_if_exists("idle_2")
-		animated_sprite.scale = Vector2(0.08, 0.08)
-
+		
 
 func setup_death_screen() -> void:
 	var death_screen_path = "res://scene/UI/death_screen.tscn"
@@ -193,7 +194,11 @@ func _physics_process(delta: float) -> void:
 
 	if direction != 0:
 		facing_direction = Vector2(direction, 0)
-		animated_sprite.flip_h = direction < 0
+
+		print("Direction:", direction)
+		print("FlipH:", animated_sprite.flip_h)
+		print("Current Animation:", animated_sprite.animation)
+		
 
 	if Input.is_action_just_pressed("p1_up") and is_on_floor() and not is_crouching:
 		velocity.y = jump_velocity
@@ -204,19 +209,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animations(direction)
 
-	# 防止被压进地面
-	if is_on_floor() and global_position.y > original_player_ground_y:
-		global_position.y = original_player_ground_y
+	# Universal fall death — catches falls off platform edges even
+	# when no pit trigger zone exists to set is_falling = true
+	if position.y > 650 and not is_dead:
+		die()
 
-	# 防止和敌人卡在一起
-		# 新增：检查与敌人的碰撞，防止卡在一起
+	# Prevent getting stuck inside enemies
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider and collider.is_in_group("enemy"):
-			# 如果敌人在玩家上方，就防止卡住
-			if collider.global_position.y < global_position.y:
-				global_position.y = original_player_ground_y
+			var push_dir = (global_position - collider.global_position).normalized()
+			global_position += push_dir * 2
 
 
 
@@ -267,9 +271,9 @@ func play_level_animation(anim_name: String) -> void:
 	else:
 		if stat != null:
 			if stat.character_name == "Boar Princess":
-				play_if_exists("princess standing")
+				play_if_exists("idle")
 			elif stat.character_name == "Tea Egg Knight":
-				play_if_exists("knight standing")
+				play_if_exists("idle_2")
 
 
 func play_if_exists(anim_name: String) -> void:
@@ -295,9 +299,8 @@ func start_crouch() -> void:
 		var new_shape := RectangleShape2D.new()
 		new_shape.set_size(Vector2(original_height, crouch_height))
 		collision_shape.shape = new_shape
-		crouch_sprite_offset = (original_height - crouch_height) / 2
-		position.y += crouch_sprite_offset
-		animated_sprite.position.y -= crouch_sprite_offset
+		# Move only the collision shape down — NOT the whole node or sprite
+		collision_shape.position.y += (original_height - crouch_height) / 2
 
 
 func stop_crouch() -> void:
@@ -310,9 +313,7 @@ func stop_crouch() -> void:
 		var new_shape := RectangleShape2D.new()
 		new_shape.set_size(Vector2(original_height, original_height))
 		collision_shape.shape = new_shape
-		position.y -= crouch_sprite_offset
-		animated_sprite.position.y += crouch_sprite_offset   # ← new line, restores sprite position
-		crouch_sprite_offset = 0.0
+		collision_shape.position.y -= (original_height - crouch_height) / 2
 
 
 
@@ -331,39 +332,19 @@ func die() -> void:
 		return
 
 	print("Player died.")
+
 	on_player_dead()
-
-	if death_screen:
-		death_screen.show_death_screen()
-	else:
-		get_tree().reload_current_scene()
-
 
 func on_player_dead() -> void:
 	if is_dead:
 		return
- 
-	# During tutorial — just respawn, no death screen
-	if TutorialManager.tutorial_active:
-		is_falling = false
-		is_dead = false
-		global_position = start_position
-		velocity = Vector2.ZERO
-		if stat != null:
-			stat.reset_stats()
-			SkillSystem.apply_passive_on_start(stat)
-		animated_sprite.visible = true
-		animated_sprite.modulate = Color.WHITE
-		set_physics_process(true)
-		return
- 
+
 	is_dead = true
+	is_falling = false
 	velocity = Vector2.ZERO
 	animated_sprite.visible = false
 	set_physics_process(false)
-	print("Player Dead")
- 
-	# Always show death screen — works for traps, enemies, and falls
+
 	if death_screen:
 		death_screen.show_death_screen()
 	else:

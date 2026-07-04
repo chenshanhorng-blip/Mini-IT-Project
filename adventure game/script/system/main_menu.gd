@@ -14,25 +14,33 @@ func _ready():
 		$Menu/Quit.pressed.connect(_on_quit)
 	if not $Menu/Credit.pressed.is_connected(_on_credit_pressed):
 		$Menu/Credit.pressed.connect(_on_credit_pressed)
-
-	# Disable Continue if NO slots have saves
+	
+	var gallery_btn = get_node_or_null("Menu/Gallery")
+	if gallery_btn != null:
+		if not gallery_btn.pressed.is_connected(_on_gallery_pressed):
+			gallery_btn.pressed.connect(_on_gallery_pressed)
+	
+	# Disable Continue button if none of the 3 save slots have data
 	var any_save = Global.has_save_file(1) or Global.has_save_file(2) or Global.has_save_file(3)
 	if not any_save:
 		$Menu/Continue.disabled = true
 
 func _on_new_game():
 	button_click_sound.play()
+	# "save" mode tells slot_select.tscn to let the player pick an empty slot to start fresh
 	Global.slot_mode = "save"
 	print("New Game — slot mode set to: ", Global.slot_mode)
 	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_continue():
 	button_click_sound.play()
+	# "load" mode tells slot_select.tscn to only show slots that already have saved data
 	Global.slot_mode = "load"
 	print("Continue — slot mode set to: ", Global.slot_mode)
 	Transition.fade_to_scene("res://scene/UI/slot_select.tscn")
 
 func _on_settings():
+	Global.settings_return_scene = "main_menu"
 	button_click_sound.play()
 	Transition.fade_to_scene("res://scene/UI/setting.tscn")
 
@@ -44,18 +52,16 @@ func _on_credit_pressed():
 	button_click_sound.play()
 	Transition.fade_to_scene("res://scene/UI/credit.tscn")
 
+func _on_gallery_pressed():
+	button_click_sound.play()
+	Transition.fade_to_scene("res://princessgame/reward/reward_gallery.tscn")
 
+# Unused placeholder functions left over from the Godot editor's auto-generated signal connections
 func _on_new_game_pressed() -> void:
 	pass # Replace with function body.
-
-
 func _on_continue_pressed() -> void:
 	pass # Replace with function body.
-
-
 func _on_setting_pressed() -> void:
 	pass # Replace with function body.
-
-
 func _on_quit_pressed() -> void:
 	pass # Replace with function body.

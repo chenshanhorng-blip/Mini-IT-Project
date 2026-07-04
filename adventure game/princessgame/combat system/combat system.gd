@@ -1,6 +1,6 @@
 extends Node
 class_name CombatSystem
-
+# Injury handling logic
 static func take_damage(stat: CharacterStat, damage:int) -> void:
 	if stat == null:
 		return
@@ -18,7 +18,7 @@ static func take_damage(stat: CharacterStat, damage:int) -> void:
 			final_damage -= stat.shield
 			stat.shield = 0
 
-	# If shield is not enough, HP takes damage
+	# If shield is not enough and become 0, HP takes damage
 	if final_damage > 0:
 		stat.health -= final_damage
 		stat.health = clamp(stat.health, 0, stat.current_max_health)
@@ -27,13 +27,13 @@ static func take_damage(stat: CharacterStat, damage:int) -> void:
 	if stat.health <= 0:
 		stat.health_changed.emit(stat.health, stat.current_max_health)
 		stat.health_depleted.emit()
-
+# list the current hp in the system for easier to check
 		print("HP:", stat.health, "/", stat.current_max_health)
 		print("Shield:", stat.shield, "/", stat.current_max_shield)
 		print("Character is dead")
 		return
 
-	# Passive only trigger if still alive
+	# Passive only trigger if still alive for the tea egg knight 
 	SkillSystem.trigger_passive_when_damaged(stat)
 
 	stat.health_changed.emit(stat.health, stat.current_max_health)

@@ -21,6 +21,8 @@ var max_health: int     = 100
 var is_crouching: bool  = false
 var is_falling: bool    = false
 var is_dead: bool       = false
+var is_teleporting: bool = false
+var facing_left: bool = false
 
 var original_height: float = 38.0
 var crouch_height: float   = 20.0
@@ -31,8 +33,8 @@ var death_screen = null
 var stat: CharacterStat = null
 
 # Correct scales matching player2_movement.tscn
-const KNIGHT_SCALE   = Vector2(0.11805554, 0.10659724)
-const PRINCESS_SCALE = Vector2(0.05069446, 0.05385417)
+const KNIGHT_SCALE   = Vector2(0.07469446, 0.079385417)
+const PRINCESS_SCALE = Vector2(0.068069446, 0.068385417)
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D  = $CollisionShape2D
@@ -122,12 +124,11 @@ func setup_skill_system() -> void:
 
 
 func setup_death_screen() -> void:
-	var path = "res://scene/UI/death_screen.tscn"
-	if ResourceLoader.exists(path):
-		death_screen = load(path).instantiate()
-		add_child(death_screen)
-	else:
-		print("P2 death screen not found:", path)
+	if Global.game_mode == "single":
+		var path = "res://scene/UI/death_screen.tscn"
+		if ResourceLoader.exists(path):
+			death_screen = load(path).instantiate()
+			add_child(death_screen)
 
 
 func setup_checkpoint_signal() -> void:
@@ -167,6 +168,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
+	if is_teleporting:
+		move_and_slide()
+		return
+
 	if is_falling:
 		velocity.x  = 0
 		velocity.y += 80
@@ -193,9 +198,6 @@ func _physics_process(delta: float) -> void:
 	current_speed *= speed_modifier
 	velocity.x = dir_x * current_speed
 
-	if dir_x != 0:
-		animated_sprite.flip_h = dir_x < 0
-
 	# Jump
 	if Input.is_action_just_pressed("p2_up") and is_on_floor() and not is_crouching:
 		velocity.y = jump_velocity
@@ -207,8 +209,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animations(dir_x)
 
-	if position.y > 600 and not is_falling:
-		start_fall()
+	# Universal fall death — works even without a pit trigger zone
+	if position.y > 650 and not is_dead:
+		die()
+
+	# Prevent getting stuck inside enemies — push horizontally
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider and collider.is_in_group("enemy"):
+			var push_dir = (global_position - collider.global_position).normalized()
+			global_position += push_dir * 2
 
 
 # ============================================================
@@ -220,29 +231,49 @@ func is_knight() -> bool:
 
 
 func update_animations(direction: float) -> void:
-	# Don't interrupt basic attack / skill / ultimate animation
+	# Don't interrupt attack / skills
 	if skill_controller != null and skill_controller.is_attacking:
 		return
 
+	# Record last facing direction
+	if direction > 0:
+		facing_left = false
+	elif direction < 0:
+		facing_left = true
+
+	# Crouch
 	if is_crouching:
-		play_if_exists("down")
-		animated_sprite.scale=Vector2(0.04003032,0.04003032)
+		animated_sprite.flip_h = facing_left
 		if is_knight():
 			play_if_exists("down_2")
+		else:
+			play_if_exists("down")
 		return
 
+	# Jump / Fall
 	if not is_on_floor():
-		play_if_exists(("jump_left_2" if is_knight() else "jump") if velocity.y < 0 else ("fall_2" if is_knight() else "fall"))
+		animated_sprite.flip_h = facing_left
+
+		if velocity.y < 0:
+			play_if_exists("jump_left_2" if is_knight() else "jump")
+		else:
+			play_if_exists("fall_2" if is_knight() else "fall")
 		return
 
+	# Walk
 	if direction > 0:
+		animated_sprite.flip_h = false
 		play_if_exists("right_move_2" if is_knight() else "right_move")
+
 	elif direction < 0:
+		animated_sprite.flip_h = false
 		play_if_exists("left_move_2" if is_knight() else "left_move")
+
+	# Idle
 	else:
+		animated_sprite.flip_h = facing_left
 		play_if_exists("idle_2" if is_knight() else "idle")
-
-
+		
 func play_if_exists(anim_name: String) -> void:
 	if animated_sprite.sprite_frames == null:
 		return
@@ -264,9 +295,7 @@ func start_crouch() -> void:
 		var s := RectangleShape2D.new()
 		s.set_size(Vector2(original_height, crouch_height))
 		collision_shape.shape = s
-		crouch_sprite_offset = (original_height - crouch_height) / 2
-		position.y += crouch_sprite_offset
-		animated_sprite.position.y -= crouch_sprite_offset
+		collision_shape.position.y += (original_height - crouch_height) / 2
 
 
 func stop_crouch() -> void:
@@ -277,9 +306,7 @@ func stop_crouch() -> void:
 		var s := RectangleShape2D.new()
 		s.set_size(Vector2(original_height, original_height))
 		collision_shape.shape = s
-		crouch_sprite_offset = (original_height - crouch_height) / 2
-		position.y += crouch_sprite_offset
-		animated_sprite.position.y += crouch_sprite_offset
+		collision_shape.position.y -= (original_height - crouch_height) / 2
 
 
 # ============================================================
@@ -296,22 +323,35 @@ func start_fall() -> void:
 func die() -> void:
 	if is_dead:
 		return
-	print("Player 2 died.")
-	on_player_dead()
-	if death_screen:
-		death_screen.show_death_screen()
-	else:
-		get_tree().reload_current_scene()
 
+	print("Player 2 died.")
+
+	on_player_dead()
 
 func on_player_dead() -> void:
 	if is_dead:
 		return
 	is_dead = true
+	is_falling = false
 	velocity = Vector2.ZERO
 	animated_sprite.visible = false
 	set_physics_process(false)
 	print("Player 2 Dead")
+
+	# Multiplayer：通知 Player1 显示 Death Screen
+	if Global.game_mode == "multiplayer":
+		var p1 = get_tree().current_scene.get_node("Player1")
+
+		if p1 != null and p1.death_screen:
+			p1.death_screen.show_death_screen()
+
+		return
+
+	# Single
+	if death_screen:
+		death_screen.show_death_screen()
+	else:
+		get_tree().reload_current_scene()
 
 
 func respawn_at_checkpoint(checkpoint_position: Vector2) -> void:
@@ -328,6 +368,7 @@ func respawn_at_checkpoint(checkpoint_position: Vector2) -> void:
 		stat.reset_stats()
 		SkillSystem.apply_passive_on_start(stat)
 		speed = stat.current_movement
+		health = stat.health
 
 	if collision_shape and collision_shape.shape:
 		var s := RectangleShape2D.new()
@@ -337,6 +378,10 @@ func respawn_at_checkpoint(checkpoint_position: Vector2) -> void:
 	animated_sprite.visible  = true
 	animated_sprite.modulate = Color.WHITE
 	setup_character_sprite()
+
+	# Refresh HP bar so it shows full health after respawn
+	if player_hud != null:
+		player_hud.setup(stat)
 
 	# Make sure a skill/attack frozen mid-animation doesn't block input after respawn
 	if skill_controller != null:
@@ -385,3 +430,21 @@ func receive_damage(amount: int) -> void:
 
 func apply_speed_modifier(modifier: float) -> void:
 	speed_modifier = modifier
+
+
+func teleport_to(target_pos: Vector2) -> void:
+	is_teleporting = true
+	velocity = Vector2.ZERO
+
+	var tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 0), 0.15)
+
+	await tween.finished
+	global_position = target_pos
+
+	tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.15)
+
+	await tween.finished
+	is_teleporting = false
+	print("Player 2 teleported to: ", target_pos)

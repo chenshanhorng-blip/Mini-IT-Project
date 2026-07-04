@@ -3,6 +3,8 @@ extends Control
 const CONFIG_PATH = "user://settings.cfg"
 var config = ConfigFile.new()
 
+@onready var button_click = $ButtonClickSound
+
 func _ready():
 	load_settings()
 	
@@ -44,20 +46,24 @@ func _set_bus_volume_safe(bus_name: String, value: float) -> void:
 # VOLUME
 # ============================================================
 func _on_master_changed(value: float):
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
+	Global.master_volume = value
+	_set_bus_volume_safe("Master", value)
 	_update_percent(value, $Panel/MasterPercent)
 	save_settings()
 
 func _on_music_changed(value: float):
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
+	Global.music_volume = value
+	_set_bus_volume_safe("Music", value)
 	_update_percent(value, $Panel/MusicPercent)
 	save_settings()
 
 func _on_sfx_changed(value: float):
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), value)
+	Global.sfx_volume = value
+	_set_bus_volume_safe("SFX", value)
 	_update_percent(value, $Panel/SFXPercent)
 	save_settings()
 
+# Converts the slider's dB range (-40 to 0) into a 0–100% display value
 func _update_percent(value: float, label: Label):
 	var percent = int((value + 40) / 40.0 * 100)
 	label.text = str(percent) + "%"
@@ -74,15 +80,19 @@ func _on_hint_toggled(enabled: bool):
 	save_settings()
 
 func _on_vsync_toggled(enabled: bool):
+	Global.vsync = enabled
+
 	if enabled:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
 	save_settings()
 
 # ============================================================
 # SAVE / LOAD SETTINGS
 # ============================================================
+# Writes all current slider/toggle values into settings.cfg so they persist between sessions
 func save_settings():
 	config.set_value("audio", "master", $Panel/MasterSlider.value)
 	config.set_value("audio", "music", $Panel/MusicSlider.value)
@@ -93,6 +103,8 @@ func save_settings():
 	config.save(CONFIG_PATH)
 	print("Settings saved!")
 
+# Reads settings.cfg on startup and applies saved values to the UI and Global state
+# If no config file exists yet, falls back to default values instead
 func load_settings():
 	if config.load(CONFIG_PATH) != OK:
 		print("No settings file, using defaults!")
@@ -109,10 +121,18 @@ func load_settings():
 	$Panel/HintToggle.button_pressed = config.get_value("gameplay", "hints", true)
 	$Panel/VSyncToggle.button_pressed = config.get_value("display", "vsync", true)
 	
+	Global.master_volume = $Panel/MasterSlider.value
+	Global.music_volume = $Panel/MusicSlider.value
+	Global.sfx_volume = $Panel/SFXSlider.value
+
+	Global.show_minimap = $Panel/MinimapToggle.button_pressed
+	Global.show_hints = $Panel/HintToggle.button_pressed
+	Global.vsync = $Panel/VSyncToggle.button_pressed
+	
 	# Apply loaded values
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), $Panel/MasterSlider.value)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), $Panel/MusicSlider.value)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), $Panel/SFXSlider.value)
+	_set_bus_volume_safe("Master", Global.master_volume)
+	_set_bus_volume_safe("Music", Global.music_volume)
+	_set_bus_volume_safe("SFX", Global.sfx_volume)
 	DisplayServer.window_set_vsync_mode(
 		DisplayServer.VSYNC_ENABLED if $Panel/VSyncToggle.button_pressed 
 		else DisplayServer.VSYNC_DISABLED
@@ -126,6 +146,34 @@ func _apply_defaults():
 	$Panel/MinimapToggle.button_pressed = true
 	$Panel/HintToggle.button_pressed = true
 	$Panel/VSyncToggle.button_pressed = true
-
+	
 func _on_back_pressed():
-	Transition.fade_to_scene("res://scene/UI/main_menu.tscn")
+	
+	button_click.play()
+
+	# If settings was opened from the pause menu, return to whichever level was paused
+	# Otherwise (opened from main menu), just go back to the main menu
+	if Global.settings_return_scene == "pause":
+
+		match Global.current_level:
+			"level1":
+				Transition.fade_to_scene("res://scene_level_map/level1.tscn")
+
+			"level2":
+				Transition.fade_to_scene("res://scene_level_map/level2.tscn")
+
+			"level3":
+				Transition.fade_to_scene("res://scene_level_map/level3.tscn")
+				
+			"level4":
+				Transition.fade_to_scene("res://scene_level_map/level4.tscn")
+				
+			"level5":
+				Transition.fade_to_scene("res://scene_level_map/level5.tscn")
+
+			_:
+				Transition.fade_to_scene("res://scene/UI/main_menu.tscn")
+
+	else:
+
+		Transition.fade_to_scene("res://scene/UI/main_menu.tscn")

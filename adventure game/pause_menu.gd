@@ -6,6 +6,7 @@ func _ready():
 	$Panel/VBoxContainer/Restart.pressed.connect(_on_restart)
 	$Panel/VBoxContainer/Setting.pressed.connect(_on_settings)
 	$Panel/VBoxContainer/Menu.pressed.connect(_on_main_menu)
+	
 	hide()
 
 func show_pause():
@@ -33,6 +34,7 @@ func _on_restart():
 		print("Player stats reset before restart")
 
 func _on_settings():
+	Global.settings_return_scene = "pause"
 	get_tree().paused = false
 	Transition.fade_to_scene("res://scene/UI/setting.tscn")
 

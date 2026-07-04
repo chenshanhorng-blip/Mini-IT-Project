@@ -312,6 +312,10 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_8fq6j")
 sources/2 = SubResource("TileSetAtlasSource_6shjq")
 
+[sub_resource type="LabelSettings" id="LabelSettings_cyfd5"]
+font_size = 20
+font_color = Color(0.2601448, 0.27144435, 0.34080103, 1)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8qck8"]
 texture = ExtResource("3_dkf1l")
 0:0/0 = 0
@@ -430,6 +434,24 @@ offset_right = 91.0
 offset_bottom = 37.0
 theme_override_font_sizes/font_size = 20
 text = "cancel skip"
+
+[node name="CameraNoticePanel" type="Label" parent="TutorialUI" unique_id=1865002135]
+offset_left = 1350.0
+offset_top = 186.0
+offset_right = 1730.0
+offset_bottom = 493.0
+text = "──────────────────────────────────────
+📷 Camera Notice
+
+During story sections, the camera
+will follow Player 1 to ensure the
+story progresses correctly.
+
+Both players can continue playing
+together after the tutorial.
+──────────────────────────────────────"
+label_settings = SubResource("LabelSettings_cyfd5")
+horizontal_alignment = 1
 
 [node name="Spawnpoint" type="Marker2D" parent="." unique_id=1915445169]
 position = Vector2(50, 208)
