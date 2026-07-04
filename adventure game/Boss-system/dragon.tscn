@@ -11,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://c64spr0tfo6ic" path="res://Boss-system/Sprite/Dragon Boss-Tail Attack.png" id="7_ig3ra"]
 [ext_resource type="AudioStream" uid="uid://clkkahk3h4b2q" path="res://audio/FireBreathSound.wav" id="11_m8uif"]
 [ext_resource type="AudioStream" uid="uid://ddhf82vboadrq" path="res://audio/FireballAttackSound.wav" id="12_k26ub"]
-[ext_resource type="AudioStream" uid="uid://bm2ya1v6n0tvv" path="res://audio/BossDeathSound.wav" id="13_euoyu"]
+[ext_resource type="AudioStream" uid="uid://bm2ya1v6n0tvv" path="res://audio/audio/BossDeathSound.wav" id="13_euoyu"]
 [ext_resource type="AudioStream" uid="uid://bofebmav3botq" path="res://audio/Firebreath.wav" id="14_vvh74"]
 [ext_resource type="AudioStream" uid="uid://cfgok5eb07wf1" path="res://audio/ProjectileSound.wav" id="15_bmdc3"]
-[ext_resource type="AudioStream" uid="uid://bvem4c2v1oxdw" path="res://audio/GroundSmashSound.ogg" id="16_dce0e"]
+[ext_resource type="AudioStream" uid="uid://bvem4c2v1oxdw" path="res://audio/audio/GroundSmashSound.ogg" id="16_dce0e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q51qn"]
 atlas = ExtResource("2_gkirg")

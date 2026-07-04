@@ -59,26 +59,28 @@ var tail_scene = preload("res://Boss-system/projectile.tscn")
 
 
 func _ready():
-
+# Add boss into enemy groups so other scripts can detect it
 	add_to_group("enemy")
 	add_to_group("Boss")
 
+	# Find the player automatically
 	player_node = get_tree().get_first_node_in_group("player")
-
+	
+# Save the original ground position for landing
 	original_pos_y = global_position.y
 
 	hp_label.text = "BOSS HP"
 
-	update_hp()
+	update_hp()# Display current HP
 
-	sprite.play("IDLE")
+	sprite.play("IDLE")# Boss starts with idle animation
 
+# Disable attack collision until Ground Smash is used
 	if attack_area:
 		attack_area.monitoring = false
 		attack_area.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 
 	start_intro()
-
 
 func get_dialogue_layer() -> Node:
 	var layer = get_tree().root.find_child("DialogueLayer", true, false)
@@ -235,13 +237,13 @@ func take_damage(amount):
 	if current_state == State.DEAD:
 		return
 
-	health -= amount
+	health -= amount# Reduce boss HP when taking damage
 
 	update_hp()
 
 	print("HP:", health)
 
-	modulate = Color.RED
+	modulate = Color.RED# Flash red to indicate the boss is hit
 
 	await get_tree().create_timer(0.1).timeout
 
@@ -376,6 +378,7 @@ func attack_pattern():
 	if current_state == State.DEAD:
 		return
 
+# Select different attacks based on the current phase
 	match phase:
 
 		1:
@@ -464,14 +467,15 @@ func triple_fireball():
 
 
 func spawn_fireball(angle_offset):
-
+# Create a new fireball projectile
 	var fireball = fireball_scene.instantiate()
 
 	get_tree().current_scene.add_child(fireball)
-
+	
+# Spawn the fireball at the dragon's mouth
 	fireball.global_position = mouth.global_position
 
-	# 瞄准玩家
+	# 瞄准玩家# Aim towards the player's current position
 	var dir = (player_node.global_position - mouth.global_position).normalized()
 
 	# 加一点角度偏移（三连火球会用到）
@@ -593,6 +597,7 @@ func screen_shake():
 	if camera == null:
 		return
 
+# Shake the camera to make the attack feel more powerful
 	camera.offset.y = 12
 
 	await get_tree().create_timer(0.08).timeout
@@ -607,7 +612,7 @@ func screen_shake():
 # =====================
 # AttackArea 碰撞信号
 # =====================
-
+# Damage the player when hit by Ground Smash
 func _on_attack_area_body_entered(body):
 	if body.is_in_group("player"):
 		if body.has_method("take_damage"):
