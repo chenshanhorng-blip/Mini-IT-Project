@@ -1,5 +1,5 @@
 extends TextureButton
-## Button
+# Button
 
 
 ##Initialization
@@ -10,12 +10,12 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_entered)
 	
 	
-##Pivot Update
+#Pivot Update
 func set_pivot() -> void:
 	pivot_offset = size/2
 
 
-##Scale Button
+#Scale Button
 func _on_mouse_entered() -> void:
 	create_tween().tween_property(self,"scale",Vector2(1.1,1.1),0.1)
 func _on_mouse_excited() -> void:
