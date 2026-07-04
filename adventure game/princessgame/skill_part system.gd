@@ -21,15 +21,15 @@ var is_attacking: bool = false
 @onready var skill_damage_area = $skill_area
 @onready var skill_damage_shape = $skill_area/CollisionShape2D
 
-@onready var attack_knight = $attackknight
-@onready var shield_explosion = $ShieldExplosion
-@onready var princess_basic_attack = $PrincessBasicAttack
-@onready var princess_skill_1 = $PrincessSkill1
-@onready var princess_skill_2 = $PrincessSkill2
-@onready var princess_ultimate = $Princess_Ultimate
-@onready var knight_skill_1 = $KnightSkill1
-@onready var knight_skill_2 = $KnightSkill2
-@onready var knight_ultimate = $KnightUltimate
+@onready var princess_basic_sound = $"../PrincessBasicAttack"
+@onready var princess_skill1_sound = $"../PrincessSkill1"
+@onready var princess_skill2_sound = $"../PrincessSkill2"
+@onready var princess_ultimate_sound = $"../PrincessUltimate"
+
+@onready var knight_basic_sound = $"../attackknight"
+@onready var knight_skill1_sound = $"../KnightSkill1"
+@onready var knight_skill2_sound = $"../KnightSkill2"
+@onready var knight_ultimate_sound = $"../KnightUltimate"
 
 var current_skill_damage: int = 0
 var current_skill_name: String = ""
@@ -44,6 +44,9 @@ func setup(new_player, new_stat: CharacterStat,new_player_id: int = 1) -> void:
 	skill_damage_area.monitoring = false
 	skill_damage_shape.disabled = true
 
+	# Detect enemies on ALL layers — dragon is on layer 2, regular enemies on layer 1
+	skill_damage_area.collision_mask = 0b1111
+
 	# The CircleShape2D on skill_area has no radius set in the scene,
 	# which makes it default to Godot's tiny built-in radius (10px).
 	# Force a usable radius here so basic attack / skills can actually
@@ -57,6 +60,10 @@ func setup(new_player, new_stat: CharacterStat,new_player_id: int = 1) -> void:
 	var signal_callable = Callable(self, "_on_skill_damage_area_body_entered")
 	if not skill_damage_area.body_entered.is_connected(signal_callable):
 		skill_damage_area.body_entered.connect(signal_callable)
+	#新加的
+	var area_callable = Callable(self, "_on_skill_area_entered")
+	if not skill_damage_area.area_entered.is_connected(area_callable):
+		skill_damage_area.area_entered.connect(area_callable)
 	
 # Hide Effects
 func hide_all_effects() -> void:
@@ -79,15 +86,16 @@ func play_effect_at_marker(effect: AnimatedSprite2D, marker: Marker2D, duration:
 # play effect from marker position and fly forward
 func play_flying_effect_from_marker(effect: AnimatedSprite2D, marker: Marker2D, fly_distance: float, duration: float = 0.4) -> void:
 	var start_position = marker.global_position
+	# Use player.facing_direction instead of flip_h (flip_h is never set in this game)
 	var direction_sign = 1
-
-	if animated_sprite.flip_h:
-		direction_sign = -1
+	if player != null and player.get("facing_direction") != null:
+		if player.facing_direction.x < 0:
+			direction_sign = -1
 
 	effect.global_position = start_position
 	effect.visible = true
 	effect.frame = 0
-	effect.flip_h = animated_sprite.flip_h
+	effect.flip_h = direction_sign < 0
 	effect.play()
 
 	var tween = create_tween()
@@ -115,7 +123,7 @@ func basic_attack_animation() -> void:
 	print("Basic Attack pressed")
 	CombatSystem.basic_attack_1(stat)
 	if stat.character_name == "Tea Egg Knight":
-		attack_knight.play()
+		knight_basic_sound.play()
 		animated_sprite.play("knight basic attack")
 		# Knight basic attack — damage area in front of the knight
 		activate_skill_damage_area(
@@ -127,7 +135,7 @@ func basic_attack_animation() -> void:
 		)
 
 	elif stat.character_name == "Boar Princess":
-		princess_basic_attack.play()
+		princess_basic_sound.play()
 		animated_sprite.play("princess basic attack")
 		_fire_travelling_projectile(
 			princess_basic_attack_effect,
@@ -148,17 +156,21 @@ func _fire_travelling_projectile(
 		distance: float,
 		duration: float,
 		damage: int,
-		skill_name: String
+		_skill_name: String
 	) -> void:
  
-	var dir_sign = -1 if animated_sprite.flip_h else 1
+	# Use player.facing_direction to determine projectile direction
+	# because this game uses separate left/right animations, not flip_h
+	var dir_sign = 1  # default right
+	if player != null and player.get("facing_direction") != null:
+		dir_sign = int(sign(player.facing_direction.x)) if player.facing_direction.x != 0 else 1
 	var start_pos = start_marker.global_position
 	var end_pos = start_pos + Vector2(distance * dir_sign, 0)
  
 	# Show and move the visual effect
 	effect.global_position = start_pos
 	effect.visible = true
-	effect.flip_h = animated_sprite.flip_h
+	effect.flip_h = dir_sign < 0  # flip effect sprite when going left
 	effect.frame = 0
 	effect.play()
  
@@ -175,15 +187,29 @@ func _fire_travelling_projectile(
 		await get_tree().create_timer(step).timeout
 		elapsed += step
  
-		# Get all enemies in the scene and check if the projectile is close enough
-		for enemy in get_tree().get_nodes_in_group("enemy"):
+		# Get all enemies AND bosses, combine into one target list
+		var targets: Array = get_tree().get_nodes_in_group("enemy")
+		for boss in get_tree().get_nodes_in_group("Boss"):
+			if boss not in targets:
+				targets.append(boss)
+
+		for enemy in targets:
 			if enemy in already_hit:
 				continue
 			if not is_instance_valid(enemy):
 				continue
- 
+
 			var dist = effect.global_position.distance_to(enemy.global_position)
-			if dist < 60:  # hit radius
+			#Print out the calculated distance each time 
+			#to make it easier to check if the judgment range is sufficient.
+			print("Checking hit vs ", enemy.name, " dist=", dist)
+
+			# Hit radius: small for normal enemies (precise), large for big bosses
+			var hit_radius = 60.0
+			if enemy.is_in_group("Boss"):
+				hit_radius = 200.0
+
+			if dist < hit_radius:
 				already_hit.append(enemy)
 				if enemy.has_method("receive_damage"):
 					enemy.receive_damage(damage)
@@ -206,6 +232,13 @@ func activate_skill_damage_area(marker: Marker2D, damage: int, duration: float, 
 	skill_damage_area.monitoring = true
 
 	print("Damage area active:", skill_name, " Damage:", damage, " | world position:", skill_damage_area.global_position, " | scale:", skill_damage_area.scale)
+
+	# body_entered only fires when a body ENTERS the area.
+	# If the enemy is already overlapping (standing inside a large boss),
+	# the signal never fires — check existing overlaps immediately.
+	await get_tree().physics_frame
+	for body in skill_damage_area.get_overlapping_bodies():
+		_on_skill_damage_area_body_entered(body)
 
 	await get_tree().create_timer(duration).timeout
 
@@ -241,6 +274,16 @@ func _on_skill_damage_area_body_entered(body) -> void:
 			stat.print_stat()
 	else:
 		print("Enemy touched area but has no receive_damage()")
+		
+		#新加的
+func _on_skill_area_entered(area) -> void:
+
+	if !area.is_in_group("boss_projectile"):
+		return
+
+	if current_skill_name == "boar_skill2" or current_skill_name == "tea_skill1":
+		print("Projectile Destroyed!")
+		area.queue_free()
 
 func use_skill_1_action() -> void:
 	if stat == null:
@@ -254,7 +297,7 @@ func use_skill_1_action() -> void:
 	print("Skill 1 pressed")
 
 	if stat.character_name == "Boar Princess":
-		princess_skill_1.play()
+		princess_skill1_sound.play()
 		animated_sprite.play("skill 1 of boar princess")
 		play_flying_effect_from_marker(
 			princess_skill1_effect,
@@ -271,8 +314,18 @@ func use_skill_1_action() -> void:
 		"boar_skill1"
 		)
 	elif stat.character_name == "Tea Egg Knight":
-		knight_skill_1.play()
+
+		knight_skill1_sound.play()
+
 		animated_sprite.play("skill 1 tea egg knight")
+		#新加的
+		activate_skill_damage_area(
+			knight_skill2_start,   # 或者改成你 Skill1 对应的 Marker
+			0,
+			1.0,
+			Vector2(2, 2),
+			"tea_skill1"
+		)
 
 	SkillSystem.use_skill_1(stat)
 	player.speed = stat.current_movement
@@ -295,11 +348,19 @@ func use_skill_2_action() -> void:
 	print("Skill 2 pressed")
 
 	if stat.character_name == "Boar Princess":
-		princess_skill_2.play()
+		princess_skill2_sound.play()
 		animated_sprite.play("princess skill 2")
+		#新加的
+		activate_skill_damage_area(
+		princess_skill1_start,
+		0,
+		1.0,
+		Vector2(2,2),
+		"boar_skill2"
+	)
 
 	elif stat.character_name == "Tea Egg Knight":
-		knight_skill_2.play()
+		knight_skill2_sound.play()
 		animated_sprite.play("skill 2 tea egg knight")
 		play_flying_effect_from_marker(
 			knight_skill2_effect,
@@ -339,7 +400,7 @@ func use_ultimate_action() -> void:
 		SkillSystem.start_princess_ultimate(stat)
 
 		# Make princess bigger
-		princess_ultimate.play()
+		princess_ultimate_sound.play()
 		animated_sprite.scale = Vector2(0.08, 0.08)
 
 		# Update movement speed
@@ -367,7 +428,7 @@ func use_ultimate_action() -> void:
 			
 		is_attacking = true
 		print("Ultimate pressed")
-		knight_ultimate.play()
+		knight_ultimate_sound.play()
 		animated_sprite.play("ultimate of tea egg knight ")
 		play_effect_at_marker(
 			knight_ultimate_effect,
