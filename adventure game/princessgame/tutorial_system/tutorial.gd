@@ -27,7 +27,7 @@ var countdown_label = null   # Label — shows "Loading in X..."
 
 
 func _ready() -> void:
-	# --- Find tutorial text labels ---
+	#Find tutorial text labels 
 	step_label = get_node_or_null("TutorialUI/Panel/VBoxContainer/StepLabel")
 	desc_label = get_node_or_null("TutorialUI/Panel/VBoxContainer/DescLabel")
 	key_label  = get_node_or_null("TutorialUI/Panel/VBoxContainer/KeyLabel")
@@ -43,7 +43,7 @@ func _ready() -> void:
 		push_error("Tutorial: Labels not found! Check node names in tutorial.tscn")
 		return
 
-	# --- Find skip UI nodes ---
+	# Find skip UI nodes
 	skip_button     = get_node_or_null("TutorialUI/SkipButton")
 	cancel_button   = get_node_or_null("TutorialUI/CancelButton")
 	countdown_label = get_node_or_null("TutorialUI/CountdownLabel")
@@ -63,7 +63,7 @@ func _ready() -> void:
 	if countdown_label != null:
 		countdown_label.visible = false
 
-	# --- Spawn player ---
+	#  Spawn player 
 	var p1 = P1_SCENE.instantiate()
 	# Set position BEFORE add_child — when _ready() runs inside player1script.gd
 	# it saves start_position = global_position. If add_child runs first,
@@ -72,13 +72,13 @@ func _ready() -> void:
 	if spawn != null:
 		p1.position = spawn.global_position
 	else:
-		p1.position = Vector2(50, 218)
+		p1.position = Vector2(50, 218)#the respawn location for player 1
 		push_error("Tutorial: Spawnpoint node not found — using fallback Vector2(50, 218)")
 	add_child(p1)
 	player_node = p1
 	print("Tutorial: Player spawned at ", p1.global_position)
 
-	# --- Start tutorial ---
+	# Start tutorial 
 	TutorialManager.start_tutorial()
 	TutorialManager.step_changed.connect(_on_step_changed)
 	TutorialManager.tutorial_finished.connect(_on_tutorial_finished)
@@ -86,8 +86,6 @@ func _ready() -> void:
 	_show_step(TutorialManager.current_step)
 
 # SKIP BUTTON CLICKED
-
-
 func _on_skip_pressed() -> void:
 	if is_skipping:
 		return
@@ -209,9 +207,7 @@ func _set_ui(title: String, desc: String, keys: String) -> void:
 		key_label.text = keys
 
 
-# ============================================================
 # STEP COMPLETION CHECKS
-# ============================================================
 
 func _check_step_completion() -> void:
 	var step = TutorialManager.current_step
@@ -268,11 +264,10 @@ func _check_step_completion() -> void:
 			if used_ultimate:
 				TutorialManager.advance_step()
 
-
+#it is for change the step when the player finish the step 
 func _on_step_changed(new_step: int) -> void:
 	_show_step(new_step)
-
-
+#the functiom when the player finish the tutorial and will tranfer to the level 1
 func _on_tutorial_finished() -> void:
 	_show_step(TutorialManager.Step.COMPLETE)
 	# Show countdown same as skip
@@ -286,10 +281,10 @@ func _on_tutorial_finished() -> void:
 			countdown_label.text = "Loading level in " + str(ceil(timer)) + "..."
 		await get_tree().create_timer(1.0).timeout
 		timer -= 1.0
-	_reset_player_before_level()
+	_reset_player_before_level()#reset the player stats before go to the level 1
 	Transition.fade_to_scene("res://scene_level_map/level1.tscn")
 
-
+#the function when player click the skip button and need to wait 5 second before go to level 1
 func _on_tutorial_skipped() -> void:
 	if step_label != null:
 		step_label.text = "Tutorial Skipped!"
@@ -300,7 +295,7 @@ func _on_tutorial_skipped() -> void:
 	if countdown_label != null:
 		countdown_label.visible = false
 	print("Tutorial skipped — loading level in 5 seconds")
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(5.0).timeout#the timer for tranfer to the level 1 
 	Transition.fade_to_scene("res://scene_level_map/level1.tscn")
 	
 func _reset_player_before_level() -> void:

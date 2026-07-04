@@ -29,7 +29,7 @@ func _process(_delta):
 		return
 	update_hp_bar()
 
-
+#the function to update the hp bar 
 func update_hp_bar() -> void:
 	if stat == null:
 		return

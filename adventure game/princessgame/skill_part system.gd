@@ -200,8 +200,8 @@ func _fire_travelling_projectile(
 				continue
 
 			var dist = effect.global_position.distance_to(enemy.global_position)
-
-			# 调试用：把每次算出来的距离打出来，方便确认判定范围够不够
+			#Print out the calculated distance each time 
+			#to make it easier to check if the judgment range is sufficient.
 			print("Checking hit vs ", enemy.name, " dist=", dist)
 
 			# Hit radius: small for normal enemies (precise), large for big bosses

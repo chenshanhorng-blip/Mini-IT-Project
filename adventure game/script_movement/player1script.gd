@@ -151,9 +151,8 @@ func _process(_delta: float) -> void:
 	skill_controller.handle_input()
 
 
-# ============================================================
+
 # LEVEL MOVEMENT
-# ============================================================
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -288,9 +287,7 @@ func play_if_exists(anim_name: String) -> void:
 		print("Missing animation: ", anim_name)
 
 
-# ============================================================
 # CROUCH
-# ============================================================
 
 func start_crouch() -> void:
 	if is_crouching:
@@ -319,9 +316,8 @@ func stop_crouch() -> void:
 		collision_shape.position.y -= (original_height - crouch_height) / 2
 
 
-# ============================================================
+
 # DEATH / RESPAWN / CHECKPOINT
-# ============================================================
 
 func start_fall() -> void:
 	if is_falling:
@@ -394,9 +390,7 @@ func respawn() -> void:
 	respawn_at_checkpoint(start_position)
 
 
-# ============================================================
 # DAMAGE / POISON / ENEMY HIT
-# ============================================================
 
 func take_damage(amount: int) -> void:
 	if is_dead:

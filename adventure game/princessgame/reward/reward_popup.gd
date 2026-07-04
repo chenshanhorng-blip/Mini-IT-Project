@@ -80,7 +80,7 @@ func show_reward(level_name: String, base_coins: int, bonus_coins: int = 0, diam
 		grand_total_label.text = "💰 Total Coins:  " + str(RewardSystem.total_coins)
 
 	show()# show the popup
-	get_tree().paused #true3pause the game so nothing moves in the background
+	get_tree().paused  #pause the game so nothing moves in the background
 	print("Reward popup shown for:", level_name)
 
 	# make the title do a little pulse animation
